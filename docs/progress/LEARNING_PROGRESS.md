@@ -11,20 +11,23 @@
 |---|---|---|---|
 | Phase 0 — Academy V0.1 foundation, roadmap, blueprint and race lab | Verified | [Phase 0 checkpoint](../../checkpoints/PHASE_0_ACADEMY_V0_1.md) | Planning-only |
 | Cluster 1.1 → Chapter 1 → Lesson 1.1.1: actors, goals, responsibilities and capabilities | **Authored, interactive, browser-verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_1.md) | **Unchanged** |
-| Lesson 1.1.2: business scenarios and use-case discovery | Not started | No code or executed evidence | Planned first minimal Spring Boot vertical slice |
+| Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
 | Lessons 1.1.3–1.1.20 | Not started | Blueprint only | Deferred |
 
 ## Current learning assets
 
 - [Full Lesson 1.1.1 manuscript](../../content/lessons/1.1.1.md).
+- [Full Lesson 1.1.2 manuscript](../../content/lessons/1.1.2.md).
+- [Applied Java execution walkthrough](../engineering/LESSON_1_1_2_APPLIED_WALKTHROUGH.md) with pinned Java source and test links.
+- React route: /#/lesson/1.1.2; interactive Use-Case Explorer, Scenario Studio, Acceptance Explorer, source trace, evidence room, diagnosis and defense.
 - [Domain discovery contract](../domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md).
 - React route: `/#/lesson/1.1.1`, with 13 deep-learning sections and working pedagogical interactions.
 - [Cluster 1.1 blueprint](../blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) remains the full remaining scope contract.
 
 ## Evidence language
 
-A working academy simulator is educational modeling; it is **not** a verified Java business workflow. The discovery contract is an explicit business model, not an externally approved merchant policy. The app remains a separate repository with no Lesson 1.1.2 runtime implementation. CI verifies source code in specific immutable academy commits, not future runtime guarantees.
+A working academy simulator is educational modeling; it is **not** a verified Java business workflow. The discovery contract is an explicit business model, not an externally approved merchant policy. The separate Java repository now implements only order-request intake, pinned at [08b33714431a53f6b1cb1e1e09718b0281da1ce8](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/08b33714431a53f6b1cb1e1e09718b0281da1ce8). Java CI passed 13 tests, packaged the jar and executed actual 201/422 HTTP smoke. There is no merchant acceptance, payment provider, durable data or authenticated customer. CI verifies source code in specific immutable academy commits, not future runtime guarantees.
 
 ## Next execution
 
-**Lesson 1.1.2** only when requested. Begin with repository-first review of this lesson's domain contract and create the smallest runnable, verified Java/Spring Boot single-deployable workflow with clear actor boundaries, no premature distributed infrastructure.
+**Lesson 1.1.3 — Commands, decisions, facts and events**, only when requested. Build from the verified Java PlaceOrder request-intake fact and distinguish customer command intention from business outcome, without prematurely introducing Kafka, service extraction or event sourcing.
