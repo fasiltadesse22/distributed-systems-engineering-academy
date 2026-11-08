@@ -164,7 +164,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Source milestone.**  Fresh-start real application foundation. Build one real Java/Spring Boot Food Ordering deployable first; discover correctness, aggregates, semantic boundaries and service-decomposition forces inside a running application before distributing anything.
 
-**Application evolution path.** Begin a new monorepo with a Maven parent, one Spring Boot application module, architecture/ADR docs, experiments, scripts, and CI. Use Java 21. Start with real application use cases and minimal adapters; introduce PostgreSQL and stronger module boundaries only when the relevant clusters justify them.
+**Application evolution path.** Begin the separate Food Ordering Platform repository with a Maven root, one Spring Boot application module, architecture/ADR docs, experiments, scripts, and CI. Use Java 21. Start with real application use cases and minimal adapters; introduce PostgreSQL and stronger module boundaries only when the relevant clusters justify them.
 
 **Phase exit evidence.** By the end of Phase I, the repository contains a verified real Food Ordering application, explicit domain/consistency boundaries, enforceable semantic modules, and an evidence-backed decision about whether any boundary deserves an independently runnable Spring Boot application. The simpler topology remains preserved for comparison.
 
@@ -178,7 +178,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** command != event; intent != fact; validation rule != invariant; invariant != DB constraint; workflow != state machine; business failure != technical failure; reversal != compensation; documented rule != implemented guarantee != experimentally verified behavior.
 
-**Causal reasoning path:** Actors goals use cases commands decisions facts state lifecycle transitions -> invariants conflicts atomicity consistency evidence..
+**Causal reasoning path:** Actors goals use cases commands decisions facts state lifecycle transitions -> invariants conflicts atomicity consistency evidence.
 
 **Real Food Ordering pressure:** Create the V8 fresh-start production-project baseline from scratch. Model ordering, payment, restaurant acceptance/rejection, cancellation, refund, preparation and completion without premature Kafka, Redis, Saga, Outbox, CQRS or Event Sourcing.
 
@@ -198,7 +198,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** entity != row; value object != DTO; aggregate != table; aggregate != bounded context; aggregate boundary != service boundary; transaction boundary != deployment boundary.
 
-**Causal reasoning path:** Identity entity value semantics invariant required state aggregate root consistency -> boundary transaction boundary cross-aggregate interaction..
+**Causal reasoning path:** Identity entity value semantics invariant required state aggregate root consistency -> boundary transaction boundary cross-aggregate interaction.
 
 **Real Food Ordering pressure:** Refine Order, Restaurant, Payment and related models from actual invariants. Keep boundaries local until distribution is justified; never force one aggregate per future service.
 
@@ -218,7 +218,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** subdomain != bounded context; bounded context != service; same word != same model; shared identifier != shared ownership; context boundary != deployment boundary.
 
-**Causal reasoning path:** Capability language model semantic conflict ownership bounded context relationship -> translation..
+**Causal reasoning path:** Capability language model semantic conflict ownership bounded context relationship -> translation.
 
 **Real Food Ordering pressure:** Discover Food Ordering contexts from behavior rather than copying the reference repository. Compare candidate Order, Restaurant, Payment, Customer, Delivery and Notification contexts.
 
@@ -238,7 +238,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** aggregate != bounded context != module != service != process != deployment unit != database; logical separation != physical distribution.
 
-**Causal reasoning path:** Domain boundary change coupling ownership deployment/scaling/failure needs distribution -> cost alternatives service decision..
+**Causal reasoning path:** Domain boundary change coupling ownership deployment/scaling/failure needs distribution -> cost alternatives service decision.
 
 **Real Food Ordering pressure:** Evolve modular boundaries first and distribute only selected boundaries when a measurable force justifies it. Preserve the simpler state for comparison.
 
@@ -246,7 +246,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Interactive academy design brief:** Monolith-versus-extraction laboratory: toggle a remote boundary and observe call count, failure propagation and consistency costs.
 
-**Specific implementation obligations inherited from V8:** Use the actual application, change history, load/failure experiments and data ownership evidence to compare modular co-location with selected runtime separation; Only a boundary that survives cohesion, coupling, ownership, release, scaling, failure, data, consistency, network and operational-cost analysis may become another independently runnable Spring Boot application in the monorepo; If a split is selected, create a real service-to-service path and preserve the simpler modular baseline/checkpoint for comparison. If no split is justified, keep the real modular application and preserve a controlled extraction experiment rather than forcing microservices; End Phase I with an explicit topology ADR that later phases must inherit rather than assuming one service per bounded context.
+**Specific implementation obligations inherited from V8:** Use the actual application, change history, load/failure experiments and data ownership evidence to compare modular co-location with selected runtime separation; Only a boundary that survives cohesion, coupling, ownership, release, scaling, failure, data, consistency, network and operational-cost analysis may become another independently runnable Spring Boot application in the Food Ordering Platform repository; If a split is selected, create a real service-to-service path and preserve the simpler modular baseline/checkpoint for comparison. If no split is justified, keep the real modular application and preserve a controlled extraction experiment rather than forcing microservices; End Phase I with an explicit topology ADR that later phases must inherit rather than assuming one service per bounded context.
 
 **Mastery demonstration:** Defend both separation and non-separation using business change, consistency, failure, scaling and operational forces. The learner must also explain an alternate design, diagnose a failure using evidence, and defend assumptions to a Staff-level reviewer.
 
@@ -274,7 +274,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** performance != scalability; scalability != elasticity; latency != throughput; availability != reliability; reliability != resilience; resilience != fault tolerance; availability != durability; observability != monitoring.
 
-**Causal reasoning path:** Business expectation quality concern force competing qualities tactics trade-off..
+**Causal reasoning path:** Business expectation quality concern force competing qualities tactics trade-off.
 
 **Real Food Ordering pressure:** Create explicit quality-attribute concerns for critical Food Ordering workflows and connect each to business consequences.
 
@@ -292,7 +292,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** SLI != SLO != SLA; average != percentile; metric existence != meaningful SLI; SLO miss != total outage.
 
-**Causal reasoning path:** Business expectation scenario response measure SLI target SLO evidence..
+**Causal reasoning path:** Business expectation scenario response measure SLI target SLO evidence.
 
 **Real Food Ordering pressure:** Define measurable scenarios for order placement, payment, restaurant acceptance and selected async workflows.
 
@@ -310,7 +310,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** average != peak; throughput != concurrency; capacity != utilization; estimate != measured fact; traffic volume != data growth.
 
-**Causal reasoning path:** Business volume arrival pattern service demand concurrency resource demand constraint -> headroom..
+**Causal reasoning path:** Business volume arrival pattern service demand concurrency resource demand constraint -> headroom.
 
 **Real Food Ordering pressure:** Build explicit workload assumptions for ordering, menu reads, payments and event flows with units and uncertainty.
 
@@ -328,7 +328,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** latency != service time; throughput != concurrency; parallelism != concurrency; average != tail; CPU != only saturation.
 
-**Causal reasoning path:** Arrival resource demand utilization waiting queueing tail latency timeout -> amplification..
+**Causal reasoning path:** Arrival resource demand utilization waiting queueing tail latency timeout -> amplification.
 
 **Real Food Ordering pressure:** Create a controlled load baseline for later comparison after networking, Kafka, resilience and caching changes.
 
@@ -362,7 +362,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** hostname != IP; port != process; endpoint != service name; DNS success != reachability; socket != HTTP request.
 
-**Causal reasoning path:** Logical service name DNS address port endpoint connection attempt remote process..
+**Causal reasoning path:** Logical service name DNS address port endpoint connection attempt remote process.
 
 **Real Food Ordering pressure:** Introduce a real service-to-service interaction and trace resolution without duplicating Java socket or Kubernetes networking implementation.
 
@@ -380,7 +380,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** connection establishment != request execution; refused != response timeout; slow != failed; transport connection != application success.
 
-**Causal reasoning path:** Endpoint connection attempt establishment data exchange waiting close/reuse/failure..
+**Causal reasoning path:** Endpoint connection attempt establishment data exchange waiting close/reuse/failure.
 
 **Real Food Ordering pressure:** Instrument one remote Food Ordering interaction enough to separate connection establishment from application response time.
 
@@ -398,7 +398,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** HTTP error != network failure; TLS success != authorization; accepted connection != request completed; status != business success.
 
-**Causal reasoning path:** Intent resolution connection TLS HTTP send remote admission execution dependencies -> response interpretation..
+**Causal reasoning path:** Intent resolution connection TLS HTTP send remote admission execution dependencies -> response interpretation.
 
 **Real Food Ordering pressure:** Trace a critical Food Ordering request across services with timings/correlation evidence where feasible.
 
@@ -416,7 +416,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** connection pool != thread pool; idle connection != downstream capacity; pool size != throughput; acquisition timeout != response timeout.
 
-**Causal reasoning path:** Request acquire wait if unavailable remote work hold release; downstream slow hold -> longer pool depletion queue P99..
+**Causal reasoning path:** Request acquire wait if unavailable remote work hold release; downstream slow hold -> longer pool depletion queue P99.
 
 **Real Food Ordering pressure:** Expose observable client-pool behavior and preserve a fragile configuration that can be saturated.
 
@@ -434,7 +434,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** connection timeout != response timeout; pool timeout != remote failure; timeout != remote cancellation; caller failure != remote rollback; deadline != arbitrary hop timeout.
 
-**Causal reasoning path:** Deadline budget allocation stage waits timeout known evidence unknown remote state -> recovery decision..
+**Causal reasoning path:** Deadline budget allocation stage waits timeout known evidence unknown remote state -> recovery decision.
 
 **Real Food Ordering pressure:** Configure distinct timeout classes and create a case where remote business state commits but the caller times out.
 
@@ -468,7 +468,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** no response != operation did not happen; timeout != proof of remote crash; partition != total outage; failure detection != certainty.
 
-**Causal reasoning path:** Independent components communication uncertainty incomplete observation timeout/suspicion -> ambiguous state conservative recovery..
+**Causal reasoning path:** Independent components communication uncertainty incomplete observation timeout/suspicion -> ambiguous state conservative recovery.
 
 **Real Food Ordering pressure:** Inject dependency unavailability and delayed communication while preserving caller/callee evidence.
 
@@ -486,7 +486,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** symptom != root cause; dependency failure != only cascade source; redundancy != independence.
 
-**Causal reasoning path:** Local slowdown resources held queues/pools saturate P99 timeout retry added load -> wider saturation..
+**Causal reasoning path:** Local slowdown resources held queues/pools saturate P99 timeout retry added load -> wider saturation.
 
 **Real Food Ordering pressure:** Construct a reproducible cascade such as slow DB/downstream causing connection/request saturation.
 
@@ -504,7 +504,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** retry != resilience; backoff != rate limiting; retryable transport error != safe business retry; attempt count != time budget.
 
-**Causal reasoning path:** Observe failure classify remaining deadline safety/idempotency bounded retry observe -> recovery/load..
+**Causal reasoning path:** Observe failure classify remaining deadline safety/idempotency bounded retry observe -> recovery/load.
 
 **Real Food Ordering pressure:** Introduce naive retries first, demonstrate amplification, then evolve policy where justified.
 
@@ -522,7 +522,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** HTTP idempotence != business idempotency; request ID != idempotency key automatically; dedup != exactly-once delivery.
 
-**Causal reasoning path:** Ambiguous attempt stable operation identity atomic claim/check execute persist outcome -> duplicate returns prior outcome..
+**Causal reasoning path:** Ambiguous attempt stable operation identity atomic claim/check execute persist outcome -> duplicate returns prior outcome.
 
 **Real Food Ordering pressure:** Evolve a payment/order path to tolerate repeated and concurrent duplicate requests; preserve preidempotent failure state.
 
@@ -556,7 +556,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** breaker != retry; breaker != rate limiter; open != dependency definitely down; fallback != automatically correct.
 
-**Causal reasoning path:** Outcomes health signal threshold open fail fast/degrade probe close/reopen..
+**Causal reasoning path:** Outcomes health signal threshold open fail fast/degrade probe close/reopen.
 
 **Real Food Ordering pressure:** Introduce only after reproducing dependency-failure pressure and compare with timeout/retry alone.
 
@@ -574,7 +574,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** bulkhead != breaker; service boundary != resource isolation; separate pool != unlimited capacity.
 
-**Causal reasoning path:** Shared capacity monopolization unrelated starvation isolate contain evaluate utilization -> cost..
+**Causal reasoning path:** Shared capacity monopolization unrelated starvation isolate contain evaluate utilization -> cost.
 
 **Real Food Ordering pressure:** Demonstrate starvation between two workload/dependency paths before isolation.
 
@@ -592,7 +592,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** rate != concurrency; rate limit != queue; admission != retry; client quota != downstream capacity.
 
-**Causal reasoning path:** Offered work policy/capacity signal admit/reject/defer bounded in-flight work..
+**Causal reasoning path:** Offered work policy/capacity signal admit/reject/defer bounded in-flight work.
 
 **Real Food Ordering pressure:** Protect a constrained dependency and compare rate versus concurrency limits under slow responses.
 
@@ -610,7 +610,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** shedding != rate limiting; backpressure != queue growth; degradation != silent incorrectness.
 
-**Causal reasoning path:** Capacity pressure detect signal/limit/reject/degrade preserve critical work recover..
+**Causal reasoning path:** Capacity pressure detect signal/limit/reject/degrade preserve critical work recover.
 
 **Real Food Ordering pressure:** Create overload and evolve explicit rejection/degradation rather than unbounded waiting.
 
@@ -644,7 +644,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** synchronous != simple; REST != only sync style; service independence != runtime independence.
 
-**Causal reasoning path:** Immediate-result need remote request wait success/failure/timeout propagate/transform..
+**Causal reasoning path:** Immediate-result need remote request wait success/failure/timeout propagate/transform.
 
 **Real Food Ordering pressure:** Retain a meaningful synchronous order-payment/restaurant path for later comparison.
 
@@ -662,7 +662,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** async != event-driven; accepted != completed; temporal decoupling != semantic independence; queue != infinite buffer.
 
-**Causal reasoning path:** Producer signal durable broker later consumer processing asynchronous outcome..
+**Causal reasoning path:** Producer signal durable broker later consumer processing asynchronous outcome.
 
 **Real Food Ordering pressure:** Convert only a workflow whose requirements justify delayed processing; preserve sync version.
 
@@ -680,7 +680,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** command != event; queue != topic; pub/sub != work queue; notification != event-carried state.
 
-**Causal reasoning path:** Interaction semantics command/event topology responsibility delivery/failure semantics..
+**Causal reasoning path:** Interaction semantics command/event topology responsibility delivery/failure semantics.
 
 **Real Food Ordering pressure:** Model Food Ordering message contracts before Kafka-specific implementation.
 
@@ -698,7 +698,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** technology preference != requirement; Kafka != automatically scalable; async != automatically eventual for all state.
 
-**Causal reasoning path:** Interaction requirement qualities failure model candidate styles trade-offs decision -> validation..
+**Causal reasoning path:** Interaction requirement qualities failure model candidate styles trade-offs decision -> validation.
 
 **Real Food Ordering pressure:** Create a communication decision matrix and implement only justified choices.
 
@@ -732,7 +732,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** Kafka != queue; offset != message ID; partition != consumer; topic ordering != global ordering.
 
-**Causal reasoning path:** Record key partition append offset retention independent consumer position..
+**Causal reasoning path:** Record key partition append offset retention independent consumer position.
 
 **Real Food Ordering pressure:** Introduce Kafka only after async communication is justified; begin with minimal topic/partition design.
 
@@ -750,7 +750,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** send invoked != durable; broker ack != consumer processed; producer retry != business idempotency.
 
-**Causal reasoning path:** App record serialize partition batch send leader append/replicate ack/error..
+**Causal reasoning path:** App record serialize partition batch send leader append/replicate ack/error.
 
 **Real Food Ordering pressure:** Instrument producer behavior and compare immediate small sends with batching under controlled load.
 
@@ -768,7 +768,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** replication != backup; leader ack != consumer effect; replica count != all current.
 
-**Causal reasoning path:** Producer leader append follower replication ack condition possible leader failure..
+**Causal reasoning path:** Producer leader append follower replication ack condition possible leader failure.
 
 **Real Food Ordering pressure:** Use multi-broker local setup if feasible; otherwise clearly bound simulation evidence.
 
@@ -786,7 +786,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** consumer != group; consumer count != arbitrary parallelism; ownership != record ownership; fetch position != committed offset; rebalance != failure.
 
-**Causal reasoning path:** single consumer partitions group assignment parallelism membership change rebalance -> resume..
+**Causal reasoning path:** single consumer partitions group assignment parallelism membership change rebalance -> resume.
 
 **Real Food Ordering pressure:** Scale consumers for a real event flow and preserve assignment/idle-consumer evidence.
 
@@ -804,7 +804,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** fetched != processed; processed != committed; offset commit != business transaction; Kafka EOS != universal business EOS.
 
-**Causal reasoning path:** Fetch process effect commit; compare orderings and crash boundaries..
+**Causal reasoning path:** Fetch process effect commit; compare orderings and crash boundaries.
 
 **Real Food Ordering pressure:** Implement visible crash windows, then evolve to required semantics.
 
@@ -822,7 +822,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** partition order != global; duplicate record != duplicate effect necessarily; replay != retry.
 
-**Causal reasoning path:** Business order need key/partition concurrency duplicate/replay handling evidence..
+**Causal reasoning path:** Business order need key/partition concurrency duplicate/replay handling evidence.
 
 **Real Food Ordering pressure:** Choose keys for real events and demonstrate per-key order versus no global order.
 
@@ -840,7 +840,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** lag count != time lag; more consumers != more capacity without partitions/downstream; backlog != loss.
 
-**Causal reasoning path:** arrival > processing lag grows; processing > arrival drains at spare capacity..
+**Causal reasoning path:** arrival > processing lag grows; processing > arrival drains at spare capacity.
 
 **Real Food Ordering pressure:** Overload a consumer, measure lag, then change one capacity variable at a time.
 
@@ -874,7 +874,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** copy != ownership; read access != write authority; DB-per-service != DB-server-per-service.
 
-**Causal reasoning path:** responsibility authority owner contract derived copies synchronization..
+**Causal reasoning path:** responsibility authority owner contract derived copies synchronization.
 
 **Real Food Ordering pressure:** Assign ownership for order, payment, restaurant/menu and customer data; eliminate ambiguous multiwriter paths.
 
@@ -892,7 +892,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** eventual != arbitrary; freshness != correctness; availability != consistency.
 
-**Causal reasoning path:** business requirement visibility guarantee allowed staleness propagation reconciliation..
+**Causal reasoning path:** business requirement visibility guarantee allowed staleness propagation reconciliation.
 
 **Real Food Ordering pressure:** Create an intentionally delayed derived/read copy and expose pending/stale state.
 
@@ -910,7 +910,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** conflict != duplicate request; optimistic concurrency != idempotency; last-write-wins != always correct.
 
-**Causal reasoning path:** read version decide conditional write success/conflict re-read/re-evaluate..
+**Causal reasoning path:** read version decide conditional write success/conflict re-read/re-evaluate.
 
 **Real Food Ordering pressure:** Add version protection to a meaningful state transition.
 
@@ -928,7 +928,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** replication != backup; replica availability != freshness; read scaling != write scaling; failover != DR.
 
-**Causal reasoning path:** write replication lag read routing stale read/failure failover..
+**Causal reasoning path:** write replication lag read routing stale read/failure failover.
 
 **Real Food Ordering pressure:** Model or simulate replica-lag consequences if real replication is outside the lab.
 
@@ -946,7 +946,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** partitioning != replication; shard key != primary key necessarily; even rows != even load.
 
-**Causal reasoning path:** measured bottleneck partition dimension key routing distribution cross-partition cost -> rebalance..
+**Causal reasoning path:** measured bottleneck partition dimension key routing distribution cross-partition cost -> rebalance.
 
 **Real Food Ordering pressure:** Evaluate candidate shard keys from workload; avoid premature physical sharding.
 
@@ -980,7 +980,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** local transaction != distributed; DB commit != event published; publish != DB commit; @Transactional != DB+Kafka atomicity by default.
 
-**Causal reasoning path:** business state + integration signal independent commits orderings crash windows -> inconsistency..
+**Causal reasoning path:** business state + integration signal independent commits orderings crash windows -> inconsistency.
 
 **Real Food Ordering pressure:** Preserve an intentionally unsafe dual-write before fixing it.
 
@@ -998,7 +998,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** Saga != distributed ACID; choreography != no coupling; compensation != rollback.
 
-**Causal reasoning path:** workflow local step durable outcome next step failure branch compensate/recover -> terminal state..
+**Causal reasoning path:** workflow local step durable outcome next step failure branch compensate/recover -> terminal state.
 
 **Real Food Ordering pressure:** Evolve order/payment/restaurant workflow into Saga only after consistency problem is visible.
 
@@ -1016,7 +1016,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** compensation != rollback; refund != erasing history; reverse action != exact prior world.
 
-**Causal reasoning path:** effect completes later failure compensability compensation record escalate if impossible..
+**Causal reasoning path:** effect completes later failure compensability compensation record escalate if impossible.
 
 **Real Food Ordering pressure:** Add explicit compensation states and failures where semantics justify.
 
@@ -1034,7 +1034,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** Outbox != exactly-once; outbox row != domain event automatically; published flag != consumed.
 
-**Causal reasoning path:** business + outbox in local tx commit relay publish ack mark/progress..
+**Causal reasoning path:** business + outbox in local tx commit relay publish ack mark/progress.
 
 **Real Food Ordering pressure:** Replace unsafe dual-write with Outbox and keep original failure test.
 
@@ -1052,7 +1052,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** offset != dedup record; Inbox != broker feature; dedup != ordering.
 
-**Causal reasoning path:** receive claim/check identity effect + processed marker atomically commit duplicate no-op..
+**Causal reasoning path:** receive claim/check identity effect + processed marker atomically commit duplicate no-op.
 
 **Real Food Ordering pressure:** Evolve a consumer whose effect must not repeat using durable dedup.
 
@@ -1086,7 +1086,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** CQRS != microservices; CQRS != Event Sourcing; separate DTO != full CQRS.
 
-**Causal reasoning path:** observed read/write tension separate responsibilities propagation query model -> freshness/rebuild trade-offs..
+**Causal reasoning path:** observed read/write tension separate responsibilities propagation query model -> freshness/rebuild trade-offs.
 
 **Real Food Ordering pressure:** Introduce a query model only for a justified read path.
 
@@ -1104,7 +1104,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** projection != authority by default; rebuildable != costless; freshness != correctness guarantee.
 
-**Causal reasoning path:** source history handler derived state query; failure replay/rebuild reconcile..
+**Causal reasoning path:** source history handler derived state query; failure replay/rebuild reconcile.
 
 **Real Food Ordering pressure:** Build one useful read model with deterministic rebuild path.
 
@@ -1122,7 +1122,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** Event Sourcing != EDA; != Kafka; != audit logging; domain stream != integration topic.
 
-**Causal reasoning path:** command reconstruct validate append events derive state/projections..
+**Causal reasoning path:** command reconstruct validate append events derive state/projections.
 
 **Real Food Ordering pressure:** Use only as focused experiment/justified context, not whole-platform default.
 
@@ -1156,7 +1156,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** cache != source of truth; hit ratio != value alone; Redis != only cache; cache success != fresh.
 
-**Causal reasoning path:** measured bottleneck repeated expensive read cacheability cache measure source-load/latency -> trade-off..
+**Causal reasoning path:** measured bottleneck repeated expensive read cacheability cache measure source-load/latency -> trade-off.
 
 **Real Food Ordering pressure:** Baseline an expensive/high-volume read before Redis.
 
@@ -1174,7 +1174,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** cache-aside != read-through; write-through != write-behind; cache success != DB success.
 
-**Causal reasoning path:** requirement authority cache interaction failure windows validate..
+**Causal reasoning path:** requirement authority cache interaction failure windows validate.
 
 **Real Food Ordering pressure:** Implement cache-aside first where justified and compare alternatives.
 
@@ -1192,7 +1192,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** TTL != correctness; event invalidation != immediate consistency; eviction != invalidation semantics.
 
-**Causal reasoning path:** authoritative change invalidation/update cache state read visibility expiry/reconcile..
+**Causal reasoning path:** authoritative change invalidation/update cache state read visibility expiry/reconcile.
 
 **Real Food Ordering pressure:** Define freshness for cached menu/restaurant data and implement aligned policy.
 
@@ -1210,7 +1210,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** miss != harmless; stampede != low hit ratio; negative cache != permanent absence.
 
-**Causal reasoning path:** hot key expires concurrent misses DB burst DB latency more overlap/timeouts..
+**Causal reasoning path:** hot key expires concurrent misses DB burst DB latency more overlap/timeouts.
 
 **Real Food Ordering pressure:** Reproduce hot-key expiry and measure DB amplification before/after mitigation.
 
@@ -1228,7 +1228,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** memory capacity != request capacity; eviction != expiration; key count != memory use.
 
-**Causal reasoning path:** key/workload distribution memory/request demand hot key/eviction hit ratio/latency source -> load..
+**Causal reasoning path:** key/workload distribution memory/request demand hot key/eviction hit ratio/latency source -> load.
 
 **Real Food Ordering pressure:** Measure key popularity and memory behavior for the chosen cache.
 
@@ -1246,7 +1246,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** atomic Redis command != distributed transaction; Redis lock != automatically safe; expiration != ownership proof.
 
-**Causal reasoning path:** coordination need required primitive failure assumptions Redis mechanism validate limits..
+**Causal reasoning path:** coordination need required primitive failure assumptions Redis mechanism validate limits.
 
 **Real Food Ordering pressure:** Use Redis for justified rate-limit/counter experiment; postpone strong lock claims.
 
@@ -1280,7 +1280,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** high utilization != bottleneck; scale app != scale system; queue != root cause.
 
-**Causal reasoning path:** workload resource demand utilization saturation queue latency/ceiling evidence..
+**Causal reasoning path:** workload resource demand utilization saturation queue latency/ceiling evidence.
 
 **Real Food Ordering pressure:** Run end-to-end load and build bottleneck map.
 
@@ -1298,7 +1298,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** horizontal != linear; stateless service != stateless system; more replicas != more DB capacity.
 
-**Causal reasoning path:** known bottleneck scale dimension expected gain shared dependency check experiment new -> bottleneck..
+**Causal reasoning path:** known bottleneck scale dimension expected gain shared dependency check experiment new -> bottleneck.
 
 **Real Food Ordering pressure:** Scale one service and demonstrate improvement plus downstream ceiling.
 
@@ -1316,7 +1316,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** equal requests != equal load; healthy process != ready; LB != autoscaler.
 
-**Causal reasoning path:** incoming work route instance capacity/state response health feedback..
+**Causal reasoning path:** incoming work route instance capacity/state response health feedback.
 
 **Real Food Ordering pressure:** Use local routing experiments; infra implementation stays Course 3.
 
@@ -1334,7 +1334,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** connection count != DB throughput; index != free; replica != fix write contention.
 
-**Causal reasoning path:** request connection query/tx locks/IO/CPU response release..
+**Causal reasoning path:** request connection query/tx locks/IO/CPU response release.
 
 **Real Food Ordering pressure:** Profile representative DB path and correlate DB latency with pool/response metrics.
 
@@ -1352,7 +1352,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** replica != write scaling; sharding != first response to slow query.
 
-**Causal reasoning path:** measured bottleneck classify read/write/storage evaluate tactic consistency/cost..
+**Causal reasoning path:** measured bottleneck classify read/write/storage evaluate tactic consistency/cost.
 
 **Real Food Ordering pressure:** Use evidence; simulation/design is valid if physical scale is unjustified.
 
@@ -1370,7 +1370,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** queue != capacity creation; batching != always faster; backlog != harmless.
 
-**Causal reasoning path:** burst queue controlled consumption batch downstream lag/recovery..
+**Causal reasoning path:** burst queue controlled consumption batch downstream lag/recovery.
 
 **Real Food Ordering pressure:** Apply to suitable event flow and measure batch/consumer trade-offs.
 
@@ -1388,7 +1388,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** scalability != elasticity; autoscaling != resilience; CPU low != spare end-to-end capacity.
 
-**Causal reasoning path:** demand signal scaling capacity arrives downstream pressure validate..
+**Causal reasoning path:** demand signal scaling capacity arrives downstream pressure validate.
 
 **Real Food Ordering pressure:** Model autoscaling from Food Ordering measurements; implementation stays Course 3.
 
@@ -1422,7 +1422,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** process up != service available; HTTP 200 != business success; availability != reliability.
 
-**Causal reasoning path:** user journey success criteria dependencies SLI availability..
+**Causal reasoning path:** user journey success criteria dependencies SLI availability.
 
 **Real Food Ordering pressure:** Define availability for critical journeys and test degraded dependencies.
 
@@ -1440,7 +1440,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** reliability != availability; successful response != correct effect.
 
-**Causal reasoning path:** repeated operation failures classify reliability hypothesis correction..
+**Causal reasoning path:** repeated operation failures classify reliability hypothesis correction.
 
 **Real Food Ordering pressure:** Use repeated duplicate/lost-event experiments to expose non-outage defects.
 
@@ -1458,7 +1458,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** resilience != fault tolerance; != retry everywhere; fallback != always correct.
 
-**Causal reasoning path:** failure limit wait contain adapt/degrade recover restore..
+**Causal reasoning path:** failure limit wait contain adapt/degrade recover restore.
 
 **Real Food Ordering pressure:** Create resilience matrix and validate selected paths.
 
@@ -1476,7 +1476,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** redundancy != fault tolerance automatically; failover != data recovery; HA != DR.
 
-**Causal reasoning path:** component fails detect alternate takes over capacity check restore..
+**Causal reasoning path:** component fails detect alternate takes over capacity check restore.
 
 **Real Food Ordering pressure:** Model/local-demo instance failure and remaining shared dependencies.
 
@@ -1494,7 +1494,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** durability != availability; replication != backup; API success != durable unless contract says.
 
-**Causal reasoning path:** ack persistence/replication path failure recoverability/loss window..
+**Causal reasoning path:** ack persistence/replication path failure recoverability/loss window.
 
 **Real Food Ordering pressure:** Document durability expectations for order/payment/events and align ack points.
 
@@ -1512,7 +1512,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** replication != backup; HA != DR; RPO != RTO; backup exists != restore works.
 
-**Causal reasoning path:** business impact RPO/RTO strategy restore validate..
+**Causal reasoning path:** business impact RPO/RTO strategy restore validate.
 
 **Real Food Ordering pressure:** Create recovery objectives/plan; cloud DR implementation stays Course 3.
 
@@ -1530,7 +1530,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** restarted != recovered; replay != harmless; restore complete != reconciled.
 
-**Causal reasoning path:** failure ends restore replay/reconcile drain validate normal..
+**Causal reasoning path:** failure ends restore replay/reconcile drain validate normal.
 
 **Real Food Ordering pressure:** Run an end-to-end recovery drill and measure time/correctness.
 
@@ -1564,7 +1564,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** monitoring != observability; metric != explanation; telemetry volume != quality; correlation != causation.
 
-**Causal reasoning path:** question evidence instrumentation observation hypothesis validation..
+**Causal reasoning path:** question evidence instrumentation observation hypothesis validation.
 
 **Real Food Ordering pressure:** Audit platform evidence needs and add instrumentation only for real questions.
 
@@ -1582,7 +1582,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** timestamp order != causal order; error log != root cause; correlation ID != idempotency key.
 
-**Causal reasoning path:** identity/context propagate structured events aggregate reconstruct with uncertainty..
+**Causal reasoning path:** identity/context propagate structured events aggregate reconstruct with uncertainty.
 
 **Real Food Ordering pressure:** Add consistent IDs across sync and async flows.
 
@@ -1600,7 +1600,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** counter != rate; gauge != cumulative; average != distribution; utilization != saturation alone.
 
-**Causal reasoning path:** question metric type dimensions collect aggregate interpret..
+**Causal reasoning path:** question metric type dimensions collect aggregate interpret.
 
 **Real Food Ordering pressure:** Instrument request, DB/pool, Kafka and cache signals used in experiments.
 
@@ -1618,7 +1618,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** trace != complete truth; span duration != CPU; trace context != auth context.
 
-**Causal reasoning path:** operation root span downstream spans messaging context consumer span critical path..
+**Causal reasoning path:** operation root span downstream spans messaging context consumer span critical path.
 
 **Real Food Ordering pressure:** Trace order flow across remote call and async hop where feasible.
 
@@ -1636,7 +1636,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** SLO != alert threshold; component uptime != user SLI; budget != permission to ignore reliability.
 
-**Causal reasoning path:** SLO telemetry compliance/burn investigate prioritize..
+**Causal reasoning path:** SLO telemetry compliance/burn investigate prioritize.
 
 **Real Food Ordering pressure:** Compute selected SLOs from controlled telemetry and state lab limitations.
 
@@ -1654,7 +1654,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** correlation != causation; first error != root cause; mitigation != correction.
 
-**Causal reasoning path:** symptom scope timeline evidence hypotheses test causal chain mitigation validate..
+**Causal reasoning path:** symptom scope timeline evidence hypotheses test causal chain mitigation validate.
 
 **Real Food Ordering pressure:** Run integrated incidents: slow DB cascade; Kafka lag/stale projection; cache outage/DB shift.
 
@@ -1688,7 +1688,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** network boundary != trust boundary; internal != trusted; authentication != authorization.
 
-**Causal reasoning path:** architecture/data flow trust boundaries assets/threats controls residual risk..
+**Causal reasoning path:** architecture/data flow trust boundaries assets/threats controls residual risk.
 
 **Real Food Ordering pressure:** Threat-model customer, service-to-service and async flows.
 
@@ -1706,7 +1706,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** user identity != service identity; authentication != authorization; token possession != unlimited trust.
 
-**Causal reasoning path:** actor/service authenticate identity propagate/translate downstream verify..
+**Causal reasoning path:** actor/service authenticate identity propagate/translate downstream verify.
 
 **Real Food Ordering pressure:** Document identity flow; implementation specifics remain Course 1/3.
 
@@ -1724,7 +1724,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** gateway authz != sufficient resource authz; role != complete policy; claim != current truth forever.
 
-**Causal reasoning path:** identity resource/policy decision enforcement audit..
+**Causal reasoning path:** identity resource/policy decision enforcement audit.
 
 **Real Food Ordering pressure:** Map authorization responsibility to ownership boundaries.
 
@@ -1742,7 +1742,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** encryption != authorization; masked log != no exposure elsewhere; copy != harmless.
 
-**Causal reasoning path:** data classify owner allowed flows/copies protection retention/deletion..
+**Causal reasoning path:** data classify owner allowed flows/copies protection retention/deletion.
 
 **Real Food Ordering pressure:** Audit messages/logs/caches for unnecessary sensitive fields.
 
@@ -1776,7 +1776,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** coordination != communication; leader != permanent truth; quorum != backup; consensus != distributed transaction.
 
-**Causal reasoning path:** shared decision need participants failure assumptions mechanism unavailable/ambiguous -> cases recovery..
+**Causal reasoning path:** shared decision need participants failure assumptions mechanism unavailable/ambiguous -> cases recovery.
 
 **Real Food Ordering pressure:** Identify situations needing coordination versus ownership/idempotency/optimistic concurrency.
 
@@ -1794,7 +1794,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** lock != lease; expiry != process stopped; lock-service exclusion != resource safety; Redis SET != complete lock correctness.
 
-**Causal reasoning path:** acquire lease/token work pause/expiry new owner/token stale owner resumes resource -> fences..
+**Causal reasoning path:** acquire lease/token work pause/expiry new owner/token stale owner resumes resource -> fences.
 
 **Real Food Ordering pressure:** Use controlled singleton/resource example; don't force locks where ownership/idempotency is better.
 
@@ -1812,7 +1812,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** timestamp order != causality; wall clock != reliable elapsed duration; same timestamp != simultaneous.
 
-**Causal reasoning path:** local clock timestamp/deadline use skew/drift uncertainty safe/unsafe inference..
+**Causal reasoning path:** local clock timestamp/deadline use skew/drift uncertainty safe/unsafe inference.
 
 **Real Food Ordering pressure:** Analyze timestamped logs/events and valid ordering conclusions.
 
@@ -1830,7 +1830,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** timestamp order != causality; partition order != global; concurrent != simultaneous.
 
-**Causal reasoning path:** business rule required order scope causal relationships partition/ownership/coordination choice..
+**Causal reasoning path:** business rule required order scope causal relationships partition/ownership/coordination choice.
 
 **Real Food Ordering pressure:** Analyze ordering for order state, payment and restaurant actions.
 
@@ -1864,7 +1864,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** new version != compatible automatically; schema compatibility != behavioral compatibility; versioning != migration plan.
 
-**Causal reasoning path:** consumers proposed change compatibility staged rollout deprecation removal..
+**Causal reasoning path:** consumers proposed change compatibility staged rollout deprecation removal.
 
 **Real Food Ordering pressure:** Evolve one API while preserving an older consumer/test contract.
 
@@ -1882,7 +1882,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** schema compatibility != semantic compatibility; event lifecycle != API lifecycle.
 
-**Causal reasoning path:** history + consumers change compatibility matrix rollout replay validation..
+**Causal reasoning path:** history + consumers change compatibility matrix rollout replay validation.
 
 **Real Food Ordering pressure:** Evolve one event while retaining old-record replay.
 
@@ -1900,7 +1900,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** schema migration != app deploy; backward-compatible DB != migration complete; code rollback != data rollback.
 
-**Causal reasoning path:** expand compatible code migrate/backfill switch verify contract..
+**Causal reasoning path:** expand compatible code migrate/backfill switch verify contract.
 
 **Real Food Ordering pressure:** Perform a small compatibility-preserving schema evolution.
 
@@ -1918,7 +1918,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** strangler != proxy only; migration != rewrite; dual write != safe sync.
 
-**Causal reasoning path:** old capability seam new parallel validate shift retire..
+**Causal reasoning path:** old capability seam new parallel validate shift retire.
 
 **Real Food Ordering pressure:** Use one Food Ordering change to demonstrate incremental migration.
 
@@ -1936,7 +1936,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** complexity != sophistication; debt != always bad; pattern present != still justified.
 
-**Causal reasoning path:** original force mechanism changed requirement reevaluate retain/evolve/remove..
+**Causal reasoning path:** original force mechanism changed requirement reevaluate retain/evolve/remove.
 
 **Real Food Ordering pressure:** Audit platform for unjustified mechanisms and boundary erosion.
 
@@ -1970,7 +1970,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** diagram != evaluation; pattern != quality guarantee; risk != defect; assumption != fact.
 
-**Causal reasoning path:** scenarios trace response mechanisms/sensitivity risk/evidence gaps validate..
+**Causal reasoning path:** scenarios trace response mechanisms/sensitivity risk/evidence gaps validate.
 
 **Real Food Ordering pressure:** Review Food Ordering against SLO/workload/failure/consistency scenarios.
 
@@ -1988,7 +1988,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** trade-off != vague compromise; CAP slogan != complete decision; cost != infrastructure only.
 
-**Causal reasoning path:** context competing qualities alternatives sensitivity consequences evidence choice -> trigger..
+**Causal reasoning path:** context competing qualities alternatives sensitivity consequences evidence choice -> trigger.
 
 **Real Food Ordering pressure:** Create trade-off records for sync/async, cache, boundaries and consistency.
 
@@ -2006,7 +2006,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** cheap infra != cheap system; managed != zero ops; more services != autonomy automatically.
 
-**Causal reasoning path:** option people/resource/ops cost risk benefit organizational fit..
+**Causal reasoning path:** option people/resource/ops cost risk benefit organizational fit.
 
 **Real Food Ordering pressure:** Estimate relative operational complexity and components whose benefit must justify cost.
 
@@ -2024,7 +2024,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** ADR != meeting notes; decision != permanent truth; assumption != guarantee.
 
-**Causal reasoning path:** context requirements alternatives decision consequences evidence assumptions trigger..
+**Causal reasoning path:** context requirements alternatives decision consequences evidence assumptions trigger.
 
 **Real Food Ordering pressure:** Create ADRs for consequential Food Ordering evolutions using Git/experiments.
 
@@ -2042,7 +2042,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** defense != stubbornness; confidence != certainty; challenge != rejection.
 
-**Causal reasoning path:** present challenge inspect evidence revise/defend record risks/follow-ups..
+**Causal reasoning path:** present challenge inspect evidence revise/defend record risks/follow-ups.
 
 **Real Food Ordering pressure:** Review communication, consistency, performance and reliability architecture.
 
@@ -2076,7 +2076,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** method != memorized template; diagram != complete design; estimate != forecast.
 
-**Causal reasoning path:** clarify quantify model boundaries communication data/failure -> capacity/reliability/security/observability trade-offs evolution..
+**Causal reasoning path:** clarify quantify model boundaries communication data/failure -> capacity/reliability/security/observability trade-offs evolution.
 
 **Real Food Ordering pressure:** Reconstruct Food Ordering from requirements without final diagram, then compare.
 
@@ -2094,7 +2094,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** analogy != identical architecture; same tech != same force; familiar pattern != justified.
 
-**Causal reasoning path:** new domain derive forces select mechanisms challenge assumptions compare..
+**Causal reasoning path:** new domain derive forces select mechanisms challenge assumptions compare.
 
 **Real Food Ordering pressure:** Use payments, reservations, inventory, notifications, messaging, storage, URL shortener or rate limiter; no new implementation required.
 
@@ -2112,7 +2112,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** fast != good; more components != senior; challenge != defend original.
 
-**Causal reasoning path:** clarify prioritize design deep dive failure/trade-off adapt summarize..
+**Causal reasoning path:** clarify prioritize design deep dive failure/trade-off adapt summarize.
 
 **Real Food Ordering pressure:** Use progressively independent mock designs plus project walkthroughs.
 
@@ -2130,7 +2130,7 @@ The phases retain V8's technical subjects; the new contractual additions apply u
 
 **Critical distinctions:** final architecture != universally optimal; lab evidence != production proof; accumulated complexity != justified complexity.
 
-**Causal reasoning path:** business need pressure fragile state experiment evidence decision implementation new -> trade-off evolution..
+**Causal reasoning path:** business need pressure fragile state experiment evidence decision implementation new -> trade-off evolution.
 
 **Real Food Ordering pressure:** Use actual Git history to reconstruct major transitions; every mechanism needs origin, evidence, tradeoff and removal trigger.
 
