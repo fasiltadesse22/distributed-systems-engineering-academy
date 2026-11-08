@@ -27,4 +27,15 @@ const spec = fs.readFileSync('docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md','ut
 for (const lesson of lessons) assert.ok(spec.includes('#### ' + lesson.id + ' — ' + lesson.title), 'Markdown/JSON divergence ' + lesson.id);
 const critical = ['duplicate payment','cancellation/acceptance race','modification after payment','payment after cancellation','illegal transition','repeated command','stale-state decision'];
 for (const item of critical) assert.ok(spec.includes(item), 'Unmapped failure requirement ' + item);
+const authored = fs.readFileSync('content/lessons/1.1.1.md','utf8');
+const sections = [...authored.matchAll(/^## (Orient|Understand|Explore|Predict|Diagnose|Engineer|Verify|Defend|Retain) — .+$/gm)];
+assert.equal(sections.length, 13, 'Lesson 1.1.1 must retain its 13 substantive teaching sections');
+for(const stage of ['Orient','Understand','Explore','Predict','Diagnose','Engineer','Verify','Defend','Retain']) {
+  assert.ok(sections.some(m => m[1]===stage), 'Missing lesson stage '+stage);
+}
+const domain = fs.readFileSync('docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md','utf8');
+for(const required of ['Actor and stakeholder inventory','Business capabilities and ownership','Decision authority matrix','Worked business scenarios','Questions to validate with stakeholders','Lesson 1.1.2 entry requirements']) {
+  assert.ok(domain.includes(required), 'Missing domain discovery obligation '+required);
+}
+console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
