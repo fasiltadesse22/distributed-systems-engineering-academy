@@ -15,7 +15,7 @@ describe('renderable academy components', () => {
     expect(html).toContain('Both actors read PLACED first');
     expect(html).toContain('Unsafe: check once, then blind write');
     expect(html).toContain('Predict before reveal');
-    expect(html).toContain('Simulation');
+    expect(html).toContain('illustrative deterministic simulation');
   });
   it('renders a state diagram and timeline with the selected simulated outcome', () => {
     const result = runRace({ strategy: 'unguarded', sequence: 'overlap', repeatCancel: false });
