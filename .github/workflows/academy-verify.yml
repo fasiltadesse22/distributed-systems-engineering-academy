@@ -1,0 +1,26 @@
+name: Academy V0.1 verification
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+jobs:
+  verify:
+    name: Content, TypeScript, Simulation, Production build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate roadmap and blueprint (no dependencies)
+        run: node scripts/check-content.mjs
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Simulation unit tests
+        run: npm run test
+      - name: Production build
+        run: npm run build
