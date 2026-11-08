@@ -1,7 +1,7 @@
 /** Executed companion source is pinned; these functions MODEL the contract and do not issue HTTP. */
-export const platformCommit = 'ed15adb49737a583488e6e2c5ac73158cdf15032';
+export const platformCommit = '08b33714431a53f6b1cb1e1e09718b0281da1ce8';
 export const platformBase = 'https://github.com/fasiltadesse22/food-ordering-platform-new/blob/' + platformCommit + '/';
-export const platformRun = 'https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42512439923';
+export const platformRun = 'https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048';
 export type Implementation = 'implemented' | 'conceptual' | 'unresolved';
 export interface UseCase {
   id:string;

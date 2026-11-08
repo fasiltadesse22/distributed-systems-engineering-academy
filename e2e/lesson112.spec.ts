@@ -54,7 +54,7 @@ test('Acceptance Explorer shows a real test link and the scoped expected result'
  const result=page.getByTestId('acceptance-result');
  await expect(result).toContainText('ITEM_UNAVAILABLE');
  await expect(result).toContainText('unavailableMenuItemIs422');
- await expect(result.getByRole('link',{name:/immutable source/i})).toHaveAttribute('href',/ed15adb49737a583488e6e2c5ac73158cdf15032/);
+ await expect(result.getByRole('link',{name:/immutable source/i})).toHaveAttribute('href',/08b33714431a53f6b1cb1e1e09718b0281da1ce8/);
 });
 
 test('Execution Trace links to immutable Java sources and diagnoses semantics',async({page})=>{
@@ -64,7 +64,7 @@ test('Execution Trace links to immutable Java sources and diagnoses semantics',a
  await expect(trace).toContainText('reconstructed from source and tests');
  await trace.getByRole('button',{name:/Store the record/i}).click();
  await expect(trace).toContainText('ConcurrentHashMap');
- await expect(trace.getByRole('link',{name:/InMemoryOrderRepository.java/i})).toHaveAttribute('href',/ed15adb49737a583488e6e2c5ac73158cdf15032/);
+ await expect(trace.getByRole('link',{name:/InMemoryOrderRepository.java/i})).toHaveAttribute('href',/08b33714431a53f6b1cb1e1e09718b0281da1ce8/);
  await section(page,11).click();
  const diag=page.getByTestId('diagnosis-room');
  await diag.getByRole('checkbox',{name:/Read the exact 201 response/i}).check();
