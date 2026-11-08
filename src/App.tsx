@@ -3,8 +3,6 @@ import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-rout
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { academyRepo, blueprint, chapters, lessons, phases, platformRepo, platformPlanningSha, roadmapText } from './data/roadmap';
-import { runRace } from './simulation/race';
-import type { Sequence, Strategy } from './simulation/race';
 import ConceptMap from './components/ConceptMap';
 import LessonReader from './components/LessonReader';
 import RaceLab from './components/RaceLab';
