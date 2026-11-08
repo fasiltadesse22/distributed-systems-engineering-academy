@@ -78,7 +78,7 @@ export function runRace(input: RaceInput): RaceResult {
   }
   if (input.repeatCancel) {
     const before = status;
-    push('Customer', 'effect', 'Repeat cancellation command', before, before, status === 'CANCELLED'
+    push('Customer', 'effect', 'Repeat cancellation command', before, before, (status as OrderStatus) === 'CANCELLED'
       ? 'Policy reports already-cancelled without a second business effect.'
       : 'Policy rejects repeat because the order is not cancellable.');
   }
