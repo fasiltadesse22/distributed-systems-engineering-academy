@@ -1,0 +1,1265 @@
+{
+  "id": "1.1",
+  "title": "Business Workflows, State, Lifecycle & Invariants",
+  "version": "V0.1",
+  "status": "Blueprint frozen for lesson planning — lessons not implemented",
+  "master": "docs/roadmap/MASTER_ROADMAP_V1.md",
+  "engineeringQuestion": "What must remain correct regardless of the eventual architecture?",
+  "premise": "Correctness must be specified before deployment topology. The first implementation begins as one real, testable Spring Boot deployable; diagrams and simulators are explanatory models, not implementation evidence.",
+  "chapters": [
+    {
+      "id": "C1",
+      "title": "Business reality, responsibility and authority",
+      "why": "Discover who is allowed to decide what, why each actor acts, and how a business request becomes an authoritative fact without assuming a service boundary.",
+      "lessons": [
+        {
+          "id": "1.1.1",
+          "title": "Actors, goals, responsibilities and capabilities",
+          "question": "Who participates in an order and whose goal does each operation serve?",
+          "outcomes": [
+            "Construct a role/capability matrix for Customer, Restaurant, Payment Provider, Operations and Delivery.",
+            "Identify commercial decisions versus software responsibilities and external authorities."
+          ],
+          "prerequisites": [
+            "General application APIs and HTTP are assumed; no DDD vocabulary required."
+          ],
+          "scope": [
+            "Actors and stakeholders; incentives; customer experience; restaurant capacity; payment settlement exposure; responsibilities; business goals; authorization decisions; human versus automated actors."
+          ],
+          "mechanisms": [
+            "Walk through one customer purchase, restaurant rejection and provider reversal; identify who may initiate, approve and observe each decision."
+          ],
+          "visuals": [
+            "Editable actor-capability map with authority edges and contradictory-control warnings.",
+            "Timeline of a single order from menu selection through fulfillment."
+          ],
+          "examples": [
+            "Customer cancels after restaurant accepts; merchant refuses out-of-stock item; provider does not confirm card authorization."
+          ],
+          "project": "C: document actors, responsibility boundaries, business scenarios; no Java changes before commands and use cases are understood.",
+          "experiments": [
+            "Scenario-based role mapping and counterexample review; baseline evidence is a written requirements model."
+          ],
+          "diagnosis": [
+            "Symptom: two parties believe they own cancellation; distinguish missing business policy from a network fault."
+          ],
+          "mastery": [
+            "Derive roles from an unfamiliar workflow, recognize ambiguous authority, and explain to nontechnical stakeholders."
+          ],
+          "transfer": [
+            "60-second actor explanation; Staff review challenges whether Restaurant or Payment owns an order's payment status."
+          ],
+          "mode": "C"
+        },
+        {
+          "id": "1.1.2",
+          "title": "Business scenarios and use-case discovery",
+          "question": "Which end-to-end user outcomes must a runnable platform support first?",
+          "outcomes": [
+            "Write precise success, rejection and exceptional paths for place, accept, reject, cancel, pay, refund, prepare and complete.",
+            "Choose one real vertical slice with explicit acceptance criteria and minimal dependencies."
+          ],
+          "prerequisites": [
+            "1.1.1"
+          ],
+          "scope": [
+            "Business capabilities; use-case boundaries; input intent; actor permissions; preconditions; postconditions; negative outcomes; bounded MVP scope; observation vs authority."
+          ],
+          "mechanisms": [
+            "Trace customer place-order intent into application decision and visible result; compare restaurant acceptance/rejection and payment result as separate concerns."
+          ],
+          "visuals": [
+            "Choose-an-actor use-case journey with alternate branches.",
+            "Sequence lanes: Customer → Platform → Restaurant → Payment Provider."
+          ],
+          "examples": [
+            "Place then restaurant rejects; restaurant accepts but payment fails; customer cancels while kitchen begins preparation."
+          ],
+          "project": "A: initialize Java 21 root Maven and single Spring Boot deployable with initial place-order HTTP vertical slice, domain/application separation, in-memory adapter, unit tests and CI. No future microservices.",
+          "experiments": [
+            "Execute Maven root verify; positive/negative order placement, duplicate request test design; capture exact toolchain and commit SHA."
+          ],
+          "diagnosis": [
+            "A 2xx HTTP response is not automatically a completed business transaction; inspect use-case postcondition."
+          ],
+          "mastery": [
+            "Explain runnable slice, source/test paths and why not to introduce Kafka or PostgreSQL in this lesson."
+          ],
+          "transfer": [
+            "Defend MVP scope and why a single deployable is the simpler architecture."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.3",
+          "title": "Commands, decisions, facts and events",
+          "question": "What separates an intention to change state from proof that it changed?",
+          "outcomes": [
+            "Classify commands, rejected decisions and committed business facts without confusing emitted messages with authority.",
+            "Design command contracts that identify actor, target, expected state and business meaning."
+          ],
+          "prerequisites": [
+            "1.1.2"
+          ],
+          "scope": [
+            "Commands vs facts/events; decision outcomes; negative facts; events as historical claims; side-effect intentions; acknowledgement; idempotency key concepts without distributed protocol yet."
+          ],
+          "mechanisms": [
+            "Trace PlaceOrder → decision → OrderPlaced; AcceptOrder → decision → OrderAccepted; rejected attempts do not imply a successful domain fact."
+          ],
+          "visuals": [
+            "Command/event sorting board; execution sequence from HTTP request to decision and persisted fact.",
+            "Alternative timeline distinguishing intent from actual effect."
+          ],
+          "examples": [
+            "Repeated PlaceOrder with same user intent; refund requested but not yet confirmed; merchant rejection before payment capture."
+          ],
+          "project": "A: add application commands and explicit outcomes/events for validated first workflows; tests verify rejected commands cannot emit success facts.",
+          "experiments": [
+            "Unit tests for legal command outcomes, event ordering within local execution and rejection semantics."
+          ],
+          "diagnosis": [
+            "Customer sees 'success' but no persisted fact; discriminate API interpretation from application failure."
+          ],
+          "mastery": [
+            "Given a log of messages, identify which facts are authoritative and which are only requests."
+          ],
+          "transfer": [
+            "Explain command/event distinction at junior, Senior and Staff depth without claiming events imply event sourcing."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.4",
+          "title": "Business identity and authoritative state",
+          "question": "Which identities are stable and which component is entitled to determine a fact?",
+          "outcomes": [
+            "Distinguish OrderId, PaymentAttemptId, RestaurantId, CustomerId and correlation/request IDs.",
+            "Specify authoritative versus derived state and identify cross-model references without forcing contexts or services prematurely."
+          ],
+          "prerequisites": [
+            "1.1.3"
+          ],
+          "scope": [
+            "Identity continuity; natural/surrogate references; generated identifiers; authority; state version; immutable history; aliasing; request/trace/business identifiers; ownership mapping."
+          ],
+          "mechanisms": [
+            "Compare changing order status with recording payment provider outcome; a UI read model does not become authoritative by showing a status."
+          ],
+          "visuals": [
+            "Identity/ownership graph highlighting authoritative source and projection readers.",
+            "Change-an-identity exercise showing duplicate/alias impacts."
+          ],
+          "examples": [
+            "Two payment attempts for one order; same restaurant name under different merchant IDs; repeated callbacks."
+          ],
+          "project": "A: introduce typed stable business IDs and clearly owned mutable state to the single application; local verification for identity continuity.",
+          "experiments": [
+            "Entity identity tests across updates; repeated request does not silently create new OrderId when semantic rules prohibit it."
+          ],
+          "diagnosis": [
+            "A status read disagrees with a provider receipt; list alternate hypotheses before selecting the source of truth."
+          ],
+          "mastery": [
+            "Defend authority and identity map; recognize ambiguous derived views."
+          ],
+          "transfer": [
+            "Staff challenge: who may assert 'payment completed' if provider response is delayed?"
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.5",
+          "title": "A complete Food Ordering workflow story",
+          "question": "How do responsibilities compose into a customer-visible business outcome?",
+          "outcomes": [
+            "Trace Order, Restaurant and Payment participation including rejection, cancellation, refund, preparation and completion.",
+            "Identify business outcomes, policies and unsettled assumptions before implementation."
+          ],
+          "prerequisites": [
+            "1.1.1",
+            "1.1.2",
+            "1.1.3",
+            "1.1.4"
+          ],
+          "scope": [
+            "End-to-end scenario storyboarding; business collaboration; state vs observed messages; partial completion; receipt and refund implications; delivery handoff boundaries."
+          ],
+          "mechanisms": [
+            "Build success and failure narrative; highlight where an unimplemented external provider must be simulated and where irreversible kitchen or financial effects begin."
+          ],
+          "visuals": [
+            "Swimlane journey with branching paths and actor-controlled choices.",
+            "State/authority overlay for every milestone."
+          ],
+          "examples": [
+            "Paid and rejected; accepted then cancelled; preparation already started; refund requested but not confirmed."
+          ],
+          "project": "C: establish process map and decision backlog; no additional code required for narrative work.",
+          "experiments": [
+            "Narrative walkthrough evidence + unanswered policy register."
+          ],
+          "diagnosis": [
+            "Diagnose conflicting customer and merchant screens with authority and timeline evidence."
+          ],
+          "mastery": [
+            "Trace every business fact to an actor and policy; identify at least three unresolved constraints."
+          ],
+          "transfer": [
+            "Explain a partial customer journey to an engineering manager and a nontechnical stakeholder."
+          ],
+          "mode": "C"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "title": "Lifecycle semantics and decision mechanisms",
+      "why": "Turn the business narrative into explicit states, legal decisions and before/after conditions, while preserving the distinction between a workflow and its participating state machines.",
+      "lessons": [
+        {
+          "id": "1.1.6",
+          "title": "Workflows versus state machines",
+          "question": "Why is a workflow not a single state diagram?",
+          "outcomes": [
+            "Model independent lifecycles for Order, PaymentAttempt and RestaurantDecision.",
+            "Derive how a multi-actor workflow coordinates those lifecycles without claiming atomicity across them."
+          ],
+          "prerequisites": [
+            "1.1.3",
+            "1.1.4",
+            "1.1.5"
+          ],
+          "scope": [
+            "Workflow phases; explicit states; transition functions; separate state authority; state explosion; cross-lifecycle predicates."
+          ],
+          "mechanisms": [
+            "Step through distinct order, payment and restaurant lifecycle states; demonstrate a workflow can progress while one participant remains pending."
+          ],
+          "visuals": [
+            "Side-by-side lifecycle graphs; click a transition to reveal actor, guard and fact.",
+            "Workflow swimlane overlay."
+          ],
+          "examples": [
+            "Payment authorized while merchant decision pending; restaurant rejects while refund pending."
+          ],
+          "project": "A: introduce explicit lifecycle types/transitions in domain modules of the single deployable; no cross-service calls.",
+          "experiments": [
+            "Transition table-driven tests with valid and invalid paths for each lifecycle."
+          ],
+          "diagnosis": [
+            "Incorrectly model 'REFUNDED' as an Order status and lose independent payment history; show diagnosis."
+          ],
+          "mastery": [
+            "Explain why Order aggregate state cannot represent every participant's state; identify missing context without creating services."
+          ],
+          "transfer": [
+            "Defend a model split without confusing module with deployable."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.7",
+          "title": "Guards, preconditions and postconditions",
+          "question": "What makes a requested transition legal in a particular state?",
+          "outcomes": [
+            "Write total transition decision tables including guard failures and expected effects.",
+            "Separate required preconditions from side effects and ensure illegal commands leave state unchanged."
+          ],
+          "prerequisites": [
+            "1.1.6"
+          ],
+          "scope": [
+            "Transition guard; business authorization; precondition; postcondition; state preservation; failure result; side-effect-free rejection; illegal transitions."
+          ],
+          "mechanisms": [
+            "Trace AcceptOrder: current=PLACED and eligible restaurant actor; mark checks, commit point and resulting fact."
+          ],
+          "visuals": [
+            "Transition-table inspector with selectable current state/actor/command.",
+            "Rule explanation panel showing checked guards and no-op rejection."
+          ],
+          "examples": [
+            "Accept already rejected order; mark preparing before acceptance; complete before preparation."
+          ],
+          "project": "A: implement guarded transition methods and application outcomes; preserve state on forbidden operations.",
+          "experiments": [
+            "Parameterized positive/negative transition tests; assert no success fact and no mutation on rejection."
+          ],
+          "diagnosis": [
+            "Suspected illegal transition: compare business guard, stale state and adapter mapping mistakes."
+          ],
+          "mastery": [
+            "Derive tests from model rather than from controller behavior alone."
+          ],
+          "transfer": [
+            "Staff reviewer adds one exception policy mid-explanation; revise guards coherently."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.8",
+          "title": "Terminal, reversible and irreversible business effects",
+          "question": "When does 'undo' mean reversal, and when is compensation required?",
+          "outcomes": [
+            "Classify terminal states and reversible operations in Order, Restaurant and Payment flows.",
+            "Explain why provider refund and kitchen preparation cannot be undone by restoring old fields."
+          ],
+          "prerequisites": [
+            "1.1.6",
+            "1.1.7"
+          ],
+          "scope": [
+            "Terminal state; correction; reversal; compensation; irreversible external effect; lifecycle closure; audit trail; human intervention."
+          ],
+          "mechanisms": [
+            "Contrast canceling an unpaid draft with refunding a completed charge; compare kitchen preparation with metadata rollback."
+          ],
+          "visuals": [
+            "Undo-versus-compensate decision tree; before/after business facts timeline."
+          ],
+          "examples": [
+            "Refund after successful capture; cancelled order after ingredients consumed; notification already sent."
+          ],
+          "project": "C: document policy and missing provider API assumptions; do not claim real refunds without provider integration.",
+          "experiments": [
+            "Policy examples and counterexamples; trace attempted reversal and required compensating action."
+          ],
+          "diagnosis": [
+            "A previous order state is restored in DB but provider still charged: identify irreversibility and recovery work."
+          ],
+          "mastery": [
+            "Independently decide reversal versus compensation in a foreign domain."
+          ],
+          "transfer": [
+            "Explain financial compensation carefully without introducing Saga prematurely."
+          ],
+          "mode": "C"
+        },
+        {
+          "id": "1.1.9",
+          "title": "Ordering, payment and restaurant lifecycle composition",
+          "question": "How do independent decisions constrain a shared business journey?",
+          "outcomes": [
+            "Define concrete ordering/payment/accept/reject/cancel/refund/prep/complete policies and exceptions.",
+            "Distinguish confirmed payment facts from requested or simulated provider outcomes."
+          ],
+          "prerequisites": [
+            "1.1.6",
+            "1.1.7",
+            "1.1.8"
+          ],
+          "scope": [
+            "Cross-lifecycle guards; payment attempt state; restaurant acceptance authority; cancellation window; preparation and completion; partial completion; refund initiation/outcome."
+          ],
+          "mechanisms": [
+            "Walk an accepted-but-unpaid case and rejected-but-paid case without hiding unresolved money state."
+          ],
+          "visuals": [
+            "Three synchronized state machines with highlighted guard dependencies.",
+            "Sequence view switching happy path and failure path."
+          ],
+          "examples": [
+            "Payment after cancellation; merchant reject after capture; customer cancel while preparation starts."
+          ],
+          "project": "A: add deterministic local payment-provider simulation interface and restaurant decisions to real application workflow; record that provider is simulated.",
+          "experiments": [
+            "Integrated application tests for payment/restaurant/order transitions and recorded business outcomes; no fake external payment claim."
+          ],
+          "diagnosis": [
+            "Customer reports charge but merchant sees rejection; reconstruct state and provider-simulation assumptions."
+          ],
+          "mastery": [
+            "Specify policy choices and identify which require later strong persistence or distributed consistency."
+          ],
+          "transfer": [
+            "Explain to Staff how failures will change once these calls become remote."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.10",
+          "title": "Workflow boundaries and collaboration without microservices",
+          "question": "Which interactions belong in one deployable now, and why?",
+          "outcomes": [
+            "Design in-process boundaries between Order, Restaurant and Payment responsibilities.",
+            "Identify potential future ownership seams without creating microservices and their network uncertainty."
+          ],
+          "prerequisites": [
+            "1.1.5",
+            "1.1.9"
+          ],
+          "scope": [
+            "Business collaboration; application service orchestration; semantic modules; in-process calls; local atomicity assumptions; future remote boundary candidates."
+          ],
+          "mechanisms": [
+            "Compare single-process call sequence with proposed remote calls; enumerate latency, failure and duplicated effects as hypothetical new forces."
+          ],
+          "visuals": [
+            "Architecture dependency explorer, single-app baseline versus future extraction as a hypothesis.",
+            "In-process sequence diagram with commit boundaries."
+          ],
+          "examples": [
+            "A restaurant decision API is called twice; compare local handling with conceptual remote duplicate."
+          ],
+          "project": "C: record modular architecture rationale/ADR; make only changes required to enforce already-discovered source responsibilities.",
+          "experiments": [
+            "Architectural dependency tests if code structure warrants; evidence-backed no-split decision."
+          ],
+          "diagnosis": [
+            "A shared model creates coupling; distinguish package/design smell from a need for a network boundary."
+          ],
+          "mastery": [
+            "Defend non-distribution as an active choice and list measurement triggers for reconsideration."
+          ],
+          "transfer": [
+            "Staff interview: why not launch OrderService and PaymentService on day one?"
+          ],
+          "mode": "C"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "title": "Invariants, concurrency, duplicates and consistency windows",
+      "why": "Make correctness claims falsifiable by constructing stale, duplicated and competing decision sequences and separating fragile teaching models from verified runtime guarantees.",
+      "lessons": [
+        {
+          "id": "1.1.11",
+          "title": "Invariant versus validation versus database constraint",
+          "question": "What must remain true even when input validation passes?",
+          "outcomes": [
+            "Derive domain invariants across order/payment/restaurant facts.",
+            "Distinguish request validation, domain invariants and local persistence constraints with counterexamples."
+          ],
+          "prerequisites": [
+            "1.1.7",
+            "1.1.9"
+          ],
+          "scope": [
+            "Validation; domain invariant; database constraint; immutable business rule; concurrent write risk; atomicity; scope of enforcement."
+          ],
+          "mechanisms": [
+            "Show 'valid JSON' and valid amount yet illegal payment-after-cancel; compare app guard and database unique constraint."
+          ],
+          "visuals": [
+            "Invariant builder with scope and enforcement-layer toggles.",
+            "Three-column rule-to-evidence matrix."
+          ],
+          "examples": [
+            "Two accepted cancellations; negative amount caught by validation; duplicate payment success despite valid schema."
+          ],
+          "project": "A: assert critical business invariants in domain/application logic and tests; defer PostgreSQL constraints until Cluster 1.2 when DB-backed guarantees can be observed.",
+          "experiments": [
+            "Counterexample-based tests and documented non-guarantees; simulated validation is never called DB protection."
+          ],
+          "diagnosis": [
+            "Unexpected duplicate payment: distinguish input validation bug from missing state/commit guard."
+          ],
+          "mastery": [
+            "State each invariant formally, its enforcement boundary and unsolved concurrency assumptions."
+          ],
+          "transfer": [
+            "Defend why @NotNull alone does not protect payment correctness."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.12",
+          "title": "Repeated commands and duplicate business effects",
+          "question": "Why can a command be received twice and what should remain unchanged?",
+          "outcomes": [
+            "Define duplicate-request semantics separately for place, accept, pay, cancel and refund.",
+            "Identify when repeating a command should return previous result, reject, or create a new attempt."
+          ],
+          "prerequisites": [
+            "1.1.3",
+            "1.1.11"
+          ],
+          "scope": [
+            "Command identity; duplicate intent; business effect; repeated HTTP request; idempotency as semantic property; same key/different payload; incomplete outcome."
+          ],
+          "mechanisms": [
+            "Replay one request before/after state update and classify effects; distinguish an additional PaymentAttempt from accidental duplicate capture."
+          ],
+          "visuals": [
+            "Duplicate-command ledger and before/after effect counters.",
+            "Retry timeline with command-ID and business-ID labels."
+          ],
+          "examples": [
+            "Customer double-click; provider callback repeated; repeated refund initiation."
+          ],
+          "project": "A: implement locally deterministic repeat-command handling for selected workflows and unit tests; state that this does not prove distributed exactly-once semantics.",
+          "experiments": [
+            "Repeat-command tests, conflict payload tests and reset/replay evidence."
+          ],
+          "diagnosis": [
+            "Two receipts appear: determine whether two commands, two successful state changes or duplicated view/event were observed."
+          ],
+          "mastery": [
+            "Document replay outcome and safeguards for each command type."
+          ],
+          "transfer": [
+            "Staff challenges idempotency key lifetime and payload mismatch; name what remains undecided until Phase IV."
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.13",
+          "title": "Cancellation-versus-acceptance interleaving",
+          "question": "Can two separately valid decisions both succeed incorrectly?",
+          "outcomes": [
+            "Predict concurrent command outcomes given identical observed state.",
+            "Demonstrate why check-then-write without atomic guard can violate exclusive business outcomes."
+          ],
+          "prerequisites": [
+            "1.1.7",
+            "1.1.11",
+            "1.1.12"
+          ],
+          "scope": [
+            "Racing reads; stale snapshot; linearization/commit point intuition; lost updates; guard-and-write atomicity; synchronization limitations."
+          ],
+          "mechanisms": [
+            "Interleave Customer.Cancel and Restaurant.Accept at read/check/write stages; compare unsafe blind write with single atomic compare-and-update."
+          ],
+          "visuals": [
+            "Required simulator: actor lanes, interleaving mode, safe/unsafe toggle, step-by-step timeline, both-success invariant alarm."
+          ],
+          "examples": [
+            "Cancellation and acceptance both observe PLACED, both claim success; last-write-wins DB state conceals business contradiction."
+          ],
+          "project": "B: preserve fragile race as reproducible test/experiment; introduce local concurrency control only where a measurable reproduced violation requires it.",
+          "experiments": [
+            "Concurrent deterministic tests/barriers, model counterexample, observed vs assumed notes; no cross-process correctness claim."
+          ],
+          "diagnosis": [
+            "One customer sees cancellation, restaurant sees accepted: construct competing causal hypotheses and a discriminating test."
+          ],
+          "mastery": [
+            "Independently identify race window, specify minimal guard, explain why local synchronization alone may not solve multi-process writes."
+          ],
+          "transfer": [
+            "Staff interviewer introduces two instances and asks what guarantee changes."
+          ],
+          "mode": "B"
+        },
+        {
+          "id": "1.1.14",
+          "title": "Payment-after-cancellation and modification-after-payment",
+          "question": "What changes when a delayed financial outcome arrives after business state moved?",
+          "outcomes": [
+            "Distinguish payment initiation, authorization, capture and recorded confirmation in a simulated provider.",
+            "Design policy for order mutation once financial commitment or merchant acceptance changes."
+          ],
+          "prerequisites": [
+            "1.1.8",
+            "1.1.9",
+            "1.1.11",
+            "1.1.13"
+          ],
+          "scope": [
+            "Delayed outcomes; order modification guards; payment-after-cancel policy; refund-needed state; external side-effect uncertainty."
+          ],
+          "mechanisms": [
+            "Record attempt, mark order cancelled, then deliver success outcome; trace unresolved financial obligation without reverting cancellation."
+          ],
+          "visuals": [
+            "Delayed payment outcome timeline with business versus provider state.",
+            "Modification guard matrix by order/payment state."
+          ],
+          "examples": [
+            "Pay succeeds after cancel; amount changes after authorization; refund requested but pending."
+          ],
+          "project": "B: implement controlled provider-simulator delay scenarios and tests, not real payment integration or Saga/Outbox.",
+          "experiments": [
+            "Tests for immutable confirmed amounts, refund obligation, late outcome, state/history consistency."
+          ],
+          "diagnosis": [
+            "Customer 'charged after cancel': inspect provider outcome, system fact, callback time and missing evidence."
+          ],
+          "mastery": [
+            "State what is guaranteed locally and what will need asynchronous coordination later."
+          ],
+          "transfer": [
+            "Explain to nontechnical stakeholder why cancellation does not imply immediate financial reversal."
+          ],
+          "mode": "B"
+        },
+        {
+          "id": "1.1.15",
+          "title": "Stale decisions and versioned state",
+          "question": "How can valid business checks become invalid before they commit?",
+          "outcomes": [
+            "Describe TOCTOU decision windows and distinguish stale read from stale authority.",
+            "Derive version-based guards and show where a version check must be atomic with mutation."
+          ],
+          "prerequisites": [
+            "1.1.4",
+            "1.1.13"
+          ],
+          "scope": [
+            "Time-of-check/time-of-use; snapshot; version; compare-and-set; lost update; transaction isolation intuition; auditability."
+          ],
+          "mechanisms": [
+            "Two clients use Order version 4; one commits version 5, the other tries version 4; contrast optimistic conflict with blind overwrite."
+          ],
+          "visuals": [
+            "Versioned state timeline with two concurrent readers and conflict result.",
+            "Concurrency warning overlay."
+          ],
+          "examples": [
+            "Accepted order later cancelled from stale snapshot; repeated payment attempt with stale amount."
+          ],
+          "project": "B: show reproducible stale-state test and architecture note; DB-level optimistic locking deferred until Cluster 1.2 real PostgreSQL integration.",
+          "experiments": [
+            "Barrier-driven conflict tests and explicit 'simulated vs locally observed vs database-guaranteed' classification."
+          ],
+          "diagnosis": [
+            "Lost update observed: isolate stale reads, commit ordering and read-model freshness as alternate causes."
+          ],
+          "mastery": [
+            "Specify exact required atomic comparison for a promised guarantee."
+          ],
+          "transfer": [
+            "Staff challenge asks whether an in-memory version field suffices across replicas."
+          ],
+          "mode": "B"
+        },
+        {
+          "id": "1.1.16",
+          "title": "Atomicity, consistency boundaries and unknown commit outcomes",
+          "question": "What state changes must succeed or fail together, and what cannot be made atomic by one in-memory method?",
+          "outcomes": [
+            "Identify locally coherent transitions and cross-participant decisions that cannot be presumed atomic.",
+            "State guarantees, assumptions and non-guarantees around persistence, concurrency and external provider effects."
+          ],
+          "prerequisites": [
+            "1.1.11",
+            "1.1.13",
+            "1.1.14",
+            "1.1.15"
+          ],
+          "scope": [
+            "Atomic transition; all-or-nothing local update; external effects; consistency boundary; crash window; durable versus transient state; uncertainty after timeout."
+          ],
+          "mechanisms": [
+            "Mark business state plus local fact and explore crash before/after each step; compare conceptual external provider uncertainty."
+          ],
+          "visuals": [
+            "Commit-window storyboard with application, adapter and provider states.",
+            "Guarantee ledger: observed/assumed/not guaranteed."
+          ],
+          "examples": [
+            "Crash after provider success but before local record; timeout with unknown provider status; partial in-memory update."
+          ],
+          "project": "C: document consistency boundary and minimal application test gaps; no premature transaction framework, Saga or outbox.",
+          "experiments": [
+            "Thought experiment and tests only where runtime conditions can be controlled; unknown outcomes labeled not guaranteed."
+          ],
+          "diagnosis": [
+            "Distinguish process crash, partial business failure and HTTP loss; choose evidence for each."
+          ],
+          "mastery": [
+            "Draw scope of local atomic guarantee accurately and list unresolved distributed windows."
+          ],
+          "transfer": [
+            "Defend why a local @Transactional annotation cannot atomically commit a remote provider effect."
+          ],
+          "mode": "C"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "title": "Verification, diagnosis, architectural defense and transfer",
+      "why": "Turn requirements and fragile-state examples into testable evidence, incident reasoning and independent Staff-level design communication.",
+      "lessons": [
+        {
+          "id": "1.1.17",
+          "title": "Correctness test design and evidence hierarchy",
+          "question": "Which tests would falsify a proposed business invariant?",
+          "outcomes": [
+            "Construct transition, command, property, negative, concurrency and integration test matrices.",
+            "Keep claims limited to executed environments and distinguish tests from database or production guarantees."
+          ],
+          "prerequisites": [
+            "1.1.7",
+            "1.1.11",
+            "1.1.12",
+            "1.1.13",
+            "1.1.15",
+            "1.1.16"
+          ],
+          "scope": [
+            "Test pyramid; state-based and transition tests; invariants; concurrency barriers; reproducibility; evidence labels; experiment controls; CI gates."
+          ],
+          "mechanisms": [
+            "Derive tests for legal/illegal decisions, repeated commands and races; align observed outcomes with precise invariant claims."
+          ],
+          "visuals": [
+            "Interactive test matrix coverage grid; one-click counterexample explanation.",
+            "Evidence badge toggles distinguishing observed and hypothetical."
+          ],
+          "examples": [
+            "Unit tests pass but same API request race fails; CI green for unit suite but integration not run."
+          ],
+          "project": "A: ensure Maven root verify and relevant application tests execute; add any missing tests only where justified and capture real outputs.",
+          "experiments": [
+            "Test command manifest, exit codes, environment, evidence links and negative cases; no claim of PASS if not executed."
+          ],
+          "diagnosis": [
+            "A green test badge masks missing failure scenario: identify scope hole rather than declaring full correctness."
+          ],
+          "mastery": [
+            "Create verification plan and accurately label strength/limitations of evidence."
+          ],
+          "transfer": [
+            "Staff challenge: which test is discriminating and which is merely a happy-path example?"
+          ],
+          "mode": "A"
+        },
+        {
+          "id": "1.1.18",
+          "title": "Production-oriented failure diagnosis",
+          "question": "How can a failure report be translated into competing hypotheses and discriminating evidence?",
+          "outcomes": [
+            "Reconstruct symptom, scope, chronology and likely causal windows.",
+            "Avoid treating one timeout/log/event as proof of root cause."
+          ],
+          "prerequisites": [
+            "1.1.12",
+            "1.1.13",
+            "1.1.14",
+            "1.1.17"
+          ],
+          "scope": [
+            "Incident symptom; affected users; timeline; logs/identifiers; competing hypotheses; discriminating test; causal chain; mitigation; validation."
+          ],
+          "mechanisms": [
+            "Investigate duplicate payment and conflicting order status as separate incidents; choose what telemetry would disambiguate them."
+          ],
+          "visuals": [
+            "Interactive diagnostic evidence board: choose among hypotheses and reveal clues.",
+            "Timeline builder with uncertain ordering."
+          ],
+          "examples": [
+            "Customer cancelled but restaurant prepared; duplicate provider charge versus duplicated display fact."
+          ],
+          "project": "B: isolate reproducible failure scenarios and capture logs/tests locally; advanced distributed traces deferred.",
+          "experiments": [
+            "Observed reproduction record, log correlation limits and explicit next-step diagnostic tests."
+          ],
+          "diagnosis": [
+            "Hypothesis: event delivered twice; alternate: command processed twice; choose evidence distinguishing them."
+          ],
+          "mastery": [
+            "Explain a credible causal chain and a safe mitigation, including what remains unproven."
+          ],
+          "transfer": [
+            "Adapt incident briefing for engineer, manager and nontechnical stakeholder."
+          ],
+          "mode": "B"
+        },
+        {
+          "id": "1.1.19",
+          "title": "Simpler alternatives, architectural decisions and deferment",
+          "question": "When is doing less the better architecture?",
+          "outcomes": [
+            "Compare minimal guarded local workflow with imagined microservice/Kafka/Saga alternatives.",
+            "Write evidence-based ADRs with trade-offs, risks and reconsideration triggers."
+          ],
+          "prerequisites": [
+            "1.1.10",
+            "1.1.16",
+            "1.1.17",
+            "1.1.18"
+          ],
+          "scope": [
+            "Simplicity vs distributed complexity; quality attributes; migration cost; decision reversibility; ADR; removal trigger; known fragility."
+          ],
+          "mechanisms": [
+            "Compare synchronous in-process decisions to remote ownership; enumerate new failure windows, operational burden and legitimate future split forces."
+          ],
+          "visuals": [
+            "Architecture alternatives slider: same business need, cost/failure/ownership tradeoffs.",
+            "ADR evidence decision tree."
+          ],
+          "examples": [
+            "Overengineered Kafka for a local state update; insufficient ownership clarity; harmful shared database."
+          ],
+          "project": "C: record topology ADR; any project code change must have an existing demonstrated force rather than being a decoration.",
+          "experiments": [
+            "Decision record cites observed/assumed evidence and contains explicit revisit conditions."
+          ],
+          "diagnosis": [
+            "A design change is suggested because of a transient error; separate signal from architectural force."
+          ],
+          "mastery": [
+            "Defend retaining one deployable in Phase I and explain when the decision should change."
+          ],
+          "transfer": [
+            "Staff interview: 10× load, team halved, payment provider unstable; revise recommendation without dogma."
+          ],
+          "mode": "C"
+        },
+        {
+          "id": "1.1.20",
+          "title": "Communication, unfamiliar-domain transfer and cluster exit gate",
+          "question": "Can you independently derive, validate and defend correctness constraints in a different business domain?",
+          "outcomes": [
+            "Explain business rule, mechanism and trade-off at increasing abstraction levels.",
+            "Transfer invariants/authority/reversal reasoning to reservations, inventory or ledger-like operations."
+          ],
+          "prerequisites": [
+            "1.1.1–1.1.19"
+          ],
+          "scope": [
+            "Synthesis of actors, intents, facts, authority, lifecycle, guards, terminality, invariants, concurrency, duplicate/stale operations, atomicity, evidence and defense."
+          ],
+          "mechanisms": [
+            "New scenario arrives with missing facts; reconstruct lifecycle, write invariants, predict race, choose tests and defend simple design."
+          ],
+          "visuals": [
+            "Timed design canvas with revealing constraints; competency rubric; dependency/retrieval links to 1.2, 1.3, 1.4 and Phases III–IX."
+          ],
+          "examples": [
+            "Hotel room booked twice; inventory oversold; payment reversal requested after ledger posting."
+          ],
+          "project": "C: freeze verified Cluster 1.1 checkpoint state and handoff; app build remains meaningful only if tests actually executed.",
+          "experiments": [
+            "Mastery gate: explain/implement/test/diagnose/defend; evidence-index with actual SHAs, limits and deferred mechanisms."
+          ],
+          "diagnosis": [
+            "Interviewer supplies ambiguous duplicate booking; enumerate hypotheses and specify evidence plan."
+          ],
+          "mastery": [
+            "Independently produce invariant table, trade-off analysis and readable Staff-level explanation."
+          ],
+          "transfer": [
+            "Adapt explanations for backend engineer, Staff/Principal reviewer, engineering manager and stakeholder; assess English clarity separately."
+          ],
+          "mode": "C"
+        }
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "name": "Actors and authority",
+      "dependsOn": [],
+      "enables": [
+        "Use cases",
+        "Facts and identity"
+      ]
+    },
+    {
+      "name": "Use cases and intent",
+      "dependsOn": [
+        "Actors and authority"
+      ],
+      "enables": [
+        "Commands and decisions"
+      ]
+    },
+    {
+      "name": "Commands and decisions",
+      "dependsOn": [
+        "Use cases and intent"
+      ],
+      "enables": [
+        "Domain facts",
+        "State lifecycles"
+      ]
+    },
+    {
+      "name": "Domain facts",
+      "dependsOn": [
+        "Commands and decisions"
+      ],
+      "enables": [
+        "Identity and authoritative state"
+      ]
+    },
+    {
+      "name": "Identity and authoritative state",
+      "dependsOn": [
+        "Domain facts"
+      ],
+      "enables": [
+        "State lifecycles",
+        "Invariant scope"
+      ]
+    },
+    {
+      "name": "State lifecycles",
+      "dependsOn": [
+        "Identity and authoritative state"
+      ],
+      "enables": [
+        "Transition guards",
+        "Terminality"
+      ]
+    },
+    {
+      "name": "Transition guards",
+      "dependsOn": [
+        "State lifecycles"
+      ],
+      "enables": [
+        "Invariant scope",
+        "Concurrency windows"
+      ]
+    },
+    {
+      "name": "Terminality",
+      "dependsOn": [
+        "State lifecycles"
+      ],
+      "enables": [
+        "Compensation vs reversal"
+      ]
+    },
+    {
+      "name": "Invariant scope",
+      "dependsOn": [
+        "Transition guards"
+      ],
+      "enables": [
+        "Concurrency windows",
+        "Correctness evidence"
+      ]
+    },
+    {
+      "name": "Concurrency windows",
+      "dependsOn": [
+        "Invariant scope"
+      ],
+      "enables": [
+        "Stale-state decisions",
+        "Atomicity boundary"
+      ]
+    },
+    {
+      "name": "Stale-state decisions",
+      "dependsOn": [
+        "Concurrency windows"
+      ],
+      "enables": [
+        "Correctness evidence"
+      ]
+    },
+    {
+      "name": "Atomicity boundary",
+      "dependsOn": [
+        "Concurrency windows"
+      ],
+      "enables": [
+        "Correctness evidence"
+      ]
+    },
+    {
+      "name": "Correctness evidence",
+      "dependsOn": [
+        "Invariant scope",
+        "Atomicity boundary"
+      ],
+      "enables": [
+        "Architecture decision"
+      ]
+    },
+    {
+      "name": "Architecture decision",
+      "dependsOn": [
+        "Correctness evidence"
+      ],
+      "enables": [
+        "Staff-level transfer"
+      ]
+    }
+  ],
+  "worldModel": {
+    "actors": [
+      "Customer",
+      "Restaurant operator",
+      "Food Ordering Platform",
+      "Payment provider (controlled simulator in first implementation)",
+      "Kitchen staff",
+      "Delivery coordinator",
+      "Support operator"
+    ],
+    "facts": [
+      "OrderPlaced",
+      "OrderAccepted",
+      "OrderRejected",
+      "OrderCancelled",
+      "PaymentAttemptStarted",
+      "PaymentSucceeded",
+      "PaymentFailed",
+      "RefundRequested",
+      "RefundCompleted",
+      "PreparationStarted",
+      "OrderCompleted"
+    ],
+    "guarantees": [
+      "Business rule requires that accepted and cancelled outcomes not both be reported successfully for the same version of an order.",
+      "A documented rule is not proof that the in-memory or DB implementation enforces it under concurrency."
+    ],
+    "openPolicies": [
+      "May a customer cancel after Restaurant accepts? Initially assume no, then compare alternative window policies.",
+      "Does payment occur before or after restaurant acceptance? Model both and choose one for the first implementation.",
+      "Can a restaurant partially accept order items? Defer until core lifecycle established.",
+      "When is a refund economically final? Only an actual provider confirmation may establish it.",
+      "Who handles delivery failure after preparation? Record as open later workflow dependency."
+    ]
+  },
+  "graphSets": {
+    "prerequisites": [
+      "Actors → capabilities → use cases → commands → facts → identities → lifecycles → guards → invariants → conflicts → tests"
+    ],
+    "causality": [
+      "Customer intent → authorized command → decision/guard → state mutation → authoritative fact → observed outcome"
+    ],
+    "failures": [
+      "Two read PLACED → both pass guard → interleaving writes → contradictory success → repair by atomic guard and verified evidence"
+    ],
+    "project": [
+      "Requirements → minimal Spring Boot vertical slice → expanded local lifecycle → race experiment → verified invariant tests → ADR"
+    ],
+    "evidence": [
+      "Prediction → controlled variables → executed test → observed transition / invariant result → interpretation / uncertainty → design decision"
+    ]
+  },
+  "labs": [
+    {
+      "id": "LAB-11-01",
+      "title": "Interleaving Race Explorer",
+      "firstSeen": "1.1.13",
+      "model": "Single-order, two-actor deterministic state machine: Cancel and Accept; choose atomic check/update vs unsafe check-then-write; vary arrival order; show both-success contradiction.",
+      "controls": [
+        "Execution order",
+        "Guarding strategy",
+        "Second repeated command"
+      ],
+      "warnings": [
+        "Success fact contradiction",
+        "Last-write-wins lost update"
+      ],
+      "limitations": "Educational deterministic model; does not reproduce JPA, network or multi-process transactions.",
+      "proof": "Pure transition unit tests + later Java concurrency harness"
+    },
+    {
+      "id": "LAB-11-02",
+      "title": "Lifecycle Composer",
+      "firstSeen": "1.1.6",
+      "model": "Separate Order, PaymentAttempt, RestaurantDecision lifecycles with cross-state predicates.",
+      "controls": [
+        "Actor",
+        "Command",
+        "Current state",
+        "Payment outcome"
+      ],
+      "warnings": [
+        "Illegal transitions",
+        "Unknown provider outcome"
+      ],
+      "limitations": "Lifecycle policy is provisional until business validation."
+    },
+    {
+      "id": "LAB-11-03",
+      "title": "Authority Map",
+      "firstSeen": "1.1.1",
+      "model": "Actors and source-of-truth graph for critical business facts.",
+      "controls": [
+        "Select fact",
+        "Change responsible actor",
+        "Show competing owner"
+      ],
+      "warnings": [
+        "Two authorities",
+        "Missing accountability"
+      ],
+      "limitations": "Organizational choices are business requirements, not code guarantees."
+    },
+    {
+      "id": "LAB-11-04",
+      "title": "Duplicate Command Ledger",
+      "firstSeen": "1.1.12",
+      "model": "Replay command identities over order/payment attempts and classify duplicate effect policy.",
+      "controls": [
+        "Command ID",
+        "Payload version",
+        "Replay count"
+      ],
+      "warnings": [
+        "Double business effect",
+        "Payload conflict"
+      ],
+      "limitations": "Local semantic demo, not distributed exactly-once delivery."
+    },
+    {
+      "id": "LAB-11-05",
+      "title": "Diagnosis Caseboard",
+      "firstSeen": "1.1.18",
+      "model": "Competing hypotheses for late payment, duplicate provider receipt or conflicting acceptance.",
+      "controls": [
+        "Evidence request",
+        "Hypothesis selection"
+      ],
+      "warnings": [
+        "Overconfident root cause"
+      ],
+      "limitations": "Synthetic case; observed project evidence linked separately after experiments."
+    }
+  ],
+  "applicationPlan": [
+    {
+      "lesson": "1.1.1",
+      "mode": "C",
+      "change": "Produce actors, scenario matrix and authority map without making a Java repo commit."
+    },
+    {
+      "lesson": "1.1.2",
+      "mode": "A",
+      "change": "Initialize Java 21 Maven root, single Spring Boot deployable, minimal PlaceOrder HTTP flow, in-memory repository, unit tests, CI; first verification checkpoint."
+    },
+    {
+      "lesson": "1.1.3–1.1.4",
+      "mode": "A",
+      "change": "Explicit command/fact/outcome types and stable business IDs; preserve simple structure and unit tests."
+    },
+    {
+      "lesson": "1.1.5",
+      "mode": "C",
+      "change": "Scenario inventory, unresolved business-policy register and complete actor journey."
+    },
+    {
+      "lesson": "1.1.6–1.1.7",
+      "mode": "A",
+      "change": "Lifecycle and transition guards for Order, PaymentAttempt and RestaurantDecision; table-driven tests."
+    },
+    {
+      "lesson": "1.1.8",
+      "mode": "C",
+      "change": "Document reversibility and external compensation limitations; no fake provider effects."
+    },
+    {
+      "lesson": "1.1.9",
+      "mode": "A",
+      "change": "Add local, explicitly simulated payment provider and restaurant decisions with testable policies."
+    },
+    {
+      "lesson": "1.1.10",
+      "mode": "C",
+      "change": "Record no-premature-split ADR with measured/revisit criteria."
+    },
+    {
+      "lesson": "1.1.11–1.1.12",
+      "mode": "A",
+      "change": "Enforce invariants, repeat-command handling for selected operations, negative tests."
+    },
+    {
+      "lesson": "1.1.13–1.1.15",
+      "mode": "B",
+      "change": "Reproducible concurrency, duplicate and late-payment experiments; preserve fragile baseline, no unjustified infrastructure."
+    },
+    {
+      "lesson": "1.1.16",
+      "mode": "C",
+      "change": "Document atomicity boundaries and unresolved durable/remote uncertainty; defer DB-backed guarantees to 1.2."
+    },
+    {
+      "lesson": "1.1.17",
+      "mode": "A",
+      "change": "Close specific test gaps, run root Maven verification and inspect CI evidence."
+    },
+    {
+      "lesson": "1.1.18",
+      "mode": "B",
+      "change": "Incident hypothesis evidence exercises linked to executed failure harnesses where available."
+    },
+    {
+      "lesson": "1.1.19–1.1.20",
+      "mode": "C",
+      "change": "ADR, design defense, cross-domain mastery and handoff; freeze verified checkpoint SHAs."
+    }
+  ],
+  "evidenceContract": {
+    "testKinds": [
+      "unit/domain transition table",
+      "application use-case positive/negative",
+      "HTTP integration for selected flows",
+      "duplicate-request behavior",
+      "deterministic concurrency interleaving",
+      "controlled fault/late-outcome tests"
+    ],
+    "labels": [
+      "observed",
+      "measured",
+      "structurally demonstrated",
+      "inferred",
+      "assumed",
+      "hypothetical",
+      "guaranteed under stated model",
+      "not guaranteed"
+    ],
+    "commands": [
+      "mvn -B verify (when Maven project exists)",
+      "npm run check:content (academy)",
+      "npm run typecheck (academy)",
+      "npm run test (academy)",
+      "npm run build (academy)"
+    ],
+    "caveats": [
+      "No actual Java tests are run in Phase 0 because the platform is intentionally not yet implemented.",
+      "Simulation results are not runtime observations."
+    ]
+  },
+  "masteryGate": [
+    "Derive business actor/authority and use cases independently.",
+    "Provide a falsifiable lifecycle and invariant table for Order, Restaurant and Payment.",
+    "Predict outcomes under duplicate, cancellation race, late payment and stale-state cases.",
+    "Reproduce a relevant test or explain precisely why execution evidence is unavailable.",
+    "Distinguish documented rule, implemented guard, observed result and environment-bound guarantee.",
+    "Diagnose at least one failure using multiple hypotheses and a discriminating test.",
+    "Defend one simpler alternative and one overengineering failure to a Staff reviewer.",
+    "Transfer correctness reasoning to a different domain, without copying solution shapes."
+  ],
+  "forwardDependencies": [
+    {
+      "cluster": "1.2",
+      "why": "Aggregate and transaction boundaries from invariants; real PostgreSQL and optimistic concurrency."
+    },
+    {
+      "cluster": "1.3",
+      "why": "Separate semantic ownership and translate ambiguous models."
+    },
+    {
+      "cluster": "1.4",
+      "why": "Evidence-based deployment decision."
+    },
+    {
+      "cluster": "3.x",
+      "why": "Remote execution creates uncertainty around previously local decisions."
+    },
+    {
+      "cluster": "4.x",
+      "why": "Retries, duplicate effects and ambiguous outcomes become distributed."
+    },
+    {
+      "cluster": "8.x",
+      "why": "Distributed data ownership, consistency and freshness."
+    },
+    {
+      "cluster": "9.x",
+      "why": "Multi-authority workflows, compensation and reliable propagation."
+    }
+  ],
+  "deferred": [
+    "Multiple Spring Boot services by default",
+    "Kafka, Redis, Outbox, Saga, CQRS, Event Sourcing",
+    "Real-money payment processing",
+    "Production-wide concurrency claims from in-memory tests",
+    "Kubernetes/cloud platform setup"
+  ]
+}
