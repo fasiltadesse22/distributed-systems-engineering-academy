@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Lesson } from '../data/roadmap';
-import { chapterForLesson, platformPlanningSha, platformRepo } from '../data/roadmap';
+import { chapterForLesson, platformVerifiedSha, platformRepo } from '../data/roadmap';
 
 function Field({ title, entries }: { title: string; entries: string[] }) {
   return (
@@ -33,8 +33,8 @@ export default function LessonReader({ lesson }: { lesson: Lesson }) {
       </div>
       <div className="question-card">
         <strong>Engineering reference boundary</strong>
-        <p>The companion platform is not yet an implemented Java application. Current immutable planning baseline:</p>
-        <a href={platformRepo + '/tree/' + platformPlanningSha} target="_blank" rel="noreferrer">Food Ordering Platform · planning commit {platformPlanningSha.slice(0, 12)}</a>
+        <p>The companion platform now has a verified Java/Spring Boot intake checkpoint from Lesson 1.1.2. This future lesson itself is not implemented:</p>
+        <a href={platformRepo + '/tree/' + platformVerifiedSha} target="_blank" rel="noreferrer">Food Ordering Platform · verified intake commit {platformVerifiedSha.slice(0, 12)}</a>
         <p className="small muted">A future verified application checkpoint must cite its own commit SHA and executed evidence; the planning commit is not an application test result.</p>
       </div>
       <div className="action-row"><Link className="primary link-button" to="/blueprint">Return to blueprint</Link><Link className="secondary link-button" to="/lab">Explore the first lab</Link></div>

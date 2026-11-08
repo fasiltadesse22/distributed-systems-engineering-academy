@@ -54,3 +54,6 @@ export const chapterForLesson = (lessonId: string) =>
 export const platformRepo = 'https://github.com/fasiltadesse22/food-ordering-platform-new';
 export const academyRepo = 'https://github.com/fasiltadesse22/distributed-systems-engineering-academy';
 export const platformPlanningSha = '2258cb1b8fc788a2ca8e35a2419e031fddbcb0eb';
+
+/** First verified runnable Java intake checkpoint, separate from the historical planning baseline. */
+export const platformVerifiedSha = '08b33714431a53f6b1cb1e1e09718b0281da1ce8';
