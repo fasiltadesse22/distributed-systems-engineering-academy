@@ -37,5 +37,15 @@ const domain = fs.readFileSync('docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISC
 for(const required of ['Actor and stakeholder inventory','Business capabilities and ownership','Decision authority matrix','Worked business scenarios','Questions to validate with stakeholders','Lesson 1.1.2 entry requirements']) {
   assert.ok(domain.includes(required), 'Missing domain discovery obligation '+required);
 }
+const lesson112 = fs.readFileSync('content/lessons/1.1.2.md','utf8');
+const sections112 = [...lesson112.matchAll(/^## (Orient|Understand|Explore|Predict|Engineer|Verify|Diagnose|Defend|Retain) — .+$/gm)];
+assert.equal(sections112.length, 14, 'Lesson 1.1.2 must preserve all 14 authored learning sections');
+for (const stage of ['Orient','Understand','Explore','Predict','Engineer','Verify','Diagnose','Defend','Retain']) {
+  assert.ok(sections112.some(m=>m[1]===stage), 'Lesson 1.1.2 missing learning stage '+stage);
+}
+for (const term of ['HTTP 201','422','PENDING','NOT_STARTED','Restaurant','Payment','Acceptance','diagnosis','Java']) {
+  assert.ok(lesson112.toLowerCase().includes(term.toLowerCase()),'Missing use-case learning obligation '+term);
+}
+console.log('Lesson 1.1.2 content audit passed: 14 sections, nine learning stages, use-case semantics and boundaries.');
 console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
