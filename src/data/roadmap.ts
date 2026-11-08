@@ -24,6 +24,8 @@ export function parseRoadmap(markdown: string): Phase[] {
   let phase: Phase | undefined;
   let cluster: Cluster | undefined;
   for (const line of lines) {
+    // The curriculum catalog ends before the cross-cutting contract sections.
+    if (phase && /^## (11|12|13)\. /.test(line)) break;
     const phaseMatch = line.match(/^## Phase ([IVXLCDM]+) — (.+)$/);
     if (phaseMatch) {
       phase = { roman: phaseMatch[1], title: phaseMatch[2], intro: '', clusters: [] };
