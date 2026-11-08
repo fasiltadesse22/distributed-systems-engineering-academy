@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { academyRepo, blueprint, chapters, lessons, phases, platformRepo, platformPlanningSha, platformVerifiedSha, roadmapText } from './data/roadmap';
+import { academyRepo, blueprint, chapters, lessons, phases, platformRepo, platformVerifiedSha, roadmapText } from './data/roadmap';
 import ConceptMap from './components/ConceptMap';
 import LessonReader from './components/LessonReader';
 import Lesson111 from './lessons/lesson111/Lesson111';
