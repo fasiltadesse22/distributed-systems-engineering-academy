@@ -30,17 +30,17 @@ test('Use-Case Explorer distinguishes implemented intake from future merchant au
 test('Scenario Studio changes outcome and keeps non-implemented downstream decisions separate',async({page})=>{
  await page.goto(route);
  await section(page,7).click();
- await page.getByRole('button',{name:'201'}).click();
+ await page.getByTestId('scenario-studio').getByRole('button',{name:'201',exact:true}).click();
  await page.getByRole('button',{name:/Run modeled scenario/i}).click();
  await expect(page.getByTestId('scenario-result')).toContainText('2500 USD minor units');
  await expect(page.getByTestId('scenario-result')).toContainText('PENDING');
  await expect(page.getByTestId('scenario-result')).toContainText('NOT_STARTED');
  await page.getByTestId('scenario-item').selectOption('seasonal-special');
- await page.getByRole('button',{name:'422'}).click();
+ await page.getByTestId('scenario-studio').getByRole('button',{name:'422',exact:true}).click();
  await page.getByRole('button',{name:/Run modeled scenario/i}).click();
  await expect(page.getByTestId('scenario-result')).toContainText('ITEM_UNAVAILABLE');
  await page.getByTestId('scenario-future').selectOption('payment-decline');
- await page.getByRole('button',{name:'422'}).click();
+ await page.getByTestId('scenario-studio').getByRole('button',{name:'422',exact:true}).click();
  await page.getByRole('button',{name:/Run modeled scenario/i}).click();
  await expect(page.getByTestId('scenario-result')).toContainText('FUTURE ONLY');
 });
@@ -49,7 +49,7 @@ test('Acceptance Explorer shows a real test link and the scoped expected result'
  await page.goto(route);
  await section(page,8).click();
  await page.getByTestId('acceptance-case').selectOption('AC-04');
- await page.getByRole('button',{name:'422'}).click();
+ await page.getByTestId('acceptance-explorer').getByRole('button',{name:'422',exact:true}).click();
  await page.getByRole('button',{name:/Reveal acceptance contract/i}).click();
  const result=page.getByTestId('acceptance-result');
  await expect(result).toContainText('ITEM_UNAVAILABLE');
@@ -61,7 +61,7 @@ test('Execution Trace links to immutable Java sources and diagnoses semantics',a
  await page.goto(route);
  await section(page,9).click();
  const trace=page.getByTestId('execution-trace');
- await expect(trace).toContainText('Source-derived');
+ await expect(trace).toContainText('reconstructed from source and tests');
  await trace.getByRole('button',{name:/Store the record/i}).click();
  await expect(trace).toContainText('ConcurrentHashMap');
  await expect(trace.getByRole('link',{name:/InMemoryOrderRepository.java/i})).toHaveAttribute('href',/ed15adb49737a583488e6e2c5ac73158cdf15032/);
