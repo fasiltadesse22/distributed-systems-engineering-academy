@@ -3,6 +3,7 @@ import {Link,NavLink,useLocation} from 'react-router-dom';
 import {chapters,chapterForLesson} from '../data/roadmap';
 import {teachingSections} from '../lessons/lesson111/Lesson111';
 import {lessonSections} from '../lessons/lesson112/Lesson112';
+import {sectionMenuTitle} from './sectionNavigation';
 
 type SectionItem={index:number;stage:string;title:string};
 const authoredSections:Record<string,SectionItem[]>={'1.1.1':teachingSections,'1.1.2':lessonSections};
@@ -83,7 +84,7 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
                   className={'outline-section-link '+(selected&&activeSection===index+1?'active':'')}
                   aria-current={selected&&activeSection===index+1?'location':undefined}>
                     <span className="outline-section-index">{String(index+1).padStart(2,'0')}</span>
-                    <span><b>{section.stage}</b><small>{section.title}</small></span>
+                    <span className="outline-section-copy"><strong>{sectionMenuTitle(lesson.id,index,section.title)}</strong></span>
                 </Link>)}
               </div>}
             </div>;
