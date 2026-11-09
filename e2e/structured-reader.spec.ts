@@ -12,6 +12,11 @@ test('UC-001 normal flow is a complete eight-step interactive timeline, not a ru
  await expect(flow).toContainText('OrderController parses JSON');
  await expect(flow).toContainText('ConcurrentHashMap');
  await expect(flow).toContainText('201 Created');
+ const layers=flow.getByTestId('execution-layers');
+ await expect(layers.getByRole('button')).toHaveCount(4);
+ await layers.getByRole('button',{name:'Inspect layer Application rules'}).click();
+ await expect(flow.getByRole('button',{name:'Explain step 3: Read the demo catalog'})).toHaveAttribute('aria-pressed','true');
+ await expect(layers).toContainText('payment NOT_STARTED');
  await flow.getByRole('button',{name:'Explain step 7: Persist the intake'}).click();
  await expect(flow.getByRole('status',{name:'Why this step matters'})).toContainText('loses records on restart');
  await flow.getByText('Show original paragraph').click();
