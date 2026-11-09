@@ -52,11 +52,11 @@ function ReadingPassage({block,annotation,cues}:{block:string;annotation?:Readin
 /** Keeps raw Markdown blocks in their exact order and contents, while curated
  * annotations supply meaningful typography and contextual guidance. */
 export function ReadingArticle({
- markdown,offset,editorial,cues=true
-}:{markdown:string;offset:number;editorial?:ReadingEditorial;cues?:boolean}){
+ markdown,offset,editorial,cues=true,textSize=0,wide=false
+}:{markdown:string;offset:number;editorial?:ReadingEditorial;cues?:boolean;textSize?:number;wide?:boolean}){
  const passages=readingBlocks(markdown);
  const notes=new Map((editorial?.annotations??[]).map(note=>[note.block,note]));
- return <div className={'reader-article'+(cues?'':' no-cues')}>
+ return <div className={'reader-article'+(cues?'':' no-cues')+(wide?' reader-wide':'')} data-text-size={textSize}>
   {passages.map((block,i)=><ReadingPassage key={offset+i}
     block={block} annotation={notes.get(offset+i)} cues={cues}/>)}
  </div>;
