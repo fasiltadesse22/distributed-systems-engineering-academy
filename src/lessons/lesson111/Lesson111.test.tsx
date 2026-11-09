@@ -18,7 +18,7 @@ describe('Lesson 1.1.1 · continuous visual textbook',()=>{
   expect(html).toContain('Why the business comes first');
   expect(html).toContain('Actors, stakeholders');
   expect(html).toContain('authority-atlas');
-  expect(html).toContain('journey-outcome');
+  expect(html).toContain('Run illustrated business journey');
   expect(html).toContain('Domain discovery source contract');
   expect(html).toContain('Conceptual domain contract');
   expect(html).toContain('textbook-definition-list');
