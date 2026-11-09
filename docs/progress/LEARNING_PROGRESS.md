@@ -1,6 +1,6 @@
 # Academy Learning Progress — Authoritative Ledger
 
-**Updated:** 2026-11-08  
+**Updated:** 2026-11-09  
 **Roadmap:** [Master Roadmap V1.0](../roadmap/MASTER_ROADMAP_V1.md) · 19 phases / 93 clusters  
 **Academy:** https://github.com/fasiltadesse22/distributed-systems-engineering-academy  
 **Application:** https://github.com/fasiltadesse22/food-ordering-platform-new
@@ -12,7 +12,7 @@
 | Phase 0 — Academy V0.1 foundation, roadmap, blueprint and race lab | Verified | [Phase 0 checkpoint](../../checkpoints/PHASE_0_ACADEMY_V0_1.md) | Planning-only |
 | Cluster 1.1 → Chapter 1 → Lesson 1.1.1: actors, goals, responsibilities and capabilities | **Authored, interactive, browser-verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_1.md) | **Unchanged** |
 | Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
-| Lesson 1.1.3: commands, decisions, facts and events | **Authored; academy verification pending** | [Deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
+| Lesson 1.1.3: commands, decisions, facts and events | **Complete; academy and Java verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_3.md), [deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md), [academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), [browser CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
 | Lessons 1.1.4–1.1.20 | Not started | Blueprint only | Deferred |
 
 ## Current learning assets
@@ -28,7 +28,7 @@
 
 ## Evidence language
 
-A working academy simulator is educational modeling; it is **not** a verified Java business workflow. The discovery contract is an explicit business model, not an externally approved merchant policy. The separate Java repository now implements only order-request intake, pinned at [08b33714431a53f6b1cb1e1e09718b0281da1ce8](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/08b33714431a53f6b1cb1e1e09718b0281da1ce8). Java CI passed 13 tests, packaged the jar and executed actual 201/422 HTTP smoke. There is no merchant acceptance, payment provider, durable data or authenticated customer. CI verifies source code in specific immutable academy commits, not future runtime guarantees.
+A working academy simulator is educational modeling; it is **not** a verified Java business workflow. The discovery contract is an explicit business model, not an externally approved merchant policy. The separate Java repository implements order-request intake with explicit typed decisions and a post-save local fact, pinned at [225db684a24080f2c4ad1ae6e2f5e259edf0aa7d](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/225db684a24080f2c4ad1ae6e2f5e259edf0aa7d). Java CI passed 18 tests, packaged the jar and executed actual 201/422 HTTP smoke. There is no merchant acceptance, payment provider, durable data or authenticated customer. CI verifies source code in specific immutable academy commits, not future runtime guarantees.
 
 ## Next execution
 
@@ -42,4 +42,4 @@ The authored Lessons 1.1.1 and 1.1.2 now use a source-preserving continuous tech
 
 ## Lesson 1.1.3 applied evolution — 2026-11-09
 
-The [Java project](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/225db684a24080f2c4ad1ae6e2f5e259edf0aa7d) now returns explicit typed PlaceOrder decisions and a local OrderRequestRecorded fact only after normal repository save. [Post-merge CI 42590153411](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) passed 18 Maven tests and real packaged-app HTTP 201/422 smoke. The academy adds 16 deep-learning topics, a static causal-flow illustration and a deterministic browser simulation. This note does not claim academy verification until its final checks pass.
+The [Java project](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/225db684a24080f2c4ad1ae6e2f5e259edf0aa7d) now returns explicit typed PlaceOrder decisions and a local OrderRequestRecorded fact only after normal repository save. [Post-merge CI 42590153411](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) passed 18 Maven tests and real packaged-app HTTP 201/422 smoke. The academy adds 16 deep-learning topics, a static causal-flow illustration and a deterministic browser simulation. The academy's verified lesson revision [ef6b443487b866c8bb434f1b999fe36d747bf146](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/tree/ef6b443487b866c8bb434f1b999fe36d747bf146) passed [45 unit/component tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082) and [30 Chromium browser tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081), plus TypeScript, source audit and production build. The checkpoint documentation commit is subsequent and requires its own green CI for final integration.

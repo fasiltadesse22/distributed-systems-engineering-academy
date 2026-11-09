@@ -9,7 +9,7 @@ A React + TypeScript interactive learning academy for **evidence-driven distribu
 - [Visual Textbook V2 design contract](docs/design/VISUAL_TEXTBOOK_V2.md) — continuous reading, source integrity, purposeful visuals and contextual laboratories.
 - [Authored Lesson 1.1.1](content/lessons/1.1.1.md) — 13-section actor authority manuscript and interactive exercises.
 - [Authored Lesson 1.1.2](content/lessons/1.1.2.md) — 14-section use-case discovery, real Java trace and scenario/acceptance labs.
-- [Authored Lesson 1.1.3](content/lessons/1.1.3.md) — 16-section command/decision/fact deep-learning manuscript with one causal diagram, a prediction lab and actual Java source links.
+- [Authored Lesson 1.1.3](content/lessons/1.1.3.md) — 16-section command/decision/fact deep-learning manuscript with one causal diagram, a prediction lab and actual Java source links. [Checkpoint and verification](checkpoints/LESSON_1_1_3.md).
 - [Applied Lesson 1.1.3 Java walkthrough](docs/engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md) — pinned typed-outcome implementation and 18-test running-jar evidence.
 - [Applied Lesson 1.1.2 Java walkthrough](docs/engineering/LESSON_1_1_2_APPLIED_WALKTHROUGH.md) — verified Java code, tests, 201/422 runtime evidence and design alternatives.
 - [Lesson 1.1.1 Domain Discovery Contract](docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md) — actors, capabilities, decision authority, scenarios and open policy questions.

@@ -55,7 +55,7 @@
 
 The [post-merge Java workflow](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) ran Maven verify successfully, with 18 passing tests. It packaged the runnable jar, started the Spring application and observed a successful real HTTP 201 request plus an unavailable-item HTTP 422 rejection. The tests verify the specific code and environment under run conditions, not a production system.
 
-The React [Command → Decision → Fact learning lab](../../src/lessons/lesson113/Mechanisms.tsx) is a deterministic TypeScript teaching model. The diagram is source-derived. Neither is an OpenTelemetry trace, broker record, provider receipt or proof of external operations. Academy tests and browser evidence must be linked in the final academy checkpoint after they pass.
+The React [Command → Decision → Fact learning lab](../../src/lessons/lesson113/Mechanisms.tsx) is a deterministic TypeScript teaching model. The diagram is source-derived. Neither is an OpenTelemetry trace, broker record, provider receipt or proof of external operations. The academy's verified [source revision ef6b443487](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/tree/ef6b443487b866c8bb434f1b999fe36d747bf146) passed [45 TypeScript unit/component tests and the production build](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), plus [30 Chromium browser tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081). The lesson checkpoint records this source-tested evidence without confusing the deterministic lab with Java runtime tests.
 
 ## Architectural decision and simpler alternatives
 
