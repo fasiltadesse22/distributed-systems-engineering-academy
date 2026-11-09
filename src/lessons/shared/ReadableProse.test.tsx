@@ -22,7 +22,7 @@ describe('structural concept reading and meaningful navigation',()=>{
   expect(c.items[3].source).toContain('technical entry mechanism');
   const html=renderToStaticMarkup(<ReadingArticle markdown={second[1][0]} offset={0} visuals={[concepts]}/>);
   expect(html).toContain('data-testid="visual-definitions"');
-  expect((html.match(/class="structured-tile"/g)||[])).toHaveLength(4);
+  expect((html.match(/class="structured-tile(?: selected)?"/g)||[])).toHaveLength(4);
   expect(html).toContain('Show original paragraph');
   const a=parseStructuredParagraph(second[3][1],anatomy)!;
   expect(a.items.map(x=>x.label)).toEqual(['Trigger','Precondition','Guard','Postcondition']);

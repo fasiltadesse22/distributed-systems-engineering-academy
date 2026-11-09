@@ -15,7 +15,7 @@ test('Capability, use case, user story and endpoint are FOUR independent reader 
  await gallery.getByRole('button',{name:'Inspect Use case'}).click();
  await expect(gallery.getByRole('complementary',{name:'Selected item explanation'})).toContainText('testable interaction contract');
  await gallery.getByText('Show original paragraph').click();
- await expect(gallery.locator('.structured-source-text')).toContainText('An **endpoint**');
+ await expect(gallery.locator('.structured-source-text')).toContainText('An endpoint');
  expect(errors).toEqual([]);
 });
 

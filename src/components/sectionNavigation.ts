@@ -12,7 +12,7 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2',readonly string[]>={
   'Build the authority map',
   'Follow an order decision',
   'Assign the right decision owner',
-  'Diagnose a cancellation dispute',
+  'Investigate cancellation dispute',
   'Domain artifacts before Java',
   'What counts as evidence?',
   'Defend the architecture',
@@ -26,11 +26,11 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2',readonly string[]>={
   'Error paths & unknown results',
   'IDs, pricing & durability',
   'Find the real use-case boundary',
-  'Explore business alternatives',
+  'Compare business alternatives',
   'Acceptance criteria AC-01–07',
   'Trace the Java implementation',
   'Tests & evidence hierarchy',
-  'Diagnose an unconfirmed order',
+  'Investigate unconfirmed orders',
   'Defend design trade-offs',
   'Transfer to booking & inventory'
  ]
