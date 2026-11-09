@@ -4,6 +4,7 @@ import rawLesson from '../../../content/lessons/1.1.1.md?raw';
 import { academyRepo, platformRepo, platformPlanningSha } from '../../data/roadmap';
 import { StoryCanvas } from '../shared/StoryCanvas';
 import {editorialFor} from '../shared/readingEditorial';
+import {visualsFor} from '../shared/structuredVisuals';
 import { authorityScenes } from './scenes';
 import { ActorAuthorityAtlas } from './ActorAuthorityAtlas';
 import { WorkflowStudio } from './WorkflowStudio';
@@ -76,7 +77,7 @@ export default function Lesson111(){
     <div className="l111-main">
         {showGlossary&&<aside className="l111-glossary" aria-label="Key terminology"><h3>Conceptual vocabulary</h3><div className="l111-glossary-grid">{glossary.map(g=><div key={g.term}><b>{g.term}</b><p>{g.definition}</p></div>)}</div></aside>}
         <div className="l111-section-heading"><span className="eyebrow">{section.stage.toUpperCase()} · SECTION {String(active+1).padStart(2,'0')} / {teachingSections.length}</span><h2>{section.title}</h2></div>
-        <StoryCanvas key={active} markdown={section.body} scene={authorityScenes[active]} editorial={editorialFor('1.1.1',active)}>
+        <StoryCanvas key={active} markdown={section.body} scene={authorityScenes[active]} editorial={editorialFor('1.1.1',active)} visuals={visualsFor('1.1.1',active)}>
           {active===5?<ActorAuthorityAtlas/>
             :active===6?<WorkflowStudio/>
             :active===7?<AuthorityChallenge/>

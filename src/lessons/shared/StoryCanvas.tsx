@@ -2,6 +2,7 @@ import {useMemo,useState} from 'react';
 import {ReadingArticle,buildReadingRanges,beatForBlock} from './ReadingArticle';
 import {kindNames} from './readingEditorial';
 import type {ReadingEditorial} from './readingEditorial';
+import type {VisualSpec} from './structuredVisuals';
 import './story.css';
 
 export interface StoryNode {
@@ -81,7 +82,7 @@ function StoryMap({scene}:{scene:StoryScene}){
  </div>;
 }
 
-export function StoryCanvas({markdown,scene,children,editorial}:{markdown:string;scene:StoryScene;children?:React.ReactNode;editorial?:ReadingEditorial}){
+export function StoryCanvas({markdown,scene,children,editorial,visuals=[]}:{markdown:string;scene:StoryScene;children?:React.ReactNode;editorial?:ReadingEditorial;visuals?:VisualSpec[]}){
  const beats=useMemo(()=>splitIntoReadingBeats(markdown),[markdown]);
  const ranges=useMemo(()=>buildReadingRanges(beats),[beats]);
  const [beatIndex,setBeatIndex]=useState(0);
@@ -135,10 +136,10 @@ export function StoryCanvas({markdown,scene,children,editorial}:{markdown:string
       <div className="story-step-rail" role="group" aria-label="Reading step navigation">{beats.map((beat,i)=><button type="button" key={i} aria-label={'Read step '+(i+1)+': '+beat.heading} aria-current={beatIndex===i?'step':undefined} className={beatIndex===i?'current':''} onClick={()=>setBeatIndex(i)}><span>{String(i+1).padStart(2,'0')}</span><small>{titleForBeat(i)}</small></button>)}</div>
       <article className="story-prose-card" data-testid="reading-step">
         <div className="story-prose-top"><div className="reader-step-heading"><span className="story-eyebrow">READING STEP {String(beatIndex+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><h4>{titleForBeat(beatIndex)}</h4></div><span>{selected.count} words · full source</span></div>
-        <ReadingArticle markdown={selected.markdown} offset={ranges[beatIndex]?.start??0} editorial={editorial} cues={cues} textSize={textSize} wide={wide}/>
+        <ReadingArticle markdown={selected.markdown} offset={ranges[beatIndex]?.start??0} editorial={editorial} cues={cues} textSize={textSize} wide={wide} visuals={visuals}/>
       </article>
       <div className="story-reading-actions"><span className="story-reading-note">Your reading position is kept as you inspect the diagram.</span><div><button type="button" disabled={beatIndex===0} onClick={()=>setBeatIndex(i=>Math.max(0,i-1))}>← Previous idea</button>{beatIndex<beats.length-1?<button type="button" className="next" onClick={()=>setBeatIndex(i=>Math.min(beats.length-1,i+1))}>Next idea →</button>:<button type="button" className="next" onClick={()=>setMode('all')}>Review complete explanation ↗</button>}</div></div>
-    </>:<div className="story-all-reading" data-testid="full-reading">{beats.map((beat,i)=><article className="story-prose-card" key={i}><div className="story-prose-top"><div className="reader-step-heading"><span className="story-eyebrow">IDEA {String(i+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><h4>{titleForBeat(i)}</h4></div><span>{beat.count} words · complete text</span></div><ReadingArticle markdown={beat.markdown} offset={ranges[i]?.start??0} editorial={editorial} cues={cues} textSize={textSize} wide={wide}/></article>)}</div>}
+    </>:<div className="story-all-reading" data-testid="full-reading">{beats.map((beat,i)=><article className="story-prose-card" key={i}><div className="story-prose-top"><div className="reader-step-heading"><span className="story-eyebrow">IDEA {String(i+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><h4>{titleForBeat(i)}</h4></div><span>{beat.count} words · complete text</span></div><ReadingArticle markdown={beat.markdown} offset={ranges[i]?.start??0} editorial={editorial} cues={cues} textSize={textSize} wide={wide} visuals={visuals}/></article>)}</div>}
    </section>
    <div className="story-reflection"><div><span className="story-eyebrow">CHECK YOUR UNDERSTANDING</span><h3>{scene.practiceQuestion}</h3><p>Explain your reasoning aloud before comparing it to the lesson's central distinction.</p></div><button type="button" aria-expanded={revealed} onClick={()=>setRevealed(!revealed)}>{revealed?'Hide key distinction':'Reveal key distinction'}</button>{revealed&&<div className="story-reflection-answer" role="status"><b>Key distinction</b><p>{scene.outcome}</p></div>}</div>
  </div>;
