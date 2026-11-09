@@ -9,7 +9,7 @@ The previous authored lesson pages rendered large portions of each canonical Mar
 
 The new rendering creates three progressively deeper layers:
 
-1. **Orient visually:** a nine-stage route and a section-specific engineering question establish where the learner is and why the topic matters.
+1. **Orient visually:** an expandable chapter/lesson/section outline in the single primary sidebar and a section-specific engineering question establish where the learner is and why the topic matters.
 2. **Explore actively:** a clickable causal/authority/source model gives every concept a role, an explanation, explicit evidence status and a counterexample. Existing richer simulations/challenges are placed ahead of the deep reading in relevant sections.
 3. **Read fully with control:** every authored Markdown block remains available, organized into short reading beats. Learners may use **Guided steps** for progressive disclosure or **Read all** to review the complete original text in separated, readable panels.
 
@@ -36,7 +36,7 @@ For each authored section:
 - Choose **Guided steps** to read manageable consecutive passages. Select a numbered beat directly or use Previous idea / Next idea.
 - Choose **Read all** to browse every original Markdown passage, in original order, without editorial deletion.
 - Use **Check your understanding** for an explicit retrieval question and a revealable core distinction.
-- Use the nine-stage route to jump between Orient, Understand, Explore, Predict, Engineer/Diagnose, Verify, Defend and Retain while the detailed section navigation remains available.
+- Expand a chapter in the global left menu, choose a lesson, and expand its authored study sections (including Orient, Understand, Explore, Predict, Engineer/Diagnose, Verify, Defend and Retain). Selecting a section changes the deep-linkable `?section=N` query without hiding content behind a second navigation rail.
 
 Controls use native buttons, clear selected states, keyboard-focus styling, readable type sizing, semantic regions, responsive layouts and a reduced-motion rule. The existing dark/light theme applies across the design.
 
@@ -46,7 +46,7 @@ Controls use native buttons, clear selected states, keyboard-focus styling, read
 
 \`e2e/story-reading.spec.ts\` exercises actual Chromium interactions in both lessons, including changing a diagram node, showing a counterexample, navigating reading beats, switching to full text and retaining the existing scenario lab.
 
-\`e2e/lesson-responsive.spec.ts\` checks the two lesson routes at a narrow phone viewport, stage navigation, theme switching, and unexpected whole-page horizontal overflow.
+\`e2e/lesson-responsive.spec.ts\` checks the two lesson routes at a narrow phone viewport, primary-sidebar expansion, section deep linking, theme switching, and unexpected whole-page horizontal overflow.
 
 The original lesson-specific browser tests, the Phase 0 race-lab tests, content audits, TypeScript checks and production build remain part of the required regression suite.
 
@@ -63,3 +63,19 @@ Do not generate another static markdown-as-a-page view. Every fully authored les
 7. Verify mobile and desktop routing, accessibility of controls, source fidelity, test coverage, project evidence links and actual executed backend boundaries.
 
 The goal is to become *more technically understandable* as the curriculum grows, not merely prettier.
+
+## Navigation and reading-space revision (2026-11-09)
+
+The original visual-first redesign still had redundant navigation: the global sidebar listed chapters, while each lesson body displayed a second **Study Journey** sidebar and a nine-stage strip. That consumed space better used for interactive diagrams and explanatory writing.
+
+The revised contract uses **one** left navigation tree:
+
+- **Chapter** expands/collapses in the global sidebar and offers an overview link.
+- **Lesson** is a direct link. Authored lessons can expand their sections; blueprint-only lessons do not fabricate authored section navigation.
+- **Section** is a direct link with a `?section=N` query. The selected section is highlighted with `aria-current`, and browser history/direct links work.
+- The active chapter and lesson expand automatically when navigating. Explicit manual expansion does not change lesson content until a lesson/section link is followed.
+- On narrow screens the tree lives in the mobile drawer, which closes when a section is selected.
+
+**Body-space rule:** the entire lesson is one wide reading canvas (with normal responsive page padding). Neither an internal study sidebar nor a large stage strip appears in the lesson body. A compact title and progress indicator remain; all visual learning, source-linked engineering and descriptive material are preserved.
+
+**Evidence/fidelity:** the original 27 lesson manuscript sections, diagrams, simulations, labs, acceptance and Java evidence are unchanged. New regression tests check sidebar expansion, deep linking, browser history, keyboard interaction, mobile, theme and full-width geometry. The separate Food Ordering Platform is unchanged.

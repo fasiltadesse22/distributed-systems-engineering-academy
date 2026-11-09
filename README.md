@@ -39,11 +39,14 @@ GitHub Actions runs the same checks for every push and pull request. Inspect the
 
 ## Interactive visual learning (Lessons 1.1.1 and 1.1.2)
 
-Instead of displaying the manuscripts as long text blocks, both lesson routes now use nine-stage navigation, 27 author-curated clickable causal/authority diagrams, revealable counterexamples, and interactive exercises ahead of guided reading. **Guided steps** shows smaller passages, while **Read all** displays every original authored block in sequence. Neither option removes technical depth. Conceptual and Java-implemented claims are labeled separately. Browser tests cover both formats, source fidelity, and phone usability.
+**Navigation:** the global left menu expands chapters and their lessons, then the authored lesson's study sections. The entire body width is dedicated to visual diagrams, interactive labs, and descriptive reading. Direct links such as `/#/lesson/1.1.2?section=8` are bookmarkable and support browser back/forward. On mobile, open the main menu to navigate; selecting a section closes it and returns to the lesson content.
+
+
+Instead of displaying the manuscripts as long text blocks, both lesson routes use an expandable **Chapter → Lesson → Section** outline in the application's primary left sidebar, with 27 author-curated clickable causal/authority diagrams, revealable counterexamples, and interactive exercises ahead of guided reading. **Guided steps** shows smaller passages, while **Read all** displays every original authored block in sequence. Neither option removes technical depth. Conceptual and Java-implemented claims are labeled separately. Browser tests cover both formats, source fidelity, and phone usability.
 
 ## Implemented foundation
 
-- Responsive React application with dark/light mode, hash-based deep links, sidebar and chapter navigation, and search across 93 roadmap clusters and 20 planned lessons.
+- Responsive React application with dark/light mode, hash-based deep links, one expandable chapter/lesson/section sidebar, direct links to specific reading sections, and search across 93 roadmap clusters and 20 lesson plans.
 - Complete master roadmap reader; phase and cluster detail explorer linked to the authoritative V1.0 Markdown.
 - Cluster 1.1 blueprint reader with chapter/lesson plans, prerequisite concept explorer, traceability, project evolution, exit criteria and lab catalog.
 - **Lesson 1.1.1 fully authored and integrated**: 13 navigable deep-learning sections, editable actor-capability/authority atlas, branchable Food Ordering business journey, prediction-before-reveal ownership challenges, incident evidence explorer, and audience-adapted technical defense.
