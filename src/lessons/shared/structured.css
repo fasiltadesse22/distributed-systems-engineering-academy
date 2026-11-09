@@ -1,0 +1,91 @@
+
+/* Structural pedagogy, not a decorated markdown paragraph. Source prose is divided
+ * into sequential steps, accepted/rejected cases, or named propositions. */
+.structured-visual{
+ --visual-tone:var(--blue);
+ background:linear-gradient(155deg,color-mix(in srgb,var(--visual-tone) 5%,var(--panel)),var(--panel));
+ border:1px solid color-mix(in srgb,var(--visual-tone) 24%,var(--line));
+ border-radius:17px;
+ padding:clamp(17px,2.7vw,30px);
+ margin:9px 0 18px;
+ min-width:0;
+ color:var(--text);
+}
+.structured-visual.visual-criteria{--visual-tone:var(--success)}
+.structured-visual.visual-authorities,.structured-visual.visual-propositions{--visual-tone:var(--accent)}
+.structured-visual.visual-status{--visual-tone:var(--warning)}
+.structured-visual.visual-chain{--visual-tone:var(--blue)}
+.structured-head{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;padding-bottom:17px;border-bottom:1px solid var(--line);margin-bottom:15px}
+.structured-head h4{font-size:clamp(1.05rem,1.5vw,1.27rem);letter-spacing:-.026em;margin:8px 0 7px;color:var(--white)}
+.structured-head p{font-size:.79rem;line-height:1.6;margin:0;color:var(--muted)}
+.structured-eyebrow{font-size:.64rem;font-weight:900;letter-spacing:.13em;color:var(--visual-tone)}
+.structured-count{font-size:.69rem;border:1px solid color-mix(in srgb,var(--visual-tone) 35%,var(--line));border-radius:20px;padding:6px 9px;color:var(--visual-tone);white-space:nowrap}
+.structured-opening{border-left:3px solid var(--visual-tone);padding:6px 0 6px 13px;margin-bottom:18px}
+.structured-prose{max-width:76ch;min-width:0;font-size:.89rem;line-height:1.7;color:var(--text)}
+.structured-prose p{font-size:inherit!important;line-height:1.72!important;margin:0!important}
+.structured-prose strong{color:var(--white);font-weight:760}
+.structured-prose em{font-style:italic;color:var(--white)}
+.structured-prose code{font:.83em ui-monospace,monospace;background:var(--panel2);color:var(--blue);border-radius:4px;padding:2px 4px}
+.structured-timeline{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.structured-timeline>li{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;position:relative;align-items:stretch;min-width:0}
+.structured-rail{position:relative;display:flex;justify-content:center;padding-top:15px}
+.structured-rail::after{content:"";position:absolute;top:49px;bottom:-13px;left:50%;width:2px;transform:translateX(-50%);background:linear-gradient(var(--visual-tone),var(--line));opacity:.45}
+.structured-timeline>li:last-child .structured-rail::after{display:none}
+.structured-rail>span{position:relative;z-index:1;display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);color:var(--visual-tone);font:800 .81rem ui-monospace,monospace}
+.structured-timeline>li.selected .structured-rail>span{background:color-mix(in srgb,var(--visual-tone) 18%,var(--panel));border-color:var(--visual-tone);box-shadow:0 0 0 3px color-mix(in srgb,var(--visual-tone) 9%,transparent)}
+.structured-step{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px 18px;margin:0 0 12px;min-width:0}
+.structured-timeline>li.selected .structured-step{border-color:color-mix(in srgb,var(--visual-tone) 62%,var(--line));background:color-mix(in srgb,var(--visual-tone) 7%,var(--panel))}
+.structured-step-trigger{display:flex;width:100%;justify-content:space-between;align-items:center;gap:13px;background:none;border:0;color:var(--white);text-align:left;padding:0;margin-bottom:9px}
+.structured-step-trigger strong{font-size:.96rem;line-height:1.42}
+.structured-step-trigger span{font-size:.66rem;color:var(--visual-tone);font-weight:800;white-space:nowrap}
+.structured-step .structured-prose{font-size:.89rem;max-width:81ch}
+.structured-inline-insight{margin-top:14px;padding:11px 14px;border-radius:8px;background:color-mix(in srgb,var(--visual-tone) 8%,var(--panel2));border-left:3px solid var(--visual-tone)}
+.structured-inline-insight>strong{font-size:.69rem;text-transform:uppercase;letter-spacing:.09em;color:var(--visual-tone)}
+.structured-inline-insight p{font-size:.8rem;line-height:1.63;color:var(--text);margin:6px 0 0}
+.structured-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.structured-grid.large{grid-template-columns:repeat(2,minmax(0,1fr))}
+.structured-tile{display:grid;align-content:start;gap:10px;min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:17px 17px 18px;text-align:left;color:var(--text)}
+.structured-tile:hover{border-color:color-mix(in srgb,var(--visual-tone) 48%,var(--line))}
+.structured-tile.selected{border-color:var(--visual-tone);background:color-mix(in srgb,var(--visual-tone) 9%,var(--panel));box-shadow:inset 3px 0 var(--visual-tone)}
+.structured-tile-trigger{width:100%;display:grid;grid-template-columns:29px minmax(0,1fr);gap:10px;align-items:center;text-align:left;background:none;border:0;padding:0;color:var(--white)}
+.structured-tile-index{font:.72rem ui-monospace,monospace;color:var(--visual-tone);padding:5px;border:1px solid color-mix(in srgb,var(--visual-tone) 33%,var(--line));border-radius:6px;text-align:center}
+.structured-tile-trigger strong{font-size:.84rem;line-height:1.37}
+.structured-tile-copy .structured-prose{font-size:.8rem;line-height:1.7;max-width:none}
+.structured-grid.large .structured-tile{min-height:139px}
+.structured-why{margin-top:15px;display:grid;grid-template-columns:43px minmax(0,1fr);gap:13px;padding:17px;background:var(--panel2);border:1px solid color-mix(in srgb,var(--visual-tone) 37%,var(--line));border-radius:11px}
+.structured-why-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:9px;background:color-mix(in srgb,var(--visual-tone) 16%,var(--panel));color:var(--visual-tone);font:850 .89rem ui-monospace,monospace}
+.structured-why .structured-eyebrow{display:block;margin:3px 0 8px;line-height:1.5}
+.structured-why p{font-size:.82rem;line-height:1.65;margin:0;color:var(--text)}
+.structured-conclusion{margin-top:16px;border:1px solid color-mix(in srgb,var(--visual-tone) 25%,var(--line));border-left:3px solid var(--visual-tone);border-radius:8px;padding:14px 16px;background:color-mix(in srgb,var(--visual-tone) 7%,var(--panel2))}
+.structured-conclusion .structured-prose{font-size:.82rem;max-width:none}
+.structured-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:17px;padding-top:12px;border-top:1px solid var(--line)}
+.structured-footer>span{color:var(--muted);font-size:.7rem;line-height:1.5;max-width:560px}
+.structured-source summary{cursor:pointer;font-size:.72rem;color:var(--visual-tone);font-weight:800;padding:7px 0}
+.structured-source[open]{width:100%;order:2}
+.structured-source-text{margin-top:9px;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:9px}
+.structured-source-text .structured-prose{max-width:100%;color:var(--muted)}
+.structured-parse-fallback{padding:15px;border:1px dashed var(--warning);border-radius:9px}
+.structured-parse-fallback p{font-size:.73rem;color:var(--warning)}
+/* Text annotations are useful but not a second gigantic card beside a flow. */
+.reader-passage.is-structured{padding:0;margin:10px 0}
+.reader-passage.is-structured>.reader-margin-cue{margin:0 0 13px;max-width:unset;padding:8px 14px;background:var(--panel);border:1px solid var(--line);border-radius:8px}
+@media(max-width:900px){
+ .structured-grid{grid-template-columns:1fr}
+ .structured-grid.large{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:620px){
+ .structured-visual{padding:14px;border-radius:11px}
+ .structured-head{flex-direction:column;gap:9px}
+ .structured-timeline>li{grid-template-columns:37px minmax(0,1fr);gap:6px}
+ .structured-rail>span{width:29px;height:29px;font-size:.73rem}
+ .structured-rail::after{top:43px}
+ .structured-step{padding:12px}
+ .structured-step-trigger{align-items:flex-start;flex-direction:column;gap:5px}
+ .structured-step-trigger strong{font-size:.9rem}
+ .structured-grid.large{grid-template-columns:1fr}
+ .structured-why{grid-template-columns:1fr}
+ .structured-grid .structured-tile{min-height:0}
+}
+:root[data-theme="light"] .structured-visual.visual-chain{--visual-tone:#235ab0}
+:root[data-theme="light"] .structured-visual.visual-numbered{--visual-tone:#235ab0}
+:root[data-theme="light"] .structured-visual.visual-status{--visual-tone:#a65c00}
