@@ -126,7 +126,7 @@ export default function StructuredPassage({source,spec}:{source:string;spec:Visu
      {parsed.items.map((item,i)=><div key={i} className={'structured-tile'+(active===i?' selected':'')}>
        <button type="button" className="structured-tile-trigger" aria-pressed={active===i}
          aria-label={'Inspect '+item.label} onClick={()=>setActive(i)}>
-         <span className="structured-tile-index">{String(i+1).padStart(2,'0')}</span>
+         <span className="structured-tile-index">{spec.type==='criteria'?'AC-'+String(i+1).padStart(2,'0'):String(i+1).padStart(2,'0')}</span>
          <strong>{item.label}</strong>
        </button>
        <div className="structured-tile-copy"><MarkdownSegment text={item.source}/></div>
