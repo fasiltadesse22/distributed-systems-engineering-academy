@@ -41,8 +41,8 @@ export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
      suffixMarker:'These hypotheses require different evidence.'
    }),
    v(7,'chain','Build a causal incident report','Move from observation to evidence-based, explicitly provisional conclusion.',{
-     chainStart:'symptom',chainEnd:'revisit criteria',
-     insights:['Describe what was actually observed.','Identify the actors whose business promises are affected.','Generate alternative mechanisms rather than assuming one cause.','Name the minimum evidence needed to discriminate.','State what is currently supported and what is still unknown.','Prescribe a corrective action scoped to the cause.','Define when the decision should be re-examined.']
+     chainStart:'symptom',chainEnd:'what remains unknown',
+     insights:['Describe what was actually observed.','Identify the actors whose business promises are affected.','Generate alternative mechanisms rather than assuming one cause.','Name the minimum evidence needed to discriminate.','State what is currently supported and what is still unknown.','Prescribe a corrective action scoped to the cause.','Explicitly report which facts and causal links remain unknown rather than overstating confidence.']
    })
   ],
   10:[v(2,'numbered','Three different verification questions','Keep domain review, UI-model testing and Java correctness claims separate.',{
