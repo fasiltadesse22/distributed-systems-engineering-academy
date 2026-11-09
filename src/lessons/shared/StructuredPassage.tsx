@@ -129,6 +129,19 @@ export default function StructuredPassage({source,spec}:{source:string;spec:Visu
      <span className="structured-count">{parsed.items.length} {isFlow?'stages':'parts'}</span>
    </header>
    {parsed.lead&&<div className="structured-opening"><MarkdownSegment text={parsed.lead}/></div>}
+   {spec.phases&&<div className="structured-phase-map" aria-label="Business execution layers" data-testid="execution-layers">
+      <div className="structured-phase-heading"><strong>From intent to a truthful local fact</strong><small>Choose a layer to inspect its first step · one Java process</small></div>
+      <div className="structured-phases">{spec.phases.map((phase,i)=><button type="button" key={phase.label}
+         aria-label={'Inspect layer '+phase.label}
+         aria-pressed={active>=phase.from&&active<=phase.to}
+         className={active>=phase.from&&active<=phase.to?'active':''} onClick={()=>setActive(phase.from)}>
+         <span className="structured-phase-index">0{i+1}</span>
+         <strong>{phase.label}</strong>
+         <small>{phase.detail}</small>
+         <span className="structured-phase-range">Steps {phase.from+1}{phase.from!==phase.to?'–'+(phase.to+1):''}</span>
+       </button>)}</div>
+      <p className="structured-phase-boundary">Restaurant acceptance and a payment-provider result are <strong>not</strong> part of this executed path.</p>
+   </div>}
    {isFlow?<ol className="structured-timeline" aria-label={spec.title+' steps'}>
      {parsed.items.map((item,i)=><li key={i} className={active===i?'selected':''}>
        <div className="structured-rail" aria-hidden="true"><span>{String(i+1).padStart(2,'0')}</span></div>
