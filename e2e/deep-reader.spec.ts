@@ -26,7 +26,7 @@ test('Lesson 1.1.2 jumps to authored mechanism, shows warning cues, and retains 
  await expect(story.getByTestId('reading-highlights')).toContainText('Follow the end-to-end request flow');
  await story.getByRole('button',{name:'Jump to Follow the end-to-end request flow'}).click();
  await expect(story.getByTestId('reading-step')).toContainText('PlaceOrderService');
- await expect(story.getByTestId('reading-step').locator('.reader-margin-cue')).toContainText('Follow the end-to-end request flow');
+ await expect(story.getByTestId('reading-step').getByRole('complementary',{name:'How it works reading guidance'})).toContainText('Follow the end-to-end request flow');
  await story.getByRole('button',{name:'Read all',exact:true}).click();
  const full=story.getByTestId('full-reading');
  await expect(full.locator('.reader-margin-cue')).toHaveCount(3);
