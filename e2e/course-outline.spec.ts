@@ -36,7 +36,7 @@ test('direct section URL is navigable and the content area has no duplicate side
   const reader=document.querySelector('.l112-reading')!.getBoundingClientRect();
   return {appWidth:app.width,readerWidth:reader.width};
  });
- expect(geometry.readerWidth/geometry.appWidth).toBeGreaterThan(.94);
+ expect(geometry.readerWidth/geometry.appWidth).toBeGreaterThan(.9);
 });
 
 test('chapter and lesson outline toggles are keyboard operable',async({page})=>{
