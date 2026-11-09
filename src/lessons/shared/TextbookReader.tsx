@@ -6,15 +6,15 @@ import {sectionMenuTitle} from '../../components/sectionNavigation';
 import './textbook.css';
 
 export interface TextbookSection {index:number;stage:string;title:string;body:string}
-export interface EmbeddedLab {afterBlock:number;content:ReactNode;label:string}
+export interface EmbeddedLab {afterBlock:number;content:ReactNode;label:string;kind?:'lab'|'illustration'}
 export interface TextbookMeta {
- id:'1.1.1'|'1.1.2'; title:ReactNode;subtitle:string;provenance:string;
+ id:'1.1.1'|'1.1.2'|'1.1.3'; title:ReactNode;subtitle:string;provenance:string;
  repoUrl:string;sections:TextbookSection[];labs?:Record<number,EmbeddedLab>;footer?:ReactNode;
 }
 export const sourceBlocks=(s:string)=>s.trim().split(/\n\s*\n/).filter(Boolean);
 export interface StructuredSource {lead:string;parts:string[];labels:string[];tail:string;kind:'definitions'|'steps'|'criteria'|'authority'|'questions'|'ownership'}
 type Spec={section:number;block:number;kind:StructuredSource['kind'];markers:string[];labels:string[];tail?:string;lead?:string};
-const specs:Record<'1.1.1'|'1.1.2',Spec[]>={
+const specs:Record<'1.1.1'|'1.1.2'|'1.1.3',Spec[]>={
  '1.1.1':[
  {section:2,block:0,kind:'definitions',markers:['A goal','An incentive','A responsibility','A capability'],labels:['Goal','Incentive','Responsibility','Capability'],tail:'These four are related'},
  {section:3,block:3,kind:'ownership',markers:['desired business outcome','accountable organization/role','initiating','decision','observers'],labels:['Outcome','Accountability','Initiators','Decision authority','Observers']},
@@ -29,9 +29,10 @@ const specs:Record<'1.1.1'|'1.1.2',Spec[]>={
  {section:3,block:1,kind:'definitions',markers:['A **trigger**','A **precondition**','A **guard**','A **postcondition**'],labels:['Trigger','Precondition','Guard','Postcondition'],tail:'In this lesson'},
  {section:8,block:1,kind:'criteria',markers:['AC-01:','AC-02:','AC-03:','AC-04:','AC-05:','AC-06:','AC-07:'],labels:['AC-01','AC-02','AC-03','AC-04','AC-05','AC-06','AC-07']},
  {section:10,block:1,kind:'definitions',markers:['A deterministic React scenario engine','A TypeScript unit test','A Java service test','A Spring MVC integration test','A packaged jar'],labels:['Model','TypeScript test','Java unit test','MVC integration','Runnable jar'],tail:'None proves live payment settlement'}
- ]
+ ],
+ '1.1.3':[]
 };
-export const structuralSpec=(id:'1.1.1'|'1.1.2',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
+export const structuralSpec=(id:'1.1.1'|'1.1.2'|'1.1.3',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
 export function structureSource(source:string,spec:Spec):StructuredSource|null{
  const starts=spec.markers.map(m=>source.indexOf(m));
  if(starts.some(i=>i<0)||starts.some((i,n)=>n>0&&i<=starts[n-1]))return null;
@@ -79,7 +80,7 @@ function StructuredFigure({source,meaning}:{source:string;meaning:StructuredSour
   <details className="textbook-source-check"><summary>Compare with original paragraph</summary><Prose text={source}/></details>
  </figure>;
 }
-function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2';sectionIndex:number;blockIndex:number;source:string}){
+function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.1.3';sectionIndex:number;blockIndex:number;source:string}){
  const spec=structuralSpec(id,sectionIndex,blockIndex);
  const visual=spec?structureSource(source,spec):null;
  if(visual)return <StructuredFigure source={source} meaning={visual}/>;
@@ -114,8 +115,8 @@ export default function TextbookReader({meta}:{meta:TextbookMeta}){
      <div className="textbook-topic-body">
       {blocks.map((block,j)=><div className="textbook-reading-unit" data-source-block={j} key={j}>
        <LessonBlock id={meta.id} sectionIndex={i} blockIndex={j} source={block}/>
-       {lab?.afterBlock===j&&<div className="textbook-lab" aria-label={lab.label} data-testid={'embedded-lab-'+(i+1)}>
-         <div className="textbook-lab-kicker"><span>APPLY THE IDEA</span><span>LAB · {String(i+1).padStart(2,'0')}</span></div>{lab.content}
+       {lab?.afterBlock===j&&<div className="textbook-lab" data-kind={lab.kind??'lab'} aria-label={lab.label} data-testid={'embedded-lab-'+(i+1)}>
+         <div className="textbook-lab-kicker"><span>{lab.kind==='illustration'?'VISUAL MECHANISM':'APPLY THE IDEA'}</span><span>{lab.kind==='illustration'?'DIAGRAM':'LAB'} · {String(i+1).padStart(2,'0')}</span></div>{lab.content}
        </div>}
       </div>)}
      </div>

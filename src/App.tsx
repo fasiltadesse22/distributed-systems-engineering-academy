@@ -7,6 +7,7 @@ import ConceptMap from './components/ConceptMap';
 import LessonReader from './components/LessonReader';
 import Lesson111 from './lessons/lesson111/Lesson111';
 import Lesson112 from './lessons/lesson112/Lesson112';
+import Lesson113 from './lessons/lesson113/Lesson113';
 import RaceLab from './components/RaceLab';
 import CourseOutline from './components/CourseOutline';
 
@@ -48,7 +49,7 @@ function Shell() {
         )}
       </nav>
       <CourseOutline onNavigate={() => setMenu(false)}/>
-      <div className="sidebar-footer"><span className="dot"/> <span><b>Academy V0.1</b><small>2 interactive lessons · Java intake verified</small></span></div>
+      <div className="sidebar-footer"><span className="dot"/> <span><b>Academy V0.1</b><small>3 authored lessons · command facts verified</small></span></div>
     </aside>
     <div className="main">
       <header className="topbar">
@@ -80,7 +81,7 @@ function Heading({ label, title, description }: {label:string;title:string;descr
 function Home() {
   return <div className="page">
     <section className="hero">
-      <div><span className="eyebrow accent">A LIVING ENGINEERING CURRICULUM · V0.1</span><h1>Understand the systems<br/><em>behind the architecture.</em></h1><p>Connect deep explanations, manipulable causal models, and real Java/Spring Boot engineering evidence. Start with business correctness, not fashionable infrastructure.</p><div className="actions"><Link to="/blueprint" className="button primary">Explore Cluster 1.1 ↗</Link><Link to="/lab" className="button secondary">Try the concurrency lab ↗</Link></div><div className="hero-foot"><span className="dot"/> Lessons 1.1.1 and 1.1.2 are authored and interactive. The first verified Java/Spring Boot PlaceOrder checkpoint is linked to Lesson 1.1.2.</div></div>
+      <div><span className="eyebrow accent">A LIVING ENGINEERING CURRICULUM · V0.1</span><h1>Understand the systems<br/><em>behind the architecture.</em></h1><p>Connect deep explanations, manipulable causal models, and real Java/Spring Boot engineering evidence. Start with business correctness, not fashionable infrastructure.</p><div className="actions"><Link to="/blueprint" className="button primary">Explore Cluster 1.1 ↗</Link><Link to="/lab" className="button secondary">Try the concurrency lab ↗</Link></div><div className="hero-foot"><span className="dot"/> Lessons 1.1.1–1.1.3 are authored and interactive. The intake and typed decision/fact Java checkpoints are linked to Lessons 1.1.2 and 1.1.3.</div></div>
       <div className="hero-flow">
         <div className="flow-top"><span>EXPLAIN THE MECHANISM</span><span>MODEL / 01</span></div>
         <div className="flow-box"><small>01 · BUSINESS INTENT</small><b>Customer requests cancellation</b><span>Command ≠ authoritative fact</span></div>
@@ -172,7 +173,7 @@ function ChapterDetail() {
 function LessonDetail() {
   const {id}=useParams();
   const lesson=lessons.find(l=>l.id===id);
-  return lesson ? (lesson.id === '1.1.1' ? <Lesson111/> : lesson.id === '1.1.2' ? <Lesson112/> : <LessonReader lesson={lesson}/>) : <Missing/>;
+  return lesson ? (lesson.id === '1.1.1' ? <Lesson111/> : lesson.id === '1.1.2' ? <Lesson112/> : lesson.id === '1.1.3' ? <Lesson113/> : <LessonReader lesson={lesson}/>) : <Missing/>;
 }
 function Laboratory(){
   return <div className="page"><div className="page-heading"><span className="eyebrow">LABORATORY · 01 OF 05</span><h1>Make a race condition <em>visible.</em></h1><p>Change the business execution, predict the outcome, and inspect a deterministic step-by-step trace. This illustrates concurrency; it does not certify the Java application.</p></div><RaceLab/><div className="notice"><strong>Engineering evidence boundary</strong><p>Lesson 1.1.13 will later compare these outcomes to executed Java concurrency experiments. Until that checkpoint exists, the diagram and timeline are not runtime observations.</p><Link className="text-link" to="/lesson/1.1.13">Read future engineering specification ↗</Link></div></div>;
