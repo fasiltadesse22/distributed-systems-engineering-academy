@@ -6,6 +6,7 @@ A React + TypeScript interactive learning academy for **evidence-driven distribu
 
 - [Master Roadmap V1.0](docs/roadmap/MASTER_ROADMAP_V1.md) — complete 19-phase, 93-cluster mastery boundary.
 - [Cluster 1.1 Deep-Learning Blueprint V0.1](docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) — 4 chapters, 20 lesson specifications, requirements coverage, 5 laboratory briefs, and Java evolution sequence.
+- [Visual-first deep learning design contract](docs/design/VISUAL_LESSON_EXPERIENCE_V1.md) — interactive diagrams, guided or full reading, and fidelity/accessibility requirements.
 - [Authored Lesson 1.1.1](content/lessons/1.1.1.md) — 13-section actor authority manuscript and interactive exercises.
 - [Authored Lesson 1.1.2](content/lessons/1.1.2.md) — 14-section use-case discovery, real Java trace and scenario/acceptance labs.
 - [Applied Lesson 1.1.2 Java walkthrough](docs/engineering/LESSON_1_1_2_APPLIED_WALKTHROUGH.md) — verified Java code, tests, 201/422 runtime evidence and design alternatives.
@@ -35,6 +36,10 @@ npm run test:e2e  # requires Playwright Chromium installed
 ~~~
 
 GitHub Actions runs the same checks for every push and pull request. Inspect the actual results; an unexecuted or failing test is not verification.
+
+## Interactive visual learning (Lessons 1.1.1 and 1.1.2)
+
+Instead of displaying the manuscripts as long text blocks, both lesson routes now use nine-stage navigation, 27 author-curated clickable causal/authority diagrams, revealable counterexamples, and interactive exercises ahead of guided reading. **Guided steps** shows smaller passages, while **Read all** displays every original authored block in sequence. Neither option removes technical depth. Conceptual and Java-implemented claims are labeled separately. Browser tests cover both formats, source fidelity, and phone usability.
 
 ## Implemented foundation
 
