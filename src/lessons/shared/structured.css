@@ -89,3 +89,16 @@
 :root[data-theme="light"] .structured-visual.visual-chain{--visual-tone:#235ab0}
 :root[data-theme="light"] .structured-visual.visual-numbered{--visual-tone:#235ab0}
 :root[data-theme="light"] .structured-visual.visual-status{--visual-tone:#a65c00}
+
+/* Full-width takeover for structurally rich paragraphs, even when editorial cues exist. */
+.reader-passage.is-structured,.reader-passage.is-structured.is-annotated{
+ display:block;
+ border:0;
+ background:transparent;
+ box-shadow:none;
+ margin:13px 0;
+ padding:0;
+}
+.reader-passage.is-structured>.reader-passage-main{max-width:none;width:100%}
+.reader-passage.is-structured .structured-visual{width:100%}
+.reader-passage.is-structured .reader-margin-cue{display:none}
