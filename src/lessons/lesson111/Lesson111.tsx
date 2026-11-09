@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import { Link } from 'react-router-dom';
 import rawLesson from '../../../content/lessons/1.1.1.md?raw';
 import { academyRepo, platformRepo, platformPlanningSha } from '../../data/roadmap';
+import { StoryCanvas } from '../shared/StoryCanvas';
+import { authorityScenes } from './scenes';
 import { ActorAuthorityAtlas } from './ActorAuthorityAtlas';
 import { WorkflowStudio } from './WorkflowStudio';
 import { AuthorityChallenge, CommunicationDrill, IncidentCaseboard } from './Exercises';
@@ -34,23 +34,10 @@ const glossary=[
   {term:'Fact authority',definition:'The source whose evidence confirms an actual event or external operation.'},
   {term:'Accountability',definition:'Who answers for a business outcome even when execution is delegated.'},
 ];
-function CausalDiagram(){
-  const nodes=[
-    ['01','Customer','Requests purchase / cancellation'],
-    ['02','Restaurant','Decides fulfillment'],
-    ['03','Provider','Confirms financial operation'],
-    ['04','Platform','Records and communicates outcome']
-  ];
-  return <div className="l111-causal" aria-label="Illustrative customer, restaurant, provider and platform authority chain">
-    <span className="eyebrow">A CAUSAL MODEL OF BUSINESS AUTHORITY · NOT DEPLOYED SERVICES</span>
-    <div className="l111-causal-chain">{nodes.map((node,i)=><div className="l111-causal-item" key={node[0]}><div className="l111-causal-node"><span>{node[0]}</span><b>{node[1]}</b><small>{node[2]}</small></div>{i<nodes.length-1&&<span className="l111-causal-arrow" aria-hidden="true">→</span>}</div>)}</div>
-    <p>Each arrow means “this business result contributes to the journey,” not “these services call each other.” The ordering is illustrative; alternative payment timing is explicitly a policy decision.</p>
-  </div>;
-}
 function EvidenceBoundary(){
   return <aside className="l111-boundary-panel"><span className="eyebrow">EVIDENCE AND PROJECT BOUNDARY · TYPE C</span>
     <h3>Domain design is not an implemented runtime guarantee</h3>
-    <p>The actor map, branching journey and diagnostic caseboard use clearly labeled training assumptions. The Food Ordering Platform remains at its immutable planning checkpoint. There is no Java workflow, provider charge, merchant approval or production telemetry to verify here.</p>
+    <p>The actor map, branching journey and diagnostic caseboard use clearly labeled training assumptions. This conceptual lesson did not change the Java project. Lesson 1.1.2 later introduced verified order-request intake only; there is still no merchant approval, provider charge or production telemetry proving this model.</p>
     <div className="l111-link-row">
       <a href={academyRepo+'/blob/main/docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md'} target="_blank" rel="noreferrer">Review domain discovery contract ↗</a>
       <a href={platformRepo+'/tree/'+platformPlanningSha} target="_blank" rel="noreferrer">Platform planning SHA {platformPlanningSha.slice(0,12)} ↗</a>
@@ -81,16 +68,17 @@ export default function Lesson111(){
       <div className="l111-main">
         {showGlossary&&<aside className="l111-glossary" aria-label="Key terminology"><h3>Conceptual vocabulary</h3><div className="l111-glossary-grid">{glossary.map(g=><div key={g.term}><b>{g.term}</b><p>{g.definition}</p></div>)}</div></aside>}
         <div className="l111-section-heading"><span className="eyebrow">{section.stage.toUpperCase()} · SECTION {String(active+1).padStart(2,'0')} / {teachingSections.length}</span><h2>{section.title}</h2></div>
-        {active===0&&<CausalDiagram/>}
-        <div className="l111-prose markdown"><ReactMarkdown remarkPlugins={[remarkGfm]}>{section.body}</ReactMarkdown></div>
-        {active===5&&<ActorAuthorityAtlas/>}
-        {active===6&&<WorkflowStudio/>}
-        {active===7&&<AuthorityChallenge/>}
-        {active===8&&<IncidentCaseboard/>}
-        {active===11&&<CommunicationDrill/>}
-        {active===12&&<RetentionCard/>}
-        {active===9&&<div className="l111-reference"><span className="eyebrow">REAL PROJECT · DOMAIN ARTIFACT</span><h3>Actor / capability / decision authority baseline</h3><p>The discovery artifact includes stakeholder inventory, accountability matrix, six worked scenarios, conflicts, and next-lesson entry conditions. It is a versioned design artifact, not backend code.</p><a href={academyRepo+'/blob/main/docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md'} target="_blank" rel="noreferrer">Open complete domain discovery document ↗</a></div>}
-        {active===10&&<EvidenceBoundary/>}
+        <StoryCanvas key={active} markdown={section.body} scene={authorityScenes[active]}>
+          {active===5?<ActorAuthorityAtlas/>
+            :active===6?<WorkflowStudio/>
+            :active===7?<AuthorityChallenge/>
+            :active===8?<IncidentCaseboard/>
+            :active===11?<CommunicationDrill/>
+            :active===12?<RetentionCard/>
+            :active===9?<div className="l111-reference"><span className="eyebrow">REAL PROJECT · DOMAIN ARTIFACT</span><h3>Actor / capability / decision authority baseline</h3><p>The discovery artifact includes stakeholder inventory, accountability matrix, six worked scenarios, conflicts, and next-lesson entry conditions. It is a versioned design artifact, not backend code.</p><a href={academyRepo+'/blob/main/docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md'} target="_blank" rel="noreferrer">Open complete domain discovery document ↗</a></div>
+            :active===10?<EvidenceBoundary/>
+            :null}
+        </StoryCanvas>
         <div className="l111-controls"><button type="button" className="button secondary" onClick={previous} disabled={active===0}>← Previous section</button>{active<teachingSections.length-1?<button type="button" className="button primary" onClick={next}>Continue: {teachingSections[active+1]?.stage} →</button>:<Link to="/blueprint" className="button primary">Return to Cluster 1.1 blueprint ↗</Link>}</div>
         <div className="l111-source"><span>Authoritative lesson text · v1.1.1</span><a href={academyRepo+'/blob/main/content/lessons/1.1.1.md'} target="_blank" rel="noreferrer">Read complete Markdown manuscript ↗</a></div>
       </div>
