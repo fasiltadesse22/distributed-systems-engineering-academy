@@ -1,6 +1,9 @@
 import {useMemo,useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import {ReadingArticle,buildReadingRanges,beatForBlock} from './ReadingArticle';
+import {kindNames} from './readingEditorial';
+import type {ReadingEditorial} from './readingEditorial';
 import './story.css';
 
 export interface StoryNode {
@@ -80,12 +83,18 @@ function StoryMap({scene}:{scene:StoryScene}){
  </div>;
 }
 
-export function StoryCanvas({markdown,scene,children}:{markdown:string;scene:StoryScene;children?:React.ReactNode}){
+export function StoryCanvas({markdown,scene,children,editorial}:{markdown:string;scene:StoryScene;children?:React.ReactNode;editorial?:ReadingEditorial}){
  const beats=useMemo(()=>splitIntoReadingBeats(markdown),[markdown]);
+ const ranges=useMemo(()=>buildReadingRanges(beats),[beats]);
  const [beatIndex,setBeatIndex]=useState(0);
  const [mode,setMode]=useState<'guided'|'all'>('guided');
  const [revealed,setRevealed]=useState(false);
+ const [textSize,setTextSize]=useState(0);
+ const [wide,setWide]=useState(false);
+ const [cues,setCues]=useState(true);
  const selected=beats[beatIndex]??beats[0];
+ const momentNotes=editorial?.annotations??[];
+ const jumpTo=(block:number)=>{setBeatIndex(beatForBlock(ranges,block));setMode('guided')};
  return <div className="story-canvas" data-testid="guided-story">
    <div className="story-question"><div className="story-question-kicker"><span className="story-question-dot"/> ENGINEERING QUESTION</div><h3>{scene.question}</h3><p>Start with the model. Explore a decision. Then study the complete explanation in manageable steps.</p></div>
    <StoryMap scene={scene}/>
@@ -94,20 +103,39 @@ export function StoryCanvas({markdown,scene,children}:{markdown:string;scene:Sto
    </section>}
    <section className="story-reading" aria-label="Deep technical explanation">
     <div className="story-reading-head">
-      <div><span className="story-eyebrow">DEEP EXPLANATION · COMPLETE SOURCE PRESERVED</span><h3>Understand it, one idea at a time</h3><p>Read in smaller steps or switch to the complete chapter. Neither view omits the original technical material.</p></div>
+      <div><span className="story-eyebrow">DEEP EXPLANATION · CURATED READING EDITION</span><h3>Read for the reasoning—not just the words</h3><p>The complete manuscript is preserved. Color has a specific meaning: concept, mechanism, example, limit, evidence, or practice.</p></div>
       <div className="story-view-switch" role="group" aria-label="Reading mode">
         <button type="button" aria-pressed={mode==='guided'} className={mode==='guided'?'current':''} onClick={()=>setMode('guided')}>Guided steps</button>
         <button type="button" aria-pressed={mode==='all'} className={mode==='all'?'current':''} onClick={()=>setMode('all')}>Read all</button>
       </div>
     </div>
+    {editorial&&<div className="reader-reading-path" data-testid="reading-highlights">
+      <div className="reader-reading-path-heading"><h4>Three moments worth understanding</h4><small>{editorial.lens}</small></div>
+      <div className="reader-moments">{momentNotes.map(note=><button type="button" key={note.block} data-kind={note.kind} className="reader-moment"
+        aria-label={'Jump to '+note.title} aria-current={mode==='guided'&&beatIndex===beatForBlock(ranges,note.block)?'step':undefined}
+        onClick={()=>jumpTo(note.block)}>
+        <span className="reader-cue-label">{kindNames[note.kind]}</span><strong>{note.title}</strong><small>{note.why}</small>
+      </button>)}</div>
+    </div>}
+    <div className="reader-reading-tools" aria-label="Reader preferences">
+      <span>Reading preferences</span>
+      <div className="reader-lens-controls">
+        <div className="reader-adjust-buttons" role="group" aria-label="Text size">
+          <button type="button" aria-label="Decrease text size" disabled={textSize===0} onClick={()=>setTextSize(size=>Math.max(0,size-1))}>A−</button>
+          <button type="button" aria-label="Increase text size" disabled={textSize===2} onClick={()=>setTextSize(size=>Math.min(2,size+1))}>A+</button>
+        </div>
+        <button type="button" className="reader-lens-button" aria-pressed={wide} onClick={()=>setWide(!wide)}>{wide?'Comfort width':'Wider text'}</button>
+        <button type="button" className="reader-lens-button" aria-pressed={cues} onClick={()=>setCues(!cues)}>{cues?'Highlights on':'Highlights off'}</button>
+      </div>
+    </div>
     {mode==='guided'?<>
       <div className="story-step-rail" role="group" aria-label="Reading step navigation">{beats.map((beat,i)=><button type="button" key={i} aria-label={'Read step '+(i+1)+': '+beat.heading} aria-current={beatIndex===i?'step':undefined} className={beatIndex===i?'current':''} onClick={()=>setBeatIndex(i)}><span>{String(i+1).padStart(2,'0')}</span><small>{beat.heading}</small></button>)}</div>
       <article className="story-prose-card" data-testid="reading-step">
-        <div className="story-prose-top"><span className="story-eyebrow">READING STEP {String(beatIndex+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><span>{selected.count} words</span></div>
-        <div className="story-markdown markdown"><ReactMarkdown remarkPlugins={[remarkGfm]}>{selected.markdown}</ReactMarkdown></div>
+        <div className="story-prose-top"><span className="story-eyebrow">READING STEP {String(beatIndex+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><span>{selected.count} words · full source</span></div>
+        <ReadingArticle markdown={selected.markdown} offset={ranges[beatIndex]?.start??0} editorial={editorial} cues={cues} textSize={textSize} wide={wide}/>
       </article>
       <div className="story-reading-actions"><span className="story-reading-note">Your reading position is kept as you inspect the diagram.</span><div><button type="button" disabled={beatIndex===0} onClick={()=>setBeatIndex(i=>Math.max(0,i-1))}>← Previous idea</button>{beatIndex<beats.length-1?<button type="button" className="next" onClick={()=>setBeatIndex(i=>Math.min(beats.length-1,i+1))}>Next idea →</button>:<button type="button" className="next" onClick={()=>setMode('all')}>Review complete explanation ↗</button>}</div></div>
-    </>:<div className="story-all-reading" data-testid="full-reading">{beats.map((beat,i)=><article className="story-prose-card" key={i}><div className="story-prose-top"><span className="story-eyebrow">IDEA {String(i+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><span>{beat.count} words</span></div><div className="story-markdown markdown"><ReactMarkdown remarkPlugins={[remarkGfm]}>{beat.markdown}</ReactMarkdown></div></article>)}</div>}
+    </>:<div className="story-all-reading" data-testid="full-reading">{beats.map((beat,i)=><article className="story-prose-card" key={i}><div className="story-prose-top"><span className="story-eyebrow">IDEA {String(i+1).padStart(2,'0')} / {String(beats.length).padStart(2,'0')}</span><span>{beat.count} words · complete text</span></div><ReadingArticle markdown={beat.markdown} offset={ranges[i]?.start??0} editorial={editorial} cues={cues} textSize={textSize} wide={wide}/></article>)}</div>}
    </section>
    <div className="story-reflection"><div><span className="story-eyebrow">CHECK YOUR UNDERSTANDING</span><h3>{scene.practiceQuestion}</h3><p>Explain your reasoning aloud before comparing it to the lesson's central distinction.</p></div><button type="button" aria-expanded={revealed} onClick={()=>setRevealed(!revealed)}>{revealed?'Hide key distinction':'Reveal key distinction'}</button>{revealed&&<div className="story-reflection-answer" role="status"><b>Key distinction</b><p>{scene.outcome}</p></div>}</div>
  </div>;
