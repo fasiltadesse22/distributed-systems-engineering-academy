@@ -4,3 +4,18 @@
 @media(max-width:700px){.l111-nav-list{grid-template-columns:repeat(2,minmax(0,1fr))}.l111-actor-inspector,.l111-inc-grid,.l111-field-row,.l111-field-grid{grid-template-columns:1fr}.l111-glossary-grid{grid-template-columns:1fr}.l111-causal-item{flex:0 0 calc(50% - 9px)}.l111-actor-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.l111-tool-head,.l111-builder-head{flex-direction:column;align-items:stretch}.l111-controls .button{flex:1}.l111-hero h1{font-size:clamp(2rem,8vw,3rem)}}
 @media(max-width:450px){.l111-nav-list,.l111-actor-grid{grid-template-columns:1fr}.l111-causal-item{flex-basis:100%}.l111-causal-arrow{display:none}.l111-meta span{font-size:.63rem}.l111-mini{padding:10px}.l111-tool{padding:15px}.l111-decision-builder{padding:14px}}
 @media(prefers-reduced-motion:reduce){.l111-progress-track span{transition:none}}
+
+
+/* Expanded lesson canvas: navigation now lives solely in the academy sidebar. */
+.l111-page{gap:16px;min-width:0;width:100%}
+.l111-hero{grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:6px 0 17px;gap:20px}
+.l111-hero h1{font-size:clamp(1.75rem,3.2vw,2.85rem);line-height:1.16;max-width:1100px;margin:8px 0 11px}
+.l111-hero p{font-size:.91rem;max-width:850px;margin-bottom:11px}
+.l111-hero .l111-glossary-toggle{width:auto;white-space:nowrap;margin:0;padding:11px 14px}
+.l111-progress{margin:0}
+.l111-main{min-width:0;width:100%}
+.l111-section-heading{margin:5px 0 14px}
+.l111-section-heading h2{font-size:clamp(1.35rem,2.6vw,2rem);margin:7px 0}
+.l111-page .story-canvas{margin-top:12px}
+.l111-page .story-model{width:100%}
+@media(max-width:720px){.l111-hero{grid-template-columns:1fr}.l111-hero .l111-glossary-toggle{justify-self:start}.l111-hero h1{font-size:clamp(1.8rem,6vw,2.4rem)}}
