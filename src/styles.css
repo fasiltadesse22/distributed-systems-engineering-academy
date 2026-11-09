@@ -57,3 +57,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,su
  .course-outline{padding-bottom:35px}
  .content-lesson{padding:17px 15px 55px}
 }
+
+
+/* Authoritative section navigation: concise topic-first labels replace repeated "Understand". */
+.outline-section-copy{display:block;min-width:0}
+.outline-section-copy strong{display:block;font-size:.755rem;line-height:1.48;letter-spacing:-.008em;color:var(--text);font-weight:620;overflow-wrap:anywhere}
+.outline-section-link:hover .outline-section-copy strong,.outline-section-link.active .outline-section-copy strong{color:var(--white)}
+.outline-section-link.active .outline-section-copy strong{font-weight:800}
+.outline-section-link{align-items:baseline;gap:8px;padding:10px 7px}
+.outline-section-index{font-size:.64rem;padding-top:1px}
