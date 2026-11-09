@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import rawLesson from '../../../content/lessons/1.1.1.md?raw';
 import { academyRepo, platformRepo, platformPlanningSha } from '../../data/roadmap';
 import { StoryCanvas } from '../shared/StoryCanvas';
+import { StageJourney } from '../shared/StageJourney';
 import { authorityScenes } from './scenes';
 import { ActorAuthorityAtlas } from './ActorAuthorityAtlas';
 import { WorkflowStudio } from './WorkflowStudio';
@@ -61,6 +62,7 @@ export default function Lesson111(){
   return <div className="l111-page" data-testid="lesson-1.1.1">
     <header className="l111-hero"><div><span className="eyebrow">CLUSTER 1.1 · CHAPTER 1 · FULL LESSON 1.1.1</span><h1>Actors, goals,<br/><em>responsibilities & capabilities</em></h1><p>Who participates in an order and whose goal does each operation serve? Discover the domain before you pick a deployment topology.</p><div className="l111-meta"><span>Type C · conceptual/domain discovery</span><span>{teachingSections.length} teaching sections</span><span>{stageCount} learning stages</span></div></div><div className="l111-hero-art"><div className="l111-hero-art-top">DECISION ≠ OBSERVATION</div><div className="l111-mini"><span>Customer</span><b>REQUEST</b></div><div className="l111-mini"><span>Restaurant</span><b>DECIDE</b></div><div className="l111-mini"><span>Provider</span><b>CONFIRM</b></div><div className="l111-hero-art-foot">ONE BUSINESS JOURNEY · DIFFERENT AUTHORITIES</div></div></header>
     <div className="l111-progress" aria-label="Lesson navigation progress"><div className="l111-progress-track"><span style={{width:((active+1)/teachingSections.length*100)+'%'}} /></div><span>Part {active+1} of {teachingSections.length}</span></div>
+    <StageJourney sections={teachingSections} current={active} onNavigate={(i)=>{setActive(i);window.scrollTo({top:0,behavior:'instant'})}}/>
     <div className="l111-layout">
       <nav className="l111-side" aria-label="Lesson study sections"><div className="eyebrow">STUDY JOURNEY</div><div className="l111-nav-list">
         {teachingSections.map(item=><button type="button" key={item.slug} aria-current={active===item.index?'step':undefined} className={active===item.index?'active':''} onClick={()=>{setActive(item.index);window.scrollTo({top:0,behavior:'instant'})}}><span className="l111-nav-index">{String(item.index+1).padStart(2,'0')}</span><span><b>{item.stage}</b><small>{item.title}</small></span></button>)}
