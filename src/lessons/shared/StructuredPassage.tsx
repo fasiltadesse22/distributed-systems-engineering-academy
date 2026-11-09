@@ -70,8 +70,9 @@ export function parseStructuredParagraph(source:string,spec:VisualSpec):ParsedVi
   parts=indices.map((start,i)=>source.slice(start,i+1<indices.length?indices[i+1]:source.length).trim());
  }
  if(parts.length===0||parts.some(p=>!p))return null;
- if(spec.labels?.length!==parts.length||spec.insights?.length!==parts.length)return null;
- return {lead,items:parts.map((part,i)=>({label:spec.labels![i],source:part,insight:spec.insights![i]})),tail,source};
+ const labels=spec.labels??(spec.type==='chain'?parts.map(stripOuterMarkdown):[]);
+ if(labels.length!==parts.length||spec.insights?.length!==parts.length)return null;
+ return {lead,items:parts.map((part,i)=>({label:labels[i],source:part,insight:spec.insights![i]})),tail,source};
 }
 
 function MarkdownSegment({text}:{text:string}){
