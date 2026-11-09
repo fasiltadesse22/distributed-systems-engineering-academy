@@ -22,7 +22,7 @@ describe('structurally redesigned deep explanations',()=>{
      expect(spec.block).toBeLessThan(blocks[section].length);
      const parsed=parseStructuredParagraph(blocks[section][spec.block],spec);
      expect(parsed,lesson+'/'+section+'/'+spec.block+'/'+spec.type).not.toBeNull();
-     expect(parsed!.items).toHaveLength(spec.labels!.length);
+     expect(parsed!.items).toHaveLength(spec.labels?.length??spec.insights!.length);
      expect(parsed!.items.every(item=>item.source.length>3&&item.insight.length>20&&item.label.length>4)).toBe(true);
      expect(new Set(parsed!.items.map(item=>item.label)).size).toBe(parsed!.items.length);
      const html=renderToStaticMarkup(<ReadingArticle markdown={blocks[section][spec.block]} offset={spec.block} visuals={[spec]}/>);
