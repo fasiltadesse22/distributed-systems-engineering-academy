@@ -44,6 +44,14 @@ GitHub Actions runs the same checks for every push and pull request. Inspect the
 
 Instead of displaying the manuscripts as long text blocks, both lesson routes use an expandable **Chapter → Lesson → Section** outline in the application's primary left sidebar, with 27 author-curated clickable causal/authority diagrams, revealable counterexamples, and interactive exercises ahead of guided reading. **Guided steps** shows smaller passages, while **Read all** displays every original authored block in sequence. Neither option removes technical depth. Conceptual and Java-implemented claims are labeled separately. Browser tests cover both formats, source fidelity, and phone usability.
 
+## Deep explanation: editorial reading layer
+
+The **Deep explanation** pane in each authored lesson is now an intentionally formatted technical reader, not a raw Markdown block. The original source text remains authoritative and complete. Each lesson section has exactly **three author-selected reading cues** with specific roles: **Core concept** (definition), **How it works** (causal mechanism), **Worked example** (application), **Important limit** (non-guarantee), **Evidence & scope** (what is actually demonstrated), or **Try this** (active reasoning). These cues use restrained color, semantic labels, and explanatory margin notes, not indiscriminate decoration.
+
+At the start of an explanation, **Three moments worth understanding** provides quick jumps to the selected concepts. **Guided steps** presents shorter consecutive ideas with meaningful editorial titles; **Read all** shows every original source block in order with the same annotations. Reader controls let learners increase text size, widen the reading measure, or turn highlighting off without dropping source material. Dark/light mode and mobile layouts remain supported.
+
+The curated editorial anchors are defined in `src/lessons/shared/readingEditorial.ts`; `ReadingArticle.tsx` renders source-preserving prose plus margin guidance. Tests validate the anchor positions across all 27 sections, original Markdown block ordering, both reading modes, and browser interactions. **Color has an explicit learning purpose rather than representing a business status or actual runtime evidence.**
+
 ## Implemented foundation
 
 - Responsive React application with dark/light mode, hash-based deep links, one expandable chapter/lesson/section sidebar, direct links to specific reading sections, and search across 93 roadmap clusters and 20 lesson plans.

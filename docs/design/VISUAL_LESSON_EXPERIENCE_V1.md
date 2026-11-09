@@ -79,3 +79,26 @@ The revised contract uses **one** left navigation tree:
 **Body-space rule:** the entire lesson is one wide reading canvas (with normal responsive page padding). Neither an internal study sidebar nor a large stage strip appears in the lesson body. A compact title and progress indicator remain; all visual learning, source-linked engineering and descriptive material are preserved.
 
 **Evidence/fidelity:** the original 27 lesson manuscript sections, diagrams, simulations, labs, acceptance and Java evidence are unchanged. New regression tests check sidebar expansion, deep linking, browser history, keyboard interaction, mobile, theme and full-width geometry. The separate Food Ordering Platform is unchanged.
+
+## Semantic reading typography and editorial annotations (2026-11-09)
+
+The deep explanation is not displayed as a pasted Markdown page. Every canonical Markdown block is preserved byte-for-byte within its source segment, but is organized into deliberately distinct visual roles:
+
+- **Core concept (teal):** definition or fundamental distinction that subsequent ideas depend on.
+- **How it works (blue):** a causal mechanism, decision chain or code-execution explanation.
+- **Worked example (violet):** the concrete business situation that instantiates an abstract principle.
+- **Important limit (amber):** non-guarantee, invalid inference, counterexample, or missing authority.
+- **Evidence & scope (green):** what a test, model or business assertion can genuinely establish.
+- **Try this (rose):** a meaningful prediction, transfer or retrieval task.
+
+Color is only a supplementary signal: every highlighted passage has a visible text label, a concise editorial heading, a context note explaining **why it matters**, and appropriate semantic markup. Ordinary paragraphs remain clean, book-like prose with a comfortable reading measure, generous line-height and contrast. Avoid boxing or coloring every sentence.
+
+Each of 27 lesson sections has exactly three manually authored, source-indexed highlight annotations. The anchors live in `src/lessons/shared/readingEditorial.ts`, independent of the authoritative Markdown. They are not assigned using random keywords or automatic sentiment classification. Unit tests fail when an anchor is invalid or points to a heading; when the underlying manuscript changes, update the editorial map intentionally.
+
+**Navigation:** a compact 'Three moments worth understanding' strip jumps to the reading step containing an anchored concept. Reading-step titles prefer authored editorial titles rather than clipped raw paragraph beginnings. The existing left sidebar remains the only chapter/lesson/section navigation, while local reading controls operate only within the active explanation.
+
+**Comfort controls:** A− / A+ for modest font enlargement, Comfort width / Wider text, Highlights on/off, Guided steps / Read all. All controls are keyboard-operable and use React state without storing or transmitting learner data. Hiding annotations never changes the source paragraphs; the user can always restore them. In full mode all paragraphs remain in canonical order. The same renderer is reused in both lessons and supports dark, light and narrow screens.
+
+**Evidence boundary:** the reading cues are explanatory annotations, not extra domain facts or a replacement for sources. React models remain illustrations; only executed Java tests and live HTTP verification can support the previously reported backend evidence.
+
+**Regression gates:** the existing source-fidelity test retains every Markdown block in original order. New checks validate all 81 editorial anchors, semantic rendering, toggle behavior, font size, the reading route, full-source mode, desktop and mobile interaction, existing lesson simulations and Java source links. A green build alone is insufficient; Chromium must render and interact with the reading interface.
