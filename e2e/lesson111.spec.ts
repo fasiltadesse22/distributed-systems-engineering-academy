@@ -17,7 +17,7 @@ test('authored Lesson 1.1.1 loads from blueprint without a blank screen',async({
 
 test('authority map changes decision ownership and flags conflicts',async({page})=>{
   await page.goto('/#/lesson/1.1.1');
-  await page.locator('nav[aria-label="Lesson study sections"] button').nth(5).click();
+  await page.getByTestId('outline-section-1.1.1-6').click();
   await expect(page.getByTestId('authority-atlas')).toBeVisible();
   await expect(page.getByTestId('authority-feedback')).toContainText('Consistent with the example policy');
   await page.getByTestId('authority-owner').selectOption('operations');
@@ -29,7 +29,7 @@ test('authority map changes decision ownership and flags conflicts',async({page}
 
 test('branching workflow changes customer-facing financial truth',async({page})=>{
   await page.goto('/#/lesson/1.1.1');
-  await page.locator('nav[aria-label="Lesson study sections"] button').nth(6).click();
+  await page.getByTestId('outline-section-1.1.1-7').click();
   await page.getByTestId('journey-provider').selectOption('unknown');
   await page.getByRole('button',{name:'No, preparation does not begin'}).click();
   await page.getByRole('button',{name:/run illustrated business journey/i}).click();
@@ -43,11 +43,11 @@ test('branching workflow changes customer-facing financial truth',async({page})=
 
 test('learner can answer authority challenges and investigate competing hypotheses',async({page})=>{
   await page.goto('/#/lesson/1.1.1');
-  await page.locator('nav[aria-label="Lesson study sections"] button').nth(7).click();
+  await page.getByTestId('outline-section-1.1.1-8').click();
   await page.getByTestId('challenge-answer').selectOption('restaurant');
   await page.getByRole('button',{name:'Reveal reasoning'}).click();
   await expect(page.getByTestId('challenge-feedback')).toContainText('Correct under the stated policy');
-  await page.locator('nav[aria-label="Lesson study sections"] button').nth(8).click();
+  await page.getByTestId('outline-section-1.1.1-9').click();
   await page.getByRole('checkbox',{name:/Read the effective cancellation policy/i}).check();
   await page.getByRole('checkbox',{name:/Compare decision acknowledgements/i}).check();
   await expect(page.getByTestId('incident-caseboard')).toContainText('Merchant contract says');

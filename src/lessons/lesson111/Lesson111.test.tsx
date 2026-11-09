@@ -18,7 +18,9 @@ describe('authored Lesson 1.1.1',()=>{
     const html=renderToStaticMarkup(<MemoryRouter><Lesson111/></MemoryRouter>);
     expect(html).toContain('FULL LESSON 1.1.1');
     expect(html).toContain('Start with the business, not the architecture');
-    expect(html).toContain('STUDY JOURNEY');
+    expect(html).toContain('ENGINEERING QUESTION');
+    expect(html).toContain('Guided steps');
+    expect(html).not.toContain('Lesson study sections');
     expect(html).toContain('Part 1 of 13');
     expect(html).toContain('Food Ordering');
     expect(html).not.toContain('Blueprint specification, not an authored lesson.');

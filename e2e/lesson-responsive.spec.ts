@@ -1,16 +1,20 @@
 import {test,expect} from '@playwright/test';
 
 for(const lesson of ['1.1.1','1.1.2']){
- test(lesson+' remains readable on phone and stage navigation works',async({page})=>{
+ test(lesson+' keeps its wide story readable on phone and navigates from the main sidebar',async({page})=>{
   const errors:string[]=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.setViewportSize({width:390,height:844});
   await page.goto('/#/lesson/'+lesson);
-  const stage=page.getByTestId('stage-journey');
-  await expect(stage).toBeVisible();
   await expect(page.getByTestId('story-map')).toBeVisible();
-  await stage.getByRole('button',{name:/Defend/i}).click();
+  await page.getByRole('button',{name:'Open navigation'}).click();
+  const outline=page.getByTestId('course-outline');
+  await expect(outline).toBeVisible();
+  const target=lesson==='1.1.1'?12:13;
+  await outline.getByTestId('outline-section-'+lesson+'-'+target).click();
+  await expect(page).toHaveURL(new RegExp('lesson/'+lesson.replaceAll('.','\\.')+'\\?section='+target));
   await expect(page.getByTestId('story-map')).toBeVisible();
+  await expect(page.locator('.shade')).toHaveCount(0);
   const story=page.getByTestId('guided-story');
   await story.getByRole('button',{name:'Read all',exact:true}).click();
   await expect(story.getByTestId('full-reading')).toBeVisible();

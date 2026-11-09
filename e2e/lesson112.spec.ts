@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 const route='/#/lesson/1.1.2';
-const section=(page:import('@playwright/test').Page,index:number)=>page.locator('nav[aria-label="Lesson 1.1.2 study sections"] button').nth(index);
+const section=(page:import('@playwright/test').Page,index:number)=>page.getByTestId('outline-section-1.1.2-'+(index+1));
 
 test('Lesson 1.1.2 mounts without blank screen or JS exception and progresses between sections',async({page})=>{
  const errors:string[]=[];

@@ -31,7 +31,7 @@ test('1.1.2 presents actual/future boundaries and surfaces the existing scenario
  await expect(story.getByTestId('story-map')).toContainText('FUTURE');
  await story.getByRole('button',{name:'Inspect Payment provider'}).click();
  await expect(story.getByRole('region',{name:'Selected step explanation'})).toContainText('No authorization, capture');
- await page.locator('nav[aria-label="Lesson 1.1.2 study sections"] button').nth(7).click();
+ await page.getByTestId('outline-section-1.1.2-8').click();
  const refreshed=page.getByTestId('guided-story');
  await expect(refreshed.getByTestId('scenario-studio')).toBeVisible();
  await refreshed.getByRole('button',{name:'201',exact:true}).click();
