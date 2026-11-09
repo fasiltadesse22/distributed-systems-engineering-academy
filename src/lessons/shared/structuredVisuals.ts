@@ -25,6 +25,17 @@ export type LessonKey='1.1.1'|'1.1.2';
 const v=(block:number,type:VisualType,title:string,subtitle:string,extra:Partial<VisualSpec>={}):VisualSpec=>({block,type,title,subtitle,...extra});
 export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
  '1.1.1':{
+  2:[v(0,'definitions','Goal, incentive, responsibility, capability','Four different management concepts that should not be confused with technical interfaces.',{
+    markers:['A goal','An incentive','A responsibility','A capability'],
+    tailStart:'These four are related',
+    labels:['Goal','Incentive','Responsibility','Capability'],
+    insights:[
+      'A goal is an actor-visible outcome, not an API endpoint or an architecture choice.',
+      'An incentive explains motivation and potential conflicting preferences; it is not an authorization rule.',
+      'A responsibility establishes accountable behavior, not necessarily a dedicated runtime process.',
+      'A capability is an enduring business ability that survives changes in deployment and teams.'
+    ]
+  })],
   3:[v(3,'checklist','Five entries for every capability','Transform discovery into a reviewable ownership contract, not just a capability name.',{
     labels:['Desired outcome','Accountable role','Initiating actors','Decision / fact authority','Observers / consumers'],
     insights:[
