@@ -31,3 +31,8 @@ A working academy simulator is educational modeling; it is **not** a verified Ja
 ## Next execution
 
 **Lesson 1.1.3 — Commands, decisions, facts and events**, only when requested. Build from the verified Java PlaceOrder request-intake fact and distinguish customer command intention from business outcome, without prematurely introducing Kafka, service extraction or event sourcing.
+
+
+## Visual Textbook V2 presentation rebuild — 2026-11-09
+
+The authored Lessons 1.1.1 and 1.1.2 now use a source-preserving continuous technical reading canvas with contextual labs and minimal card nesting. The authoritative manuscripts and Java project remain unchanged. See [V2 design contract](../design/VISUAL_TEXTBOOK_V2.md) and [V2 verification checkpoint](../../checkpoints/VISUAL_TEXTBOOK_V2.md). Verified academy implementation commit `3ae5bd33e6d65c644c13756d8a525d9ccd48ac64` passed [37 unit/component tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42587354710) and [24 Chromium browser tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42587354632). Visual presentation is new; Java production capabilities are unchanged.
