@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import lessonSource from '../../../content/lessons/1.1.2.md?raw';
 import { StoryCanvas } from '../shared/StoryCanvas';
-import { StageJourney } from '../shared/StageJourney';
 import { useCaseScenes } from './scenes';
 import {useCases, evaluateScenario,defaultScenario, acceptanceCases,traceSteps,diagnosticEvidence,platformBase,platformCommit,platformRun} from './model';
 import type {ScenarioInput} from './model';
@@ -118,16 +117,24 @@ function Retain(){
 }
 
 export default function Lesson112(){
- const [index,setIndex]=useState(0),[glossary,setGlossary]=useState(false);
+ const [searchParams,setSearchParams]=useSearchParams();
+ const requested=Number(searchParams.get('section')??'1');
+ const index=Number.isInteger(requested)&&requested>=1&&requested<=lessonSections.length?requested-1:0;
+ const [glossary,setGlossary]=useState(false);
  const current=lessonSections[index]??lessonSections[0];
- const nav=(i:number)=>{setIndex(Math.max(0,Math.min(lessonSections.length-1,i)));window.scrollTo({top:0,behavior:'instant'})};
+ const nav=(i:number)=>setSearchParams({section:String(Math.max(1,Math.min(lessonSections.length,i+1)))});
  return <article className="l112-page" data-testid="lesson-1.1.2">
-  <header className="l112-hero"><div><Label>CLUSTER 1.1 · CHAPTER 1 · COMPLETE LESSON 1.1.2</Label><h1>Business scenarios<br/><em>& use-case discovery</em></h1><p>Specify what must happen, what may be rejected, and what the first real Java workflow can truthfully guarantee.</p><div className="l112-hero-tags"><span>Type A + D · Verified Java + React</span><span>{lessonSections.length} teaching sections</span><span>13 Java tests · immutable source evidence</span></div></div><div className="l112-hero-card"><Label>THE FIRST BUSINESS CONTRACT</Label><div>Customer intent <span>↓</span></div><div>Platform intake <span>↓</span></div><div className="l112-hero-highlight">201 · Request recorded</div><div className="l112-pending">Merchant PENDING · Payment NOT_STARTED</div></div></header>
+  <header className="l112-hero">
+    <div>
+      <Label>CLUSTER 1.1 · CHAPTER 1 · COMPLETE LESSON 1.1.2</Label>
+      <h1>Business scenarios <em>& use-case discovery</em></h1>
+      <p>Explore what a customer requests, what the Java application can prove, and why restaurant acceptance and payment remain separate.</p>
+      <div className="l112-hero-tags"><span>Verified Java + React</span><span>{lessonSections.length} sections</span><span>13 Java tests · immutable source evidence</span></div>
+    </div>
+    <button type="button" className="l112-glossary-button" aria-expanded={glossary} onClick={()=>setGlossary(!glossary)}>{glossary?'Hide terminology':'Key terminology'} ↗</button>
+  </header>
   <div className="l112-progress"><div><span style={{width:(100*(index+1)/lessonSections.length)+'%'}}/></div><small>Section {index+1} / {lessonSections.length}</small></div>
-  <StageJourney sections={lessonSections} current={index} onNavigate={nav}/>
-  <div className="l112-layout">
-    <nav className="l112-nav" aria-label="Lesson 1.1.2 study sections"><Label>STUDY JOURNEY</Label>{lessonSections.map((s,i)=><button type="button" key={s.index} className={index===i?'active':''} aria-current={index===i?'step':undefined} onClick={()=>nav(i)}><span>{String(i+1).padStart(2,'0')}</span><div><b>{s.stage}</b><small>{s.title}</small></div></button>)}<button type="button" className="l112-glossary-button" onClick={()=>setGlossary(!glossary)}>{glossary?'Hide':'Show'} terminology guide</button></nav>
-    <div className="l112-reading">
+  <div className="l112-reading">
       {glossary&&<Note title="Precision vocabulary"><p><b>Capability:</b> durable business ability. <b>Use case:</b> actor-triggered goal with observable outcome. <b>Postcondition:</b> proposition true after a successful operation. <b>Rejection:</b> validly denied business request. <b>Intake:</b> request recorded, not necessarily approved. <b>Evidence:</b> result observed under a specific test/environment.</p></Note>}
       <div className="l112-heading"><Label>{current.stage.toUpperCase()} · {String(index+1).padStart(2,'0')} / {lessonSections.length}</Label><h2>{current.title}</h2></div>
       <StoryCanvas key={index} markdown={current.body} scene={useCaseScenes[index]}>
@@ -143,7 +150,6 @@ export default function Lesson112(){
       </StoryCanvas>
       <div className="l112-navigation"><button type="button" className="button secondary" disabled={index===0} onClick={()=>nav(index-1)}>← Previous section</button>{index<lessonSections.length-1?<button type="button" className="button primary" onClick={()=>nav(index+1)}>Continue: {lessonSections[index+1]?.stage} →</button>:<Link className="button primary" to="/blueprint">Return to blueprint ↗</Link>}</div>
       <div className="l112-footer"><a href="https://github.com/fasiltadesse22/distributed-systems-engineering-academy/blob/main/content/lessons/1.1.2.md" target="_blank" rel="noreferrer">Complete manuscript ↗</a><a href={platformRun} target="_blank" rel="noreferrer">Verified Java CI ↗</a><a href={platformBase+'docs/usecases/UC-001-place-order.md'} target="_blank" rel="noreferrer">Formal UC-001 contract ↗</a></div>
-    </div>
   </div>
  </article>;
 }
