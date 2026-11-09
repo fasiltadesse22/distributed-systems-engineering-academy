@@ -19,7 +19,20 @@ function itemsByMarkers(source:string,regex:RegExp){
  * anchor is no longer valid the integrity tests fail instead of rendering guesses. */
 export function parseStructuredParagraph(source:string,spec:VisualSpec):ParsedVisual|null{
  let lead='',tail='',parts:string[]=[];
- if(spec.type==='numbered'){
+ if(spec.type==='definitions'){
+  const markers=spec.markers??[];
+  if(markers.length<2)return null;
+  const indices=markers.map(marker=>source.indexOf(marker));
+  if(indices.some(i=>i<0)||indices.some((index,i)=>i>0&&index<=indices[i-1]))return null;
+  let end=source.length;
+  if(spec.tailStart){
+   end=source.indexOf(spec.tailStart,indices[indices.length-1]);
+   if(end<0)return null;
+   tail=source.slice(end).trim();
+  }
+  lead=source.slice(0,indices[0]).trim();
+  parts=indices.map((start,i)=>source.slice(start,i+1<indices.length?indices[i+1]:end).trim());
+ }else if(spec.type==='numbered'){
   const data=itemsByMarkers(source,/\((\d+)\)\s*/g);
   if(!data||!data.matches.every((m,i)=>Number(m[1])===i+1))return null;
   lead=data.lead;
@@ -100,7 +113,7 @@ function MarkdownSegment({text}:{text:string}){
 const typeDescription:Record<VisualSpec['type'],string>={
  numbered:'STEP-BY-STEP EXECUTION',criteria:'TESTABLE ACCEPTANCE MATRIX',chain:'REASONING SEQUENCE',
  authorities:'DECISION RIGHTS',propositions:'DISTINCT BUSINESS FACTS',status:'REJECTION PATHS',
- checklist:'CAPABILITY CONTRACT',evidence:'EVIDENCE HIERARCHY'
+ checklist:'CAPABILITY CONTRACT',evidence:'EVIDENCE HIERARCHY',definitions:'CONCEPTS, SEPARATED'
 };
 const typeQuestion:Record<VisualSpec['type'],string>={
  numbered:'Select a step to explain its responsibility and limit.',
@@ -110,7 +123,8 @@ const typeQuestion:Record<VisualSpec['type'],string>={
  propositions:'These facts need different authorities and evidence.',
  status:'Do not handle every negative HTTP status as the same kind of failure.',
  checklist:'Each entry answers a different business-ownership question.',
- evidence:'Select an evidence level to inspect the exact claim it supports.'
+ evidence:'Select an evidence level to inspect the exact claim it supports.',
+ definitions:'Compare what each concept means—and what it cannot guarantee.'
 };
 
 export default function StructuredPassage({source,spec}:{source:string;spec:VisualSpec}){
