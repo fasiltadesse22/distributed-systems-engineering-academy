@@ -55,6 +55,9 @@ export function readingThoughts(source:string):string[]{
   else current+=(current?' ':'')+sentence;
  }
  if(current)thoughts.push(current);
+ // A Markdown emphasis span may cross a sentence boundary. Do not break it:
+ // parsing fragments independently would expose literal asterisks to the learner.
+ if(thoughts.some(part=>(part.match(/\*\*/g)||[]).length%2!==0))return [source];
  return thoughts;
 }
 function StructuredFigure({source,meaning}:{source:string;meaning:StructuredSource}){
