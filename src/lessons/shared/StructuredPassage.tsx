@@ -62,6 +62,24 @@ export function parseStructuredParagraph(source:string,spec:VisualSpec):ParsedVi
   lead=source.slice(0,start+1).trim();
   parts=source.slice(start+2,end).split(';').map(x=>x.trim()).filter(Boolean);
   tail=source.slice(end+2).trim();
+ }else if(spec.type==='checklist'){
+  const startMarker='five entries per capability:';
+  const endMarker='. Without those entries,';
+  const start=source.indexOf(startMarker);
+  const end=source.indexOf(endMarker,start);
+  if(start<0||end<0)return null;
+  lead=source.slice(0,start+startMarker.length).trim();
+  parts=source.slice(start+startMarker.length,end).split(';').map(x=>x.trim()).filter(Boolean);
+  tail=source.slice(end+2).trim();
+ }else if(spec.type==='evidence'){
+  const markers=['A deterministic React scenario engine','A TypeScript unit test','A Java service test','A Spring MVC integration test','A packaged jar'];
+  const indices=markers.map(m=>source.indexOf(m));
+  const closing='None proves live payment settlement';
+  const end=source.indexOf(closing);
+  if(indices.some(n=>n<0)||end<0||end<=indices[4]||indices.some((n,i)=>i>0&&n<=indices[i-1]))return null;
+  lead=source.slice(0,indices[0]).trim();
+  parts=indices.map((start,i)=>source.slice(start,i+1<indices.length?indices[i+1]:end).trim());
+  tail=source.slice(end).trim();
  }else if(spec.type==='status'){
   const markers=['The first category is rejected','The remaining business rejections','GET of a missing intake'];
   const indices=markers.map(m=>source.indexOf(m));
@@ -81,7 +99,8 @@ function MarkdownSegment({text}:{text:string}){
 
 const typeDescription:Record<VisualSpec['type'],string>={
  numbered:'STEP-BY-STEP EXECUTION',criteria:'TESTABLE ACCEPTANCE MATRIX',chain:'REASONING SEQUENCE',
- authorities:'DECISION RIGHTS',propositions:'DISTINCT BUSINESS FACTS',status:'REJECTION PATHS'
+ authorities:'DECISION RIGHTS',propositions:'DISTINCT BUSINESS FACTS',status:'REJECTION PATHS',
+ checklist:'CAPABILITY CONTRACT',evidence:'EVIDENCE HIERARCHY'
 };
 const typeQuestion:Record<VisualSpec['type'],string>={
  numbered:'Select a step to explain its responsibility and limit.',
@@ -89,7 +108,9 @@ const typeQuestion:Record<VisualSpec['type'],string>={
  chain:'Trace each dependency before treating the final outcome as established.',
  authorities:'Who owns each right, and what does not follow from it?',
  propositions:'These facts need different authorities and evidence.',
- status:'Do not handle every negative HTTP status as the same kind of failure.'
+ status:'Do not handle every negative HTTP status as the same kind of failure.',
+ checklist:'Each entry answers a different business-ownership question.',
+ evidence:'Select an evidence level to inspect the exact claim it supports.'
 };
 
 export default function StructuredPassage({source,spec}:{source:string;spec:VisualSpec}){
