@@ -81,3 +81,9 @@
 @media(max-width:900px){.textbook-lesson-head h1{font-size:clamp(2rem,6vw,3rem)}.textbook-topic-head{grid-template-columns:49px 1fr;gap:10px}.textbook-topic-body{margin-left:59px}.textbook-definition-list{grid-template-columns:1fr}}
 @media(max-width:620px){.textbook-topic{padding:44px 0 50px;scroll-margin-top:83px}.textbook-lesson-head{padding:12px 0 22px}.textbook-context{gap:7px 14px}.textbook-topic-head{grid-template-columns:1fr;gap:3px;margin-bottom:18px}.textbook-topic-body{margin-left:0}.textbook-topic-number{padding:0}.textbook-topic-head h2{font-size:1.65rem}.textbook-markdown{font-size:.98rem;line-height:1.82}.textbook-markdown p{font-size:inherit}.textbook-definition-list{grid-template-columns:1fr}.textbook-figure{padding-top:17px}.textbook-timeline>li{grid-template-columns:42px 1fr;gap:8px}.textbook-step-index{height:34px;width:34px}.textbook-timeline>li:not(:last-child)::before{left:16px;top:38px}.textbook-lab{padding-top:14px}}
 @media(prefers-reduced-motion:reduce){.textbook-topic{scroll-behavior:auto}}
+
+
+/* Static editorial mechanisms sit in the reading flow; do not wrap them in
+   an extra exercise panel or duplicate section headings. */
+.textbook-lab[data-kind="illustration"]{border:0;padding:0;margin:19px 0 27px}
+.textbook-lab[data-kind="illustration"]>.textbook-lab-kicker{display:none}

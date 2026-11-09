@@ -1,0 +1,48 @@
+/* Lesson 1.1.3: quiet causal visual and one purposeful learning experiment. */
+.l113-flow{margin:23px 0 38px;border-top:2px solid var(--accent);border-bottom:1px solid var(--line);padding:21px 0 24px;min-width:0}
+.l113-kicker{display:block;font-size:.66rem;letter-spacing:.14em;color:var(--accent);font-weight:840;margin-bottom:8px}
+.l113-flow figcaption{margin:0 0 18px}
+.l113-flow figcaption strong{font-size:clamp(1.12rem,1.6vw,1.36rem);line-height:1.3;color:var(--white)}
+.l113-flow ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 19px;counter-reset:stage}
+.l113-flow li{counter-increment:stage;display:grid;grid-template-columns:33px 1fr;gap:11px;padding:15px 5px 15px 0;min-width:0;border-top:1px solid var(--line)}
+.l113-flow li:before{content:counter(stage,decimal-leading-zero);color:var(--accent);font:750 .73rem ui-monospace,monospace;margin-top:3px}
+.l113-flow li strong{color:var(--white);display:block;font-size:.88rem;margin-bottom:5px}
+.l113-flow li p{font-size:.8rem;color:var(--muted);line-height:1.65;margin:0}
+.l113-branches{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:19px}
+.l113-branches p{font-size:.8rem;line-height:1.7;padding-left:13px;border-left:2px solid var(--warning);margin:0;color:var(--muted)}
+.l113-branches p:last-child{border-left-color:var(--blue)}
+.l113-branches strong{color:var(--white)}
+.l113-evidence{margin-top:16px;font-size:.74rem;color:var(--faint);line-height:1.6}
+.l113-lab{max-width:950px;min-width:0}
+.l113-lab>header h3{font-size:clamp(1.1rem,1.8vw,1.5rem);letter-spacing:-.02em;margin:6px 0 9px;color:var(--white)}
+.l113-lab>header p{color:var(--muted);font-size:.85rem;line-height:1.72;max-width:76ch}
+.l113-controls{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:23px 0;align-items:start}
+.l113-controls fieldset{border:0;margin:0;padding:0;min-width:0}
+.l113-controls legend{font-weight:780;color:var(--white);font-size:.85rem;margin-bottom:11px}
+.l113-controls select{width:100%;max-width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:12px;border-radius:7px;font-size:.86rem}
+.l113-controls small{display:block;font-size:.74rem;line-height:1.6;color:var(--muted);margin:9px 0 0}
+.l113-predictions{display:grid;gap:7px}
+.l113-prediction{display:flex;align-items:flex-start;gap:8px;font-size:.8rem;line-height:1.45;padding:5px 0;color:var(--text)}
+.l113-prediction input{accent-color:var(--accent);margin-top:3px}
+.l113-run{background:var(--accent);border:0;border-radius:7px;color:var(--bg);font-weight:850;padding:13px 18px;cursor:pointer;font-size:.83rem}
+.l113-run:disabled{cursor:not-allowed;opacity:.42}
+.l113-run:focus-visible,.l113-controls select:focus-visible,.l113-prediction:focus-within{outline:2px solid var(--accent);outline-offset:4px}
+.l113-result{margin-top:21px;border-top:1px solid var(--line);padding-top:19px}
+.l113-result h4{color:var(--white);font-size:1.09rem;margin:7px 0}
+.l113-result>p{color:var(--text);font-size:.86rem;line-height:1.75;max-width:79ch}
+.l113-result .l113-judge{font-weight:780;font-size:.8rem}
+.l113-result .l113-judge.correct{color:var(--success)}
+.l113-result .l113-judge.revise{color:var(--warning)}
+.l113-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.l113-facts>div{border-top:2px solid var(--line);padding-top:10px}
+.l113-facts dt{font-size:.71rem;color:var(--faint);margin-bottom:5px}
+.l113-facts dd{margin:0;color:var(--white);font-size:.86rem;font-weight:800;line-height:1.5}
+.l113-trace{list-style:none;display:grid;gap:0;padding:0;margin:18px 0 7px}
+.l113-trace li{display:grid;grid-template-columns:145px minmax(0,1fr);gap:17px;border-top:1px solid var(--line);padding:11px 0}
+.l113-trace b{font-size:.77rem;color:var(--accent)}
+.l113-trace p{font-size:.8rem;line-height:1.62;color:var(--text);margin:0}
+.l113-trace small{font-size:.69rem;color:var(--faint);display:block;margin-top:5px}
+.l113-scope{border-left:2px solid var(--warning);padding-left:13px;margin:17px 0;font-size:.8rem;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.l113-flow ol{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.l113-controls,.l113-branches{grid-template-columns:1fr}.l113-flow ol{grid-template-columns:1fr}.l113-facts{grid-template-columns:1fr 1fr}.l113-trace li{grid-template-columns:1fr;gap:3px}}
+@media(prefers-reduced-motion:reduce){.l113-run{transition:none}}

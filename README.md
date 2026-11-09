@@ -9,6 +9,8 @@ A React + TypeScript interactive learning academy for **evidence-driven distribu
 - [Visual Textbook V2 design contract](docs/design/VISUAL_TEXTBOOK_V2.md) — continuous reading, source integrity, purposeful visuals and contextual laboratories.
 - [Authored Lesson 1.1.1](content/lessons/1.1.1.md) — 13-section actor authority manuscript and interactive exercises.
 - [Authored Lesson 1.1.2](content/lessons/1.1.2.md) — 14-section use-case discovery, real Java trace and scenario/acceptance labs.
+- [Authored Lesson 1.1.3](content/lessons/1.1.3.md) — 16-section command/decision/fact deep-learning manuscript with one causal diagram, a prediction lab and actual Java source links. [Checkpoint and verification](checkpoints/LESSON_1_1_3.md).
+- [Applied Lesson 1.1.3 Java walkthrough](docs/engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md) — pinned typed-outcome implementation and 18-test running-jar evidence.
 - [Applied Lesson 1.1.2 Java walkthrough](docs/engineering/LESSON_1_1_2_APPLIED_WALKTHROUGH.md) — verified Java code, tests, 201/422 runtime evidence and design alternatives.
 - [Lesson 1.1.1 Domain Discovery Contract](docs/domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md) — actors, capabilities, decision authority, scenarios and open policy questions.
 - [Learning progress](docs/progress/LEARNING_PROGRESS.md) — current verified checkpoints.
@@ -39,7 +41,7 @@ GitHub Actions runs the same checks for every push and pull request. Inspect the
 
 ## Visual Textbook V2 — an uncluttered technical reader
 
-Both complete lessons now read continuously on one calm page: 13 authored topics in Lesson 1.1.1, 14 in Lesson 1.1.2. The expandable Chapter → Lesson → Topic left menu stays the only lesson navigation. Bookmarkable links such as /#/lesson/1.1.2?section=3 scroll to their real heading; browser back/forward remains functional.
+Three complete lessons now read continuously on one calm page: 13 authored topics in Lesson 1.1.1, 14 in Lesson 1.1.2, and 16 in Lesson 1.1.3. The expandable Chapter → Lesson → Topic left menu stays the only lesson navigation. Bookmarkable links such as /#/lesson/1.1.2?section=3 scroll to their real heading; browser back/forward remains functional.
 
 The new reader does not impose a separate concept map, compulsory click-to-reveal panels, three takeaway cards, or a guided-step toggle in every section. It reserves diagrams and structure for knowledge that needs them: a compact four-definition comparison, a permanently readable eight-stage Java intake flow, independently listed acceptance criteria, decision rights and competing hypotheses. Original paragraphs remain available beside those presentations.
 
@@ -53,18 +55,19 @@ The original manuscripts are unchanged; tests audit their sections, source block
 - Complete master roadmap reader; phase and cluster detail explorer linked to the authoritative V1.0 Markdown.
 - Cluster 1.1 blueprint reader with chapter/lesson plans, prerequisite concept explorer, traceability, project evolution, exit criteria and lab catalog.
 - **Lesson 1.1.1 fully authored and integrated**: 13 navigable deep-learning sections, editable actor-capability/authority atlas, branchable Food Ordering business journey, prediction-before-reveal ownership challenges, incident evidence explorer, and audience-adapted technical defense.
+- **Lesson 1.1.3 deep-learning and real Java evolution**: 16 topics, typed PlaceOrder outcomes, OrderRequestRecorded post-save local fact, command-to-fact diagram, deterministic prediction lab, verified Java tests and HTTP smoke; no external merchant/payment or messaging infrastructure.
 - **Lesson 1.1.2 interactive deep learning**: use-case explorer, branching scenario, acceptance tests, source-linked Java execution trace, diagnostic evidence room and Staff defense.
-- Reusable lesson reader for **remaining planned lessons**, displaying technical scope, prerequisites, mechanism traces, examples, experiments, engineering classification, diagnosis, and interview mastery criteria. **Lessons 1.1.1 and 1.1.2 are fully authored; later lessons remain blueprint specifications.**
+- Reusable lesson reader for **remaining planned lessons**, displaying technical scope, prerequisites, mechanism traces, examples, experiments, engineering classification, diagnosis, and interview mastery criteria. **Lessons 1.1.1–1.1.3 are fully authored; subsequent lessons remain blueprint specifications.**
 - Controlled cancellation-versus-acceptance simulator. Change interleavings and guard strategy, predict success/failure, then reveal a causal execution timeline and invariant diagnosis.
 - Pure deterministic simulator unit tests, content integrity checks and CI workflow.
 
 ## What is not yet delivered
 
-The remaining Lesson 1.1.3–1.1.20 teaching manuscripts, the other four Cluster 1.1 lab implementations, persisted learner progress, merchant acceptance, external payments, and production durability are not yet delivered. The interleaving lab is an **educational model**, not a Java test result.
+The remaining Lesson 1.1.4–1.1.20 teaching manuscripts, the other four Cluster 1.1 lab implementations, persisted learner progress, merchant acceptance, external payments, and production durability are not yet delivered. The interleaving lab is an **educational model**, not a Java test result.
 
 ## Companion application
 
-The [Food Ordering Platform](https://github.com/fasiltadesse22/food-ordering-platform-new) is maintained independently. Its [verified intake implementation](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/08b33714431a53f6b1cb1e1e09718b0281da1ce8) provides a real Java 21/Spring Boot 4.1.2 application with [13 Maven tests and live 201/422 HTTP smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048).
+The [Food Ordering Platform](https://github.com/fasiltadesse22/food-ordering-platform-new) remains an independent single Java 21/Spring Boot application. The [verified Lesson 1.1.3 checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/225db684a24080f2c4ad1ae6e2f5e259edf0aa7d) adds typed command decisions and a post-save local intake fact with [18 passing Maven tests and live HTTP 201/422 smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411). This does not implement durable events, merchant acceptance, payment processing or idempotency.
 
 ## Project layout
 
