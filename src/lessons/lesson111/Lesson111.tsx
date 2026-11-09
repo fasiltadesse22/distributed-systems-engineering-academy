@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import rawLesson from '../../../content/lessons/1.1.1.md?raw';
 import { academyRepo, platformRepo, platformPlanningSha } from '../../data/roadmap';
 import { StoryCanvas } from '../shared/StoryCanvas';
-import { StageJourney } from '../shared/StageJourney';
 import { authorityScenes } from './scenes';
 import { ActorAuthorityAtlas } from './ActorAuthorityAtlas';
 import { WorkflowStudio } from './WorkflowStudio';
@@ -53,21 +52,27 @@ function RetentionCard(){
   </div>;
 }
 export default function Lesson111(){
-  const [active,setActive]=useState(0);
+  const [searchParams,setSearchParams]=useSearchParams();
+  const requested=Number(searchParams.get('section')??'1');
+  const active=Number.isInteger(requested)&&requested>=1&&requested<=teachingSections.length?requested-1:0;
   const section=teachingSections[active]??teachingSections[0];
   const [showGlossary,setShowGlossary]=useState(false);
   const stageCount=useMemo(()=>new Set(teachingSections.map(s=>s.stage)).size,[]);
-  const next=()=>{setActive(i=>Math.min(i+1,teachingSections.length-1));window.scrollTo({top:0,behavior:'instant'})};
-  const previous=()=>{setActive(i=>Math.max(i-1,0));window.scrollTo({top:0,behavior:'instant'})};
+  const go=(target:number)=>setSearchParams({section:String(Math.max(1,Math.min(teachingSections.length,target+1)))});
+  const next=()=>go(active+1);
+  const previous=()=>go(active-1);
   return <div className="l111-page" data-testid="lesson-1.1.1">
-    <header className="l111-hero"><div><span className="eyebrow">CLUSTER 1.1 · CHAPTER 1 · FULL LESSON 1.1.1</span><h1>Actors, goals,<br/><em>responsibilities & capabilities</em></h1><p>Who participates in an order and whose goal does each operation serve? Discover the domain before you pick a deployment topology.</p><div className="l111-meta"><span>Type C · conceptual/domain discovery</span><span>{teachingSections.length} teaching sections</span><span>{stageCount} learning stages</span></div></div><div className="l111-hero-art"><div className="l111-hero-art-top">DECISION ≠ OBSERVATION</div><div className="l111-mini"><span>Customer</span><b>REQUEST</b></div><div className="l111-mini"><span>Restaurant</span><b>DECIDE</b></div><div className="l111-mini"><span>Provider</span><b>CONFIRM</b></div><div className="l111-hero-art-foot">ONE BUSINESS JOURNEY · DIFFERENT AUTHORITIES</div></div></header>
+    <header className="l111-hero">
+      <div>
+        <span className="eyebrow">CLUSTER 1.1 · CHAPTER 1 · FULL LESSON 1.1.1</span>
+        <h1>Actors, goals, <em>responsibilities & capabilities</em></h1>
+        <p>Who participates in a Food Ordering workflow, and who has authority over each business result?</p>
+        <div className="l111-meta"><span>Conceptual domain discovery</span><span>{teachingSections.length} sections · {stageCount} learning stages</span></div>
+      </div>
+      <button type="button" className="l111-glossary-toggle" aria-expanded={showGlossary} onClick={()=>setShowGlossary(!showGlossary)}>{showGlossary?'Hide terminology':'Key terminology'} ↗</button>
+    </header>
     <div className="l111-progress" aria-label="Lesson navigation progress"><div className="l111-progress-track"><span style={{width:((active+1)/teachingSections.length*100)+'%'}} /></div><span>Part {active+1} of {teachingSections.length}</span></div>
-    <StageJourney sections={teachingSections} current={active} onNavigate={(i)=>{setActive(i);window.scrollTo({top:0,behavior:'instant'})}}/>
-    <div className="l111-layout">
-      <nav className="l111-side" aria-label="Lesson study sections"><div className="eyebrow">STUDY JOURNEY</div><div className="l111-nav-list">
-        {teachingSections.map(item=><button type="button" key={item.slug} aria-current={active===item.index?'step':undefined} className={active===item.index?'active':''} onClick={()=>{setActive(item.index);window.scrollTo({top:0,behavior:'instant'})}}><span className="l111-nav-index">{String(item.index+1).padStart(2,'0')}</span><span><b>{item.stage}</b><small>{item.title}</small></span></button>)}
-      </div><button className="l111-glossary-toggle" onClick={()=>setShowGlossary(!showGlossary)}>{showGlossary?'Close':'Open'} key terminology ↗</button></nav>
-      <div className="l111-main">
+    <div className="l111-main">
         {showGlossary&&<aside className="l111-glossary" aria-label="Key terminology"><h3>Conceptual vocabulary</h3><div className="l111-glossary-grid">{glossary.map(g=><div key={g.term}><b>{g.term}</b><p>{g.definition}</p></div>)}</div></aside>}
         <div className="l111-section-heading"><span className="eyebrow">{section.stage.toUpperCase()} · SECTION {String(active+1).padStart(2,'0')} / {teachingSections.length}</span><h2>{section.title}</h2></div>
         <StoryCanvas key={active} markdown={section.body} scene={authorityScenes[active]}>
@@ -83,7 +88,6 @@ export default function Lesson111(){
         </StoryCanvas>
         <div className="l111-controls"><button type="button" className="button secondary" onClick={previous} disabled={active===0}>← Previous section</button>{active<teachingSections.length-1?<button type="button" className="button primary" onClick={next}>Continue: {teachingSections[active+1]?.stage} →</button>:<Link to="/blueprint" className="button primary">Return to Cluster 1.1 blueprint ↗</Link>}</div>
         <div className="l111-source"><span>Authoritative lesson text · v1.1.1</span><a href={academyRepo+'/blob/main/content/lessons/1.1.1.md'} target="_blank" rel="noreferrer">Read complete Markdown manuscript ↗</a></div>
-      </div>
     </div>
   </div>;
 }
