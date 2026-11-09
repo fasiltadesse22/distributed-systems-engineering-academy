@@ -8,13 +8,14 @@ import LessonReader from './components/LessonReader';
 import Lesson111 from './lessons/lesson111/Lesson111';
 import Lesson112 from './lessons/lesson112/Lesson112';
 import RaceLab from './components/RaceLab';
+import CourseOutline from './components/CourseOutline';
 
 function Brand() {
   return <Link className="brand" to="/" aria-label="Academy home"><span className="brand-icon">D/S</span><span>DISTRIBUTED SYSTEMS<small>ENGINEERING ACADEMY</small></span></Link>;
 }
 function ScrollTop() {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, search } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname, search]);
   return null;
 }
 function Shell() {
@@ -46,11 +47,8 @@ function Shell() {
           <NavLink end={url === '/'} to={url} key={url} className={({isActive}) => 'nav-link ' + (isActive ? 'active' : '')} onClick={() => setMenu(false)}><span className="nav-icon">{icon}</span>{title}</NavLink>
         )}
       </nav>
-      <span className="nav-heading bordered">CLUSTER 1.1 · CHAPTERS</span>
-      <nav aria-label="Chapter navigation" className="nav-list">
-        {chapters.map((ch, i) => <NavLink to={'/chapter/' + ch.id} key={ch.id} className={({isActive}) => 'nav-link chapter-nav ' + (isActive ? 'active' : '')} onClick={() => setMenu(false)}><span className="chapter-index">{String(i+1).padStart(2,'0')}</span>{ch.title}</NavLink>)}
-      </nav>
-      <div className="sidebar-footer"><span className="dot"/> <span><b>Academy V0.1</b><small>Foundation · Blueprint ready</small></span></div>
+      <CourseOutline onNavigate={() => setMenu(false)}/>
+      <div className="sidebar-footer"><span className="dot"/> <span><b>Academy V0.1</b><small>2 interactive lessons · Java intake verified</small></span></div>
     </aside>
     <div className="main">
       <header className="topbar">
@@ -60,7 +58,7 @@ function Shell() {
         {results.length > 0 && <div className="results" aria-label="Search results">{results.map(item => <Link key={item.kind + item.id} to={item.href}><b>{item.id}</b> {item.title}<small>{item.kind}</small></Link>)}</div>}</div>
         <button aria-label={'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme'} className="theme-button" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>{theme === 'dark' ? '☼' : '☾'}</button>
       </header>
-      <main id="main-content" className="content"><Routes>
+      <main id="main-content" className={'content'+(location.pathname.startsWith('/lesson/')?' content-lesson':'')}><Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/roadmap" element={<Roadmap/>}/>
         <Route path="/roadmap/:id" element={<ClusterDetail/>}/>
