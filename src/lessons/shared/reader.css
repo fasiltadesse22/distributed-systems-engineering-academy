@@ -111,3 +111,17 @@
 :root[data-theme="light"] .reader-moment[data-kind="example"]{--moment-color:#7354bb}
 :root[data-theme="light"] .reader-moment[data-kind="practice"]{--moment-color:#9e4272}
 @media(prefers-reduced-motion:reduce){.reader-moment{transition:none}}
+
+
+/* Meaningful editorial titles for short reading beats, independent of first-sentence truncation. */
+.reader-step-heading{display:grid;gap:8px;min-width:0}
+.reader-step-heading h4{margin:0;font-size:clamp(.95rem,1.3vw,1.16rem);line-height:1.42;letter-spacing:-.022em;color:var(--white)}
+.story-prose-top>.reader-step-heading{flex:1}
+.story-prose-top>span:last-child{white-space:nowrap;align-self:start}
+.story-prose-card{padding:clamp(21px,2.6vw,37px)}
+.story-step-rail button.current small{color:var(--white);font-weight:750}
+.story-reading-head h3{max-width:760px}
+@media(max-width:620px){
+ .story-prose-top{align-items:flex-start}
+ .story-prose-top>span:last-child{font-size:.66rem}
+}
