@@ -19,7 +19,7 @@ function itemsByMarkers(source:string,regex:RegExp){
  * anchor is no longer valid the integrity tests fail instead of rendering guesses. */
 export function parseStructuredParagraph(source:string,spec:VisualSpec):ParsedVisual|null{
  let lead='',tail='',parts:string[]=[];
- if(spec.type==='definitions'){
+ if(spec.type==='definitions'||spec.type==='hypotheses'||spec.type==='qa'){
   const markers=spec.markers??[];
   if(markers.length<2)return null;
   const indices=markers.map(marker=>source.indexOf(marker));
@@ -113,7 +113,7 @@ function MarkdownSegment({text}:{text:string}){
 const typeDescription:Record<VisualSpec['type'],string>={
  numbered:'STEP-BY-STEP EXECUTION',criteria:'TESTABLE ACCEPTANCE MATRIX',chain:'REASONING SEQUENCE',
  authorities:'DECISION RIGHTS',propositions:'DISTINCT BUSINESS FACTS',status:'REJECTION PATHS',
- checklist:'CAPABILITY CONTRACT',evidence:'EVIDENCE HIERARCHY',definitions:'CONCEPTS, SEPARATED'
+ checklist:'CAPABILITY CONTRACT',evidence:'EVIDENCE HIERARCHY',definitions:'CONCEPTS, SEPARATED',hypotheses:'DIAGNOSTIC HYPOTHESES',qa:'ARCHITECTURAL CHALLENGES'
 };
 const typeQuestion:Record<VisualSpec['type'],string>={
  numbered:'Select a step to explain its responsibility and limit.',
@@ -124,7 +124,9 @@ const typeQuestion:Record<VisualSpec['type'],string>={
  status:'Do not handle every negative HTTP status as the same kind of failure.',
  checklist:'Each entry answers a different business-ownership question.',
  evidence:'Select an evidence level to inspect the exact claim it supports.',
- definitions:'Compare what each concept means—and what it cannot guarantee.'
+ definitions:'Compare what each concept means—and what it cannot guarantee.',
+ hypotheses:'Compare plausible mechanisms before assigning a root cause.',
+ qa:'Make the claim, then defend its exact scope and evidence.'
 };
 
 export default function StructuredPassage({source,spec}:{source:string;spec:VisualSpec}){
