@@ -124,3 +124,16 @@
 .structured-phase-boundary strong{color:var(--warning)}
 @media(max-width:1030px){.structured-phases{grid-template-columns:repeat(2,minmax(0,1fr))}.structured-phases>button:nth-child(2):after{display:none}}
 @media(max-width:520px){.structured-phases{grid-template-columns:1fr}.structured-phases>button{min-height:0}.structured-phases>button:after{display:none!important}.structured-phase-map{padding:13px}}
+
+
+/* Concept-definition comparison cards: terminology is visibly isolated rather than
+ * hidden in one paragraph containing four unrelated claims. */
+.structured-visual.visual-definitions{--visual-tone:var(--accent);background:var(--panel)}
+.visual-definitions .structured-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.visual-definitions .structured-tile{padding:20px;gap:13px;box-shadow:0 2px 13px color-mix(in srgb,var(--bg) 17%,transparent)}
+.visual-definitions .structured-tile-trigger{grid-template-columns:37px minmax(0,1fr);gap:10px;padding-bottom:13px;border-bottom:1px solid var(--line)}
+.visual-definitions .structured-tile-trigger strong{font-size:1rem}
+.visual-definitions .structured-tile-copy .structured-prose{font-size:.88rem;line-height:1.83}
+.visual-definitions .structured-tile-copy strong{text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 40%,transparent);text-underline-offset:4px}
+.visual-definitions .structured-why{border-left:4px solid var(--accent)}
+@media(max-width:800px){.visual-definitions .structured-grid{grid-template-columns:1fr}}
