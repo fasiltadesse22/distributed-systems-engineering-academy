@@ -27,7 +27,7 @@ describe('Lesson 1.1.3 complete Visual Textbook V2',()=>{
   });
   for(const term of ['PlaceOrderCommand','PlaceOrderOutcome','OrderRequestRecorded',
    'BusinessRejection','PENDING','NOT_STARTED','idempotency','acknowledgement',
-   'Restaurant','Payment','Refund','2026-11-09','18 Maven tests']){
+   'Restaurant','Payment','Refund','225db684a24080f2c4ad1ae6e2f5e259edf0aa7d','18 Maven tests']){
    expect(source.toLowerCase()).toContain(term.toLowerCase());
   }
  });

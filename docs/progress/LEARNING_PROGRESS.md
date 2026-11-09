@@ -12,12 +12,14 @@
 | Phase 0 — Academy V0.1 foundation, roadmap, blueprint and race lab | Verified | [Phase 0 checkpoint](../../checkpoints/PHASE_0_ACADEMY_V0_1.md) | Planning-only |
 | Cluster 1.1 → Chapter 1 → Lesson 1.1.1: actors, goals, responsibilities and capabilities | **Authored, interactive, browser-verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_1.md) | **Unchanged** |
 | Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
-| Lessons 1.1.3–1.1.20 | Not started | Blueprint only | Deferred |
+| Lesson 1.1.3: commands, decisions, facts and events | **Authored; academy verification pending** | [Deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
+| Lessons 1.1.4–1.1.20 | Not started | Blueprint only | Deferred |
 
 ## Current learning assets
 
 - [Full Lesson 1.1.1 manuscript](../../content/lessons/1.1.1.md).
 - [Full Lesson 1.1.2 manuscript](../../content/lessons/1.1.2.md).
+- [Full Lesson 1.1.3 manuscript](../../content/lessons/1.1.3.md), 16 topics with a command/fact visual and deterministic predictive lab.
 - [Applied Java execution walkthrough](../engineering/LESSON_1_1_2_APPLIED_WALKTHROUGH.md) with pinned Java source and test links.
 - React route: /#/lesson/1.1.2; interactive Use-Case Explorer, Scenario Studio, Acceptance Explorer, source trace, evidence room, diagnosis and defense.
 - [Domain discovery contract](../domain/CLUSTER_1_1_LESSON_1_1_1_DOMAIN_DISCOVERY.md).
@@ -30,9 +32,14 @@ A working academy simulator is educational modeling; it is **not** a verified Ja
 
 ## Next execution
 
-**Lesson 1.1.3 — Commands, decisions, facts and events**, only when requested. Build from the verified Java PlaceOrder request-intake fact and distinguish customer command intention from business outcome, without prematurely introducing Kafka, service extraction or event sourcing.
+**Lesson 1.1.4 — Business identity and authoritative state** follows after final academy verification of Lesson 1.1.3. Build from the stable OrderId, customer, restaurant and request/correlation identities and the typed local fact. Do not prematurely introduce external merchant or provider authority.
 
 
 ## Visual Textbook V2 presentation rebuild — 2026-11-09
 
 The authored Lessons 1.1.1 and 1.1.2 now use a source-preserving continuous technical reading canvas with contextual labs and minimal card nesting. The authoritative manuscripts and Java project remain unchanged. See [V2 design contract](../design/VISUAL_TEXTBOOK_V2.md) and [V2 verification checkpoint](../../checkpoints/VISUAL_TEXTBOOK_V2.md). Verified academy implementation commit `3ae5bd33e6d65c644c13756d8a525d9ccd48ac64` passed [37 unit/component tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42587354710) and [24 Chromium browser tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42587354632). Visual presentation is new; Java production capabilities are unchanged.
+
+
+## Lesson 1.1.3 applied evolution — 2026-11-09
+
+The [Java project](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/225db684a24080f2c4ad1ae6e2f5e259edf0aa7d) now returns explicit typed PlaceOrder decisions and a local OrderRequestRecorded fact only after normal repository save. [Post-merge CI 42590153411](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) passed 18 Maven tests and real packaged-app HTTP 201/422 smoke. The academy adds 16 deep-learning topics, a static causal-flow illustration and a deterministic browser simulation. This note does not claim academy verification until its final checks pass.

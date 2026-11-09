@@ -36,3 +36,8 @@ Complete source coverage across 27 topics; source-block fidelity and authored st
 ## Reuse for future lessons
 
 Write explanations before UI. Choose a sequence diagram for ordered operations, a comparison for independent concepts, a state model for legal transitions, and a small interactive lab only where varying inputs teaches a causal principle. Do not produce an unrelated card for every paragraph. Maintain authoritative source text, local business scope and executed evidence labels.
+
+
+## Lesson 1.1.3 application of the V2 design contract (2026-11-09)
+
+The commands/decisions/facts lesson reuses the single continuous reader and chapter→lesson→topic sidebar, adding only one static six-boundary process visualization and one input-consequential prediction lab inside the appropriate passages. Long technical prose remains readable and fully authored; source-backed Markdown tables classify business messages, rejections, facts and acknowledgements. No compulsory concept cards or extra reading modes are introduced. The deterministic lab is distinguished from the pinned 18-test Java execution evidence and from external merchant/provider facts.
