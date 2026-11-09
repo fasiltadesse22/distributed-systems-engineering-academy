@@ -6,6 +6,7 @@
  * excluding the section heading. Do not use a heuristic to embellish every paragraph.
  */
 export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status'|'checklist'|'evidence';
+export interface VisualPhase {label:string;from:number;to:number;detail:string}
 export interface VisualSpec{
  block:number;
  type:VisualType;
@@ -13,6 +14,7 @@ export interface VisualSpec{
  subtitle:string;
  labels?:string[];
  insights?:string[];
+ phases?:VisualPhase[];
  chainStart?:string;
  chainEnd?:string;
  suffixMarker?:string;
@@ -76,6 +78,12 @@ export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
     ]
   })],
   2:[v(1,'numbered','UC-001 · Normal flow','Trace one real request through the Spring Boot application. Select a step to inspect its responsibility and limitation.',{
+    phases:[
+      {label:'HTTP boundary',from:0,to:1,detail:'Parse and translate customer intent'},
+      {label:'Application rules',from:2,to:4,detail:'Use catalog facts, guard, calculate'},
+      {label:'Domain + storage',from:5,to:6,detail:'Create and store local intake'},
+      {label:'Resource response',from:7,to:7,detail:'201 Created; merchant and payment pending'}
+    ],
     labels:['Parse the request','Create the command','Read the demo catalog','Apply business guards','Calculate the quote','Create the domain fact','Persist the intake','Return an honest response'],
     insights:[
       'OrderController owns the HTTP boundary and structural checks. No business acceptance should be inferred from parsing JSON.',
