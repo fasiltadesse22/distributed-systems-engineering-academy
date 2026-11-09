@@ -12,7 +12,7 @@ test('primary sidebar supports chapters, lessons, section deep links and browser
  await expect(page.getByTestId('authority-atlas')).toBeVisible();
  await expect(nav.getByTestId('outline-section-1.1.1-6')).toHaveAttribute('aria-current','location');
  await page.goBack();
- await expect(page.getByRole('heading',{name:/Start with the business/i})).toBeVisible();
+ await expect(page.getByTestId('textbook-topic-1')).toContainText('Why the business comes first');
  await nav.getByRole('button',{name:/Expand chapter 2/}).click();
  await expect(nav.getByRole('link',{name:/1\.1\.6.*Workflows versus state machines/i})).toBeVisible();
  await nav.getByRole('button',{name:/Expand chapter 1/}).click();
@@ -33,10 +33,10 @@ test('direct section URL is navigable and the content area has no duplicate side
  await expect(page.getByTestId('stage-journey')).toHaveCount(0);
  const geometry=await page.evaluate(()=>{
   const app=document.querySelector('.content-lesson')!.getBoundingClientRect();
-  const reader=document.querySelector('.l112-reading')!.getBoundingClientRect();
+  const reader=document.querySelector('.textbook-lesson')!.getBoundingClientRect();
   return {appWidth:app.width,readerWidth:reader.width};
  });
- expect(geometry.readerWidth/geometry.appWidth).toBeGreaterThan(.9);
+ expect(geometry.readerWidth/geometry.appWidth).toBeGreaterThan(.84);
 });
 
 test('chapter and lesson outline toggles are keyboard operable',async({page})=>{

@@ -1,4 +1,4 @@
-# Distributed Systems Engineering Academy — React V0.1
+# Distributed Systems Engineering Academy — Visual Textbook V2
 
 A React + TypeScript interactive learning academy for **evidence-driven distributed systems architecture and system design**.
 
@@ -6,7 +6,7 @@ A React + TypeScript interactive learning academy for **evidence-driven distribu
 
 - [Master Roadmap V1.0](docs/roadmap/MASTER_ROADMAP_V1.md) — complete 19-phase, 93-cluster mastery boundary.
 - [Cluster 1.1 Deep-Learning Blueprint V0.1](docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) — 4 chapters, 20 lesson specifications, requirements coverage, 5 laboratory briefs, and Java evolution sequence.
-- [Visual-first deep learning design contract](docs/design/VISUAL_LESSON_EXPERIENCE_V1.md) — interactive diagrams, guided or full reading, and fidelity/accessibility requirements.
+- [Visual Textbook V2 design contract](docs/design/VISUAL_TEXTBOOK_V2.md) — continuous reading, source integrity, purposeful visuals and contextual laboratories.
 - [Authored Lesson 1.1.1](content/lessons/1.1.1.md) — 13-section actor authority manuscript and interactive exercises.
 - [Authored Lesson 1.1.2](content/lessons/1.1.2.md) — 14-section use-case discovery, real Java trace and scenario/acceptance labs.
 - [Applied Lesson 1.1.2 Java walkthrough](docs/engineering/LESSON_1_1_2_APPLIED_WALKTHROUGH.md) — verified Java code, tests, 201/422 runtime evidence and design alternatives.
@@ -37,20 +37,15 @@ npm run test:e2e  # requires Playwright Chromium installed
 
 GitHub Actions runs the same checks for every push and pull request. Inspect the actual results; an unexecuted or failing test is not verification.
 
-## Interactive visual learning (Lessons 1.1.1 and 1.1.2)
+## Visual Textbook V2 — an uncluttered technical reader
 
-**Navigation:** the global left menu expands chapters and their lessons, then the authored lesson's study sections. The entire body width is dedicated to visual diagrams, interactive labs, and descriptive reading. Direct links such as `/#/lesson/1.1.2?section=8` are bookmarkable and support browser back/forward. On mobile, open the main menu to navigate; selecting a section closes it and returns to the lesson content.
+Both complete lessons now read continuously on one calm page: 13 authored topics in Lesson 1.1.1, 14 in Lesson 1.1.2. The expandable Chapter → Lesson → Topic left menu stays the only lesson navigation. Bookmarkable links such as /#/lesson/1.1.2?section=3 scroll to their real heading; browser back/forward remains functional.
 
+The new reader does not impose a separate concept map, compulsory click-to-reveal panels, three takeaway cards, or a guided-step toggle in every section. It reserves diagrams and structure for knowledge that needs them: a compact four-definition comparison, a permanently readable eight-stage Java intake flow, independently listed acceptance criteria, decision rights and competing hypotheses. Original paragraphs remain available beside those presentations.
 
-Instead of displaying the manuscripts as long text blocks, both lesson routes use an expandable **Chapter → Lesson → Section** outline in the application's primary left sidebar, with 27 author-curated clickable causal/authority diagrams, revealable counterexamples, and interactive exercises ahead of guided reading. **Guided steps** shows smaller passages, while **Read all** displays every original authored block in sequence. Neither option removes technical depth. Conceptual and Java-implemented claims are labeled separately. Browser tests cover both formats, source fidelity, and phone usability.
+Interactive tools still appear **within** the relevant authored explanation: actor authority, business workflow, use-case discovery, scenario modeling, acceptance evidence, Java source tracing, diagnosis, defense and transfer. They retain their distinction between conceptual teaching and executed Java behavior.
 
-## Deep explanation: editorial reading layer
-
-The **Deep explanation** pane in each authored lesson is now an intentionally formatted technical reader, not a raw Markdown block. The original source text remains authoritative and complete. Each lesson section has exactly **three author-selected reading cues** with specific roles: **Core concept** (definition), **How it works** (causal mechanism), **Worked example** (application), **Important limit** (non-guarantee), **Evidence & scope** (what is actually demonstrated), or **Try this** (active reasoning). These cues use restrained color, semantic labels, and explanatory margin notes, not indiscriminate decoration.
-
-At the start of an explanation, **Three moments worth understanding** provides quick jumps to the selected concepts. **Guided steps** presents shorter consecutive ideas with meaningful editorial titles; **Read all** shows every original source block in order with the same annotations. Reader controls let learners increase text size, widen the reading measure, or turn highlighting off without dropping source material. Dark/light mode and mobile layouts remain supported.
-
-The curated editorial anchors are defined in `src/lessons/shared/readingEditorial.ts`; `ReadingArticle.tsx` renders source-preserving prose plus margin guidance. Tests validate the anchor positions across all 27 sections, original Markdown block ordering, both reading modes, and browser interactions. **Color has an explicit learning purpose rather than representing a business status or actual runtime evidence.**
+The original manuscripts are unchanged; tests audit their sections, source blocks and source-anchored editorial figures. For architecture and implementation details, see the [V2 reading design contract](docs/design/VISUAL_TEXTBOOK_V2.md).
 
 ## Implemented foundation
 

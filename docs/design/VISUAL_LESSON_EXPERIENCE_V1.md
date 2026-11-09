@@ -1,3 +1,5 @@
+> Historical V1 design only. Its click-through card reader has been superseded by [Visual Textbook V2](VISUAL_TEXTBOOK_V2.md). Do not use the retired components in new lessons.
+
 # Visual-First Deep Learning Experience — Design Contract V1
 
 **Scope:** Lessons 1.1.1 and 1.1.2, with a reusable foundation for later lessons.  

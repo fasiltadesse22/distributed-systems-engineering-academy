@@ -1,10 +1,6 @@
 import { useMemo, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
 import lessonSource from '../../../content/lessons/1.1.2.md?raw';
-import { StoryCanvas } from '../shared/StoryCanvas';
-import {editorialFor} from '../shared/readingEditorial';
-import {visualsFor} from '../shared/structuredVisuals';
-import { useCaseScenes } from './scenes';
+import TextbookReader, {type EmbeddedLab} from '../shared/TextbookReader';
 import {useCases, evaluateScenario,defaultScenario, acceptanceCases,traceSteps,diagnosticEvidence,platformBase,platformCommit,platformRun} from './model';
 import type {ScenarioInput} from './model';
 import './lesson.css';
@@ -119,39 +115,27 @@ function Retain(){
 }
 
 export default function Lesson112(){
- const [searchParams,setSearchParams]=useSearchParams();
- const requested=Number(searchParams.get('section')??'1');
- const index=Number.isInteger(requested)&&requested>=1&&requested<=lessonSections.length?requested-1:0;
- const [glossary,setGlossary]=useState(false);
- const current=lessonSections[index]??lessonSections[0];
- const nav=(i:number)=>setSearchParams({section:String(Math.max(1,Math.min(lessonSections.length,i+1)))});
- return <article className="l112-page" data-testid="lesson-1.1.2">
-  <header className="l112-hero">
-    <div>
-      <Label>CLUSTER 1.1 · CHAPTER 1 · COMPLETE LESSON 1.1.2</Label>
-      <h1>Business scenarios <em>& use-case discovery</em></h1>
-      <p>Explore what a customer requests, what the Java application can prove, and why restaurant acceptance and payment remain separate.</p>
-      <div className="l112-hero-tags"><span>Verified Java + React</span><span>{lessonSections.length} sections</span><span>13 Java tests · immutable source evidence</span></div>
-    </div>
-    <button type="button" className="l112-glossary-button" aria-expanded={glossary} onClick={()=>setGlossary(!glossary)}>{glossary?'Hide terminology':'Key terminology'} ↗</button>
-  </header>
-  <div className="l112-progress"><div><span style={{width:(100*(index+1)/lessonSections.length)+'%'}}/></div><small>Section {index+1} / {lessonSections.length}</small></div>
-  <div className="l112-reading">
-      {glossary&&<Note title="Precision vocabulary"><p><b>Capability:</b> durable business ability. <b>Use case:</b> actor-triggered goal with observable outcome. <b>Postcondition:</b> proposition true after a successful operation. <b>Rejection:</b> validly denied business request. <b>Intake:</b> request recorded, not necessarily approved. <b>Evidence:</b> result observed under a specific test/environment.</p></Note>}
-      <div className="l112-heading"><Label>{current.stage.toUpperCase()} · {String(index+1).padStart(2,'0')} / {lessonSections.length}</Label><h2>{current.title}</h2></div>
-      <StoryCanvas key={index} markdown={current.body} scene={useCaseScenes[index]} editorial={editorialFor('1.1.2',index)} visuals={visualsFor('1.1.2',index)}>
-        {index===6?<UseCaseExplorer/>
-          :index===7?<ScenarioStudio/>
-          :index===8?<AcceptanceExplorer/>
-          :index===9?<ExecutionTrace/>
-          :index===10?<VerificationPanel/>
-          :index===11?<DiagnosisRoom/>
-          :index===12?<DefenseStudio/>
-          :index===13?<Retain/>
-          :null}
-      </StoryCanvas>
-      <div className="l112-navigation"><button type="button" className="button secondary" disabled={index===0} onClick={()=>nav(index-1)}>← Previous section</button>{index<lessonSections.length-1?<button type="button" className="button primary" onClick={()=>nav(index+1)}>Continue: {lessonSections[index+1]?.stage} →</button>:<Link className="button primary" to="/blueprint">Return to blueprint ↗</Link>}</div>
-      <div className="l112-footer"><a href="https://github.com/fasiltadesse22/distributed-systems-engineering-academy/blob/main/content/lessons/1.1.2.md" target="_blank" rel="noreferrer">Complete manuscript ↗</a><a href={platformRun} target="_blank" rel="noreferrer">Verified Java CI ↗</a><a href={platformBase+'docs/usecases/UC-001-place-order.md'} target="_blank" rel="noreferrer">Formal UC-001 contract ↗</a></div>
+ const labs:Record<number,EmbeddedLab>={
+  6:{afterBlock:1,label:'Explore actor use cases',content:<UseCaseExplorer/>},
+  7:{afterBlock:1,label:'Predict real and conceptual outcomes',content:<ScenarioStudio/>},
+  8:{afterBlock:2,label:'Explore acceptance criteria',content:<AcceptanceExplorer/>},
+  9:{afterBlock:3,label:'Trace the implemented Java source',content:<ExecutionTrace/>},
+  10:{afterBlock:1,label:'Verification evidence',content:<VerificationPanel/>},
+  11:{afterBlock:2,label:'Incident diagnosis exercise',content:<DiagnosisRoom/>},
+  12:{afterBlock:3,label:'Architecture review exercise',content:<DefenseStudio/>},
+  13:{afterBlock:1,label:'Transfer and retain',content:<Retain/>}
+ };
+ return <TextbookReader meta={{
+  id:'1.1.2',
+  title:<>Business Scenarios & <em>Use-Case Discovery</em></>,
+  subtitle:'Follow customer intent through the first verified Java request-intake use case; make its business rules, failure paths and evidence visible without overstating merchant or payment authority.',
+  provenance:'Java 21 / Spring Boot · 13 verified tests',
+  repoUrl:'https://github.com/fasiltadesse22/distributed-systems-engineering-academy/blob/main/content/lessons/1.1.2.md',
+  sections:lessonSections,labs,
+  footer:<div className="textbook-end-links">
+    <a href={platformRun} target="_blank" rel="noreferrer">Executed Java CI evidence ↗</a>
+    <a href={platformBase+'docs/usecases/UC-001-place-order.md'} target="_blank" rel="noreferrer">UC-001 business contract ↗</a>
+    <a href={platformBase+'src/main/java/com/academy/foodordering/application/PlaceOrderService.java'} target="_blank" rel="noreferrer">Immutable Java implementation ↗</a>
   </div>
- </article>;
+ }}/>;
 }
