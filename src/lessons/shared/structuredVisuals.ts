@@ -5,7 +5,7 @@
  * Section/block numbers refer to canonical Markdown paragraph blocks after ##,
  * excluding the section heading. Do not use a heuristic to embellish every paragraph.
  */
-export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status';
+export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status'|'checklist'|'evidence';
 export interface VisualSpec{
  block:number;
  type:VisualType;
@@ -21,6 +21,16 @@ export type LessonKey='1.1.1'|'1.1.2';
 const v=(block:number,type:VisualType,title:string,subtitle:string,extra:Partial<VisualSpec>={}):VisualSpec=>({block,type,title,subtitle,...extra});
 export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
  '1.1.1':{
+  3:[v(3,'checklist','Five entries for every capability','Transform discovery into a reviewable ownership contract, not just a capability name.',{
+    labels:['Desired outcome','Accountable role','Initiating actors','Decision / fact authority','Observers / consumers'],
+    insights:[
+      'Define what value the enterprise must produce, independently of technology.',
+      'Accountability names who answers for the outcome even when execution is delegated.',
+      'Requesters and initiators must be distinguished from decision and fact owners.',
+      'Name who may accept/reject the request and whose evidence establishes the external outcome.',
+      'Identify which customers, services and operations roles must see a truthful representation.'
+    ]
+  })],
   4:[v(0,'authorities','Four separate layers of authority','Select each authority to understand why one actor rarely owns every proposition.',{
     labels:['Request authority','Policy authority','Decision authority','Fact authority'],
     insights:[
@@ -98,6 +108,16 @@ export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
       'Repeated identical POST currently produces different IDs. This documents missing idempotency rather than safe retries.',
       'The synthetic quote derives from server fixture prices; real merchant pricing remains outside scope.',
       'An unknown order ID gives 404 in the current process; no broader persistence claim follows.'
+    ]
+  })],
+  10:[v(1,'evidence','Five evidence levels · five different claims','Select an evidence type to distinguish what was genuinely executed from what remains unproven.',{
+    labels:['React prediction','TypeScript model unit test','Java application unit test','Spring MVC integration test','Packaged executable'],
+    insights:[
+      'A deterministic browser scenario states what the model predicts under chosen assumptions, not what a payment system performed.',
+      'A TypeScript test checks the educational engine, not an actual Java use case.',
+      'A service test directly executes Java application behavior under isolated test dependencies.',
+      'An MVC integration test exercises JSON mapping and Spring context wiring for a particular request.',
+      'A successful packaged-jar build proves packaging; separate running-jar HTTP smoke provides evidence of startup and a representative request.'
     ]
   })],
   12:[v(4,'chain','Staff-level reasoning chain','Follow a defensible architectural argument from business need to reconsideration forces.',{
