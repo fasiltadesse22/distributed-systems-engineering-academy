@@ -105,3 +105,22 @@
 
 .structured-visual.visual-checklist{--visual-tone:var(--accent)}
 .structured-visual.visual-evidence{--visual-tone:var(--success)}
+
+
+/* Single-process cause/effect layer map for UC-001, synchronized with eight steps. */
+.structured-phase-map{margin:18px 0 24px;padding:18px;background:var(--panel2);border:1px solid var(--line);border-radius:13px}
+.structured-phase-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.structured-phase-heading strong{font-size:.86rem;color:var(--white)}
+.structured-phase-heading small{font-size:.69rem;color:var(--muted)}
+.structured-phases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.structured-phases>button{display:grid;align-content:start;gap:8px;min-width:0;min-height:154px;text-align:left;color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px;position:relative}
+.structured-phases>button:not(:last-child):after{content:"›";position:absolute;right:-10px;top:40%;font-size:1.22rem;z-index:1;color:var(--visual-tone);text-shadow:0 0 5px var(--panel)}
+.structured-phases>button.active{border-color:var(--visual-tone);background:color-mix(in srgb,var(--visual-tone) 11%,var(--panel))}
+.structured-phases strong{font-size:.83rem;color:var(--white);line-height:1.4}
+.structured-phases small{font-size:.7rem;color:var(--muted);line-height:1.53}
+.structured-phase-index{font:.7rem ui-monospace,monospace;color:var(--visual-tone)}
+.structured-phase-range{font-size:.66rem;font-weight:800;letter-spacing:.02em;color:var(--visual-tone);margin-top:auto}
+.structured-phase-boundary{font-size:.72rem;color:var(--muted);padding-top:13px;margin:13px 0 0;border-top:1px solid var(--line);line-height:1.6}
+.structured-phase-boundary strong{color:var(--warning)}
+@media(max-width:1030px){.structured-phases{grid-template-columns:repeat(2,minmax(0,1fr))}.structured-phases>button:nth-child(2):after{display:none}}
+@media(max-width:520px){.structured-phases{grid-template-columns:1fr}.structured-phases>button{min-height:0}.structured-phases>button:after{display:none!important}.structured-phase-map{padding:13px}}
