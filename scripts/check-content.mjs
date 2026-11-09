@@ -55,7 +55,7 @@ for (const stage of ['Orient','Understand','Explore','Predict','Engineer','Verif
 }
 assert.ok(lesson113.trim().split(/\s+/).length>7000,'Lesson 1.1.3 depth must not be summarized away');
 for (const term of ['PlaceOrderCommand','PlaceOrderOutcome','OrderRequestRecorded',
-  'BusinessRejection','idempotency','acknowledgement','unknown outcome',
+  'BusinessRejection','idempotency','acknowledgement','unknown effect',
   'Payment','Restaurant','refund','diagnose','18 Maven tests','225db684a24080f2c4ad1ae6e2f5e259edf0aa7d']){
   assert.ok(lesson113.toLowerCase().includes(term.toLowerCase()),'Missing command/fact learning obligation '+term);
 }
