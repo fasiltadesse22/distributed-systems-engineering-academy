@@ -102,3 +102,6 @@
 .reader-passage.is-structured>.reader-passage-main{max-width:none;width:100%}
 .reader-passage.is-structured .structured-visual{width:100%}
 .reader-passage.is-structured .reader-margin-cue{display:none}
+
+.structured-visual.visual-checklist{--visual-tone:var(--accent)}
+.structured-visual.visual-evidence{--visual-tone:var(--success)}
