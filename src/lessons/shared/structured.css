@@ -137,3 +137,12 @@
 .visual-definitions .structured-tile-copy strong{text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--accent) 40%,transparent);text-underline-offset:4px}
 .visual-definitions .structured-why{border-left:4px solid var(--accent)}
 @media(max-width:800px){.visual-definitions .structured-grid{grid-template-columns:1fr}}
+
+
+/* Review-style interactions: hypotheses are alternatives, not facts; defense
+ * questions are checks on a claim, not declarations of runtime behavior. */
+.structured-visual.visual-hypotheses{--visual-tone:var(--warning)}
+.structured-visual.visual-qa{--visual-tone:#ac90e7}
+.visual-hypotheses .structured-tile,.visual-qa .structured-tile{border-radius:11px}
+.visual-qa .structured-why{border-left:4px solid var(--visual-tone)}
+:root[data-theme="light"] .structured-visual.visual-qa{--visual-tone:#65509e}
