@@ -15,7 +15,7 @@ function Brand() {
 }
 function ScrollTop() {
   const { pathname, search } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname, search]);
+  useEffect(() => { if (pathname.startsWith('/lesson/') && search.includes('section=')) return; window.scrollTo(0, 0); }, [pathname, search]);
   return null;
 }
 function Shell() {
