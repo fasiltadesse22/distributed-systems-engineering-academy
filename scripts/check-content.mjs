@@ -46,6 +46,21 @@ for (const stage of ['Orient','Understand','Explore','Predict','Engineer','Verif
 for (const term of ['HTTP 201','422','PENDING','NOT_STARTED','Restaurant','Payment','Acceptance','diagnosis','Java']) {
   assert.ok(lesson112.toLowerCase().includes(term.toLowerCase()),'Missing use-case learning obligation '+term);
 }
+
+const lesson113 = fs.readFileSync('content/lessons/1.1.3.md','utf8');
+const sections113 = [...lesson113.matchAll(/^## (Orient|Understand|Explore|Predict|Engineer|Verify|Diagnose|Defend|Retain) — .+$/gm)];
+assert.equal(sections113.length,16,'Lesson 1.1.3 must preserve all 16 deep technical sections');
+for (const stage of ['Orient','Understand','Explore','Predict','Engineer','Verify','Diagnose','Defend','Retain']){
+  assert.ok(sections113.some(s=>s[1]===stage),'Lesson 1.1.3 missing learning stage '+stage);
+}
+assert.ok(lesson113.trim().split(/\s+/).length>7000,'Lesson 1.1.3 depth must not be summarized away');
+for (const term of ['PlaceOrderCommand','PlaceOrderOutcome','OrderRequestRecorded',
+  'BusinessRejection','idempotency','acknowledgement','unknown outcome',
+  'Payment','Restaurant','refund','diagnose','18 Maven tests','225db684a24080f2c4ad1ae6e2f5e259edf0aa7d']){
+  assert.ok(lesson113.toLowerCase().includes(term.toLowerCase()),'Missing command/fact learning obligation '+term);
+}
+console.log('Lesson 1.1.3 content audit passed: 16 deep sections, nine stages, real Java command/fact evidence.');
+
 console.log('Lesson 1.1.2 content audit passed: 14 sections, nine learning stages, use-case semantics and boundaries.');
 console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
