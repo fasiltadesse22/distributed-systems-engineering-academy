@@ -1,9 +1,8 @@
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import {kindNames} from './readingEditorial';
 import type {ReadingAnnotation,ReadingEditorial,ReadingKind} from './readingEditorial';
 import './reader.css';
 import StructuredPassage from './StructuredPassage';
+import ReadableProse from './ReadableProse';
 import type {VisualSpec} from './structuredVisuals';
 
 export const readingBlocks=(markdown:string)=>markdown.trim().split(/\n\s*\n/).filter(Boolean);
@@ -36,11 +35,7 @@ function ReadingPassage({block,annotation,cues,visual}:{block:string;annotation?
  return <div className={'reader-passage'+(heading?' is-heading':'')+(kind?' is-annotated kind-'+kind:'')+(visual?' is-structured':'')}
    data-source-block={block ? 'preserved' : undefined} data-kind={kind??'narrative'}>
    <div className="reader-passage-main">
-    {visual?<StructuredPassage source={block} spec={visual}/>:<div className="reader-prose markdown">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{strong:({children})=>
-        <strong className={'reader-strong'+(kind?' reader-strong-'+kind:'')}>{children}</strong>
-      }}>{block}</ReactMarkdown>
-    </div>}
+    {visual?<StructuredPassage source={block} spec={visual}/>:<ReadableProse source={block}/>}
    </div>
    {annotation&&cues&&!visual&&<aside className="reader-margin-cue" aria-label={kindNames[annotation.kind]+' reading guidance'}>
      <span className="reader-cue-label"><span className="reader-cue-dot" aria-hidden="true"/>{kindNames[annotation.kind]}</span>
