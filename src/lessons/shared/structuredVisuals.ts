@@ -5,7 +5,7 @@
  * Section/block numbers refer to canonical Markdown paragraph blocks after ##,
  * excluding the section heading. Do not use a heuristic to embellish every paragraph.
  */
-export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status'|'checklist'|'evidence'|'definitions';
+export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status'|'checklist'|'evidence'|'definitions'|'hypotheses'|'qa';
 export interface VisualPhase {label:string;from:number;to:number;detail:string}
 export interface VisualSpec{
  block:number;
@@ -164,7 +164,29 @@ export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
       'A successful packaged-jar build proves packaging; separate running-jar HTTP smoke provides evidence of startup and a representative request.'
     ]
   })],
-  12:[v(4,'chain','Staff-level reasoning chain','Follow a defensible architectural argument from business need to reconsideration forces.',{
+  11:[v(0,'hypotheses','Five competing explanations for a missing confirmation','Investigate the exact unfulfilled promise before prescribing a queue or retry mechanism.',{
+    markers:['First: a **semantic misunderstanding**','Second: a **UI contract error**','Third: an **ephemeral storage limitation**','Fourth: a **missing integration**','Fifth: an **ambiguous retry**'],
+    labels:['Wrong expectation','Misleading UI','Lost local state','Missing merchant workflow','Duplicate request'],
+    insights:[
+      'HTTP 201 proves local intake. A merchant confirmation must have its own authority and evidence.',
+      'The UI must not translate a pending intake into the claim that the restaurant has accepted.',
+      'A successful local write in a volatile process does not survive restarting the instance.',
+      'A merchant notification/decision use case is separate work and is not currently deployed.',
+      'Two requests can create two intake IDs because X-Request-ID is correlation, not idempotency.'
+    ]
+  })],
+  12:[v(3,'qa','Five adversarial questions','Examine each short answer, then justify the reason it is true rather than memorizing Yes or No.',{
+    markers:['Does HTTP 201','Is an X-Request-ID','Does a fixture price','Are microservices mandatory','Could a 201 coexist'],
+    labels:['201 ≠ full success','Correlation ≠ idempotency','Fixture ≠ production price','Distribution ≠ requirement','201 + later rejection'],
+    insights:[
+      'The response only attests a locally created intake resource, not merchant fulfillment.',
+      'A request correlation ID helps tracing; it does not safely deduplicate business operations.',
+      'A controlled demo catalog reduces client price tampering but supplies no live commercial contract.',
+      'Distribution adds failure windows and must be justified by architectural forces and evidence.',
+      'The first result can truthfully indicate intake while a later merchant decision is rejection.'
+    ]
+  }),
+  v(4,'chain','Staff-level reasoning chain','Follow a defensible architectural argument from business need to reconsideration forces.',{
     chainStart:'business capability',chainEnd:'next forces',
     insights:[
       'Start from the durable enterprise ability to provide value.',
