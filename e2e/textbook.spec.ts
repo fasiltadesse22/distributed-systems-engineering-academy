@@ -39,7 +39,7 @@ test('acceptance criteria remain seven independently legible outcomes',async({pa
  await page.goto('/#/lesson/1.1.2?section=9');
  const criteria=page.getByTestId('textbook-topic-9').getByTestId('textbook-criteria');
  await expect(criteria.locator('dt')).toHaveText(['AC-01','AC-02','AC-03','AC-04','AC-05','AC-06','AC-07']);
- await expect(criteria).toContainText('ITEM_UNAVAILABLE');
+ await expect(criteria).toContainText('422 with a business rejection');
  await expect(criteria).toContainText('distinct order IDs');
 });
 
