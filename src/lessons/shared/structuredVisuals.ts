@@ -5,7 +5,7 @@
  * Section/block numbers refer to canonical Markdown paragraph blocks after ##,
  * excluding the section heading. Do not use a heuristic to embellish every paragraph.
  */
-export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status'|'checklist'|'evidence';
+export type VisualType='numbered'|'criteria'|'chain'|'authorities'|'propositions'|'status'|'checklist'|'evidence'|'definitions';
 export interface VisualPhase {label:string;from:number;to:number;detail:string}
 export interface VisualSpec{
  block:number;
@@ -18,6 +18,8 @@ export interface VisualSpec{
  chainStart?:string;
  chainEnd?:string;
  suffixMarker?:string;
+ markers?:string[];
+ tailStart?:string;
 }
 export type LessonKey='1.1.1'|'1.1.2';
 const v=(block:number,type:VisualType,title:string,subtitle:string,extra:Partial<VisualSpec>={}):VisualSpec=>({block,type,title,subtitle,...extra});
@@ -68,13 +70,36 @@ export const structuredVisuals:Record<LessonKey,Record<number,VisualSpec[]>>={
   })]
  },
  '1.1.2':{
-  1:[v(2,'propositions','Four separate business propositions','Observe the difference between intention, a local fact and decisions owned by others.',{
-    labels:['Customer intent','Platform intake','Restaurant acceptance','Provider financial result'],
+  1:[
+    v(0,'definitions','Four different levels of specification','Compare the definitions and notice what each one adds. These are not interchangeable names for an API.',{
+      markers:['A **business capability**','A **use case**','A **user story**','An **endpoint**'],
+      labels:['Business capability','Use case','User story','Endpoint'],
+      insights:[
+        'A durable enterprise ability: managing customer intent or coordinating fulfillment exists independently of who builds it or how it is deployed.',
+        'A testable interaction contract: actor, trigger, preconditions, rejections and observable postconditions make success precise.',
+        'A planning statement about desired value. A story motivates discovery; by itself it does not decide what HTTP 201 means.',
+        'A transport entry point for executing part of a use case. A URL does not authorize restaurant acceptance or money movement.'
+      ]
+    }),
+    v(2,'propositions','Four separate business propositions','Observe the difference between intention, a local fact and decisions owned by others.',{
+      labels:['Customer intent','Platform intake','Restaurant acceptance','Provider financial result'],
+      insights:[
+        'A customer expresses what they want; the supplied UUID is not authenticated by this teaching API.',
+        'The platform can assert that it recorded an intake resource within its own process. This is the only implemented local fact.',
+        'A merchant must decide whether it can fulfill an order. A static fixture cannot establish that decision.',
+        'The financial provider is authoritative for operations it actually performs. No provider operation happens here.'
+      ]
+    })
+  ],
+  3:[v(1,'definitions','The anatomy of an executable use case','A trigger, precondition, guard and postcondition each answer a different question.',{
+    markers:['A **trigger**','A **precondition**','A **guard**','A **postcondition**'],
+    tailStart:'In this lesson',
+    labels:['Trigger','Precondition','Guard','Postcondition'],
     insights:[
-      'A customer expresses what they want; the supplied UUID is not authenticated by this teaching API.',
-      'The platform can assert that it recorded an intake resource within its own process. This is the only implemented local fact.',
-      'A merchant must decide whether it can fulfill an order. A static fixture cannot establish that decision.',
-      'The financial provider is authoritative for operations it actually performs. No provider operation happens here.'
+      'What starts the interaction? This is not the same as permission to succeed.',
+      'What must already be true before a successful business action is possible?',
+      'Which business rule checks whether a transition or action is legal right now?',
+      'What observable fact is established after successful execution, and who can legitimately assert it?'
     ]
   })],
   2:[v(1,'numbered','UC-001 · Normal flow','Trace one real request through the Spring Boot application. Select a step to inspect its responsibility and limitation.',{
