@@ -58,7 +58,7 @@ describe('structurally redesigned deep explanations',()=>{
   const authority=parseStructuredParagraph(sections(source111)[4][0],visualsFor('1.1.1',4)[0])!;
   expect(authority.items).toHaveLength(4);
   expect(authority.items[3].source).toContain('whose evidence');
-  const chain=parseStructuredParagraph(sections(source112)[12][4],visualsFor('1.1.2',12)[0])!;
+  const chain=parseStructuredParagraph(sections(source112)[12][4],visualsFor('1.1.2',12).find(spec=>spec.type==='chain')!)!;
   expect(chain.items).toHaveLength(9);
   expect(chain.items[8].source).toBe('next forces');
  });
