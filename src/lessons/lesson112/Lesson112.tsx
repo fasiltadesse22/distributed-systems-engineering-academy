@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import lessonSource from '../../../content/lessons/1.1.2.md?raw';
+import { StoryCanvas } from '../shared/StoryCanvas';
+import { useCaseScenes } from './scenes';
 import {useCases, evaluateScenario,defaultScenario, acceptanceCases,traceSteps,diagnosticEvidence,platformBase,platformCommit,platformRun} from './model';
 import type {ScenarioInput} from './model';
 import './lesson.css';
@@ -128,16 +128,17 @@ export default function Lesson112(){
     <div className="l112-reading">
       {glossary&&<Note title="Precision vocabulary"><p><b>Capability:</b> durable business ability. <b>Use case:</b> actor-triggered goal with observable outcome. <b>Postcondition:</b> proposition true after a successful operation. <b>Rejection:</b> validly denied business request. <b>Intake:</b> request recorded, not necessarily approved. <b>Evidence:</b> result observed under a specific test/environment.</p></Note>}
       <div className="l112-heading"><Label>{current.stage.toUpperCase()} · {String(index+1).padStart(2,'0')} / {lessonSections.length}</Label><h2>{current.title}</h2></div>
-      {index===0&&<div className="l112-overview-flow"><Label>BUSINESS AUTHORITY ≠ DEPLOYMENT TOPOLOGY</Label><div><span>Customer request</span><span>→</span><strong>Platform records intake</strong><span>⋯</span><span>Restaurant decision (future)</span><span>⋯</span><span>Payment provider (future)</span></div><p>Solid: implemented Spring Boot intake. Dotted: separate, not implemented business authorities.</p></div>}
-      <div className="l112-markdown markdown"><ReactMarkdown remarkPlugins={[remarkGfm]}>{current.body}</ReactMarkdown></div>
-      {index===6&&<UseCaseExplorer/>}
-      {index===7&&<ScenarioStudio/>}
-      {index===8&&<AcceptanceExplorer/>}
-      {index===9&&<ExecutionTrace/>}
-      {index===10&&<VerificationPanel/>}
-      {index===11&&<DiagnosisRoom/>}
-      {index===12&&<DefenseStudio/>}
-      {index===13&&<Retain/>}
+      <StoryCanvas key={index} markdown={current.body} scene={useCaseScenes[index]}>
+        {index===6?<UseCaseExplorer/>
+          :index===7?<ScenarioStudio/>
+          :index===8?<AcceptanceExplorer/>
+          :index===9?<ExecutionTrace/>
+          :index===10?<VerificationPanel/>
+          :index===11?<DiagnosisRoom/>
+          :index===12?<DefenseStudio/>
+          :index===13?<Retain/>
+          :null}
+      </StoryCanvas>
       <div className="l112-navigation"><button type="button" className="button secondary" disabled={index===0} onClick={()=>nav(index-1)}>← Previous section</button>{index<lessonSections.length-1?<button type="button" className="button primary" onClick={()=>nav(index+1)}>Continue: {lessonSections[index+1]?.stage} →</button>:<Link className="button primary" to="/blueprint">Return to blueprint ↗</Link>}</div>
       <div className="l112-footer"><a href="https://github.com/fasiltadesse22/distributed-systems-engineering-academy/blob/main/content/lessons/1.1.2.md" target="_blank" rel="noreferrer">Complete manuscript ↗</a><a href={platformRun} target="_blank" rel="noreferrer">Verified Java CI ↗</a><a href={platformBase+'docs/usecases/UC-001-place-order.md'} target="_blank" rel="noreferrer">Formal UC-001 contract ↗</a></div>
     </div>
