@@ -122,13 +122,14 @@ export default function StructuredPassage({source,spec}:{source:string;spec:Visu
        </div>
      </li>)}
    </ol>:<div className={'structured-grid'+(parsed.items.length>=5?' large':'')} role="group" aria-label={spec.title+' items'}>
-     {parsed.items.map((item,i)=><button type="button" key={i}
-       className={'structured-tile'+(active===i?' selected':'')} aria-pressed={active===i}
-       aria-label={'Inspect '+item.label} onClick={()=>setActive(i)}>
-       <span className="structured-tile-index">{String(i+1).padStart(2,'0')}</span>
-       <strong>{item.label}</strong>
+     {parsed.items.map((item,i)=><div key={i} className={'structured-tile'+(active===i?' selected':'')}>
+       <button type="button" className="structured-tile-trigger" aria-pressed={active===i}
+         aria-label={'Inspect '+item.label} onClick={()=>setActive(i)}>
+         <span className="structured-tile-index">{String(i+1).padStart(2,'0')}</span>
+         <strong>{item.label}</strong>
+       </button>
        <div className="structured-tile-copy"><MarkdownSegment text={item.source}/></div>
-     </button>)}
+     </div>)}
    </div>}
    {!isFlow&&<aside className="structured-why" aria-live="polite" aria-label="Selected item explanation">
      <div className="structured-why-mark" aria-hidden="true">{String(active+1).padStart(2,'0')}</div>
