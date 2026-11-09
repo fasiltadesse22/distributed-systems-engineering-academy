@@ -25,7 +25,7 @@ test('Lesson 1.1.3 rejects invalid fixture requests without recording success fa
  await expect(result.getByTestId('modeled-intakes')).toHaveText('0');
  await expect(result.getByTestId('modeled-facts')).toHaveText('0');
  await expect(result).toContainText('422');
- await expect(result).toContainText('NOT LIVE JAVA');
+ await expect(lab).toContainText('NOT LIVE JAVA');
 });
 
 test('retry and lost acknowledgements are distinguished without inventing payment',async({page})=>{
