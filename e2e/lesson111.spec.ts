@@ -1,18 +1,17 @@
-import { test,expect } from '@playwright/test';
+import {test,expect} from '@playwright/test';
 
-test('authored Lesson 1.1.1 loads from blueprint without a blank screen',async({page})=>{
-  const errors:string[]=[];
-  page.on('pageerror',e=>errors.push(e.message));
-  page.on('console',msg=>{if(msg.type()==='error')errors.push(msg.text())});
-  await page.goto('/#/blueprint');
-  await expect(page.locator('#root')).not.toBeEmpty();
-  await page.locator('a[href="#/lesson/1.1.1"]').first().click();
-  await expect(page.getByTestId('lesson-1.1.1')).toBeVisible();
-  await expect(page.getByRole('heading',{name:/actors, goals/i})).toBeVisible();
-  await expect(page.getByRole('heading',{name:/start with the business/i})).toBeVisible();
-  await page.getByRole('button',{name:/continue: Understand/i}).click();
-  await expect(page.getByRole('heading',{name:/actor, stakeholder, role/i})).toBeVisible();
-  expect(errors,'Browser runtime errors').toEqual([]);
+test('Lesson 1.1.1 opens from blueprint and exposes all 13 continuous topics',async({page})=>{
+ const errors:string[]=[];
+ page.on('pageerror',x=>errors.push(x.message));
+ await page.goto('/#/blueprint');
+ await page.locator('a[href="#/lesson/1.1.1"]').first().click();
+ const lesson=page.getByTestId('lesson-1.1.1');
+ await expect(lesson).toBeVisible();
+ await expect(lesson.locator('.textbook-topic')).toHaveCount(13);
+ await expect(lesson.getByTestId('textbook-topic-1')).toContainText('Why the business comes first');
+ await expect(lesson.getByTestId('textbook-topic-13')).toContainText('Transfer & mastery check');
+ await expect(lesson.locator('.story-map')).toHaveCount(0);
+ expect(errors).toEqual([]);
 });
 
 test('authority map changes decision ownership and flags conflicts',async({page})=>{

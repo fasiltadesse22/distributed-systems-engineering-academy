@@ -2,16 +2,17 @@ import {test,expect} from '@playwright/test';
 const route='/#/lesson/1.1.2';
 const section=(page:import('@playwright/test').Page,index:number)=>page.getByTestId('outline-section-1.1.2-'+(index+1));
 
-test('Lesson 1.1.2 mounts without blank screen or JS exception and progresses between sections',async({page})=>{
+test('Lesson 1.1.2 mounts and presents all 14 topics without reading gates',async({page})=>{
  const errors:string[]=[];
- page.on('pageerror',e=>errors.push(e.message));
+ page.on('pageerror',x=>errors.push(x.message));
  await page.goto('/#/blueprint');
  await page.locator('a[href="#/lesson/1.1.2"]').first().click();
- await expect(page.getByTestId('lesson-1.1.2')).toBeVisible();
- await expect(page.getByRole('heading',{name:/Business scenarios/i})).toBeVisible();
- await expect(page.getByRole('heading',{name:/business question behind POST/i})).toBeVisible();
- await page.getByRole('button',{name:/continue: Understand/i}).click();
- await expect(page.getByRole('heading',{name:/capabilities, use cases/i})).toBeVisible();
+ const lesson=page.getByTestId('lesson-1.1.2');
+ await expect(lesson).toBeVisible();
+ await expect(lesson.locator('.textbook-topic')).toHaveCount(14);
+ await expect(lesson.getByTestId('textbook-topic-3')).toContainText('UC-001');
+ await expect(lesson.getByTestId('textbook-topic-14')).toContainText('booking');
+ await expect(lesson.locator('.story-reading')).toHaveCount(0);
  expect(errors).toEqual([]);
 });
 
