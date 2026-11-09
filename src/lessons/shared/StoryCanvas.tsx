@@ -1,6 +1,4 @@
 import {useMemo,useState} from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 import {ReadingArticle,buildReadingRanges,beatForBlock} from './ReadingArticle';
 import {kindNames} from './readingEditorial';
 import type {ReadingEditorial} from './readingEditorial';

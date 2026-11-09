@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import lessonSource from '../../../content/lessons/1.1.2.md?raw';
 import { StoryCanvas } from '../shared/StoryCanvas';
+import {editorialFor} from '../shared/readingEditorial';
 import { useCaseScenes } from './scenes';
 import {useCases, evaluateScenario,defaultScenario, acceptanceCases,traceSteps,diagnosticEvidence,platformBase,platformCommit,platformRun} from './model';
 import type {ScenarioInput} from './model';
@@ -137,7 +138,7 @@ export default function Lesson112(){
   <div className="l112-reading">
       {glossary&&<Note title="Precision vocabulary"><p><b>Capability:</b> durable business ability. <b>Use case:</b> actor-triggered goal with observable outcome. <b>Postcondition:</b> proposition true after a successful operation. <b>Rejection:</b> validly denied business request. <b>Intake:</b> request recorded, not necessarily approved. <b>Evidence:</b> result observed under a specific test/environment.</p></Note>}
       <div className="l112-heading"><Label>{current.stage.toUpperCase()} · {String(index+1).padStart(2,'0')} / {lessonSections.length}</Label><h2>{current.title}</h2></div>
-      <StoryCanvas key={index} markdown={current.body} scene={useCaseScenes[index]}>
+      <StoryCanvas key={index} markdown={current.body} scene={useCaseScenes[index]} editorial={editorialFor('1.1.2',index)}>
         {index===6?<UseCaseExplorer/>
           :index===7?<ScenarioStudio/>
           :index===8?<AcceptanceExplorer/>
