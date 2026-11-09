@@ -40,7 +40,7 @@ export function simulateCommand(id:ScenarioId):ModelOutcome{
   limitation:'Fixture rejection is not a real merchant refusal.',
   steps:[receive,evaluate,step('Rejection','An unavailable fixture item causes Rejected(code, message).','Local application decision'),
    step('No success fact','Handler does not save an intake or return OrderRequestRecorded.','Local rule-before-write behavior'),
-   step('Acknowledgement','Compatibility HTTP path maps rejection to 422.','Platform response')]}
+   step('Acknowledgement','Compatibility HTTP path maps rejection to 422.','Platform response')]
  }
  if(id==='repeat')return{
   scenario:id,prediction:'duplicate',headline:'Two requests · two distinct intake identities',
@@ -50,7 +50,7 @@ export function simulateCommand(id:ScenarioId):ModelOutcome{
   steps:[receive,evaluate,step('First save','First Order is written to the process-local repository.','Local storage'),
    step('First fact','OrderRequestRecorded refers to first OrderId.','Local fact after normal save'),
    step('Second POST','Identical payload is treated as a new command; new OrderId saved.','No idempotency guarantee'),
-   step('Second fact','Another local fact refers to the new OrderId.','Local fact after normal save')]}
+   step('Second fact','Another local fact refers to the new OrderId.','Local fact after normal save')]
  }
  if(id==='lost-ack')return{
   scenario:id,prediction:'unseen',headline:'Local fact exists · client has no acknowledgement',
@@ -59,7 +59,7 @@ export function simulateCommand(id:ScenarioId):ModelOutcome{
   limitation:'A timeout cannot prove that the first intent was rejected or safely retried.',
   steps:[receive,evaluate,step('Save','One process-local Order intake is stored.','Local storage'),
    step('Fact','Recorded(Order, OrderRequestRecorded) is returned internally.','Local program observation'),
-   step('Lost response','The response is lost before the client sees 201.','Transport observation')]}
+   step('Lost response','The response is lost before the client sees 201.','Transport observation')]
  }
  if(id==='write-then-throw')return{
   scenario:id,prediction:'uncertain',headline:'A write occurred in the model, but no successful result returned',
@@ -68,7 +68,7 @@ export function simulateCommand(id:ScenarioId):ModelOutcome{
   limitation:'This models a possible failure window; it does not claim the normal ConcurrentHashMap adapter always behaves this way.',
   steps:[receive,evaluate,step('Attempted save','Failure-injection adapter stores Order then throws.','Simulated storage adapter'),
    step('No returned fact','No Recorded outcome is returned by the handler.','Application exception path'),
-   step('Unknown acknowledgement','Caller cannot conclude that the record is absent.','Client perspective')]}
+   step('Unknown acknowledgement','Caller cannot conclude that the record is absent.','Client perspective')]
  }
  return{
   scenario:'valid',prediction:'recorded',headline:'One local intake recorded · 201 Created',
@@ -77,6 +77,6 @@ export function simulateCommand(id:ScenarioId):ModelOutcome{
   limitation:'Not crash-durable; not merchant acceptance; no payment provider was called.',
   steps:[receive,evaluate,step('Save','A new immutable Order intake is stored locally.','Process-local repository'),
    step('Fact','OrderRequestRecorded is created after normal save return.','Local handler observation'),
-   step('Acknowledgement','The HTTP controller returns 201 Created for intake only.','Platform response')]}
+   step('Acknowledgement','The HTTP controller returns 201 Created for intake only.','Platform response')]
  }
 }
