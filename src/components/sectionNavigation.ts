@@ -2,7 +2,7 @@
  * The learning stage remains in the body, but does not dominate every nav item.
  * Ordered to match the canonical ## sections (tested against the manuscripts).
  */
-export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3',readonly string[]>={
+export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4',readonly string[]>={
  '1.1.1':[
   'Why the business comes first',
   'Actors, stakeholders & roles',
@@ -51,10 +51,28 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3',readonly stri
   'Diagnose a missing intake',
   'Defend architectural choices',
   'Transfer and mastery gate'
+ ],
+ '1.1.4':[
+  'Why identity and authority matter',
+  'Identity vs state and history',
+  'Order, customer and attempt IDs',
+  'Natural keys, aliases and scopes',
+  'Versions and legitimate updates',
+  'Authority vs UI projections',
+  'Two attempts, one order',
+  'Merchant aliases and callbacks',
+  'Predict identity changes',
+  'Trace the typed Java IDs',
+  'Design trade-offs and triggers',
+  'Tests and identity evidence',
+  'Diagnose a disputed Paid status',
+  'Defend ownership and continuity',
+  'Explain to four audiences',
+  'Transfer and mastery gate'
  ]
 };
 export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string{
- if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'){
+ if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'){
   return lessonNavigationTitles[lessonId][index]??fallback;
  }
  return fallback;
