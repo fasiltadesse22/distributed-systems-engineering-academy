@@ -31,7 +31,7 @@ A new request produces an intake resource, not restaurant acceptance or financia
 
 ## Quality gates
 
-Complete source coverage across 27 topics; source-block fidelity and authored structural markers; no unsupported business assertions; preserved exercise behavior; precise immutable Java source links; TypeScript; unit/model/component tests; production build; desktop and narrow/mobile Chromium; sidebar deep links and browser history; dark/light styling; keyboard navigability and no blank-startup regression. Any failing check is reported rather than described as passed.
+Complete source coverage across 27 topics; source-block fidelity and authored structural markers; no unsupported business assertions; preserved exercise behavior; precise immutable Java source links; TypeScript; unit/model/component tests; production build; desktop Chromium (mobile browser testing not required for Lessons 1.1.4 onward); sidebar deep links and browser history; dark/light styling; keyboard navigability and no blank-startup regression. Any failing check is reported rather than described as passed.
 
 ## Reuse for future lessons
 
@@ -41,3 +41,15 @@ Write explanations before UI. Choose a sequence diagram for ordered operations, 
 ## Lesson 1.1.3 application of the V2 design contract (2026-11-09)
 
 The commands/decisions/facts lesson reuses the single continuous reader and chapter→lesson→topic sidebar, adding only one static six-boundary process visualization and one input-consequential prediction lab inside the appropriate passages. Long technical prose remains readable and fully authored; source-backed Markdown tables classify business messages, rejections, facts and acknowledgements. No compulsory concept cards or extra reading modes are introduced. The deterministic lab is distinguished from the pinned 18-test Java execution evidence and from external merchant/provider facts.
+
+
+## Lesson 1.1.4 extension (2026-11-10)
+
+The authoritative Visual Textbook V2 design remains unchanged: one continuous chapter, one expandable primary left outline and no mandatory click-through text cards. Lesson 1.1.4 adds 16 topic-linked chapters, an inline static identity/authority graph, a compact source-versus-projection sequence, and one seven-case deterministic prediction lab. The static graph distinguishes **implemented** OrderId, CustomerId and RestaurantId from **conceptual future** PaymentAttemptId/provider references and a **derived UI** that cannot assert financial truth. The lab displays the same evidence distinction explicitly.
+
+Illustrations use low-chrome separators and readable lines rather than stacking large cards. The original, complete 10k-word technical manuscript remains the authoritative source; no new generic Markdown-fragmentation logic was introduced. Real Java evidence is linked by immutable SHA and CI run. Existing Lessons 1.1.1–1.1.3, reader typography, sidebar behavior and all source contracts remain untouched except the minimal new-lesson type and route extensions.
+
+
+## Desktop-first verification policy — from Lesson 1.1.4 onward
+
+At the learner's explicit request (2026-11-10), the academy is developed and acceptance-tested primarily for **desktop/laptop Chromium browsers**. New lessons must pass deep-content integrity, TypeScript, unit/component tests, production build, desktop Chromium navigation, interactive behavior, source evidence, browser history, and runtime startup. **Mobile viewport and mobile theme/overflow E2E checks are intentionally not required** for Lesson 1.1.4 or subsequent lessons and must not block merging an otherwise verified lesson. Maintain existing sensible responsive CSS, but do not claim a lesson is mobile-verified without a completed mobile test. Older, already-passing mobile regression tests may remain in the suite; they are not a new-lesson acceptance gate. Revisit mobile acceptance only if user requirements change.

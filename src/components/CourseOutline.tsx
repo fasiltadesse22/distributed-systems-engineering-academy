@@ -4,10 +4,11 @@ import {chapters,chapterForLesson} from '../data/roadmap';
 import {teachingSections} from '../lessons/lesson111/Lesson111';
 import {lessonSections} from '../lessons/lesson112/Lesson112';
 import {lessonSections as commandSections} from '../lessons/lesson113/Lesson113';
+import {lessonSections as identitySections} from '../lessons/lesson114/Lesson114';
 import {sectionMenuTitle} from './sectionNavigation';
 
 type SectionItem={index:number;stage:string;title:string};
-const authoredSections:Record<string,SectionItem[]>={'1.1.1':teachingSections,'1.1.2':lessonSections,'1.1.3':commandSections};
+const authoredSections:Record<string,SectionItem[]>={'1.1.1':teachingSections,'1.1.2':lessonSections,'1.1.3':commandSections,'1.1.4':identitySections};
 
 function currentLessonId(pathname:string):string|null {
   const match=pathname.match(/^\/lesson\/([^/]+)$/);

@@ -61,6 +61,22 @@ for (const term of ['PlaceOrderCommand','PlaceOrderOutcome','OrderRequestRecorde
 }
 console.log('Lesson 1.1.3 content audit passed: 16 deep sections, nine stages, real Java command/fact evidence.');
 
+
+const lesson114 = fs.readFileSync('content/lessons/1.1.4.md','utf8');
+const sections114=[...lesson114.matchAll(/^## (Orient|Understand|Explore|Predict|Engineer|Verify|Diagnose|Defend|Retain) — .+$/gm)];
+assert.equal(sections114.length,16,'Lesson 1.1.4 must preserve 16 substantive identity and state topics');
+for(const stage of ['Orient','Understand','Explore','Predict','Engineer','Verify','Diagnose','Defend','Retain']){
+ assert.ok(sections114.some(s=>s[1]===stage),'Lesson 1.1.4 missing stage '+stage);
+}
+assert.ok(lesson114.trim().split(/\s+/).length>9500,'Lesson 1.1.4 depth must not be summarized away');
+for(const term of ['OrderId','CustomerId','RestaurantId','PaymentAttemptId','OrderRequestRecorded',
+ 'natural key','surrogate','alias','projection','authority','idempotency','version',
+ 'putIfAbsent','payment provider','30 JUnit tests','ea17135cdc1974d89d78ce78931bb63cc5e9544e',
+ 'NOT_STARTED','PENDING','Staff','refund','identity continuity']){
+ assert.ok(lesson114.toLowerCase().includes(term.toLowerCase()),'Missing identity/authority contract '+term);
+}
+console.log('Lesson 1.1.4 content audit passed: 16 substantial topics, nine stages, pinned 30-test Java identity evolution.');
+
 console.log('Lesson 1.1.2 content audit passed: 14 sections, nine learning stages, use-case semantics and boundaries.');
 console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
