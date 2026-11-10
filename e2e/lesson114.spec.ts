@@ -98,6 +98,10 @@ for(const theme of ['dark','light']){
   await page.getByTestId('outline-section-1.1.4-3').click();
   await expect(page).toHaveURL(/lesson\/1\.1\.4\?section=3/);
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+  if(overflow>16){
+   const offenders=await page.evaluate(()=>Array.from(document.querySelectorAll('*')).map(el=>({tag:el.tagName,cls:(el as HTMLElement).className?.toString().slice(0,90)??'',text:(el.textContent??'').trim().slice(0,85),left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right),scroll:(el as HTMLElement).scrollWidth,client:(el as HTMLElement).clientWidth})).filter(x=>x.right>innerWidth+16).sort((a,b)=>a.right-b.right).slice(0,24));
+   console.log('MOBILE_OVERFLOW_DIAGNOSTICS',JSON.stringify(offenders));
+  }
   expect(overflow).toBeLessThanOrEqual(16);
  });
 }
