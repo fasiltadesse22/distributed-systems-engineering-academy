@@ -31,7 +31,7 @@ test('identity lab distinguishes one order with two payment attempts from actual
  await expect(result.getByTestId('stable-identity')).toContainText('O-17');
  await expect(result.getByTestId('changed-identity')).toContainText('P-101');
  await expect(result).toContainText('CONCEPTUAL FUTURE DOMAIN');
- await expect(result).toContainText('No');
+ await expect(result).toContainText('PaymentAttemptId and provider calls do not exist in the Java application');
 });
 
 test('duplicate same ID create differs from identical repeated PlaceOrder POST',async({page})=>{
