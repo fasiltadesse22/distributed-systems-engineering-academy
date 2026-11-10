@@ -30,7 +30,13 @@ No fake domain mutation, version increment, authenticated customer, actual merch
 
 ## Actual academy verification
 
-Academy CI is required to pass content audits, TypeScript typecheck, unit/component tests, production build, and **desktop Chromium browser checks** for the exact academy branch and eventual merged main SHA. Mobile viewport checks are explicitly out of scope for Lesson 1.1.4 and future lessons by user request; do not claim mobile verification. **Do not declare those verified until the corresponding run is complete.** Add exact test counts, run links and immutable academy revision following successful checks.
+The verified academy implementation [`2d502b79670ad058596448c55b61706d88283712`](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/tree/2d502b79670ad058596448c55b61706d88283712) passed:
+
+- [Standard CI run 42792595968](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792595968): **55/55 Vitest unit/component tests** (13 test files), exact roadmap/blueprint and 16-topic content audit, TypeScript and Vite production build, all successful.
+- [Chromium browser run 42792596406](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792596406): **36/36 Playwright tests** including all six Lesson 1.1.4 desktop tests, the deterministic identity/authority explorer, navigation/deep links and regression checks for prior lessons.
+- The two new-lesson 390px mobile-only Playwright tests were intentionally removed by the user's explicit desktop-first request. **Mobile viewport acceptance is not required** for Lesson 1.1.4 and subsequent lessons; responsive CSS remains but is not claimed independently mobile-verified. Historical mobile regression tests for older lessons remain in the suite.
+
+This documentation checkpoint was committed after the verified implementation SHA. The final documentation commit and any merge must receive their own CI before being declared verified on `main`. The [active design contract](../docs/design/VISUAL_TEXTBOOK_V2.md#desktop-first-verification-policy--from-lesson-114-onward) records desktop-first acceptance.
 
 ## Why this is the smallest justified evolution
 
