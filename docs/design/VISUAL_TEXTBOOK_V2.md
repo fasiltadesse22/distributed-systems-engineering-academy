@@ -41,3 +41,10 @@ Write explanations before UI. Choose a sequence diagram for ordered operations, 
 ## Lesson 1.1.3 application of the V2 design contract (2026-11-09)
 
 The commands/decisions/facts lesson reuses the single continuous reader and chapter→lesson→topic sidebar, adding only one static six-boundary process visualization and one input-consequential prediction lab inside the appropriate passages. Long technical prose remains readable and fully authored; source-backed Markdown tables classify business messages, rejections, facts and acknowledgements. No compulsory concept cards or extra reading modes are introduced. The deterministic lab is distinguished from the pinned 18-test Java execution evidence and from external merchant/provider facts.
+
+
+## Lesson 1.1.4 extension (2026-11-10)
+
+The authoritative Visual Textbook V2 design remains unchanged: one continuous chapter, one expandable primary left outline and no mandatory click-through text cards. Lesson 1.1.4 adds 16 topic-linked chapters, an inline static identity/authority graph, a compact source-versus-projection sequence, and one seven-case deterministic prediction lab. The static graph distinguishes **implemented** OrderId, CustomerId and RestaurantId from **conceptual future** PaymentAttemptId/provider references and a **derived UI** that cannot assert financial truth. The lab displays the same evidence distinction explicitly.
+
+Illustrations use low-chrome separators and readable lines rather than stacking large cards. The original, complete 10k-word technical manuscript remains the authoritative source; no new generic Markdown-fragmentation logic was introduced. Real Java evidence is linked by immutable SHA and CI run. Existing Lessons 1.1.1–1.1.3, reader typography, sidebar behavior and all source contracts remain untouched except the minimal new-lesson type and route extensions.
