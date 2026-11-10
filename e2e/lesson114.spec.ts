@@ -83,25 +83,3 @@ test('exact Java source evidence is immutable and old lesson routes remain avail
   await expect(page.getByTestId('lesson-'+id)).toBeVisible();
  }
 });
-
-for(const theme of ['dark','light']){
- test('1.1.4 remains readable without horizontal overflow in mobile '+theme,async({page})=>{
-  await page.setViewportSize({width:390,height:844});
-  await page.goto('/#/lesson/1.1.4?section=9');
-  if(theme==='light'){
-   const toggle=page.getByRole('button',{name:/Switch to (light|dark) theme/});
-   if(await toggle.getAttribute('aria-label')==='Switch to light theme')await toggle.click();
-  }
-  await expect(page.getByTestId('identity-authority-lab')).toBeAttached();
-  await page.getByRole('button',{name:'Open navigation'}).click();
-  await expect(page.getByTestId('course-outline')).toBeVisible();
-  await page.getByTestId('outline-section-1.1.4-3').click();
-  await expect(page).toHaveURL(/lesson\/1\.1\.4\?section=3/);
-  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
-  if(overflow>16){
-   const offenders=await page.evaluate(()=>Array.from(document.querySelectorAll('*')).map(el=>({tag:el.tagName,cls:(el as HTMLElement).className?.toString().slice(0,90)??'',text:(el.textContent??'').trim().slice(0,85),left:Math.round(el.getBoundingClientRect().left),right:Math.round(el.getBoundingClientRect().right),scroll:(el as HTMLElement).scrollWidth,client:(el as HTMLElement).clientWidth})).filter(x=>x.right>innerWidth+16).sort((a,b)=>a.right-b.right).slice(0,24));
-   console.log('MOBILE_OVERFLOW_DIAGNOSTICS',JSON.stringify(offenders));
-  }
-  expect(overflow).toBeLessThanOrEqual(16);
- });
-}

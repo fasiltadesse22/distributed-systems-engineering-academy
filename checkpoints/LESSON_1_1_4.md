@@ -30,7 +30,7 @@ No fake domain mutation, version increment, authenticated customer, actual merch
 
 ## Actual academy verification
 
-Academy CI is required to pass content audits, TypeScript typecheck, unit/component tests, production build, and Chromium browser checks for the exact academy branch and eventual merged main SHA. **Do not declare those verified until the corresponding run is complete.** Add exact test counts, run links and immutable academy revision following successful checks.
+Academy CI is required to pass content audits, TypeScript typecheck, unit/component tests, production build, and **desktop Chromium browser checks** for the exact academy branch and eventual merged main SHA. Mobile viewport checks are explicitly out of scope for Lesson 1.1.4 and future lessons by user request; do not claim mobile verification. **Do not declare those verified until the corresponding run is complete.** Add exact test counts, run links and immutable academy revision following successful checks.
 
 ## Why this is the smallest justified evolution
 

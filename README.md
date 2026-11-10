@@ -80,3 +80,8 @@ The [Food Ordering Platform](https://github.com/fasiltadesse22/food-ordering-pla
 - src/simulation/race.ts — pure, deterministic model separated from the UI.
 - scripts/check-content.mjs — source and blueprint integrity checks.
 - .github/workflows/academy-verify.yml — GitHub verification workflow.
+
+
+### Browser verification scope (Lesson 1.1.4 onward)
+
+The learning academy is **desktop-first**. For new lessons, CI must verify desktop Chromium behavior, navigation, Java/source evidence, interactive models, content integrity, accessibility of relevant controls, TypeScript and production build. **Mobile viewport tests are not required** and should not block lesson merges. Existing mobile regressions may still run for earlier lessons. Responsive styles remain in the application, but mobile compatibility is not independently verified for new lessons. See [Visual Textbook V2 design contract](docs/design/VISUAL_TEXTBOOK_V2.md#desktop-first-verification-policy--from-lesson-114-onward).
