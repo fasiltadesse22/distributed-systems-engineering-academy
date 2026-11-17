@@ -13,7 +13,7 @@ export function parseLifecycleSections(markdown:string){
  });
 }
 export const lessonSections=parseLifecycleSections(source);
-export const javaCommit='7c89a3e9ece643b486d6132613d12e1424312cb6';
+export const javaCommit='79024c3c36fe1a8cc6f71b79505601894d927507';
 const javaBase='https://github.com/fasiltadesse22/food-ordering-platform-new/blob/'+javaCommit+'/';
 export default function Lesson116(){
  const labs:Record<number,EmbeddedLab>={
@@ -23,13 +23,14 @@ export default function Lesson116(){
  };
  return <TextbookReader meta={{
    id:'1.1.6',
+   chapterLabel:'02',
    title:<>Workflows versus <em>State Machines</em></>,
    subtitle:'Trace three independently owned lifecycles without inventing one global state: precise pure transitions, business authority, partial progress, unknown outcomes, and a grounded Java domain-model evolution.',
    provenance:'Java 21 / Spring Boot · 34 CI-verified tests · external actors conceptual',
    sections:lessonSections,labs,
    repoUrl:'https://github.com/fasiltadesse22/distributed-systems-engineering-academy/blob/main/content/lessons/1.1.6.md',
    footer:<div className="textbook-end-links">
-    <a href="https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44052994889" target="_blank" rel="noreferrer">Java CI: 34 JUnit + live HTTP smoke ↗</a>
+    <a href="https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44054521893" target="_blank" rel="noreferrer">Java CI: 34 JUnit + live HTTP smoke ↗</a>
     <a href={javaBase+'src/main/java/com/academy/foodordering/domain/OrderLifecycle.java'} target="_blank" rel="noreferrer">Platform Order lifecycle ↗</a>
     <a href={javaBase+'src/main/java/com/academy/foodordering/domain/RestaurantDecisionLifecycle.java'} target="_blank" rel="noreferrer">Illustrative merchant lifecycle ↗</a>
     <a href={javaBase+'src/main/java/com/academy/foodordering/domain/PaymentAttemptLifecycle.java'} target="_blank" rel="noreferrer">Illustrative payment lifecycle ↗</a>
