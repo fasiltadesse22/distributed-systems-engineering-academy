@@ -46,3 +46,11 @@
 .l116-feedback>strong{color:var(--accent)}.l116-feedback p{font-size:.82rem}
 @media(max-width:960px){.l116-graphs{grid-template-columns:1fr}.l116-machine{display:block}}
 @media(max-width:650px){.l116-overlay-lanes,.l116-inspector dl,.l116-feedback dl{grid-template-columns:1fr}}
+
+.l116-swimlane-scroll{overflow-x:auto;margin:22px 0 9px;max-width:100%}
+.l116-swimlane{border-collapse:collapse;width:100%;min-width:710px;font-size:.75rem;line-height:1.5}
+.l116-swimlane thead th{text-align:left;vertical-align:bottom;color:var(--white);border-bottom:2px solid var(--accent);padding:11px 10px}
+.l116-swimlane tbody th{text-align:left;color:var(--white);font-weight:780;white-space:nowrap}
+.l116-swimlane tbody td,.l116-swimlane tbody th{border-bottom:1px solid var(--line);padding:13px 10px;vertical-align:top}
+.l116-swimlane tbody td{color:var(--text)}
+.l116-swimlane tbody td:nth-child(2){color:var(--accent);font-weight:790}
