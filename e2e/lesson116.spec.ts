@@ -14,6 +14,7 @@ test('Lesson 1.1.6 continuously renders all 19 topics, three graphs and authorit
  await expect(graphs.getByTestId('transition-inspector')).toContainText('IllustrativeRestaurantAccepted');
  await expect(graphs.getByTestId('transition-inspector')).toContainText('NO EXTERNAL FACT');
  await expect(lesson.getByTestId('cross-lifecycle-overlay')).toBeAttached();
+ await expect(lesson.getByTestId('lifecycle-swimlane')).toBeAttached();
  await expect(lesson.getByTestId('lifecycle-prediction-lab')).toBeAttached();
  expect(errors).toEqual([]);
 });
@@ -24,6 +25,7 @@ test('cross lifecycle overlay retains payment refund pending independently of me
  await expect(overlay).toContainText('REJECTED');
  await expect(overlay).toContainText('REFUND_PENDING');
  await expect(overlay).toContainText('not confirmed');
+ await expect(overlay.getByTestId('lifecycle-swimlane').locator('tbody tr')).toHaveCount(3);
  await overlay.getByRole('combobox',{name:'Composite workflow state'}).selectOption('authorized-pending');
  await expect(overlay).toContainText('AUTHORIZED');
  await expect(overlay).toContainText('PENDING');
