@@ -14,7 +14,8 @@
 | Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
 | Lesson 1.1.3: commands, decisions, facts and events | **Complete; academy and Java verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_3.md), [deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md), [academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), [browser CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
 | Lesson 1.1.4: business identity and authoritative state | **Complete; Java and desktop academy verified** | [Checkpoint](../../checkpoints/LESSON_1_1_4.md), [deep manuscript](../../content/lessons/1.1.4.md), [Java walkthrough](../engineering/LESSON_1_1_4_APPLIED_WALKTHROUGH.md), [55-test academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792595968), [36-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792596406) | [Typed IDs and create-only repository; 30 Java tests and HTTP smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42782082917) |
-| Lessons 1.1.5–1.1.20 | Not started | Blueprint only | Deferred |
+| Lesson 1.1.5: complete workflow story | **Academy implementation and desktop CI verified** | [Manuscript](../../content/lessons/1.1.5.md), [process map](../domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md), [decision register](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md), [checkpoint](../../checkpoints/LESSON_1_1_5.md), [59-test standard CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806), [39-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) | **Unchanged; pinned 1.1.4 intake evidence** |
+| Lessons 1.1.6–1.1.20 | Not started | Blueprint only | Deferred |
 
 ## Current learning assets
 
@@ -34,7 +35,7 @@ A working academy simulator is educational modeling; it is **not** a verified Ja
 
 ## Next execution
 
-**Lesson 1.1.5 — A Complete Food Ordering Workflow Story** is next. It must follow the roadmap/blueprint with the existing identity and authority boundaries and must not claim new merchant or provider execution. Keep Visual Textbook V2 and the desktop-first verification policy.
+**Lesson 1.1.5 implementation** is verified at academy commit `09589ccabf703ce648b7775e9ef1bb113021f646`: 59 unit/component tests and 39 desktop Chromium tests passed with content audit, TypeScript and build. The documentation/merge checkpoint is subsequent and must be checked separately. Lesson 1.1.6 has not started; Java merchant, payment and fulfillment remain conceptual.
 
 
 ## Visual Textbook V2 presentation rebuild — 2026-11-09
@@ -50,3 +51,8 @@ The [Java project](https://github.com/fasiltadesse22/food-ordering-platform-new/
 ## Lesson 1.1.4 desktop-first checkpoint — 2026-11-10
 
 The verified academy code [`2d502b79670ad058596448c55b61706d88283712`](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/tree/2d502b79670ad058596448c55b61706d88283712) passed [55 unit/component tests, content audit, TypeScript and build](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792595968) and [36 Chromium browser tests](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792596406). Two new-lesson mobile-only E2E checks were deliberately removed because the user studies on desktop; future lessons should require desktop browser verification rather than mobile acceptance. The Java repo's [post-merge run](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42782082917) passed 30 tests plus HTTP smoke. The academy checkpoint-documentation commit follows these verified implementation runs and must itself be checked before merge.
+
+
+## Lesson 1.1.5 verification — 2026-11-17
+
+At [academy revision `09589ccabf703ce648b7775e9ef1bb113021f646`](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/tree/09589ccabf703ce648b7775e9ef1bb113021f646), [standard run 44050308806](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806) passed source audit, TypeScript, 59/59 Vitest tests, and production build. [Chromium run 44050308781](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) passed 39/39 desktop browser tests. The lesson has 22 topics, a branching actor journey, milestone authority overlay, six-case prediction lab, retained process map, ten unresolved policy decisions, and a truthful Java evidence boundary. There is no Java repository change. Documentation and merge are separate later commits whose CI must be inspected before final integration claims.

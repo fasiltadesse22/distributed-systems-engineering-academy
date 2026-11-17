@@ -28,5 +28,8 @@
     "vite": "^7.1.0",
     "vitest": "^3.2.4",
     "@playwright/test": "^1.56.1"
+  },
+  "overrides": {
+    "rollup": "4.68.4"
   }
 }

@@ -2,7 +2,7 @@
  * The learning stage remains in the body, but does not dominate every nav item.
  * Ordered to match the canonical ## sections (tested against the manuscripts).
  */
-export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4',readonly string[]>={
+export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5',readonly string[]>={
  '1.1.1':[
   'Why the business comes first',
   'Actors, stakeholders & roles',
@@ -69,10 +69,13 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4',reado
   'Defend ownership and continuity',
   'Explain to four audiences',
   'Transfer and mastery gate'
+ ],
+ '1.1.5':[
+ 'One customer journey, many authorities','Workflow vs calls and state','Actors and business obligations','Verified Java intake boundary','Follow the actor swimlane','Payment and merchant ordering','Illustrative successful journey','Captured payment, rejected merchant','Accepted order, cancellation requested','Preparation as irreversible effect','Refund not yet confirmed','Contradictory observations','Time, messages and unknowns','Receipts and customer promises','Delivery and custody evidence','Milestone authority overlay','Predict workflow branches','Trace the real Java boundary','What counts as evidence?','Diagnose conflicting screens','Defend the engineering choices','Transfer and mastery gate'
  ]
 };
 export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string{
- if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'){
+ if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'){
   return lessonNavigationTitles[lessonId][index]??fallback;
  }
  return fallback;
