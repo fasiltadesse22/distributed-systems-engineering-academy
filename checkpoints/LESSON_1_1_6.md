@@ -18,7 +18,7 @@
 ## Academy Visual Textbook V2
 - Same single continuous TextbookReader and expandable chapter→lesson→topic sidebar.
 - Three separate lifecycle graphs; clickable transition inspector shows input, guard, actor authority, fact/no-fact and explicit evidence status.
-- Cross-lifecycle overlay changes one modeled history without conflating authority; six-case predict/reveal lab covers partial outcomes, unknowns, attempted refunds and multiple attempts.
+- Cross-lifecycle overlay includes a **time-indexed five-column workflow swimlane** (business moment, platform Order, illustrative merchant, illustrative payment, interpretation) and changes one modeled history without conflating authority; six-case predict/reveal lab covers partial outcomes, unknowns, attempted refunds and multiple attempts.
 - Model tests and browser scenarios distinguish conceptual financial operations from the verified local Java intake.
 - Existing Lesson 1.1.5 process map and POL-01–POL-10 decision backlog are preserved; no new universal business policy is approved.
 
