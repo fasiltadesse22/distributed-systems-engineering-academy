@@ -2,7 +2,7 @@
  * The learning stage remains in the body, but does not dominate every nav item.
  * Ordered to match the canonical ## sections (tested against the manuscripts).
  */
-export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5',readonly string[]>={
+export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6',readonly string[]>={
  '1.1.1':[
   'Why the business comes first',
   'Actors, stakeholders & roles',
@@ -73,9 +73,30 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.
  '1.1.5':[
  'One customer journey, many authorities','Workflow vs calls and state','Actors and business obligations','Verified Java intake boundary','Follow the actor swimlane','Payment and merchant ordering','Illustrative successful journey','Captured payment, rejected merchant','Accepted order, cancellation requested','Preparation as irreversible effect','Refund not yet confirmed','Contradictory observations','Time, messages and unknowns','Receipts and customer promises','Delivery and custody evidence','Milestone authority overlay','Predict workflow branches','Trace the real Java boundary','What counts as evidence?','Diagnose conflicting screens','Defend the engineering choices','Transfer and mastery gate'
  ]
+, '1.1.6':[
+  'One journey, several independent truths',
+  'The state-transition decision',
+  'Workflow versus lifecycle',
+  'Identity across transitions',
+  'Platform Order intake lifecycle',
+  'RestaurantDecision lifecycle',
+  'PaymentAttempt and uncertain results',
+  'Inspect three state graphs',
+  'Cross-lifecycle predicates',
+  'Why global states explode',
+  'Predict partial workflow progress',
+  'Illegal transitions preserve state',
+  'Ordering and competing histories',
+  'Unresolved POL-01–POL-10 rules',
+  'Trace actual Java domain code',
+  'Exhaustive verification and limits',
+  'Diagnose a false Refunded status',
+  'Defend lifecycle boundaries',
+  'Transfer and mastery gate'
+ ]
 };
 export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string{
- if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'){
+ if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'||lessonId==='1.1.6'){
   return lessonNavigationTitles[lessonId][index]??fallback;
  }
  return fallback;

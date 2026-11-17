@@ -53,3 +53,8 @@ Illustrations use low-chrome separators and readable lines rather than stacking 
 ## Desktop-first verification policy — from Lesson 1.1.4 onward
 
 At the learner's explicit request (2026-11-10), the academy is developed and acceptance-tested primarily for **desktop/laptop Chromium browsers**. New lessons must pass deep-content integrity, TypeScript, unit/component tests, production build, desktop Chromium navigation, interactive behavior, source evidence, browser history, and runtime startup. **Mobile viewport and mobile theme/overflow E2E checks are intentionally not required** for Lesson 1.1.4 or subsequent lessons and must not block merging an otherwise verified lesson. Maintain existing sensible responsive CSS, but do not claim a lesson is mobile-verified without a completed mobile test. Older, already-passing mobile regression tests may remain in the suite; they are not a new-lesson acceptance gate. Revisit mobile acceptance only if user requirements change.
+
+
+## Lesson 1.1.6 extension — independent lifecycles
+
+The chapter-two lesson reuses the continuous reader with an explicit Chapter 02 header and a single outline. Its 19 deep-learning topics embed one three-column independent state-machine visual with selectable transition/authority inspection, a synchronized but **non-atomic** cross-lifecycle overlay with a time-indexed multi-actor swimlane, and one six-case predict-before-reveal lab. The Order intake graph is source-backed in real Java, while RestaurantDecision and PaymentAttempt are pure illustrative Java models. Source provenance and the absence of real merchant/payment authority are stated within the visuals. Desktop-only browser acceptance is required; no mobile-specific tests are added.
