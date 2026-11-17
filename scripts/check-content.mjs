@@ -92,6 +92,19 @@ for(const path of ['docs/domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md
 }
 console.log('Lesson 1.1.5 content audit passed: 22 workflow topics, evidence boundaries and both business artifacts.');
 
+
+const lesson116=fs.readFileSync('content/lessons/1.1.6.md','utf8');
+const sections116=[...lesson116.matchAll(/^## (Orient|Understand|Explore|Predict|Engineer|Verify|Diagnose|Defend|Retain) — .+$/gm)];
+assert.equal(sections116.length,19,'Lesson 1.1.6 requires all 19 connected topics');
+for(const stage of ['Orient','Understand','Explore','Predict','Engineer','Verify','Diagnose','Defend','Retain']){
+ assert.ok(sections116.some(s=>s[1]===stage),'Lesson 1.1.6 missing stage '+stage);
+}
+assert.ok(lesson116.trim().split(/\s+/).length>7000,'Lesson 1.1.6 technical depth must not be compressed away');
+for(const term of ['OrderLifecycle','RestaurantDecisionLifecycle','PaymentAttemptLifecycle','SUBMITTED_UNKNOWN','REFUND_PENDING','state explosion','POL-01','POL-10','OrderRequestRecorded','42 combinations','35 rejected','hotel booking','34','ea17135cdc1974d89d78ce78931bb63cc5e9544e']){
+ assert.ok(lesson116.toLowerCase().includes(term.toLowerCase()),'Lesson 1.1.6 missing exact scope term '+term);
+}
+console.log('Lesson 1.1.6 manuscript passed: 19 full-depth topics, independent lifecycles, state matrix, authority and policy boundaries.');
+
 console.log('Lesson 1.1.2 content audit passed: 14 sections, nine learning stages, use-case semantics and boundaries.');
 console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
