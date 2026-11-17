@@ -14,7 +14,8 @@
 | Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
 | Lesson 1.1.3: commands, decisions, facts and events | **Complete; academy and Java verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_3.md), [deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md), [academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), [browser CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
 | Lesson 1.1.4: business identity and authoritative state | **Complete; Java and desktop academy verified** | [Checkpoint](../../checkpoints/LESSON_1_1_4.md), [deep manuscript](../../content/lessons/1.1.4.md), [Java walkthrough](../engineering/LESSON_1_1_4_APPLIED_WALKTHROUGH.md), [55-test academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792595968), [36-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792596406) | [Typed IDs and create-only repository; 30 Java tests and HTTP smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42782082917) |
-| Lessons 1.1.5–1.1.20 | Not started | Blueprint only | Deferred |
+| Lesson 1.1.5: complete workflow story | **Implementation candidate; CI and desktop acceptance pending** | [Manuscript](../../content/lessons/1.1.5.md), [process map](../domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md), [decision register](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md), [checkpoint](../../checkpoints/LESSON_1_1_5.md) | **Unchanged; pinned 1.1.4 intake evidence** |
+| Lessons 1.1.6–1.1.20 | Not started | Blueprint only | Deferred |
 
 ## Current learning assets
 
@@ -34,7 +35,7 @@ A working academy simulator is educational modeling; it is **not** a verified Ja
 
 ## Next execution
 
-**Lesson 1.1.5 — A Complete Food Ordering Workflow Story** is next. It must follow the roadmap/blueprint with the existing identity and authority boundaries and must not claim new merchant or provider execution. Keep Visual Textbook V2 and the desktop-first verification policy.
+**Lesson 1.1.5 recovery candidate** has been authored on a feature branch; do not call it complete before actual academy checks, desktop Chromium review, CI and merge. Lesson 1.1.6 remains blocked until the acceptance gate passes. Java merchant and provider behavior remains conceptual.
 
 
 ## Visual Textbook V2 presentation rebuild — 2026-11-09
