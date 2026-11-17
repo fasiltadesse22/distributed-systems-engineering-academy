@@ -2,7 +2,7 @@
  * The learning stage remains in the body, but does not dominate every nav item.
  * Ordered to match the canonical ## sections (tested against the manuscripts).
  */
-export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5',readonly string[]>={
+export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6',readonly string[]>={
  '1.1.1':[
   'Why the business comes first',
   'Actors, stakeholders & roles',
@@ -75,7 +75,7 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.
  ]
 };
 export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string{
- if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'){
+ if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'||lessonId==='1.1.6'){
   return lessonNavigationTitles[lessonId][index]??fallback;
  }
  return fallback;
