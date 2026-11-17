@@ -15,8 +15,8 @@ export const lessonSections=parseWorkflowSections(source);
 export default function Lesson115(){
  const labs:Record<number,EmbeddedLab>={
   4:{afterBlock:1,label:'Connected actor workflow and branching authority',kind:'illustration',content:<WorkflowSwimlane/>},
-  17:{afterBlock:1,label:'Milestone authority and customer projections',kind:'illustration',content:<AuthorityLedger/>},
-  18:{afterBlock:1,label:'Predict partial workflow outcomes',content:<WorkflowScenarioExplorer/>}
+  15:{afterBlock:1,label:'Milestone authority and customer projections',kind:'illustration',content:<AuthorityLedger/>},
+  16:{afterBlock:1,label:'Predict partial workflow outcomes',content:<WorkflowScenarioExplorer/>}
  };
  return <TextbookReader meta={{
   id:'1.1.5',
