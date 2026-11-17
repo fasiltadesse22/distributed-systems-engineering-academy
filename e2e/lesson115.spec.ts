@@ -10,7 +10,7 @@ test('Lesson 1.1.5 renders all 22 continuously readable topics with factual auth
  await expect(lesson.getByTestId('workflow-swimlane')).toBeAttached();
  await expect(lesson.getByTestId('workflow-swimlane').locator('.l115-lanes li')).toHaveCount(7);
  await expect(lesson.getByTestId('workflow-authority-ledger')).toBeAttached();
- await expect(lesson.getByTestId('workflow-authority-ledger').locator('tbody tr')).toHaveCount(8);
+ await expect(lesson.getByTestId('workflow-authority-ledger').locator('tbody tr')).toHaveCount(13);
  await expect(lesson).toContainText('OrderRequestRecorded');
  await expect(lesson).toContainText('POL-09');
  expect(errors).toEqual([]);
