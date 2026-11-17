@@ -1,6 +1,6 @@
 # Lesson 1.1.5 — Workflow Story · Implementation Candidate Checkpoint
 
-**Status:** NOT YET VERIFIED / NOT YET FROZEN. This checkpoint is an explicit evidence ledger, not a claim that CI, Playwright or merge succeeded.
+**Status:** Implementation and desktop acceptance verified on immutable academy code revision `09589ccabf703ce648b7775e9ef1bb113021f646`. Documentation update and final merge verification are subsequent gates; do not conflate them.
 
 ## Source contract
 - Roadmap: `docs/roadmap/MASTER_ROADMAP_V1.md`; blueprint: `docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md`, Lesson 1.1.5.
@@ -28,16 +28,16 @@
 ## Verification ledger (to be completed with real output)
 | Gate | Command or procedure | Status |
 |---|---|---|
-| Source and roadmap consistency | `npm run check:content` | Not executed in this checkpoint |
-| TS compile | `npm run typecheck` | Not executed in this checkpoint |
-| Unit / component | `npm run test` | Not executed in this checkpoint |
-| Production | `npm run build` | Not executed in this checkpoint |
-| Desktop Chromium | `npm run test:e2e` with desktop target | Not executed in this checkpoint |
-| CI | inspect actual immutable GitHub Actions run | Pending |
-| Prior lesson regression | verify routes 1.1.1–1.1.4 | Pending |
-| Browser UX | route, continuous reading, dark/light, sidebar, back/forward, keyboard | Pending |
+| Source and roadmap consistency | `npm run check:content` | **Passed**, CI 44050308806, 22 teaching topics and business documents |
+| TS compile | `npm run typecheck` | **Passed**, CI 44050308806 |
+| Unit / component | `npm run test` | **Passed**, 59/59 tests, 14 files, CI 44050308806 |
+| Production | `npm run build` | **Passed**, CI 44050308806 |
+| Desktop Chromium | `npm run test:e2e` with desktop target | **Passed**, 39/39 tests, CI 44050308781 |
+| CI | inspect actual immutable GitHub Actions run | **Passed** on 09589cc; [standard](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806), [browser](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) |
+| Prior lesson regression | verify routes 1.1.1–1.1.4 | **Passed** in browser test suite |
+| Browser UX | route, continuous reading, dark/light, sidebar, back/forward, keyboard | **Desktop suite passed** for included assertions; not an independent manual visual assessment |
 
-Do not label this lesson complete or merge it until checks are actually green, any failures are corrected, and this ledger includes verified immutable CI links and a resulting commit.
+The cited code checkpoint passed actual automated CI. This documentation commit, PR merge and any post-merge verification require their own recorded results; do not infer them from the prior commit.
 
 ## Dependency
 Only after verification and a successful merge may Lesson 1.1.6 begin formal Order, PaymentAttempt and RestaurantDecision state-machine derivation. Do not infer that this narrative approved POL-01–POL-10.
