@@ -31,7 +31,8 @@ const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5',Spec[]>={
  {section:10,block:1,kind:'definitions',markers:['A deterministic React scenario engine','A TypeScript unit test','A Java service test','A Spring MVC integration test','A packaged jar'],labels:['Model','TypeScript test','Java unit test','MVC integration','Runnable jar'],tail:'None proves live payment settlement'}
  ],
  '1.1.3':[],
- '1.1.4'|'1.1.5':[]
+ '1.1.4':[],
+ '1.1.5':[]
 };
 export const structuralSpec=(id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
 export function structureSource(source:string,spec:Spec):StructuredSource|null{
