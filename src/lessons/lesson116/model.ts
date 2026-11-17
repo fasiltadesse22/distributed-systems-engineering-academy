@@ -28,3 +28,37 @@ export const scenarios:Scenario[]=[
 ];
 export function interpretScenario(id:ScenarioId):Scenario{return scenarios.find(s=>s.id===id)!}
 export function interpretTransition(index:number):Transition{return transitions[index]}
+
+export interface WorkflowFrame {moment:string;order:string;merchant:string;payment:string;meaning:string}
+export const scenarioTraces:Record<ScenarioId,WorkflowFrame[]>={
+ 'authorized-pending':[
+  {moment:'1 · Intake',order:'REQUESTED',merchant:'PENDING',payment:'NOT_STARTED',meaning:'Platform records intake; external decisions not yet known'},
+  {moment:'2 · Submission assumed',order:'REQUESTED',merchant:'PENDING',payment:'SUBMITTED_UNKNOWN',meaning:'Financial attempt requested; result unknown'},
+  {moment:'3 · Authorization assumed',order:'REQUESTED',merchant:'PENDING',payment:'AUTHORIZED',meaning:'Authorization does not accept the meal'}
+ ],
+ 'rejected-refund':[
+  {moment:'1 · Intake',order:'REQUESTED',merchant:'PENDING',payment:'NOT_STARTED',meaning:'No external fulfillment or financial fact established'},
+  {moment:'2 · Mixed outcome',order:'REQUESTED',merchant:'REJECTED',payment:'CAPTURED',meaning:'Hypothetical capture and rejection leave a financial obligation'},
+  {moment:'3 · Refund requested',order:'REQUESTED',merchant:'REJECTED',payment:'REFUND_PENDING',meaning:'Requesting a refund is not confirming its completion'}
+ ],
+ 'declined-merchant':[
+  {moment:'1 · Intake',order:'REQUESTED',merchant:'PENDING',payment:'NOT_STARTED',meaning:'Local intake only'},
+  {moment:'2 · Merchant commitment',order:'REQUESTED',merchant:'ACCEPTED',payment:'SUBMITTED_UNKNOWN',meaning:'Merchant accepted in model while provider outcome unknown'},
+  {moment:'3 · Financial decline',order:'REQUESTED',merchant:'ACCEPTED',payment:'DECLINED',meaning:'Merchant obligation survives a separate financial decision'}
+ ],
+ 'unknown-merchant':[
+  {moment:'1 · Intake',order:'REQUESTED',merchant:'PENDING',payment:'NOT_STARTED',meaning:'Platform-local intake'},
+  {moment:'2 · Response lost',order:'REQUESTED',merchant:'PENDING',payment:'SUBMITTED_UNKNOWN',meaning:'Unknown could conceal success, decline or non-processing'}
+ ],
+ 'two-attempts':[
+  {moment:'1 · First attempt',order:'REQUESTED',merchant:'PENDING',payment:'PA-1 SUBMITTED_UNKNOWN',meaning:'First attempt not yet resolved'},
+  {moment:'2 · First declines',order:'REQUESTED',merchant:'PENDING',payment:'PA-1 DECLINED',meaning:'A declined attempt remains a separate historical fact'},
+  {moment:'3 · Second attempt',order:'REQUESTED',merchant:'PENDING',payment:'PA-2 SUBMITTED_UNKNOWN',meaning:'Same OrderId, distinct PaymentAttemptId'},
+  {moment:'4 · Second authorizes',order:'REQUESTED',merchant:'PENDING',payment:'PA-2 AUTHORIZED',meaning:'Late PA-1 responses must not overwrite PA-2'}
+ ],
+ 'illegal-refund':[
+  {moment:'1 · Intake',order:'REQUESTED',merchant:'PENDING',payment:'NOT_STARTED',meaning:'No financial attempt exists'},
+  {moment:'2 · Merchant rejects',order:'REQUESTED',merchant:'REJECTED',payment:'NOT_STARTED',meaning:'Merchant decision does not create a charge'},
+  {moment:'3 · Illegal refund',order:'REQUESTED',merchant:'REJECTED',payment:'NOT_STARTED',meaning:'CONFIRM_REFUNDED is rejected; state and fact unchanged'}
+ ]
+};
