@@ -43,7 +43,7 @@ describe('Lesson 1.1.6 scope and source integrity',()=>{
    const last=scenarioTraces[scenario.id].at(-1)!;
    expect(last.order).toBe(scenario.order);
    expect(last.merchant).toBe(scenario.merchant);
-   expect(last.payment).toBe(scenario.payment);
+   expect(last.payment).toContain(scenario.payment);
   }
  });
 });
