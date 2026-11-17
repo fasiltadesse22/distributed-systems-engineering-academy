@@ -8,7 +8,7 @@ import './textbook.css';
 export interface TextbookSection {index:number;stage:string;title:string;body:string}
 export interface EmbeddedLab {afterBlock:number;content:ReactNode;label:string;kind?:'lab'|'illustration'}
 export interface TextbookMeta {
- id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'; title:ReactNode;subtitle:string;provenance:string;
+ id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
  repoUrl:string;sections:TextbookSection[];labs?:Record<number,EmbeddedLab>;footer?:ReactNode;
 }
 export const sourceBlocks=(s:string)=>s.trim().split(/\n\s*\n/).filter(Boolean);
@@ -103,7 +103,7 @@ export default function TextbookReader({meta}:{meta:TextbookMeta}){
  const count=useMemo(()=>sections.reduce((n,s)=>n+sourceBlocks(s.body).length,0),[sections]);
  return <article className="textbook-lesson" data-testid={'lesson-'+meta.id}>
   <header className="textbook-lesson-head">
-   <span className="textbook-kicker">CLUSTER 1.1 / CHAPTER 01 / LESSON {meta.id}</span>
+   <span className="textbook-kicker">CLUSTER 1.1 / CHAPTER {meta.chapterLabel??'01'} / LESSON {meta.id}</span>
    <h1>{meta.title}</h1><p className="textbook-deck">{meta.subtitle}</p>
    <div className="textbook-context"><span>{sections.length} connected topics</span><span>{count} source passages</span><span>{meta.provenance}</span></div>
    <div className="textbook-opening-rule"/>
