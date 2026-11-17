@@ -23,19 +23,25 @@ export function WorkflowSwimlane(){
  </figure>;
 }
 const authority=[
- ['Intake recorded','OrderId','Platform local repository','Implemented: process-local'],
- ['Merchant acceptance / rejection','OrderId + merchant reference','Restaurant','Conceptual'],
- ['Payment capture','PaymentAttemptId + provider operation','Payment provider','Conceptual'],
- ['Preparation started','OrderId + kitchen milestone','Kitchen/merchant','Conceptual; physical effect'],
- ['Courier pickup','OrderId + handoff evidence','Custody participants','Conceptual'],
- ['Delivery completed','Fulfillment reference + evidence','Delivery/recipient per policy','Conceptual; POL-09'],
- ['Refund completed','Refund operation + provider reference','Payment provider','Conceptual; POL-06'],
- ['Customer status','OrderId + observed facts','Platform projection','Derived; not authoritative']
+ // Milestone, identity, authority, observer / projection, evidence, unknown, external effect
+ ['Basket selected','Customer intention / basket','Customer','Platform may observe selection','Conceptual only','Basket or price may be stale','None'],
+ ['Purchase requested','Request/correlation ID','Customer initiates; platform receives','Platform can display submitting','Conceptual intent; current POST exists','Response may be lost','None'],
+ ['Eligibility decision','Proposed basket + RestaurantId','Platform intake rules','Client receives permitted/rejected decision','Implemented locally','Timeout may obscure decision','None'],
+ ['Intake recorded','OrderId + CustomerId + RestaurantId','Platform process-local repository','Customer: “Request received”','Implemented locally','Acknowledgement may be lost','Volatile local storage write'],
+ ['Merchant invitation submitted','OrderId + merchant reference','Platform for submission only','Customer: “Awaiting restaurant”','Conceptual only','Delivery/response unknown','None'],
+ ['Merchant accepts / rejects','OrderId + merchant decision reference','Restaurant','Customer: “Accepted” only if observed','Conceptual; POL-02','Decision may be unknown','Commercial commitment'],
+ ['Payment operation confirmed','PaymentAttemptId + provider operation','Payment provider / financial ledger','Customer: “Authorized” or “Captured” precisely','Conceptual; POL-01','Provider outcome may be unknown','Financial authorization or capture'],
+ ['Preparation started','OrderId + kitchen milestone','Kitchen/merchant','Customer: “Preparing” on evidence','Conceptual; POL-04','Late/missing start observation','Ingredients and labor consumed'],
+ ['Preparation completed','OrderId + ready milestone','Kitchen/merchant','Customer: “Ready”','Conceptual','Readiness may be stale','Perishable prepared goods'],
+ ['Custody transferred','OrderId + courier/handoff reference','Restaurant + carrier under custody policy','Customer: “Collected”','Conceptual; POL-09','Wrong package or unconfirmed pickup','Possession transfers'],
+ ['Delivery completed','Fulfillment reference + delivery proof','Delivery/recipient under policy','Customer: “Delivered” with stated scope','Conceptual; POL-09','Disputed or missing delivery proof','Physical delivery effect'],
+ ['Customer outcome projected','OrderId + correlated observations','Platform for projection, NOT external facts','Customer sees qualified summary','Derived presentation only','Missing, stale or disputed facts','No new merchant or provider effect'],
+ ['Refund confirmed (conditional branch)','Refund operation + provider reference','Payment provider','Customer: “Refund confirmed” only on proof','Conceptual; POL-05–POL-07','Requested/processing is not confirmed','Financial refund effect']
 ];
 export function AuthorityLedger(){
- return <figure className="l115-figure" data-testid="workflow-authority-ledger"><figcaption><span className="l115-kicker">FACT AUTHORITY OVERLAY</span><strong>What evidence can justify each customer-facing statement?</strong></figcaption>
-  <div className="l115-table-scroll"><table className="l115-ledger"><thead><tr><th>Milestone / claim</th><th>Identity</th><th>Source authority</th><th>Trust boundary</th></tr></thead><tbody>{authority.map(r=><tr key={r[0]}>{r.map((x,i)=><td key={i}>{x}</td>)}</tr>)}</tbody></table></div>
-  <p className="l115-note">A UI can display any text, but it does not acquire the underlying fact authority. Unknown and stale observations must remain distinguishable.</p>
+ return <figure className="l115-figure" data-testid="workflow-authority-ledger"><figcaption><span className="l115-kicker">FACT AUTHORITY OVERLAY</span><strong>Each milestone retains its own identity, observer and evidence boundary</strong><p>Read across a row: an observed message never gains authority over the underlying source. The refund milestone is a conditional remediation branch, not part of every successful delivery.</p></figcaption>
+  <div className="l115-table-scroll"><table className="l115-ledger"><thead><tr><th>Milestone / fact</th><th>Identity</th><th>Authority</th><th>Observer / customer wording</th><th>Evidence status</th><th>Possible unknown</th><th>External effect</th></tr></thead><tbody>{authority.map(r=><tr key={r[0]}>{r.map((x,i)=><td key={i}>{x}</td>)}</tr>)}</tbody></table></div>
+  <p className="l115-note">Only intake validation and local recording are implemented in the pinned Java baseline. Real restaurant, payment, kitchen, courier and refund claims need independently verified future evidence.</p>
  </figure>;
 }
 export function WorkflowScenarioExplorer(){
