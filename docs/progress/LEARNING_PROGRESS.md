@@ -15,7 +15,8 @@
 | Lesson 1.1.3: commands, decisions, facts and events | **Complete; academy and Java verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_3.md), [deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md), [academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), [browser CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
 | Lesson 1.1.4: business identity and authoritative state | **Complete; Java and desktop academy verified** | [Checkpoint](../../checkpoints/LESSON_1_1_4.md), [deep manuscript](../../content/lessons/1.1.4.md), [Java walkthrough](../engineering/LESSON_1_1_4_APPLIED_WALKTHROUGH.md), [55-test academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792595968), [36-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42792596406) | [Typed IDs and create-only repository; 30 Java tests and HTTP smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42782082917) |
 | Lesson 1.1.5: complete workflow story | **Academy implementation and desktop CI verified** | [Manuscript](../../content/lessons/1.1.5.md), [process map](../domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md), [decision register](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md), [checkpoint](../../checkpoints/LESSON_1_1_5.md), [59-test standard CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806), [39-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) | **Unchanged; pinned 1.1.4 intake evidence** |
-| Lessons 1.1.6–1.1.20 | Not started | Blueprint only | Deferred |
+| Lesson 1.1.6: workflows versus state machines | **Implementation candidate; academy CI pending** | [Manuscript](../../content/lessons/1.1.6.md), [checkpoint](../../checkpoints/LESSON_1_1_6.md), three independent graphs, transition inspector and scenario lab | [Java model PR](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/3) · [34-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44052994889) |
+| Lessons 1.1.7–1.1.20 | Not started | Blueprint only | Deferred |
 
 ## Current learning assets
 
@@ -35,7 +36,7 @@ A working academy simulator is educational modeling; it is **not** a verified Ja
 
 ## Next execution
 
-**Lesson 1.1.5 implementation** is verified at academy commit `09589ccabf703ce648b7775e9ef1bb113021f646`: 59 unit/component tests and 39 desktop Chromium tests passed with content audit, TypeScript and build. The documentation/merge checkpoint is subsequent and must be checked separately. Lesson 1.1.6 has not started; Java merchant, payment and fulfillment remain conceptual.
+**Lesson 1.1.5 implementation** is verified at academy commit `09589ccabf703ce648b7775e9ef1bb113021f646`: 59 unit/component tests and 39 desktop Chromium tests passed with content audit, TypeScript and build. The documentation/merge checkpoint is subsequent and must be checked separately. Lesson 1.1.6 is under implementation in independent academy and Java branches. Java transition models are pure and only locally verified; merchant, payment and fulfillment effects remain conceptual.
 
 
 ## Visual Textbook V2 presentation rebuild — 2026-11-09
@@ -56,3 +57,8 @@ The verified academy code [`2d502b79670ad058596448c55b61706d88283712`](https://g
 ## Lesson 1.1.5 verification — 2026-11-17
 
 At [academy revision `09589ccabf703ce648b7775e9ef1bb113021f646`](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/tree/09589ccabf703ce648b7775e9ef1bb113021f646), [standard run 44050308806](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806) passed source audit, TypeScript, 59/59 Vitest tests, and production build. [Chromium run 44050308781](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) passed 39/39 desktop browser tests. The lesson has 22 topics, a branching actor journey, milestone authority overlay, six-case prediction lab, retained process map, ten unresolved policy decisions, and a truthful Java evidence boundary. There is no Java repository change. Documentation and merge are separate later commits whose CI must be inspected before final integration claims.
+
+
+## Lesson 1.1.6 candidate — 2026-11-17
+
+Java feature revision `7c89a3e9ece643b486d6132613d12e1424312cb6` passed [34-test Maven and live HTTP CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44052994889). The academy's 19-topic manuscript, side-by-side state graphs, authority inspector, independent workflow overlay and prediction lab have been authored; **academy verification and merge evidence must be recorded before completion claims**. The unresolved business-policy register remains authoritative. No production merchant/provider effect or cross-service orchestration is implemented.
