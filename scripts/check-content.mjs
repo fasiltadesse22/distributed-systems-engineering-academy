@@ -77,6 +77,21 @@ for(const term of ['OrderId','CustomerId','RestaurantId','PaymentAttemptId','Ord
 }
 console.log('Lesson 1.1.4 content audit passed: 16 substantial topics, nine stages, pinned 30-test Java identity evolution.');
 
+
+const lesson115 = fs.readFileSync('content/lessons/1.1.5.md','utf8');
+const sections115=[...lesson115.matchAll(/^## (Orient|Understand|Explore|Predict|Engineer|Verify|Diagnose|Defend|Retain) — .+$/gm)];
+assert.equal(sections115.length,22,'Lesson 1.1.5 should retain 22 authored workflow topics');
+for(const stage of ['Orient','Understand','Explore','Predict','Engineer','Verify','Diagnose','Defend','Retain']){
+ assert.ok(sections115.some(s=>s[1]===stage),'Lesson 1.1.5 missing learning stage '+stage);
+}
+for(const term of ['OrderRequestRecorded','PaymentAttemptId','POL-01','POL-09','refund','kitchen','delivery','customer','merchant','ea17135cdc1974d89d78ce78931bb63cc5e9544e']){
+ assert.ok(lesson115.toLowerCase().includes(term.toLowerCase()),'Lesson 1.1.5 missing '+term);
+}
+for(const path of ['docs/domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md','docs/domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md']){
+ assert.ok(fs.existsSync(path),'Missing workflow business artifact '+path);
+}
+console.log('Lesson 1.1.5 content audit passed: 22 workflow topics, evidence boundaries and both business artifacts.');
+
 console.log('Lesson 1.1.2 content audit passed: 14 sections, nine learning stages, use-case semantics and boundaries.');
 console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
