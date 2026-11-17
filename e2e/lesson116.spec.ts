@@ -5,6 +5,7 @@ test('Lesson 1.1.6 continuously renders all 19 topics, three graphs and authorit
  await page.goto('/#/lesson/1.1.6');
  const lesson=page.getByTestId('lesson-1.1.6');
  await expect(lesson).toBeVisible();
+ await expect(lesson).toContainText('CHAPTER 02');
  await expect(lesson.locator('.textbook-topic')).toHaveCount(19);
  const graphs=lesson.getByTestId('lifecycle-graphs');
  await expect(graphs).toBeAttached();
