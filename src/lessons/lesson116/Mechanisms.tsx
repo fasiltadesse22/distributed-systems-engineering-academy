@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {transitions,scenarios,interpretScenario,type Domain,type ScenarioId} from './model';
+import {transitions,scenarios,scenarioTraces,interpretScenario,type Domain,type ScenarioId} from './model';
 import './lesson.css';
 
 const graph={
@@ -43,6 +43,15 @@ export function CrossLifecycleOverlay(){
    <div><small>MERCHANT / CONCEPTUAL</small><b>RestaurantDecision</b><strong>{selected.merchant}</strong><p>OrderId + RestaurantId</p></div>
    <div><small>PROVIDER / CONCEPTUAL</small><b>PaymentAttempt</b><strong>{selected.payment}</strong><p>PaymentAttemptId + OrderId</p></div>
   </div>
+  <div className="l116-swimlane-scroll" aria-label="Cross-lifecycle journey over successive moments">
+   <table className="l116-swimlane" data-testid="lifecycle-swimlane">
+    <thead><tr><th>Business moment</th><th>Order (platform)</th><th>Restaurant (illustrative)</th><th>Payment (illustrative)</th><th>What the moment teaches</th></tr></thead>
+    <tbody>{scenarioTraces[index].map((frame,i)=><tr key={i}>
+     <th scope="row">{frame.moment}</th><td>{frame.order}</td><td>{frame.merchant}</td><td>{frame.payment}</td><td>{frame.meaning}</td>
+    </tr>)}</tbody>
+   </table>
+  </div>
+  <p className="l116-caveat">Read each row as a conceptual observation cut, not an atomic external transaction. Later columns can progress while the platform Order intake state remains REQUESTED.</p>
   {selected.otherAttempt&&<p className="l116-compare">Multiple independent attempt histories: {selected.otherAttempt}</p>}
   <p className="l116-resultline"><b>Derived customer projection:</b> {selected.customer}</p>
   <p className="l116-resultline"><b>Unresolved obligation:</b> {selected.obligation}</p>
