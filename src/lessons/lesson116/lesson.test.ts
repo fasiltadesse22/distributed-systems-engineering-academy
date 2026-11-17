@@ -2,7 +2,7 @@ import {describe,it,expect} from 'vitest';
 import source from '../../../content/lessons/1.1.6.md?raw';
 import {lessonSections} from './Lesson116';
 import {lessonNavigationTitles} from '../../components/sectionNavigation';
-import {transitions,scenarios,interpretScenario} from './model';
+import {transitions,scenarios,scenarioTraces,interpretScenario} from './model';
 
 describe('Lesson 1.1.6 scope and source integrity',()=>{
  it('retains 19 independently readable topics with matching sidebar titles',()=>{
@@ -38,5 +38,12 @@ describe('Lesson 1.1.6 scope and source integrity',()=>{
   expect(interpretScenario('unknown-merchant').prediction).toBe('uncertain');
   expect(interpretScenario('rejected-refund').customer).not.toMatch(/refund complete/i);
   expect(new Set(scenarios.map(s=>s.id)).size).toBe(6);
+  for(const scenario of scenarios){
+   expect(scenarioTraces[scenario.id].length).toBeGreaterThanOrEqual(2);
+   const last=scenarioTraces[scenario.id].at(-1)!;
+   expect(last.order).toBe(scenario.order);
+   expect(last.merchant).toBe(scenario.merchant);
+   expect(last.payment).toBe(scenario.payment);
+  }
  });
 });
