@@ -10,7 +10,7 @@
 |---|---|---|
 | Learning scope | `docs/roadmap/MASTER_ROADMAP_V1.md` and `content/cluster-1.1/blueprint.json` | 19-phase/93-cluster roadmap; 20 planned lessons in Cluster 1.1 |
 | Full canonical text | `content/lessons/1.1.1.md` through `1.1.7.md` | Seven untouched manuscripts (126 sections), independent of React |
-| Authored registry | `src/lessons/registry.tsx` | One typed authored catalog with editorial labels, stable topic IDs, old numerical link identity, lab source anchors and lazy UI imports |
+| Authored registry | `src/lessons/registry.tsx` | One typed authored catalog with editorial labels, stable topic IDs, old numerical link identity, lab source anchors and build-time component path references |
 | Source-fidelity baseline | `content/coverage/manuscript-baselines.json` | Git blob SHA of each original manuscript; changes require deliberate source review |
 | Blueprint trace | `content/coverage/cluster-1.1-authored.json` | Structural pointers to existing topics/tests, **not proof of pedagogical adequacy** |
 | React reader | `src/lessons/shared/TextbookReader.tsx` | Continuous source rendering and exact topic/lab placement; original text accessible |
@@ -25,7 +25,7 @@
 - Each contextual lab has a stable `topicId`, `id`, descriptive `label` and a source-passage `marker`. The renderer places it by matching the marker, not by assuming the paragraph count. If an anchor cannot be found, the interactive lab and full source remain available with a visible diagnostic; governance tests must fail so CI prevents silent drift.
 - The base V2 reader still preserves legacy `#topic-N` anchors and `data-testid` identities for desktop browser regressions. The retired guided-card reading mode and second navigation rail are not reintroduced.
 - `sectionNavigation.ts` is now a compatibility view of the one registry, not a second authored-title source.
-- The registry's lazy `component` import decouples the sidebar from every lesson's React UI; the raw manuscripts still contribute to the metadata bundle.
+- The registry contains only UI component paths; `src/lessons/lessonComponents.tsx` resolves them eagerly through Vite's build-time glob. The sidebar never imports the UI modules and direct navigation has no lazy-loading gap.
 - Reproducibility: committed npm lockfile, `npm ci`, Node 22 CI; existing Rollup `4.68.4` override preserved.
 
 ## Evidence and non-guarantees
