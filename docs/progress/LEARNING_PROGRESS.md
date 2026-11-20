@@ -1,6 +1,6 @@
 # Academy Learning Progress — Authoritative Ledger
 
-**Updated:** 2026-11-20 (pre-Lesson 1.1.8 repository governance)  
+**Updated:** 2026-11-20 (academy stabilization feature in progress, not Lesson 1.1.8)  
 **Roadmap:** [Master Roadmap V1.0](../roadmap/MASTER_ROADMAP_V1.md) · 19 phases / 93 clusters  
 **Academy:** https://github.com/fasiltadesse22/distributed-systems-engineering-academy  
 **Application:** https://github.com/fasiltadesse22/food-ordering-platform-new
@@ -12,6 +12,7 @@
 | Scope | Status | Evidence | Java platform |
 |---|---|---|---|
 | Phase 0 — Academy V0.1 foundation, roadmap, blueprint and race lab | Verified | [Phase 0 checkpoint](../../checkpoints/PHASE_0_ACADEMY_V0_1.md) | Planning-only |
+| Pre-1.1.8 academy architecture/governance stabilization (NOT a lesson) | **Feature candidate; CI and merge pending** | [Governance checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md); [PR #10](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10) | Java read-only, unchanged |
 | Cluster 1.1 → Chapter 1 → Lesson 1.1.1: actors, goals, responsibilities and capabilities | **Authored, interactive, browser-verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_1.md) | **Unchanged** |
 | Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
 | Lesson 1.1.3: commands, decisions, facts and events | **Complete; academy and Java verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_3.md), [deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md), [academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), [browser CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
