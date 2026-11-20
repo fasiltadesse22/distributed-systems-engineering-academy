@@ -43,7 +43,7 @@ test('future lesson stays blueprint-only; homepage and blueprint describe real J
  await page.goto('/#/blueprint');
  await expect(page.locator('.page-heading')).toContainText('7 of the 20');
  await page.getByRole('tab',{name:'Project evolution'}).click();
- await expect(page).toContainText('59 passing JUnit tests');
+ await expect(page.locator('.page')).toContainText('59 passing JUnit tests');
  await page.goto('/#/lesson/1.1.8');
  await expect(page.locator('.reading-sheet')).toContainText('Blueprint specification, not an authored lesson');
 });
