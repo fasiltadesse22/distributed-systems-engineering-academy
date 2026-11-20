@@ -5,7 +5,7 @@
 **Academy baseline:** `7e446b27758bc9f42c737a7fe464155025fc94e2`.  
 **Java read-only baseline:** `081d1f1a877772e41d7a30ce0052e9609c71f6b5`.  
 **Academy PR:** [#10](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10).  
-**Status:** Implementation candidate; merged SHA, final test counts and post-merge results must be filled **only after executed evidence is read**.
+**Status:** Feature implementation **verified** at `e2e4a571fc43cbdecb7d77944ce693b65e5cc7d2` (77/77 Vitest, 52/52 desktop Chromium). Merge and post-merge checks remain pending.
 
 ## Confirmed pre-change risks
 
@@ -20,7 +20,7 @@
 
 ## Stabilization changes and owner boundaries
 
-1. **One typed authored registry:** `src/lessons/registry.tsx` owns seven lessons' components, canonical source references, 126 reviewed topic IDs, concise navigation labels, frozen original numeric link values and 31 unique source-passage lab anchors. The sidebar and App route consume the registry; the old navigation module is a compatibility view, not another list.
+1. **One typed authored registry:** `src/lessons/registry.tsx` owns seven lessons' components, canonical source references, 126 reviewed topic IDs, concise navigation labels, frozen original numeric link values and 31 unique source-passage lab anchors. The lesson UI components are resolved synchronously from a Vite build-time glob, rather than lazily, to preserve existing deep-link behavior. The sidebar and App route consume the registry; the old navigation module is a compatibility view, not another list.
 2. **Link and visual stability:** `?topic=stable-id` provides a durable new link; original `?section=N` links map via frozen `legacySection`. Reader lab placement matches a unique source marker; missing anchors are visible rather than silently dropping the interactive component.
 3. **Source fidelity:** `content/coverage/manuscript-baselines.json` pins the exact pre-stabilization seven Git blob hashes; manuscripts are not changed. `scripts/check-academy-governance.mjs` verifies checksums, link targets and blueprint structural anchors. Automated checks are *not expert instructional correctness certification*.
 4. **Blueprint coverage:** `content/coverage/cluster-1.1-authored.json` provides structural pointers across all eleven blueprint fields and existing lesson/tests, with expert review explicitly pending.
@@ -41,16 +41,16 @@
 
 | Gate | Result |
 |---|---|
-| Node 22 clean install using `npm ci` | Pending |
-| `node scripts/check-content.mjs` and `node scripts/check-academy-governance.mjs` | Pending |
-| `node --test scripts/test-academy-governance.mjs` and progress validator fixtures | Pending |
-| `npm run typecheck` | Pending |
-| `npm test` | Pending |
-| `npm run build` | Pending |
-| `npm run test:e2e` desktop Chromium | Pending |
+| Node 22 clean install using `npm ci` | **Passed**, [standard CI 44761320595](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44761320595) |
+| `node scripts/check-content.mjs` and `node scripts/check-academy-governance.mjs` | **Passed**, 126 topics and seven pinned blobs, standard CI 44761320595 |
+| `node --test scripts/test-academy-governance.mjs` and progress validator fixtures | **Passed**, five + five standalone governance fixtures, CI 44761320595 |
+| `npm run typecheck` | **Passed**, standard CI 44761320595 |
+| `npm test` | **Passed**, 77/77 tests across 18 files, standard CI 44761320595 |
+| `npm run build` | **Passed**, Vite production build, standard CI 44761320595 |
+| `npm run test:e2e` desktop Chromium | **Passed**, 52/52 tests, [browser CI 44761320585](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44761320585) |
 | Academy PR merged SHA and post-merge evidence | Pending |
 
-**These are pending until actual GitHub CI logs are inspected.** Initial failed feature runs, if any, must be reported and corrected; do not relabel failures as passes.
+**Observed and corrected pre-merge failures:** early TypeScript compilation detected a stale `activeSection` variable and unused imports; governance found a README link to the not-yet-created checkpoint; Vitest caught an eager component glob that included test files; desktop Chromium exposed a lazy-loading deep-link regression in three pre-existing tests. Each was fixed and the new complete 77/52 regression suites passed. The final implementation deliberately resolves components synchronously with an eager Vite glob and keeps the sidebar metadata-only. **These historical failures are not overwritten by later green results.**
 
 ## Mandatory next dependency
 
