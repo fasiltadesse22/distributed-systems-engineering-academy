@@ -105,6 +105,23 @@ for(const term of ['OrderLifecycle','RestaurantDecisionLifecycle','PaymentAttemp
 }
 console.log('Lesson 1.1.6 manuscript passed: 19 full-depth topics, independent lifecycles, state matrix, authority and policy boundaries.');
 
+
+const lesson117=fs.readFileSync('content/lessons/1.1.7.md','utf8');
+const sections117=[...lesson117.matchAll(/^## (Orient|Understand|Explore|Predict|Engineer|Verify|Diagnose|Defend|Retain) — .+$/gm)];
+assert.equal(sections117.length,26,'Lesson 1.1.7 requires 26 fully authored topics');
+assert.ok(lesson117.trim().split(/\s+/).length>=7600,'Lesson 1.1.7 cannot be a shallow outline');
+for(const stage of ['Orient','Understand','Explore','Predict','Engineer','Verify','Diagnose','Defend','Retain']){
+ assert.ok(sections117.some(s=>s[1]===stage),'Lesson 1.1.7 missing deep-learning stage '+stage);
+}
+for(const term of ['Guards','Preconditions','Postconditions','invariants','ACTOR_ROLE',
+ 'STATE_PENDING','EXPECTED_STATE','BUSINESS_AUTHORITY_ASSUMED','POL-02','POL-04',
+ 'PLACED','REQUESTED','time-of-check','side-effect-free','GuardedRestaurantDecision',
+ 'PreparationGuardProbe','PreviewRestaurantDecisionService','Maven','hotel booking',
+ 'rejected transition','candidate','authentic','commit point']){
+ assert.ok(lesson117.toLowerCase().includes(term.toLowerCase()),'Lesson 1.1.7 missing '+term);
+}
+console.log('Lesson 1.1.7 content audit passed: 26 deep sections, nine learning stages, guard legality, actor authority and no-op rejection.');
+
 console.log('Lesson 1.1.2 content audit passed: 14 sections, nine learning stages, use-case semantics and boundaries.');
 console.log('Lesson 1.1.1 content audit passed: 13 sections, all nine learning stages, reviewed domain artifact requirements.');
 console.log('Content audit passed: 19 phases, 93 clusters, 4 chapters, 20 lesson specs, 7 required failure types, 5 lab briefs.');
