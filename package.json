@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "typecheck": "tsc --noEmit",
-    "check:content": "node scripts/check-content.mjs",
+    "check:content": "node scripts/check-content.mjs && node scripts/check-academy-governance.mjs",
+    "check:governance": "node scripts/check-academy-governance.mjs && node scripts/check-progress-governance.mjs",
     "test": "vitest run",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
