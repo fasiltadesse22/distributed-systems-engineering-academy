@@ -16,10 +16,10 @@ export const lessonSections=parseLifecycleSections(source);
 export const javaCommit='79024c3c36fe1a8cc6f71b79505601894d927507';
 const javaBase='https://github.com/fasiltadesse22/food-ordering-platform-new/blob/'+javaCommit+'/';
 export default function Lesson116(){
- const labs:Record<number,EmbeddedLab>={
-   7:{afterBlock:1,label:'Side-by-side independent lifecycle graphs and authority inspector',kind:'illustration',content:<StateMachineExplorer/>},
-   8:{afterBlock:1,label:'Workflow overlay across Order, RestaurantDecision and PaymentAttempt',kind:'illustration',content:<CrossLifecycleOverlay/>},
-   10:{afterBlock:1,label:'Predict independent state progress and unresolved effects',content:<LifecyclePredictionLab/>}
+ const labs:Record<string,EmbeddedLab>={
+   "side-by-side-state-machines-and-transition-provenance":{afterText:"Select any edge. The inspector should reveal its **source state, request",label:'Side-by-side independent lifecycle graphs and authority inspector',kind:'illustration',content:<StateMachineExplorer/>},
+   "cross-lifecycle-predicates-are-observations-not-shared-authority":{afterText:"Suppose the first predicate is true. The workflow may have progressed fi",label:'Workflow overlay across Order, RestaurantDecision and PaymentAttempt',kind:'illustration',content:<CrossLifecycleOverlay/>},
+   "independent-progress-without-imaginary-global-commit":{afterText:"Now change only the merchant decision to REJECTED and payment to REFUND_",label:'Predict independent state progress and unresolved effects',content:<LifecyclePredictionLab/>}
  };
  return <TextbookReader meta={{
    id:'1.1.6',
