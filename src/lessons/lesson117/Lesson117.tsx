@@ -13,7 +13,7 @@ export function parseGuardSections(markdown:string){
  });
 }
 export const lessonSections=parseGuardSections(source);
-export const javaCommit='048b2322456951e6fc01b54889e851f96b8820d9';
+export const javaCommit='8c5e5144b40adbd8679f4fe3f8046020b0279d2b';
 const javaBase='https://github.com/fasiltadesse22/food-ordering-platform-new/blob/'+javaCommit+'/';
 export default function Lesson117(){
  const labs:Record<number,EmbeddedLab>={
@@ -27,11 +27,11 @@ export default function Lesson117(){
   chapterLabel:'02',
   title:<>Guards, Preconditions <em>& Postconditions</em></>,
   subtitle:'Prove when a state transition is legal: actor authority, identity and evidence guards, unchanged-state rejection, candidate-versus-commit boundaries, and table-derived executable tests.',
-  provenance:'Java 21/Spring Boot · 59 feature-CI JUnit tests · external merchant and kitchen operations conceptual',
+  provenance:'Java 21/Spring Boot · 59 post-merge JUnit tests · external merchant and kitchen operations conceptual',
   sections:lessonSections,labs,
   repoUrl:'https://github.com/fasiltadesse22/distributed-systems-engineering-academy/blob/main/content/lessons/1.1.7.md',
   footer:<div className="textbook-end-links">
-   <a href="https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44743299092" target="_blank" rel="noreferrer">Java feature CI: 59 JUnit + packaged HTTP smoke ↗</a>
+   <a href="https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071" target="_blank" rel="noreferrer">Java post-merge CI: 59 JUnit + packaged HTTP smoke ↗</a>
    <a href={javaBase+'src/main/java/com/academy/foodordering/domain/GuardedRestaurantDecision.java'} target="_blank" rel="noreferrer">Eleven guarded merchant checks in Java ↗</a>
    <a href={javaBase+'src/main/java/com/academy/foodordering/domain/PreparationGuardProbe.java'} target="_blank" rel="noreferrer">Illustrative kitchen preparation guard ↗</a>
    <a href={javaBase+'src/main/java/com/academy/foodordering/application/PreviewRestaurantDecisionService.java'} target="_blank" rel="noreferrer">Side-effect-free application outcomes ↗</a>
