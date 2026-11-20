@@ -5,7 +5,7 @@
 **Academy baseline:** `7e446b27758bc9f42c737a7fe464155025fc94e2`.  
 **Java read-only baseline:** `081d1f1a877772e41d7a30ce0052e9609c71f6b5`.  
 **Academy PR:** [#10](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10).  
-**Status:** Feature implementation **verified** at `e2e4a571fc43cbdecb7d77944ce693b65e5cc7d2` (77/77 Vitest, 52/52 desktop Chromium). Merge and post-merge checks remain pending.
+**Status:** Academy implementation **merged** in [PR #10](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10), implementation merge `9b79168d1efa2f37adf1aec72f0d9cf5a9b280ee`. Feature revision `69b729f93b836f4577c44551b7f938daff7dbada` passed 77/77 Vitest and 52/52 Chromium. Independent post-merge standard CI passed; browser CI pending at documentation-edit time.
 
 ## Confirmed pre-change risks
 
@@ -48,10 +48,18 @@
 | `npm test` | **Passed**, 77/77 tests across 18 files, standard CI 44761320595 |
 | `npm run build` | **Passed**, Vite production build, standard CI 44761320595 |
 | `npm run test:e2e` desktop Chromium | **Passed**, 52/52 tests, [browser CI 44761320585](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44761320585) |
-| Academy PR merged SHA and post-merge evidence | Pending |
+| Academy implementation PR / merge | [PR #10 merged](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10), `9b79168d1efa2f37adf1aec72f0d9cf5a9b280ee` |
+| Final feature CI (post-correction) | [standard 44777764798](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44777764798), [Chromium 44777764661](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44777764661), **both passed** |
+| Implementation main post-merge standard | **Passed**, [CI 44778169985](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44778169985), 77/77 Vitest + governance + build |
+| Implementation main post-merge browser | **Passed**, [run 44778170055](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44778170055), **52/52** desktop Chromium tests |
 
 **Observed and corrected pre-merge failures:** early TypeScript compilation detected a stale `activeSection` variable and unused imports; governance found a README link to the not-yet-created checkpoint; Vitest caught an eager component glob that included test files; desktop Chromium exposed a lazy-loading deep-link regression in three pre-existing tests. Each was fixed and the new complete 77/52 regression suites passed. The final implementation deliberately resolves components synchronously with an eager Vite glob and keeps the sidebar metadata-only. **These historical failures are not overwritten by later green results.**
 
 ## Mandatory next dependency
 
 Before Lesson 1.1.8, execute [authoring preflight](../docs/governance/LESSON_AUTHORING.md) against fresh academy and Java SHAs and actual CI, establish scope, source topic IDs, blueprint requirements, context-specific labs, evidence authority and test plan. The Java platform continues its own governance contract independently.
+
+
+## Documentation-finalization note
+
+The implementation merge SHA above identifies the exact verified React/TypeScript source. This documentation-only [PR #11](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/11) records the completed post-merge browser result; it does not change the implementation revision or the seven canonical manuscripts. Preserve the distinction in future baseline reviews.
