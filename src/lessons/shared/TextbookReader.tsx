@@ -1,20 +1,22 @@
 import {useEffect, useMemo, type ReactNode} from 'react';
-import {useLocation} from 'react-router-dom';
+import {Link,useLocation} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import {sectionMenuTitle} from '../../components/sectionNavigation';
+import {sectionMenuTitle, type AuthoredLessonId} from '../../components/sectionNavigation';
+import {topicSlug} from '../source';
+import historicSlugs from '../legacy-section-aliases.json';
 import './textbook.css';
 
-export interface TextbookSection {index:number;stage:string;title:string;body:string}
-export interface EmbeddedLab {afterBlock:number;content:ReactNode;label:string;kind?:'lab'|'illustration'}
+export interface TextbookSection {index:number;stage:string;title:string;body:string;slug?:string}
+export interface EmbeddedLab {afterText?:string;afterBlock?:number;content:ReactNode;label:string;kind?:'lab'|'illustration'}
 export interface TextbookMeta {
- id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7'; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
- repoUrl:string;sections:TextbookSection[];labs?:Record<number,EmbeddedLab>;footer?:ReactNode;
+ id:AuthoredLessonId; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
+ repoUrl:string;sections:TextbookSection[];labs?:Record<string,EmbeddedLab>;footer?:ReactNode;
 }
 export const sourceBlocks=(s:string)=>s.trim().split(/\n\s*\n/).filter(Boolean);
 export interface StructuredSource {lead:string;parts:string[];labels:string[];tail:string;kind:'definitions'|'steps'|'criteria'|'authority'|'questions'|'ownership'}
 type Spec={section:number;block:number;kind:StructuredSource['kind'];markers:string[];labels:string[];tail?:string;lead?:string};
-const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',Spec[]>={
+const specs:Record<AuthoredLessonId,Spec[]>={
  '1.1.1':[
  {section:2,block:0,kind:'definitions',markers:['A goal','An incentive','A responsibility','A capability'],labels:['Goal','Incentive','Responsibility','Capability'],tail:'These four are related'},
  {section:3,block:3,kind:'ownership',markers:['desired business outcome','accountable organization/role','initiating','decision','observers'],labels:['Outcome','Accountability','Initiators','Decision authority','Observers']},
@@ -36,7 +38,7 @@ const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',Spec[
  '1.1.6':[],
  '1.1.7':[]
 };
-export const structuralSpec=(id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
+export const structuralSpec=(id:AuthoredLessonId,section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
 export function structureSource(source:string,spec:Spec):StructuredSource|null{
  const starts=spec.markers.map(m=>source.indexOf(m));
  if(starts.some(i=>i<0)||starts.some((i,n)=>n>0&&i<=starts[n-1]))return null;
@@ -84,7 +86,7 @@ function StructuredFigure({source,meaning}:{source:string;meaning:StructuredSour
   <details className="textbook-source-check"><summary>Compare with original paragraph</summary><Prose text={source}/></details>
  </figure>;
 }
-function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7';sectionIndex:number;blockIndex:number;source:string}){
+function LessonBlock({id,sectionIndex,blockIndex,source}:{id:AuthoredLessonId;sectionIndex:number;blockIndex:number;source:string}){
  const spec=structuralSpec(id,sectionIndex,blockIndex);
  const visual=spec?structureSource(source,spec):null;
  if(visual)return <StructuredFigure source={source} meaning={visual}/>;
@@ -93,10 +95,16 @@ function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.
 }
 export default function TextbookReader({meta}:{meta:TextbookMeta}){
  const location=useLocation();
- const selected=Number(new URLSearchParams(location.search).get('section')??'1');
  const sections=meta.sections;
+ const searchParams=new URLSearchParams(location.search);
+ const requestedTopic=searchParams.get('topic');
+ const legacy=Number(searchParams.get('section')??'1');
+ const frozen=(historicSlugs as Record<string,readonly string[]>)[meta.id]??[];
+ const chosenSlug=requestedTopic??(Number.isInteger(legacy)&&legacy>=1?frozen[legacy-1]:undefined);
+ const match=chosenSlug?sections.findIndex(section=>topicSlug(section.title)===chosenSlug):-1;
+ const selected=match>=0?match+1:1;
  useEffect(()=>{
-  if(!location.search.includes('section='))return;
+  if(!searchParams.has('section')&&!searchParams.has('topic'))return;
   const target=Number.isInteger(selected)&&selected>=1&&selected<=sections.length?selected:1;
   const id=window.setTimeout(()=>document.getElementById('topic-'+target)?.scrollIntoView({block:'start'}),75);
   return ()=>window.clearTimeout(id);
@@ -111,15 +119,15 @@ export default function TextbookReader({meta}:{meta:TextbookMeta}){
    <p className="textbook-reading-intro">Read this lesson continuously, or jump to a topic in the left outline. Diagrams and exercises appear beside the explanations they clarify.</p>
   </header>
   {sections.map((section,i)=>{
-    const blocks=sourceBlocks(section.body),lab=meta.labs?.[i];
-    return <section className="textbook-topic" key={i} id={'topic-'+(i+1)} data-testid={'textbook-topic-'+(i+1)} aria-labelledby={'topic-title-'+(i+1)}>
+    const blocks=sourceBlocks(section.body),slug=topicSlug(section.title),lab=meta.labs?.[slug];
+    return <section className="textbook-topic" key={i} id={'topic-'+(i+1)} data-topic-slug={slug} data-testid={'textbook-topic-'+(i+1)} aria-labelledby={'topic-title-'+(i+1)}>
      <header className="textbook-topic-head"><span className="textbook-topic-number">{String(i+1).padStart(2,'0')} / {String(sections.length).padStart(2,'0')}</span>
-      <div><span className="textbook-topic-stage">{section.stage}</span><h2 id={'topic-title-'+(i+1)}>{sectionMenuTitle(meta.id,i,section.title)}</h2><p className="textbook-topic-subtitle">{section.title}</p></div>
+      <div><span className="textbook-topic-stage">{section.stage}</span><h2 id={'topic-title-'+(i+1)}>{sectionMenuTitle(meta.id,i,section.title)}</h2><p className="textbook-topic-subtitle">{section.title}</p><Link className="textbook-topic-permalink" to={'/lesson/'+meta.id+'?topic='+slug} aria-label={'Permanent link to '+section.title}>Copy topic link ↗</Link></div>
      </header>
      <div className="textbook-topic-body">
       {blocks.map((block,j)=><div className="textbook-reading-unit" data-source-block={j} key={j}>
        <LessonBlock id={meta.id} sectionIndex={i} blockIndex={j} source={block}/>
-       {lab?.afterBlock===j&&<div className="textbook-lab" data-kind={lab.kind??'lab'} aria-label={lab.label} data-testid={'embedded-lab-'+(i+1)}>
+       {(lab?.afterText?block.includes(lab.afterText):lab?.afterBlock===j)&&<div className="textbook-lab" data-kind={lab.kind??'lab'} aria-label={lab.label} data-testid={'embedded-lab-'+(i+1)}>
          <div className="textbook-lab-kicker"><span>{lab.kind==='illustration'?'VISUAL MECHANISM':'APPLY THE IDEA'}</span><span>{lab.kind==='illustration'?'DIAGRAM':'LAB'} · {String(i+1).padStart(2,'0')}</span></div>{lab.content}
        </div>}
       </div>)}
