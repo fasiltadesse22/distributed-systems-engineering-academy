@@ -4,7 +4,7 @@
 **Engineering question:** What makes a requested transition legal in a particular state?  
 **Academy baseline:** `bf9f335eeada413b71433d394fab2e730ce7bc27`.  
 **Java baseline:** `79024c3c36fe1a8cc6f71b79505601894d927507`.  
-**Status:** Academy candidate — standard CI and desktop Chromium not yet verified at the time of checkpoint creation.
+**Status:** Academy implementation verified at feature revision `e6e3b35c3d98ed90a32cf4341d918a3a67e8ba71`: 69/69 Vitest and 48/48 desktop Chromium. Documentation-finalization CI and academy merge still pending.
 
 ## Full instructional implementation
 
@@ -18,8 +18,8 @@
 ## Real Java evolution
 
 - Separate Java PR: [PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4).
-- Feature SHA `048b2322456951e6fc01b54889e851f96b8820d9`.
-- [Java feature CI 44743299092](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44743299092) **passed**: 59/59 JUnit tests, Maven package and live packaged HTTP 201/422 smoke. The 25 newly reported test invocations exercise guarded decision and preparation probe behavior.
+- Java feature SHA `048b2322456951e6fc01b54889e851f96b8820d9`; **merged main SHA** `8c5e5144b40adbd8679f4fe3f8046020b0279d2b`.
+- [Java post-merge CI 44745491071](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) **passed**: 59/59 JUnit tests, Maven package and live packaged HTTP 201/422 smoke. The 25 newly reported test invocations exercise guarded decision and preparation probe behavior.
 - New domain types: GuardCheck, GuardedRestaurantDecision, PreparationGuardProbe.
 - New application type: PreviewRestaurantDecisionService with sealed candidate Eligible and Rejected outcomes.
 - No changes to OrderController, PlaceOrderService, existing public request/response or local intake storage. No real merchant, provider, kitchen or delivery integration. No new business state persistence.
@@ -38,12 +38,12 @@ Both pure evaluators are deterministic. A failed guard preserves the exact immut
 | Gate | Result |
 |---|---|
 | Java Maven/packaged HTTP smoke | **PASS** [44743299092](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44743299092), 59/59 tests |
-| Academy manuscript/content integrity | Pending |
-| Academy TypeScript | Pending |
-| Academy Vitest | Pending |
-| Academy production build | Pending |
-| Academy desktop Chromium and previous lessons | Pending |
-| Java PR merged and post-merge CI | Pending |
+| Academy manuscript/content integrity | **Passed**, [standard run 44745213798](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44745213798) |
+| Academy TypeScript | **Passed**, standard run 44745213798 |
+| Academy Vitest | **Passed**, 69/69 tests in 17? (actual test files count must be verified); standard run 44745213798 |
+| Academy production build | **Passed**, standard run 44745213798 |
+| Academy desktop Chromium and previous lessons | **Passed**, 48/48 tests, [browser run 44745213877](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44745213877) |
+| Java PR merged and post-merge CI | **Passed**, [Java PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4), [post-merge run 44745491071](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) |
 | Academy PR merged and post-merge CI | Pending |
 
 Do not claim incomplete gates passed. Replace pending statuses only after reading actual immutable CI evidence.
