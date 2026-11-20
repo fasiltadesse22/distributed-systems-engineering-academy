@@ -8,13 +8,13 @@ import './textbook.css';
 export interface TextbookSection {index:number;stage:string;title:string;body:string}
 export interface EmbeddedLab {afterBlock:number;content:ReactNode;label:string;kind?:'lab'|'illustration'}
 export interface TextbookMeta {
- id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
+ id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7'; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
  repoUrl:string;sections:TextbookSection[];labs?:Record<number,EmbeddedLab>;footer?:ReactNode;
 }
 export const sourceBlocks=(s:string)=>s.trim().split(/\n\s*\n/).filter(Boolean);
 export interface StructuredSource {lead:string;parts:string[];labels:string[];tail:string;kind:'definitions'|'steps'|'criteria'|'authority'|'questions'|'ownership'}
 type Spec={section:number;block:number;kind:StructuredSource['kind'];markers:string[];labels:string[];tail?:string;lead?:string};
-const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6',Spec[]>={
+const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',Spec[]>={
  '1.1.1':[
  {section:2,block:0,kind:'definitions',markers:['A goal','An incentive','A responsibility','A capability'],labels:['Goal','Incentive','Responsibility','Capability'],tail:'These four are related'},
  {section:3,block:3,kind:'ownership',markers:['desired business outcome','accountable organization/role','initiating','decision','observers'],labels:['Outcome','Accountability','Initiators','Decision authority','Observers']},
@@ -33,9 +33,10 @@ const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6',Spec[]>={
  '1.1.3':[],
  '1.1.4':[],
  '1.1.5':[],
- '1.1.6':[]
+ '1.1.6':[],
+ '1.1.7':[]
 };
-export const structuralSpec=(id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
+export const structuralSpec=(id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
 export function structureSource(source:string,spec:Spec):StructuredSource|null{
  const starts=spec.markers.map(m=>source.indexOf(m));
  if(starts.some(i=>i<0)||starts.some((i,n)=>n>0&&i<=starts[n-1]))return null;
@@ -83,7 +84,7 @@ function StructuredFigure({source,meaning}:{source:string;meaning:StructuredSour
   <details className="textbook-source-check"><summary>Compare with original paragraph</summary><Prose text={source}/></details>
  </figure>;
 }
-function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6';sectionIndex:number;blockIndex:number;source:string}){
+function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7';sectionIndex:number;blockIndex:number;source:string}){
  const spec=structuralSpec(id,sectionIndex,blockIndex);
  const visual=spec?structureSource(source,spec):null;
  if(visual)return <StructuredFigure source={source} meaning={visual}/>;
