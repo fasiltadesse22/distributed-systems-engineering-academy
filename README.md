@@ -43,7 +43,7 @@ CI uses `npm ci`, source/coverage governance checks, TypeScript, Vitest, product
 
 ## Visual Textbook V2
 
-The complete Markdown lessons remain the canonical text. The reader keeps one uninterrupted reading surface, ample body width, restrained diagrams, integrated prediction-before-reveal exercises, dark/light themes, and **one expandable Chapter → Lesson → Topic sidebar**. Lessons are registered once in [the typed lesson registry](src/lessons/registry.tsx). The registry holds editorial labels, stable topic IDs, baseline numerical link mappings, lazy lesson components and exact source-passage lab anchors.
+The complete Markdown lessons remain the canonical text. The reader keeps one uninterrupted reading surface, ample body width, restrained diagrams, integrated prediction-before-reveal exercises, dark/light themes, and **one expandable Chapter → Lesson → Topic sidebar**. Lessons are registered once in [the typed lesson registry](src/lessons/registry.tsx). The registry holds editorial labels, stable topic IDs, baseline numerical link mappings, build-time-resolved lesson components and exact source-passage lab anchors.
 
 Existing links such as `/#/lesson/1.1.7?section=14` continue working. Preferred stable links use `?topic=<topic-id>`; the numeric mapping is deliberately frozen so future inserted topics do not redirect earlier bookmarks to different meanings. Invalid source anchors are detectable in CI and visual content remains accessible as a fallback.
 
