@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "principle": "These reviewed scenario expectations are based on immutable Java pure model tests, NOT runtime Java execution by React or automatic cross-repository CI parity. Drift must be reviewed against Java evidence.",
+  "models": [
+    {
+      "id": "lesson116-lifecycle",
+      "lesson": "1.1.6",
+      "classification": "java-backed-pure-local-model",
+      "javaCommit": "79024c3c36fe1a8cc6f71b79505601894d927507",
+      "javaRun": "https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44054521893",
+      "sourcePaths": [
+        "src/main/java/com/academy/foodordering/domain/OrderLifecycle.java",
+        "src/main/java/com/academy/foodordering/domain/RestaurantDecisionLifecycle.java",
+        "src/main/java/com/academy/foodordering/domain/PaymentAttemptLifecycle.java"
+      ],
+      "tests": [
+        "src/test/java/com/academy/foodordering/domain/LifecycleModelsTest.java"
+      ],
+      "cases": [
+        {
+          "domain": "order",
+          "from": "NEW",
+          "action": "RECORD_INTAKE",
+          "to": "REQUESTED",
+          "modelFact": "IllustrativeOrderIntakeRecorded"
+        },
+        {
+          "domain": "restaurant",
+          "from": "PENDING",
+          "action": "ACCEPT",
+          "to": "ACCEPTED",
+          "modelFact": "IllustrativeRestaurantAccepted"
+        },
+        {
+          "domain": "restaurant",
+          "from": "ACCEPTED",
+          "action": "REJECT",
+          "to": "ACCEPTED",
+          "modelFact": null
+        },
+        {
+          "domain": "payment",
+          "from": "SUBMITTED_UNKNOWN",
+          "action": "CONFIRM_AUTHORIZED",
+          "to": "AUTHORIZED",
+          "modelFact": "IllustrativePaymentAttemptAUTHORIZED"
+        },
+        {
+          "domain": "payment",
+          "from": "REFUND_PENDING",
+          "action": "CONFIRM_REFUNDED",
+          "to": "REFUNDED",
+          "modelFact": "IllustrativePaymentAttemptREFUNDED"
+        }
+      ],
+      "limitations": [
+        "No restaurant/provider integration",
+        "Pure lifecycle labels are not committed facts",
+        "No distributed atomicity or provider reconciliation"
+      ]
+    },
+    {
+      "id": "lesson117-guarded-preview",
+      "lesson": "1.1.7",
+      "classification": "java-backed-pure-local-model",
+      "javaCommit": "8c5e5144b40adbd8679f4fe3f8046020b0279d2b",
+      "javaRun": "https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071",
+      "sourcePaths": [
+        "src/main/java/com/academy/foodordering/domain/GuardedRestaurantDecision.java",
+        "src/main/java/com/academy/foodordering/domain/PreparationGuardProbe.java"
+      ],
+      "tests": [
+        "src/test/java/com/academy/foodordering/domain/GuardedTransitionsTest.java"
+      ],
+      "cases": [
+        {
+          "kind": "merchant",
+          "overrides": {},
+          "accepted": true,
+          "before": "PENDING",
+          "next": "ACCEPTED",
+          "candidateFact": "CandidateIllustrativeRestaurantAccepted"
+        },
+        {
+          "kind": "merchant",
+          "overrides": {
+            "role": "CUSTOMER"
+          },
+          "accepted": false,
+          "before": "PENDING",
+          "next": "PENDING",
+          "candidateFact": null,
+          "failingGuard": "ACTOR_ROLE"
+        },
+        {
+          "kind": "merchant",
+          "overrides": {
+            "state": "REJECTED",
+            "expectedState": "REJECTED"
+          },
+          "accepted": false,
+          "before": "REJECTED",
+          "next": "REJECTED",
+          "candidateFact": null,
+          "failingGuard": "STATE_PENDING"
+        },
+        {
+          "kind": "merchant",
+          "overrides": {
+            "policy": "UNRESOLVED"
+          },
+          "accepted": false,
+          "before": "PENDING",
+          "next": "PENDING",
+          "candidateFact": null,
+          "failingGuard": "POL_02_EDUCATIONAL_ONLY"
+        },
+        {
+          "kind": "preparation",
+          "overrides": {
+            "merchantState": "PENDING"
+          },
+          "accepted": false,
+          "before": "NOT_STARTED",
+          "next": "NOT_STARTED",
+          "candidateFact": null,
+          "failingGuard": "MERCHANT_ACCEPTED"
+        },
+        {
+          "kind": "preparation",
+          "overrides": {
+            "action": "COMPLETE_PREPARATION"
+          },
+          "accepted": false,
+          "before": "NOT_STARTED",
+          "next": "NOT_STARTED",
+          "candidateFact": null,
+          "failingGuard": "CURRENT_STAGE"
+        },
+        {
+          "kind": "preparation",
+          "overrides": {},
+          "accepted": true,
+          "before": "NOT_STARTED",
+          "next": "PREPARING",
+          "candidateFact": "CandidateIllustrativePreparationStarted"
+        }
+      ],
+      "limitations": [
+        "Actor authentication, merchant evidence and POL-02/POL-04 are classroom assumptions",
+        "No merchant/kitchen commit or source authority",
+        "No compare-and-swap or distributed fault test"
+      ]
+    }
+  ]
+}
