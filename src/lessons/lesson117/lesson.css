@@ -1,0 +1,64 @@
+/* Lesson 1.1.7 uses the existing continuous reading canvas; no extra reading modes. */
+.l117-kicker{display:block;color:var(--accent);font-size:.68rem;letter-spacing:.12em;font-weight:800;margin-bottom:8px}
+.l117-studio,.l117-table-figure,.l117-boundary{margin:24px 0 36px;border-top:2px solid var(--accent);border-bottom:1px solid var(--line);padding:18px 0 24px}
+.l117-studio figcaption strong,.l117-table-figure figcaption strong,.l117-boundary figcaption strong{font-size:1.25rem;color:var(--white);line-height:1.4}
+.l117-studio figcaption p,.l117-table-figure figcaption p,.l117-predict header p{max-width:76ch;font-size:.85rem;line-height:1.75;color:var(--muted)}
+.l117-switch{display:flex;gap:12px;margin:20px 0 17px;flex-wrap:wrap}
+.l117-switch button{background:transparent;border:1px solid var(--line);color:var(--text);cursor:pointer;border-radius:5px;padding:10px 14px;font-size:.78rem;font-weight:760}
+.l117-switch button[aria-pressed=true]{border-color:var(--accent);color:var(--white);background:var(--panel)}
+.l117-config{border-top:1px solid var(--line);padding-top:16px}
+.l117-field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.l117-choice{display:grid;gap:7px;font-size:.8rem;font-weight:730;color:var(--text);margin:0 0 11px}
+.l117-choice select{color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:10px 12px;min-width:0;font-size:.81rem}
+.l117-flags{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 15px;margin-top:12px;padding:12px 0;border-top:1px solid var(--line)}
+.l117-flag{display:flex;align-items:start;gap:9px;font-size:.8rem;color:var(--text);line-height:1.55;padding:6px 0}
+.l117-flag input,.l117-predict input{margin-top:4px;accent-color:var(--accent)}
+.l117-actions{display:flex;align-items:center;gap:16px;margin:17px 0;flex-wrap:wrap}
+.l117-actions button{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:9px 13px;cursor:pointer;color:var(--white);font-weight:740}
+.l117-actions span,.l117-note{font-size:.74rem;line-height:1.65;color:var(--muted)}
+.l117-outcome{border-top:2px solid var(--line);padding-top:18px}
+.l117-result-header strong{font-size:1.07rem;color:var(--white)}
+.l117-result-header p,.l117-matrix-result p{font-size:.82rem;line-height:1.7;color:var(--text)}
+.l117-before-after{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);gap:13px;align-items:center;margin:20px 0}
+.l117-before-after>div{border-top:2px solid var(--accent);padding:12px 0;min-width:0}
+.l117-before-after>span{text-align:center;color:var(--accent)}
+.l117-before-after small{display:block;color:var(--muted);font-size:.68rem}
+.l117-before-after b{display:block;overflow-wrap:anywhere;font-size:.92rem;color:var(--white);margin:5px 0}
+.l117-before-after em{font-style:normal;color:var(--muted);font-size:.72rem}
+.l117-fact{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;display:grid;gap:4px}
+.l117-fact b{font-size:.75rem;color:var(--white)}
+.l117-fact span{font-size:.8rem;color:var(--text);overflow-wrap:anywhere}
+.l117-guard-list-head{display:flex;justify-content:space-between;align-items:baseline;margin:18px 0 9px;gap:10px}
+.l117-guard-list-head strong{font-size:.87rem;color:var(--white)}
+.l117-guard-list-head small{font-size:.75rem;color:var(--muted)}
+.l117-guard-list ol{list-style:none;margin:0;padding:0}
+.l117-guard-list li{display:grid;grid-template-columns:24px minmax(0,1fr) 45px;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
+.l117-guard-list li>div b{font-size:.74rem;color:var(--text)}
+.l117-guard-list li p{font-size:.73rem;color:var(--muted);line-height:1.5;margin:4px 0}
+.l117-guard-index{font:.72rem ui-monospace,monospace;color:var(--muted)}
+.l117-guard-status{font-size:.69rem;letter-spacing:.05em;font-weight:800;color:var(--muted)}
+.l117-guard-list li.l117-failed{border-top-color:var(--warning)}
+.l117-guard-list li.l117-failed .l117-guard-status{color:var(--warning)}
+.l117-matrix{width:100%;border-collapse:collapse;font-size:.79rem;line-height:1.5}
+.l117-matrix th{text-align:left;color:var(--white);border-bottom:2px solid var(--line);padding:10px 8px}
+.l117-matrix td{padding:10px 8px;vertical-align:middle;border-bottom:1px solid var(--line);color:var(--text)}
+.l117-matrix td button{border:1px solid var(--line);color:var(--text);background:transparent;border-radius:5px;padding:7px 9px;cursor:pointer;font-size:.74rem}
+.l117-matrix td button[aria-pressed=true]{color:var(--white);border-color:var(--accent)}
+.l117-matrix-result{padding:16px 0;border-top:1px solid var(--accent);margin-top:12px}
+.l117-matrix-result b{color:var(--white);font-size:.88rem}
+.l117-boundary ol{list-style:none;margin:20px 0;padding:0}
+.l117-boundary li{display:grid;grid-template-columns:minmax(140px,.55fr) minmax(0,1fr);gap:4px 16px;padding:14px 0;border-top:1px solid var(--line)}
+.l117-boundary h4{margin:0;font-size:.83rem;color:var(--white)}
+.l117-boundary li p{margin:0;font-size:.79rem;color:var(--text);line-height:1.6}
+.l117-boundary li small{grid-column:2;color:var(--muted);font-size:.69rem}
+.l117-predict header h3{color:var(--white);font-size:1.18rem}
+.l117-predict fieldset{border:0;padding:0;margin:18px 0}
+.l117-predict legend{font-size:.81rem;color:var(--white);font-weight:760;margin-bottom:10px}
+.l117-predict fieldset label{display:flex;gap:9px;align-items:start;margin:7px 0;color:var(--text);font-size:.82rem}
+.l117-reveal{background:var(--accent);color:var(--bg);border:0;border-radius:5px;cursor:pointer;font-weight:800;padding:12px 15px}
+.l117-reveal:disabled{cursor:not-allowed;opacity:.5}
+.l117-predict-reveal{margin:18px 0;border-top:1px solid var(--line);padding:14px 0}
+.l117-predict-reveal>strong{font-size:.91rem;color:var(--accent)}
+.l117-predict-reveal p{font-size:.82rem;line-height:1.7;color:var(--text)}
+.l117-choice select:focus-visible,.l117-switch button:focus-visible,.l117-actions button:focus-visible,.l117-reveal:focus-visible,.l117-matrix button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:740px){.l117-field-grid,.l117-flags{grid-template-columns:1fr}.l117-boundary li{grid-template-columns:1fr}.l117-boundary li small{grid-column:1}.l117-matrix{font-size:.7rem}}
