@@ -1,11 +1,9 @@
 /** Academy-authored lesson registry, topics and contextual lab anchors.
  * Canonical manuscripts remain content/lessons/*.md. These frozen topic IDs
  * and legacySection values are stable links even if prose or section order changes.
- * The React components load lazily; sidebar metadata never imports a lesson UI.
+ * Sidebar metadata never imports a lesson UI. App eagerly resolves authored lesson\n * components from Vite's build-time glob to preserve synchronous deep links.
  * New authored lessons require ONE registry entry with reviewed topic/lab metadata.
  */
-import {lazy} from 'react';
-import type {ComponentType,LazyExoticComponent} from 'react';
 import manuscript1 from '../../content/lessons/1.1.1.md?raw';
 import manuscript2 from '../../content/lessons/1.1.2.md?raw';
 import manuscript3 from '../../content/lessons/1.1.3.md?raw';
@@ -19,7 +17,7 @@ export type LabAnchor = {readonly id:string;readonly topicId:string;readonly mar
 export type AuthoredEntry = {
  readonly id:string;readonly chapter:string;readonly manuscript:string;
  readonly topics:readonly TopicAnchor[];readonly labs:readonly LabAnchor[];
- readonly component:LazyExoticComponent<ComponentType<object>>;
+ readonly componentPath:string;
 };
 export function parseCanonicalSections(markdown:string){
  return markdown.split(/(?=^## )/m).filter(part=>part.startsWith('## ')).map((part,index)=>{
@@ -31,7 +29,7 @@ export function parseCanonicalSections(markdown:string){
 export const authoredLessonRegistry = {
  '1.1.1': {
   id:'1.1.1',chapter:'C1',manuscript:manuscript1,
-  component:lazy(()=>import('./lesson111/Lesson111')),
+  componentPath:'./lesson111/Lesson111.tsx',
   topics:[
    {
     "id": "start-with-the-business-not-the-architecture",
@@ -173,7 +171,7 @@ export const authoredLessonRegistry = {
  },
  '1.1.2': {
   id:'1.1.2',chapter:'C1',manuscript:manuscript2,
-  component:lazy(()=>import('./lesson112/Lesson112')),
+  componentPath:'./lesson112/Lesson112.tsx',
   topics:[
    {
     "id": "the-business-question-behind-post-orders",
@@ -321,7 +319,7 @@ export const authoredLessonRegistry = {
  },
  '1.1.3': {
   id:'1.1.3',chapter:'C1',manuscript:manuscript3,
-  component:lazy(()=>import('./lesson113/Lesson113')),
+  componentPath:'./lesson113/Lesson113.tsx',
   topics:[
    {
     "id": "a-customer-request-is-not-a-historical-fact",
@@ -439,7 +437,7 @@ export const authoredLessonRegistry = {
  },
  '1.1.4': {
   id:'1.1.4',chapter:'C1',manuscript:manuscript4,
-  component:lazy(()=>import('./lesson114/Lesson114')),
+  componentPath:'./lesson114/Lesson114.tsx',
   topics:[
    {
     "id": "the-order-that-appeared-paid-without-a-payment",
@@ -564,7 +562,7 @@ export const authoredLessonRegistry = {
  },
  '1.1.5': {
   id:'1.1.5',chapter:'C1',manuscript:manuscript5,
-  component:lazy(()=>import('./lesson115/Lesson115')),
+  componentPath:'./lesson115/Lesson115.tsx',
   topics:[
    {
     "id": "the-customer-sees-one-journey-the-business-has-many-authorities",
@@ -725,7 +723,7 @@ export const authoredLessonRegistry = {
  },
  '1.1.6': {
   id:'1.1.6',chapter:'C2',manuscript:manuscript6,
-  component:lazy(()=>import('./lesson116/Lesson116')),
+  componentPath:'./lesson116/Lesson116.tsx',
   topics:[
    {
     "id": "one-dinner-several-independent-answers",
@@ -868,7 +866,7 @@ export const authoredLessonRegistry = {
  },
  '1.1.7': {
   id:'1.1.7',chapter:'C2',manuscript:manuscript7,
-  component:lazy(()=>import('./lesson117/Lesson117')),
+  componentPath:'./lesson117/Lesson117.tsx',
   topics:[
    {
     "id": "a-syntactically-valid-command-that-is-business-illegal",
