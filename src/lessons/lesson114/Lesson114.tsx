@@ -17,10 +17,10 @@ export const javaCommit='ea17135cdc1974d89d78ce78931bb63cc5e9544e';
 export const javaBase='https://github.com/fasiltadesse22/food-ordering-platform-new/blob/'+javaCommit+'/';
 export const javaVerify='https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42782082917';
 export default function Lesson114(){
- const labs:Record<number,EmbeddedLab>={
-  0:{afterBlock:3,label:'Identity and authority ownership',kind:'illustration',content:<IdentityAuthorityMap/>},
-  5:{afterBlock:8,label:'Provider authority versus UI projection',kind:'illustration',content:<ProjectionAuthorityFlow/>},
-  8:{afterBlock:15,label:'Predict identity and authority consequences',content:<IdentityAuthorityLab/>}
+ const labs:Record<string,EmbeddedLab>={
+  "the-order-that-appeared-paid-without-a-payment":{afterText:"Our running example uses one order intake. A successful local \\`PlaceOrd",label:'Identity and authority ownership',kind:'illustration',content:<IdentityAuthorityMap/>},
+  "authority-is-a-business-contract-not-a-database-location":{afterText:"These layers can disagree because an observation is delayed, a projectio",label:'Provider authority versus UI projection',kind:'illustration',content:<ProjectionAuthorityFlow/>},
+  "identity-changes-that-should-and-should-not-create-new-entities":{afterText:"The current system treats two eligible POST executions as two creates an",label:'Predict identity and authority consequences',content:<IdentityAuthorityLab/>}
  };
  return <TextbookReader meta={{
   id:'1.1.4',
