@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "meaning": "Git blob checksums for canonical manuscripts at pre-stabilization main; require deliberate source-baseline updates for future authorized edits",
+  "sourceCommit": "7e446b27758bc9f42c737a7fe464155025fc94e2",
+  "manuscripts": {
+    "1.1.1": {
+      "path": "content/lessons/1.1.1.md",
+      "gitBlobSha": "563503abd286c750c919096bcf635ed707cfaa7f",
+      "sectionCount": 13
+    },
+    "1.1.2": {
+      "path": "content/lessons/1.1.2.md",
+      "gitBlobSha": "a33f3c03dd32f1b9ca428ef3d70f0e49d66db2cd",
+      "sectionCount": 14
+    },
+    "1.1.3": {
+      "path": "content/lessons/1.1.3.md",
+      "gitBlobSha": "d056ef40fe7166d1da1fef00ba6ad977a095f165",
+      "sectionCount": 16
+    },
+    "1.1.4": {
+      "path": "content/lessons/1.1.4.md",
+      "gitBlobSha": "130fcc20092325c75fc395de521b1f8c94bd5646",
+      "sectionCount": 16
+    },
+    "1.1.5": {
+      "path": "content/lessons/1.1.5.md",
+      "gitBlobSha": "7c78b16597b82f5316fffa710275af42fe060461",
+      "sectionCount": 22
+    },
+    "1.1.6": {
+      "path": "content/lessons/1.1.6.md",
+      "gitBlobSha": "922311e9d0269b73407c677efc2929db72bd97fb",
+      "sectionCount": 19
+    },
+    "1.1.7": {
+      "path": "content/lessons/1.1.7.md",
+      "gitBlobSha": "5707622d9a0b7720b156ca51508810aa8b5363d7",
+      "sectionCount": 26
+    }
+  }
+}
