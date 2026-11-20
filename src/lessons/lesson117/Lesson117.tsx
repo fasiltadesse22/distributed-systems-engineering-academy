@@ -16,11 +16,11 @@ export const lessonSections=parseGuardSections(source);
 export const javaCommit='8c5e5144b40adbd8679f4fe3f8046020b0279d2b';
 const javaBase='https://github.com/fasiltadesse22/food-ordering-platform-new/blob/'+javaCommit+'/';
 export default function Lesson117(){
- const labs:Record<number,EmbeddedLab>={
-  9:{afterBlock:1,label:'Guarded merchant and preparation transitions with actor and evidence controls',content:<GuardStudio/>},
-  13:{afterBlock:1,label:'Total state-and-action decision tables',kind:'illustration',content:<TransitionTableExplorer/>},
-  16:{afterBlock:1,label:'Pure decision, persistence commit and authoritative fact boundary',kind:'illustration',content:<CommitBoundaryTimeline/>},
-  20:{afterBlock:1,label:'Predict before reveal business legality',content:<GuardPredictionLab/>}
+ const labs:Record<string,EmbeddedLab>={
+  "trace-the-illustrative-accept-command-across-eleven-guards":{afterText:"The sequence begins with **IDENTITY_ORDER**: does the target command ref",label:'Guarded merchant and preparation transitions with actor and evidence controls',content:<GuardStudio/>},
+  "derive-total-decision-tables-rather-than-ad-hoc-if-statements":{afterText:"| State before | ACCEPT | REJECT | Meaning |\n|---|---|---|---|\n| PENDING",label:'Total state-and-action decision tables',kind:'illustration',content:<TransitionTableExplorer/>},
+  "a-passing-pure-guard-is-not-a-persistence-commit":{afterText:"The exact commit point depends on storage semantics. For a local databas",label:'Pure decision, persistence commit and authoritative fact boundary',kind:'illustration',content:<CommitBoundaryTimeline/>},
+  "before-after-fact-no-fact-and-the-counterexample-discipline":{afterText:"Consider an authenticated merchant operator for the correct restaurant w",label:'Predict before reveal business legality',content:<GuardPredictionLab/>}
  };
  return <TextbookReader meta={{
   id:'1.1.7',
