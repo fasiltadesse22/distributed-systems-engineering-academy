@@ -18,9 +18,9 @@ export const javaBase='https://github.com/fasiltadesse22/food-ordering-platform-
 export const javaVerify='https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411';
 
 export default function Lesson113(){
- const labs:Record<number,EmbeddedLab>={
-  0:{afterBlock:2,label:'Command, decision and fact boundaries',kind:'illustration',content:<CommandFactFlow/>},
-  10:{afterBlock:13,label:'Predict the command and local fact outcome',content:<CommandFactLab/>}
+ const labs:Record<string,EmbeddedLab>={
+  "a-customer-request-is-not-a-historical-fact":{afterText:"The crucial direction of implication is **not reversible**. A valid Plac",label:'Command, decision and fact boundaries',kind:'illustration',content:<CommandFactFlow/>},
+  "four-branches-from-the-same-command-intention":{afterText:"The interactive **Command → Decision → Fact Explorer** below models thes",label:'Predict the command and local fact outcome',content:<CommandFactLab/>}
  };
  return <TextbookReader meta={{
   id:'1.1.3',
