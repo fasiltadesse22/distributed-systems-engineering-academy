@@ -13,10 +13,10 @@ export function parseWorkflowSections(markdown:string) {
 }
 export const lessonSections=parseWorkflowSections(source);
 export default function Lesson115(){
- const labs:Record<number,EmbeddedLab>={
-  4:{afterBlock:1,label:'Connected actor workflow and branching authority',kind:'illustration',content:<WorkflowSwimlane/>},
-  15:{afterBlock:1,label:'Milestone authority and customer projections',kind:'illustration',content:<AuthorityLedger/>},
-  16:{afterBlock:1,label:'Predict partial workflow outcomes',content:<WorkflowScenarioExplorer/>}
+ const labs:Record<string,EmbeddedLab>={
+  "follow-the-connected-journey-across-swimlanes":{afterText:"A useful reading test is to freeze the journey after any arrow. Can you ",label:'Connected actor workflow and branching authority',kind:'illustration',content:<WorkflowSwimlane/>},
+  "state-and-authority-overlay-independent-facts-one-customer-projection":{afterText:"For every milestone, record: actor; fact; stable identity; scope of auth",label:'Milestone authority and customer projections',kind:'illustration',content:<AuthorityLedger/>},
+  "branching-scenario-studio-and-uncertain-outcomes":{afterText:"A model-generated answer is not a real provider observation. It must be ",label:'Predict partial workflow outcomes',content:<WorkflowScenarioExplorer/>}
  };
  return <TextbookReader meta={{
   id:'1.1.5',
