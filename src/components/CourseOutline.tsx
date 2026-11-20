@@ -77,7 +77,7 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
                   onClick={onNavigate}
                   data-testid={'outline-section-'+lesson.id+'-'+(index+1)}
                   className={'outline-section-link '+(selected&&activeTopic?.id===section.id?'active':'')}
-                  aria-current={selected&&activeSection===index+1?'location':undefined}>
+                  aria-current={selected&&activeTopic?.id===section.id?'location':undefined}>
                     <span className="outline-section-index">{String(index+1).padStart(2,'0')}</span>
                     <span className="outline-section-copy"><strong>{section.nav}</strong></span>
                 </Link>)}
