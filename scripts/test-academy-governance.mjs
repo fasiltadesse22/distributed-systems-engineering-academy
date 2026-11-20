@@ -9,6 +9,8 @@ import {checkAcademyGovernance} from './check-academy-governance.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 function fixture(){
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'academy-governance-'));
+ // Copy all repository documentation so legitimate internal references remain intact.
+ for(const family of ['docs','content','checkpoints'])fs.cpSync(path.join(root,family),path.join(dir,family),{recursive:true});
  const baselines=JSON.parse(fs.readFileSync(path.join(root,'content/coverage/manuscript-baselines.json'),'utf8'));
  const paths=['content/cluster-1.1/blueprint.json','content/coverage/manuscript-baselines.json',
   'content/coverage/cluster-1.1-authored.json','README.md',
