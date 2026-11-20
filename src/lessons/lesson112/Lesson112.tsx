@@ -115,15 +115,15 @@ function Retain(){
 }
 
 export default function Lesson112(){
- const labs:Record<number,EmbeddedLab>={
-  6:{afterBlock:1,label:'Explore actor use cases',content:<UseCaseExplorer/>},
-  7:{afterBlock:1,label:'Predict real and conceptual outcomes',content:<ScenarioStudio/>},
-  8:{afterBlock:2,label:'Explore acceptance criteria',content:<AcceptanceExplorer/>},
-  9:{afterBlock:3,label:'Trace the implemented Java source',content:<ExecutionTrace/>},
-  10:{afterBlock:1,label:'Verification evidence',content:<VerificationPanel/>},
-  11:{afterBlock:2,label:'Incident diagnosis exercise',content:<DiagnosisRoom/>},
-  12:{afterBlock:3,label:'Architecture review exercise',content:<DefenseStudio/>},
-  13:{afterBlock:1,label:'Transfer and retain',content:<Retain/>}
+ const labs:Record<string,EmbeddedLab>={
+  "derive-a-use-case-from-actor-and-outcome":{afterText:"When an actor's goal changes, the system boundary changes. A restaurant ",label:'Explore actor use cases',content:<UseCaseExplorer/>},
+  "branch-the-business-journey-without-fabricating-java-features":{afterText:"The real Java test suite covers these distinct success and rejection pat",label:'Predict real and conceptual outcomes',content:<ScenarioStudio/>},
+  "derive-acceptance-criteria-and-tests":{afterText:"In the Acceptance Explorer select a case, predict the status or business",label:'Explore acceptance criteria',content:<AcceptanceExplorer/>},
+  "source-linked-execution-and-architecture-decisions":{afterText:"The interactive Execution Trace links each visible step to the **exact J",label:'Trace the implemented Java source',content:<ExecutionTrace/>},
+  "evidence-hierarchy-and-actual-tests":{afterText:"Compare evidence types. A deterministic React scenario engine makes a *p",label:'Verification evidence',content:<VerificationPanel/>},
+  "201-but-the-restaurant-never-accepted":{afterText:"The Diagnosis Room lets you select evidence and a provisional hypothesis",label:'Incident diagnosis exercise',content:<DiagnosisRoom/>},
+  "staff-review-and-audience-adaptation":{afterText:"Adversarial questions: Does HTTP 201 guarantee full business success? No",label:'Architecture review exercise',content:<DefenseStudio/>},
+  "transfer-to-hotel-booking-and-inventory-reservation":{afterText:"Repeat for inventory reservation. “A customer submitted a request” is we",label:'Transfer and retain',content:<Retain/>}
  };
  return <TextbookReader meta={{
   id:'1.1.2',
