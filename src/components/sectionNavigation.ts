@@ -2,7 +2,7 @@
  * The learning stage remains in the body, but does not dominate every nav item.
  * Ordered to match the canonical ## sections (tested against the manuscripts).
  */
-export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6',readonly string[]>={
+export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',readonly string[]>={
  '1.1.1':[
   'Why the business comes first',
   'Actors, stakeholders & roles',
@@ -93,10 +93,38 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.
   'Diagnose a false Refunded status',
   'Defend lifecycle boundaries',
   'Transfer and mastery gate'
+ ],
+ '1.1.7':[
+  'A valid but business-illegal command',
+  'Six boundaries of validity',
+  'Input validation versus state guards',
+  'Authentication and business authority',
+  'Preconditions, postconditions, invariants',
+  'Total and explicit decision results',
+  'Identity and actor-scope rules',
+  'State-only versus contextual guards',
+  'Mapping PLACED to actual Java states',
+  'Trace eleven merchant guards',
+  'Accept after rejection is illegal',
+  'Preparation before acceptance',
+  'Completion before preparation',
+  'Total decision tables',
+  'Guard ordering and error disclosure',
+  'No mutation, no success fact',
+  'Passing guard versus persistence commit',
+  'Stale states and TOCTOU races',
+  'Cross-lifecycle evidence and policy',
+  'Manipulate the guard inspector',
+  'Predict legality and fact scope',
+  'Trace actual Java implementation',
+  'Table-derived Java and browser tests',
+  'Diagnose illegal acceptance',
+  'Revise an exception policy',
+  'Transfer and mastery gate'
  ]
 };
 export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string{
- if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'||lessonId==='1.1.6'){
+ if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'||lessonId==='1.1.6'||lessonId==='1.1.7'){
   return lessonNavigationTitles[lessonId][index]??fallback;
  }
  return fallback;

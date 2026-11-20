@@ -10,6 +10,7 @@ A React + TypeScript interactive learning academy for **evidence-driven distribu
 - [Authored Lesson 1.1.1](content/lessons/1.1.1.md) — 13-section actor authority manuscript and interactive exercises.
 - [Authored Lesson 1.1.2](content/lessons/1.1.2.md) — 14-section use-case discovery, real Java trace and scenario/acceptance labs.
 - [Authored Lesson 1.1.3](content/lessons/1.1.3.md) — 16-section command/decision/fact deep-learning manuscript with one causal diagram, a prediction lab and actual Java source links. [Checkpoint and verification](checkpoints/LESSON_1_1_3.md).
+- [Authored Lesson 1.1.7](content/lessons/1.1.7.md) — guards, preconditions, postconditions; 26-topic textbook, 11/6-rule inspector, state decision tables, commit boundary and prediction lab. [Checkpoint](checkpoints/LESSON_1_1_7.md), [applied Java walkthrough](docs/engineering/LESSON_1_1_7_APPLIED_WALKTHROUGH.md); CI acceptance tracked in progress ledger.
 - [Authored Lesson 1.1.6](content/lessons/1.1.6.md) — workflow versus independent lifecycle deep-learning manuscript, three state graphs, authority inspector, cross-lifecycle overlay and deterministic prediction lab. [Checkpoint](checkpoints/LESSON_1_1_6.md) and [applied Java walkthrough](docs/engineering/LESSON_1_1_6_APPLIED_WALKTHROUGH.md); acceptance tracked in progress ledger.
 - [Authored Lesson 1.1.5](content/lessons/1.1.5.md) — workflow-composition manuscript, conceptual swimlane, authority ledger, branching prediction exercise, and [decision backlog](docs/domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md); academy CI passed: 59 unit/component and 39 desktop Chromium tests.
 - [Authored Lesson 1.1.4](content/lessons/1.1.4.md) — 16-topic, ~10k-word business identity, authoritative state and projection deep learning; two restrained diagrams and one seven-scenario lab. [Checkpoint](checkpoints/LESSON_1_1_4.md) and [Java applied walkthrough](docs/engineering/LESSON_1_1_4_APPLIED_WALKTHROUGH.md).
@@ -44,7 +45,7 @@ GitHub Actions runs the same checks for every push and pull request. Inspect the
 
 ## Visual Textbook V2 — an uncluttered technical reader
 
-Six authored lessons now read continuously on calm pages: 13 authored topics in Lesson 1.1.1, 14 in Lesson 1.1.2, and 16 each in Lessons 1.1.3 and 1.1.4. The expandable Chapter → Lesson → Topic left menu stays the only lesson navigation. Bookmarkable links such as /#/lesson/1.1.2?section=3 scroll to their real heading; browser back/forward remains functional.
+Seven authored lessons now read continuously on calm pages: 13 authored topics in Lesson 1.1.1, 14 in Lesson 1.1.2, and 16 each in Lessons 1.1.3 and 1.1.4. The expandable Chapter → Lesson → Topic left menu stays the only lesson navigation. Bookmarkable links such as /#/lesson/1.1.2?section=3 scroll to their real heading; browser back/forward remains functional.
 
 The new reader does not impose a separate concept map, compulsory click-to-reveal panels, three takeaway cards, or a guided-step toggle in every section. It reserves diagrams and structure for knowledge that needs them: a compact four-definition comparison, a permanently readable eight-stage Java intake flow, independently listed acceptance criteria, decision rights and competing hypotheses. Original paragraphs remain available beside those presentations.
 
@@ -61,13 +62,13 @@ The original manuscripts are unchanged; tests audit their sections, source block
 - **Lesson 1.1.3 deep-learning and real Java evolution**: 16 topics, typed PlaceOrder outcomes, OrderRequestRecorded post-save local fact, command-to-fact diagram, deterministic prediction lab, verified Java tests and HTTP smoke; no external merchant/payment or messaging infrastructure.
 - **Lesson 1.1.4 deep learning and verified Java identity evolution**: typed stable OrderId/CustomerId/RestaurantId, process-local create-only identity continuity, authority/projection diagrams, and one deterministic identity lab with seven scenarios; no external payment implementation.
 - **Lesson 1.1.2 interactive deep learning**: use-case explorer, branching scenario, acceptance tests, source-linked Java execution trace, diagnostic evidence room and Staff defense.
-- Reusable lesson reader for **remaining planned lessons**, displaying technical scope, prerequisites, mechanism traces, examples, experiments, engineering classification, diagnosis, and interview mastery criteria. **Lessons 1.1.1–1.1.6 are authored; Lesson 1.1.6 academy verification and merge status must be checked in its checkpoint. Subsequent lessons remain blueprint specifications.**
+- Reusable lesson reader for **remaining planned lessons**, displaying technical scope, prerequisites, mechanism traces, examples, experiments, engineering classification, diagnosis, and interview mastery criteria. **Lessons 1.1.1–1.1.7 are authored; Lesson 1.1.7 academy and Java merge acceptance must be checked in its checkpoint. Subsequent lessons remain blueprint specifications.**
 - Controlled cancellation-versus-acceptance simulator. Change interleavings and guard strategy, predict success/failure, then reveal a causal execution timeline and invariant diagnosis.
 - Pure deterministic simulator unit tests, content integrity checks and CI workflow.
 
 ## What is not yet delivered
 
-The remaining Lesson 1.1.7–1.1.20 teaching manuscripts, the other four Cluster 1.1 lab implementations, persisted learner progress, merchant acceptance, external payments, and production durability are not yet delivered. The interleaving lab is an **educational model**, not a Java test result.
+The remaining Lesson 1.1.8–1.1.20 teaching manuscripts, the other four Cluster 1.1 lab implementations, persisted learner progress, merchant acceptance, external payments, and production durability are not yet delivered. The interleaving lab is an **educational model**, not a Java test result.
 
 ## Companion application
 

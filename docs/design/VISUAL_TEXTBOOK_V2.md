@@ -58,3 +58,8 @@ At the learner's explicit request (2026-11-10), the academy is developed and acc
 ## Lesson 1.1.6 extension — independent lifecycles
 
 The chapter-two lesson reuses the continuous reader with an explicit Chapter 02 header and a single outline. Its 19 deep-learning topics embed one three-column independent state-machine visual with selectable transition/authority inspection, a synchronized but **non-atomic** cross-lifecycle overlay with a time-indexed multi-actor swimlane, and one six-case predict-before-reveal lab. The Order intake graph is source-backed in real Java, while RestaurantDecision and PaymentAttempt are pure illustrative Java models. Source provenance and the absence of real merchant/payment authority are stated within the visuals. Desktop-only browser acceptance is required; no mobile-specific tests are added.
+
+
+## Lesson 1.1.7 extension — guarded transitions
+
+The Chapter 2 lesson preserves the continuous Visual Textbook V2 reader, single expandable outline and desktop Chromium acceptance policy. Its 26 teaching topics integrate a deterministic merchant and preparation guard inspector with eleven or six individually explained checks, controlled actor/expected-state/policy assumptions, and before/after/no-success-fact comparison. A separate six-row state/action table demonstrates how parameterized Java tests arise from a total decision surface; a restrained six-stage timeline distinguishes pure candidate, actual commit and authoritative effect; one eight-case prediction lab practices rejection reasoning. All merchant/kitchen inputs are explicitly classroom assumptions, and no additional reading mode, card stack or microservice architecture is introduced.
