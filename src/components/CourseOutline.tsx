@@ -1,17 +1,7 @@
 import {useEffect,useState} from 'react';
 import {Link,NavLink,useLocation} from 'react-router-dom';
 import {chapters,chapterForLesson} from '../data/roadmap';
-import {teachingSections} from '../lessons/lesson111/Lesson111';
-import {lessonSections} from '../lessons/lesson112/Lesson112';
-import {lessonSections as commandSections} from '../lessons/lesson113/Lesson113';
-import {lessonSections as identitySections} from '../lessons/lesson114/Lesson114';
-import {lessonSections as workflowSections} from '../lessons/lesson115/Lesson115';
-import {lessonSections as lifecycleSections} from '../lessons/lesson116/Lesson116';
-import {lessonSections as guardSections} from '../lessons/lesson117/Lesson117';
-import {sectionMenuTitle} from './sectionNavigation';
-
-type SectionItem={index:number;stage:string;title:string};
-const authoredSections:Record<string,SectionItem[]>={'1.1.1':teachingSections,'1.1.2':lessonSections,'1.1.3':commandSections,'1.1.4':identitySections,'1.1.5':workflowSections,'1.1.6':lifecycleSections,'1.1.7':guardSections};
+import {getAuthoredLesson,getLessonTopics,topicForQuery} from '../lessons/registry';
 
 function currentLessonId(pathname:string):string|null {
   const match=pathname.match(/^\/lesson\/([^/]+)$/);
@@ -31,12 +21,12 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
   const location=useLocation();
   const activeLesson=currentLessonId(location.pathname);
   const activeChapter=currentChapterId(location.pathname);
-  const activeSection=Math.max(1,Number(new URLSearchParams(location.search).get('section')??'1')||1);
+  const activeTopic=activeLesson?topicForQuery(activeLesson,new URLSearchParams(location.search)):undefined;
   const [openChapter,setOpenChapter]=useState<string|null>(()=>activeChapter??'C1');
   const [openLesson,setOpenLesson]=useState<string|null>(()=>activeLesson);
   useEffect(()=>{
     if(activeChapter)setOpenChapter(activeChapter);
-    setOpenLesson(activeLesson && authoredSections[activeLesson]?activeLesson:null);
+    setOpenLesson(activeLesson && getAuthoredLesson(activeLesson)?activeLesson:null);
   },[location.pathname,activeChapter,activeLesson]);
   return <nav className="course-outline" aria-label="Lesson outline" data-testid="course-outline">
     <div className="course-outline-intro">
@@ -60,7 +50,7 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
         </div>
         {chapterOpen&&<div className="outline-chapter-body" id={'outline-chapter-'+chapter.id}>
           {chapter.lessons.map(lesson=>{
-            const sections=authoredSections[lesson.id]??[];
+            const sections=getLessonTopics(lesson.id);
             const selected=lesson.id===activeLesson;
             const expanded=lesson.id===openLesson&&sections.length>0;
             return <div className={'outline-lesson '+(selected?'selected':'')} key={lesson.id}>
@@ -83,13 +73,13 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
               {expanded&&<div className="outline-sections" id={'outline-sections-'+lesson.id}>
                 {sections.map((section,index)=><Link
                   key={section.index}
-                  to={'/lesson/'+lesson.id+'?section='+(index+1)}
+                  to={'/lesson/'+lesson.id+(section.legacySection?'?section='+section.legacySection:'?topic='+encodeURIComponent(section.id))}
                   onClick={onNavigate}
                   data-testid={'outline-section-'+lesson.id+'-'+(index+1)}
-                  className={'outline-section-link '+(selected&&activeSection===index+1?'active':'')}
+                  className={'outline-section-link '+(selected&&activeTopic?.id===section.id?'active':'')}
                   aria-current={selected&&activeSection===index+1?'location':undefined}>
                     <span className="outline-section-index">{String(index+1).padStart(2,'0')}</span>
-                    <span className="outline-section-copy"><strong>{sectionMenuTitle(lesson.id,index,section.title)}</strong></span>
+                    <span className="outline-section-copy"><strong>{section.nav}</strong></span>
                 </Link>)}
               </div>}
             </div>;
