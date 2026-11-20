@@ -2,7 +2,7 @@
  * The learning stage remains in the body, but does not dominate every nav item.
  * Ordered to match the canonical ## sections (tested against the manuscripts).
  */
-export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',readonly string[]>={
+export const lessonNavigationTitles={
  '1.1.1':[
   'Why the business comes first',
   'Actors, stakeholders & roles',
@@ -122,10 +122,11 @@ export const lessonNavigationTitles:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.
   'Revise an exception policy',
   'Transfer and mastery gate'
  ]
-};
-export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string{
- if(lessonId==='1.1.1'||lessonId==='1.1.2'||lessonId==='1.1.3'||lessonId==='1.1.4'||lessonId==='1.1.5'||lessonId==='1.1.6'||lessonId==='1.1.7'){
-  return lessonNavigationTitles[lessonId][index]??fallback;
- }
- return fallback;
+} as const satisfies Record<string,readonly string[]>;
+export type AuthoredLessonId=keyof typeof lessonNavigationTitles;
+/** Editorial labels are the only manually authored lesson inventory. The
+ * registry discovers matching manuscript + component files automatically. */
+export function sectionMenuTitle(lessonId:string,index:number,fallback:string):string {
+ const titles=(lessonNavigationTitles as Record<string,readonly string[]>)[lessonId];
+ return titles?.[index]??fallback;
 }
