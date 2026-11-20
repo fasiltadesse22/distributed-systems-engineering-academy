@@ -1,6 +1,6 @@
 # Academy Learning Progress — Authoritative Ledger
 
-**Updated:** 2026-11-20 (academy stabilization implementation merged; Lesson 1.1.8 not started)  
+**Updated:** 2026-11-20 (Lesson 1.1.8 academy implementation under verification; consult active status table)  
 **Roadmap:** [Master Roadmap V1.0](../roadmap/MASTER_ROADMAP_V1.md) · 19 phases / 93 clusters  
 **Academy:** https://github.com/fasiltadesse22/distributed-systems-engineering-academy  
 **Application:** https://github.com/fasiltadesse22/food-ordering-platform-new
@@ -20,7 +20,8 @@
 | Lesson 1.1.5: complete workflow story | **Academy implementation and desktop CI verified** | [Manuscript](../../content/lessons/1.1.5.md), [process map](../domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md), [decision register](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md), [checkpoint](../../checkpoints/LESSON_1_1_5.md), [59-test standard CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806), [39-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) | **Unchanged; pinned 1.1.4 intake evidence** |
 | Lesson 1.1.6: workflows versus state machines | **Merged and post-merge verified: 63 unit + 43 desktop tests** | [Manuscript](../../content/lessons/1.1.6.md), [checkpoint](../../checkpoints/LESSON_1_1_6.md), three independent graphs, transition inspector and scenario lab | [Merged Java PR #3](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/3) · [post-merge 34-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44054521893) |
 | Lesson 1.1.7 — Guards, preconditions, postconditions | **Merged and post-merge verified: 69 unit + 48 desktop tests passed** | [Complete 26-topic manuscript](../../content/lessons/1.1.7.md), [checkpoint](../../checkpoints/LESSON_1_1_7.md), [applied Java walkthrough](../engineering/LESSON_1_1_7_APPLIED_WALKTHROUGH.md), guard inspector, decision tables and prediction lab | [Merged Java PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4); [post-merge 59-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) |
-| Lessons 1.1.8–1.1.20 | Not started | Blueprint only | Deferred |
+| Lesson 1.1.8 — Terminal, reversible and irreversible business effects | **Implementation in feature branch; CI and merge pending** | [Canonical 26-topic manuscript](../../content/lessons/1.1.8.md), decision-tree inspector, source-fact timeline, prediction lab; verification pending | Java unchanged; Type C conceptual only |
+| Lessons 1.1.9–1.1.20 | Not started | Blueprint only | Deferred |
 
 **Next lesson:** 1.1.8 is **not started**. Pre-1.1.8 governance stabilization is a non-lesson repository-maintenance task, not a completed lesson or a change to roadmap scope.
 
