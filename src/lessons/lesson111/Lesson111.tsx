@@ -47,15 +47,15 @@ function TransferExercise(){
  </section>;
 }
 export default function Lesson111(){
- const labs:Record<number,EmbeddedLab>={
-  5:{afterBlock:1,label:'Actor authority model',content:<ActorAuthorityAtlas/>},
-  6:{afterBlock:1,label:'Business workflow branches',content:<WorkflowStudio/>},
-  7:{afterBlock:1,label:'Authority decision challenge',content:<AuthorityChallenge/>},
-  8:{afterBlock:3,label:'Cancellation evidence investigation',content:<IncidentCaseboard/>},
-  9:{afterBlock:1,label:'Domain discovery source contract',content:<DomainArtifact/>},
-  10:{afterBlock:1,label:'Domain evidence limitations',content:<EvidenceBoundary/>},
-  11:{afterBlock:2,label:'Engineering communication practice',content:<CommunicationDrill/>},
-  12:{afterBlock:1,label:'Transfer reasoning exercise',content:<TransferExercise/>}
+ const labs:Record<string,EmbeddedLab>={
+  "build-and-challenge-the-authority-map":{afterText:"The atlas compares your proposal with an **explicit illustrative baselin",label:'Actor authority model',content:<ActorAuthorityAtlas/>},
+  "follow-a-complete-order-decision-journey":{afterText:"Choose whether the restaurant accepts or rejects. Then choose whether th",label:'Business workflow branches',content:<WorkflowStudio/>},
+  "give-ownership-to-the-right-party":{afterText:"You should confidently distinguish: the customer placing a request; the ",label:'Authority decision challenge',content:<AuthorityChallenge/>},
+  "two-parties-claim-control-of-cancellation":{afterText:"In the interactive **Incident Caseboard**, choose which evidence to insp",label:'Cancellation evidence investigation',content:<IncidentCaseboard/>},
+  "domain-discovery-artifacts-before-java":{afterText:"The companion domain artifacts describe: actors and incentives; capabili",label:'Domain discovery source contract',content:<DomainArtifact/>},
+  "evidence-you-can-and-cannot-claim":{afterText:"The authority table is a hypothesis that requires stakeholder review. A ",label:'Domain evidence limitations',content:<EvidenceBoundary/>},
+  "communicate-at-multiple-engineering-levels":{afterText:"**Staff/Principal design challenge:** “Why not let Payment Service own t",label:'Engineering communication practice',content:<CommunicationDrill/>},
+  "transfer-retrieval-and-mastery-gate":{afterText:"Next, transfer the same reasoning to a **hotel reservation**. Guest requ",label:'Transfer reasoning exercise',content:<TransferExercise/>}
  };
  return <TextbookReader meta={{
   id:'1.1.1',
