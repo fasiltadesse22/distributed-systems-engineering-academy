@@ -22,10 +22,10 @@ export function validateProgress(text) {
   }
   const cols = hits[0].split('|').map(x=>x.trim()).filter(Boolean);
   const status = cols[1]?.replaceAll('*','')??'';
-  if (id !== '1.1.8' && !/\b(complete|verified|merged)\b/i.test(status)) {
+  if (!/\b(complete|verified|merged)\b/i.test(status)) {
    errors.push('Lesson '+id+' active status not complete/verified: '+status);
   }
-  if (id !== '1.1.8' && /merge pending|ci pending|in progress|not started|under implementation/i.test(status)) {
+  if (/merge pending|ci pending|in progress|not started|under implementation/i.test(status)) {
    errors.push('Lesson '+id+' contradictory active status: '+status);
   }
  }
