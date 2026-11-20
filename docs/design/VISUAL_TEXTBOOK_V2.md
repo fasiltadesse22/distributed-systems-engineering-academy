@@ -6,9 +6,13 @@ Improve understanding of complex distributed-systems engineering without reducin
 
 The Order Flow Trading Academy was inspected as a high-level reference for continuous instructional material and intentionally placed laboratories. This implementation is not a copy of its trading curriculum or UI.
 
+## Active contract and historical notes
+
+The initial Visual Textbook V2 rebuild covered Lessons 1.1.1–1.1.2. Its early descriptions below are historical origin context; **this current contract applies to all authored Lessons 1.1.1–1.1.7 and every future authored lesson**. Stable topic IDs, canonical text hashes, reviewed structural coverage and explicit Java-model evidence are governed by [the current academy architecture](../architecture/ACADEMY_CURRENT_STATE.md). The 2026-11-20 pre-1.1.8 stabilization changes metadata and verification, not the instructional manuscripts, reading modes, illustrations or existing interaction semantics.
+
 ## Core design
 
-1. Continuous reading is the default. Both complete authored manuscripts appear in the correct order, with no reading-step gates.
+1. Continuous reading is the default. All seven complete authored manuscripts appear in the correct order, with no reading-step gates.
 2. A single expandable chapter, lesson and topic outline in the left sidebar. Source sections are addressable through query-string topic links; no second in-body navigation rail.
 3. Restrained typography and whitespace establish hierarchy. Long conceptual arguments remain prose; special figures appear only where there is a genuine comparison, multi-step mechanism or distinct evidence level.
 4. Source-anchored technical figures make dense material scan-able: capabilities versus use cases, decision/fact authority, an eight-step PlaceOrder intake flow, and the AC-01–AC-07 acceptance outcomes.
@@ -17,7 +21,7 @@ The Order Flow Trading Academy was inspected as a high-level reference for conti
 
 ## Source integrity and implementation
 
-Canonical lesson source files are content/lessons/1.1.1.md and content/lessons/1.1.2.md. Neither is modified by the redesign. The single shared renderer is src/lessons/shared/TextbookReader.tsx, styled by textbook.css. Its section titles derive from the existing subject-first sectionNavigation module. Section query parameters point to on-page anchors.
+The canonical complete source corpus now comprises content/lessons/1.1.1.md through 1.1.7.md (126 source sections). No manuscript text was changed during the pre-1.1.8 governance stabilization. The single shared renderer is src/lessons/shared/TextbookReader.tsx, styled by textbook.css. Its section titles and lab source anchors now derive from the single authored-lesson registry (src/lessons/registry.tsx); sectionNavigation.ts is a compatibility view, not an independent list. Frozen old ?section=N links remain valid, while preferred ?topic=stable-id links are unaffected by insertion order.
 
 Only explicitly mapped source sections/blocks are eligible for structural figures. The figure parser verifies ordered markers and falls back to the unchanged paragraph if a source changes. The original paragraph is inspectable underneath the figure. Remaining prose receives only non-semantic spacing and paragraph grouping; its claim, words and order are unchanged.
 
@@ -31,7 +35,7 @@ A new request produces an intake resource, not restaurant acceptance or financia
 
 ## Quality gates
 
-Complete source coverage across 27 topics; source-block fidelity and authored structural markers; no unsupported business assertions; preserved exercise behavior; precise immutable Java source links; TypeScript; unit/model/component tests; production build; desktop Chromium (mobile browser testing not required for Lessons 1.1.4 onward); sidebar deep links and browser history; dark/light styling; keyboard navigability and no blank-startup regression. Any failing check is reported rather than described as passed.
+Complete source coverage across 126 topics (seven manuscripts), frozen source-blob fidelity, meaningful source-block/lab anchors and authored structural markers; no unsupported business assertions; preserved exercise behavior; precise immutable Java source links; TypeScript; unit/model/component tests; production build; desktop Chromium (mobile browser testing not required for Lessons 1.1.4 onward); sidebar deep links and browser history; dark/light styling; keyboard navigability and no blank-startup regression. Any failing check is reported rather than described as passed.
 
 ## Reuse for future lessons
 
@@ -63,3 +67,8 @@ The chapter-two lesson reuses the continuous reader with an explicit Chapter 02 
 ## Lesson 1.1.7 extension — guarded transitions
 
 The Chapter 2 lesson preserves the continuous Visual Textbook V2 reader, single expandable outline and desktop Chromium acceptance policy. Its 26 teaching topics integrate a deterministic merchant and preparation guard inspector with eleven or six individually explained checks, controlled actor/expected-state/policy assumptions, and before/after/no-success-fact comparison. A separate six-row state/action table demonstrates how parameterized Java tests arise from a total decision surface; a restrained six-stage timeline distinguishes pure candidate, actual commit and authoritative effect; one eight-case prediction lab practices rejection reasoning. All merchant/kitchen inputs are explicitly classroom assumptions, and no additional reading mode, card stack or microservice architecture is introduced.
+
+
+## Pre-Lesson 1.1.8 architecture stabilization — metadata only
+
+Authoring metadata for all seven lessons moved into `src/lessons/registry.tsx`, with editorial labels, semantic topic identities and unique source-passage lab anchors. Old numerical links are retained through frozen legacy mappings; new permanent links use `?topic=`. Original Markdown text, Visual Textbook V2 continuous reading, single sidebar, context-specific visualizations, deep explanations, dark/light themes and desktop Chromium acceptance are unchanged. The `content/coverage/` manifest provides structural traceability and original source-blob hashes; it is not an AI/automated validation of instructional accuracy. Select model-parity fixtures in `content/evidence/` are checked against independently reviewed immutable Java scenarios, not remotely executed Java code. The dependency graph is pinned with `package-lock.json` and `npm ci`; branch protection remains an owner-controlled GitHub setting.
