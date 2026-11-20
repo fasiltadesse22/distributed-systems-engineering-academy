@@ -7,7 +7,7 @@ import {getAuthoredLesson} from './registry';
  * Sidebar uses registry metadata ONLY, never this module or any lesson UI.
  * Add a lesson component at the path recorded in the one registry entry.
  */
-const modules=import.meta.glob<{default:ComponentType}>('./lesson11*/Lesson11*.tsx',{eager:true});
+const modules=import.meta.glob<{default:ComponentType}>(['./lesson11*/Lesson11*.tsx','!./lesson11*/*.test.tsx'],{eager:true});
 
 export function getLessonComponent(id:string):ComponentType|undefined{
  const entry=getAuthoredLesson(id);
