@@ -2,6 +2,7 @@ import {describe,it,expect} from 'vitest';
 import {blueprint} from '../data/roadmap';
 import {authoredLessonRegistry,authoredLessonIds,getAuthoredLesson,getLessonTopics,topicForQuery,type AuthoredEntry} from './registry';
 import {validateAuthoredEntries} from './registryValidation';
+import {getLessonComponent,registeredComponentPaths} from './lessonComponents';
 
 const planned=blueprint.chapters.flatMap(c=>c.lessons.map(l=>l.id));
 const entries=authoredLessonIds.map(id=>authoredLessonRegistry[id]);
@@ -13,6 +14,8 @@ describe('academy registry / canonical reading architecture',()=>{
   expect(planned.filter(id=>!getAuthoredLesson(id))).toHaveLength(13);
   expect(getAuthoredLesson('1.1.8')).toBeUndefined();
   expect(validateAuthoredEntries(entries,planned)).toEqual([]);
+  expect(registeredComponentPaths()).toHaveLength(7);
+  for(const e of entries)expect(getLessonComponent(e.id),e.id).toBeDefined();
  });
  it('contains 126 complete uniquely anchored source topics and 31 contextual labs',()=>{
   expect(entries.reduce((n,x)=>n+x.topics.length,0)).toBe(126);
