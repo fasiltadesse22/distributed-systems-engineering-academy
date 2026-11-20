@@ -774,6 +774,125 @@
       "evidenceClass": "java_backed_pure_or_local",
       "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
       "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.8",
+      "blueprintMode": "C",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "terminal-state-is-local-to-a-lifecycle",
+            "four-operations-often-called-undo",
+            "compensation-adds-a-fact-instead-of-rewriting-history",
+            "refund-is-not-a-negative-capture",
+            "physical-and-informational-effects-resist-erasure"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "learning-contract-and-explicit-nonimplementation",
+            "state-closure-is-not-effect-erasure"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "terminal-state-is-local-to-a-lifecycle",
+            "four-operations-often-called-undo",
+            "reversibility-depends-on-the-effect-boundary",
+            "refund-is-not-a-negative-capture",
+            "correction-preserves-original-and-corrected-evidence",
+            "audit-trail-links-identities-causes-times-and-sources",
+            "closure-and-recovery-are-separate-obligations"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "reversibility-depends-on-the-effect-boundary",
+            "separate-order-merchant-payment-and-kitchen-facts",
+            "compensation-adds-a-fact-instead-of-rewriting-history",
+            "a-decision-tree-for-reversal-compensation-and-escalation"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "a-decision-tree-for-reversal-compensation-and-escalation",
+            "trace-consumed-ingredients-and-an-already-delivered-notification",
+            "classify-six-effect-histories-before-reveal"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "trace-an-unpaid-draft-and-a-captured-payment",
+            "trace-consumed-ingredients-and-an-already-delivered-notification"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "map-conceptual-effects-to-the-existing-java-boundary"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "classify-six-effect-histories-before-reveal",
+            "design-policy-examples-counterexamples-and-tests"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "database-unpaid-provider-charged"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "a-staff-reviewer-proposes-to-reset-the-state",
+            "active-recall-and-mastery-gate"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "a-staff-reviewer-proposes-to-reset-the-state",
+            "transfer-to-banking-booking-and-inventory"
+          ],
+          "verification": "src/lessons/lesson118/lesson.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.8.md",
+      "browserTest": "e2e/lesson118.spec.ts",
+      "evidenceClass": "conceptual_only",
+      "evidenceNotes": "Java read-only at 081d1f1a877772e41d7a30ce0052e9609c71f6b5; all payment, merchant, kitchen and notifications hypothetical. React is not provider evidence.",
+      "reviewStatus": "expert_content_review_required"
     }
   ]
 }

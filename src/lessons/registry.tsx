@@ -11,6 +11,7 @@ import manuscript4 from '../../content/lessons/1.1.4.md?raw';
 import manuscript5 from '../../content/lessons/1.1.5.md?raw';
 import manuscript6 from '../../content/lessons/1.1.6.md?raw';
 import manuscript7 from '../../content/lessons/1.1.7.md?raw';
+import manuscript8 from '../../content/lessons/1.1.8.md?raw';
 
 export type TopicAnchor = {readonly id:string;readonly heading:string;readonly nav:string;readonly legacySection?:number};
 export type LabAnchor = {readonly id:string;readonly topicId:string;readonly marker:string;readonly label:string;readonly legacyAfterBlock:number};
@@ -1055,6 +1056,191 @@ export const authoredLessonRegistry = {
     "legacyAfterBlock": 1
    }
   ]
+ },
+ '1.1.8': {
+  id:'1.1.8',chapter:'C2',manuscript:manuscript8,
+  componentPath:'./lesson118/Lesson118.tsx',
+  topics:[
+  {
+    "id": "the-charge-that-did-not-disappear",
+    "heading": "Orient — The charge that did not disappear",
+    "nav": "The charge that did not disappear",
+    "legacySection": 1
+  },
+  {
+    "id": "learning-contract-and-explicit-nonimplementation",
+    "heading": "Orient — Learning contract and explicit nonimplementation",
+    "nav": "Learning contract and explicit nonimplementation",
+    "legacySection": 2
+  },
+  {
+    "id": "state-closure-is-not-effect-erasure",
+    "heading": "Understand — State closure is not effect erasure",
+    "nav": "State closure is not effect erasure",
+    "legacySection": 3
+  },
+  {
+    "id": "terminal-state-is-local-to-a-lifecycle",
+    "heading": "Understand — Terminal state is local to a lifecycle",
+    "nav": "Terminal state is local to a lifecycle",
+    "legacySection": 4
+  },
+  {
+    "id": "four-operations-often-called-undo",
+    "heading": "Understand — Four operations often called undo",
+    "nav": "Four operations often called undo",
+    "legacySection": 5
+  },
+  {
+    "id": "reversibility-depends-on-the-effect-boundary",
+    "heading": "Understand — Reversibility depends on the effect boundary",
+    "nav": "Reversibility depends on the effect boundary",
+    "legacySection": 6
+  },
+  {
+    "id": "separate-order-merchant-payment-and-kitchen-facts",
+    "heading": "Understand — Separate order, merchant, payment and kitchen facts",
+    "nav": "Separate order, merchant, payment and kitchen facts",
+    "legacySection": 7
+  },
+  {
+    "id": "compensation-adds-a-fact-instead-of-rewriting-history",
+    "heading": "Understand — Compensation adds a fact instead of rewriting history",
+    "nav": "Compensation adds a fact instead of rewriting history",
+    "legacySection": 8
+  },
+  {
+    "id": "refund-is-not-a-negative-capture",
+    "heading": "Understand — Refund is not a negative capture",
+    "nav": "Refund is not a negative capture",
+    "legacySection": 9
+  },
+  {
+    "id": "physical-and-informational-effects-resist-erasure",
+    "heading": "Understand — Physical and informational effects resist erasure",
+    "nav": "Physical and informational effects resist erasure",
+    "legacySection": 10
+  },
+  {
+    "id": "cancellation-eligibility-is-a-policy-decision",
+    "heading": "Understand — Cancellation eligibility is a policy decision",
+    "nav": "Cancellation eligibility is a policy decision",
+    "legacySection": 11
+  },
+  {
+    "id": "unknown-outcomes-require-reconciliation-not-guessing",
+    "heading": "Understand — Unknown outcomes require reconciliation, not guessing",
+    "nav": "Unknown outcomes require reconciliation, not guessing",
+    "legacySection": 12
+  },
+  {
+    "id": "correction-preserves-original-and-corrected-evidence",
+    "heading": "Understand — Correction preserves original and corrected evidence",
+    "nav": "Correction preserves original and corrected evidence",
+    "legacySection": 13
+  },
+  {
+    "id": "audit-trail-links-identities-causes-times-and-sources",
+    "heading": "Understand — Audit trail links identities, causes, times and sources",
+    "nav": "Audit trail links identities, causes, times and sources",
+    "legacySection": 14
+  },
+  {
+    "id": "closure-and-recovery-are-separate-obligations",
+    "heading": "Understand — Closure and recovery are separate obligations",
+    "nav": "Closure and recovery are separate obligations",
+    "legacySection": 15
+  },
+  {
+    "id": "a-decision-tree-for-reversal-compensation-and-escalation",
+    "heading": "Explore — A decision tree for reversal compensation and escalation",
+    "nav": "A decision tree for reversal compensation and escalation",
+    "legacySection": 16
+  },
+  {
+    "id": "trace-an-unpaid-draft-and-a-captured-payment",
+    "heading": "Explore — Trace an unpaid draft and a captured payment",
+    "nav": "Trace an unpaid draft and a captured payment",
+    "legacySection": 17
+  },
+  {
+    "id": "trace-consumed-ingredients-and-an-already-delivered-notification",
+    "heading": "Explore — Trace consumed ingredients and an already delivered notification",
+    "nav": "Trace consumed ingredients and an already delivered notification",
+    "legacySection": 18
+  },
+  {
+    "id": "classify-six-effect-histories-before-reveal",
+    "heading": "Predict — Classify six effect histories before reveal",
+    "nav": "Classify six effect histories before reveal",
+    "legacySection": 19
+  },
+  {
+    "id": "map-conceptual-effects-to-the-existing-java-boundary",
+    "heading": "Engineer — Map conceptual effects to the existing Java boundary",
+    "nav": "Map conceptual effects to the existing Java boundary",
+    "legacySection": 20
+  },
+  {
+    "id": "design-a-conceptual-effect-and-obligation-ledger",
+    "heading": "Engineer — Design a conceptual effect and obligation ledger",
+    "nav": "Design a conceptual effect and obligation ledger",
+    "legacySection": 21
+  },
+  {
+    "id": "design-policy-examples-counterexamples-and-tests",
+    "heading": "Verify — Design policy examples counterexamples and tests",
+    "nav": "Design policy examples counterexamples and tests",
+    "legacySection": 22
+  },
+  {
+    "id": "database-unpaid-provider-charged",
+    "heading": "Diagnose — Database unpaid provider charged",
+    "nav": "Database unpaid provider charged",
+    "legacySection": 23
+  },
+  {
+    "id": "a-staff-reviewer-proposes-to-reset-the-state",
+    "heading": "Defend — A Staff reviewer proposes to reset the state",
+    "nav": "A Staff reviewer proposes to reset the state",
+    "legacySection": 24
+  },
+  {
+    "id": "transfer-to-banking-booking-and-inventory",
+    "heading": "Retain — Transfer to banking booking and inventory",
+    "nav": "Transfer to banking booking and inventory",
+    "legacySection": 25
+  },
+  {
+    "id": "active-recall-and-mastery-gate",
+    "heading": "Retain — Active recall and mastery gate",
+    "nav": "Active recall and mastery gate",
+    "legacySection": 26
+  }
+],
+  labs:[
+  {
+    "id": "lab-undo-decision-tree",
+    "topicId": "a-decision-tree-for-reversal-compensation-and-escalation",
+    "marker": "Use the following decision process for each",
+    "label": "Undo-versus-compensate decision tree and effect inspector",
+    "legacyAfterBlock": 1
+  },
+  {
+    "id": "lab-effect-facts-timeline",
+    "topicId": "trace-consumed-ingredients-and-an-already-delivered-notification",
+    "marker": "**Trace C: kitchen work.**",
+    "label": "Before/after business facts and forward-remedy timeline",
+    "legacyAfterBlock": 1
+  },
+  {
+    "id": "lab-undo-predict",
+    "topicId": "classify-six-effect-histories-before-reveal",
+    "marker": "Work through these cases without reading",
+    "label": "Predict correction, reversal, compensation, reconciliation or escalation",
+    "legacyAfterBlock": 1
+  }
+]
  },
 } satisfies Record<string,AuthoredEntry>;
 export type AuthoredLessonId = keyof typeof authoredLessonRegistry;

@@ -37,6 +37,11 @@
       "path": "content/lessons/1.1.7.md",
       "gitBlobSha": "5707622d9a0b7720b156ca51508810aa8b5363d7",
       "sectionCount": 26
+    },
+    "1.1.8": {
+      "path": "content/lessons/1.1.8.md",
+      "gitBlobSha": "7568ee2f325fd5147bbcbedab2ed709e0afb4952",
+      "sectionCount": 26
     }
   }
 }

@@ -8,18 +8,18 @@ const planned=blueprint.chapters.flatMap(c=>c.lessons.map(l=>l.id));
 const entries=authoredLessonIds.map(id=>authoredLessonRegistry[id]);
 
 describe('academy registry / canonical reading architecture',()=>{
- it('preserves all seven authored lessons and separates thirteen blueprint-only lessons',()=>{
-  expect(authoredLessonIds).toEqual(['1.1.1','1.1.2','1.1.3','1.1.4','1.1.5','1.1.6','1.1.7']);
+ it('preserves eight authored lessons and separates twelve blueprint-only lessons',()=>{
+  expect(authoredLessonIds).toEqual(['1.1.1','1.1.2','1.1.3','1.1.4','1.1.5','1.1.6','1.1.7','1.1.8']);
   expect(planned).toHaveLength(20);
-  expect(planned.filter(id=>!getAuthoredLesson(id))).toHaveLength(13);
-  expect(getAuthoredLesson('1.1.8')).toBeUndefined();
+  expect(planned.filter(id=>!getAuthoredLesson(id))).toHaveLength(12);
+  expect(getAuthoredLesson('1.1.9')).toBeUndefined();
   expect(validateAuthoredEntries(entries,planned)).toEqual([]);
-  expect(registeredComponentPaths()).toHaveLength(7);
+  expect(registeredComponentPaths()).toHaveLength(8);
   for(const e of entries)expect(getLessonComponent(e.id),e.id).toBeDefined();
  });
- it('contains 126 complete uniquely anchored source topics and 31 contextual labs',()=>{
-  expect(entries.reduce((n,x)=>n+x.topics.length,0)).toBe(126);
-  expect(entries.reduce((n,x)=>n+x.labs.length,0)).toBe(31);
+ it('contains 152 complete uniquely anchored source topics and 34 contextual labs',()=>{
+  expect(entries.reduce((n,x)=>n+x.topics.length,0)).toBe(152);
+  expect(entries.reduce((n,x)=>n+x.labs.length,0)).toBe(34);
   for(const e of entries){
    const parsed=getLessonTopics(e.id);
    expect(parsed.length).toBe(e.topics.length);
