@@ -29,7 +29,7 @@ export function validateProgress(text) {
    errors.push('Lesson '+id+' contradictory active status: '+status);
   }
  }
- const future=rows.filter(line=>/Lessons 1\.1\.8[–-]1\.1\.20/.test(line));
+ const future=rows.filter(line=>/Lessons 1\.1\.9[–-]1\.1\.20/.test(line));
  if (future.length !== 1 || !/\|\s*Not started\s*\|/.test(future[0]))
   errors.push('Lessons 1.1.9–1.1.20 must remain exactly one Not started active row');
  const headings=[...text.matchAll(/^## (.*(?:candidate|execution note).*)$/gmi)];
