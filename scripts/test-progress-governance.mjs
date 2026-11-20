@@ -39,5 +39,5 @@ test('future lesson wrongly marked complete is rejected',()=>{
 
 test('eighth lesson cannot retain implementation-pending status after evidence freeze',()=>{
  const text=fixture().replace('Lesson 1.1.8: topic | **Merged and verified**','Lesson 1.1.8: topic | **Implementation in feature branch; CI pending**');
- assert.match(validateProgress(text).join(' '),/1\\.1\\.8/);
+ assert.match(validateProgress(text).join(' '),/1\.1\.8/);
 });
