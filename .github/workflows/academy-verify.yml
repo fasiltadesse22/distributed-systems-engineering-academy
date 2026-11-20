@@ -16,6 +16,10 @@ jobs:
           node-version: '22'
       - name: Validate roadmap and blueprint (no dependencies)
         run: node scripts/check-content.mjs
+      - name: Progress governance fixture tests (no dependencies)
+        run: node --test scripts/test-progress-governance.mjs
+      - name: Validate active lesson status and historical labeling
+        run: node scripts/check-progress-governance.mjs
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       - name: Typecheck
