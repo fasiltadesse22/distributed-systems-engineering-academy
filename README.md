@@ -4,7 +4,7 @@ React 19 · TypeScript · Vite · **continuous, desktop-first distributed-system
 
 ## Current learning state
 
-The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers **19 phases and 93 clusters**. The [Cluster 1.1 blueprint](docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) defines **20 planned lessons** in four chapters. **Lessons 1.1.1–1.1.7 are fully authored and interactive**: seven unchanged canonical manuscripts, **126 topics**, and **31 embedded contextual laboratories**. Lessons 1.1.8–1.1.20 remain blueprint-only; this governance milestone did **not** start Lesson 1.1.8.
+The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers **19 phases and 93 clusters**. The [Cluster 1.1 blueprint](docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) defines **20 planned lessons** in four chapters. **Lessons 1.1.1–1.1.8 are fully authored and interactive**: eight canonical manuscripts, **152 topics**, and **34 embedded contextual laboratories**. Lessons 1.1.9–1.1.20 remain blueprint-only.
 
 | Authored lesson | Topics | Canonical source |
 |---|---:|---|
@@ -15,8 +15,9 @@ The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers 
 | 1.1.5 · Connected business workflows | 22 | [Manuscript](content/lessons/1.1.5.md) |
 | 1.1.6 · Independent lifecycle models | 19 | [Manuscript](content/lessons/1.1.6.md) |
 | 1.1.7 · Guards, preconditions, postconditions | 26 | [Manuscript](content/lessons/1.1.7.md) |
+| 1.1.8 · Reversal, compensation and irreversible effects | 26 | [Manuscript](content/lessons/1.1.8.md) |
 
-The [progress ledger](docs/progress/LEARNING_PROGRESS.md) is the *only current lesson-status register*. [Historical checkpoints](checkpoints/LESSON_1_1_7.md) record what was verified in a specific earlier revision.
+The [progress ledger](docs/progress/LEARNING_PROGRESS.md) is the *only current lesson-status register*. [Historical checkpoints](checkpoints/LESSON_1_1_8.md) record what was verified in a specific earlier revision.
 
 ## Run and verify
 
@@ -27,7 +28,7 @@ npm ci
 npm run dev
 ```
 
-Open the local Vite URL displayed in the terminal (normally http://localhost:5173), and navigate to `/#/lesson/1.1.7`.
+Open the local Vite URL displayed in the terminal (normally http://localhost:5173), and navigate to `/#/lesson/1.1.8`.
 
 ```bash
 npm run check:content       # roadmap, blueprint, manuscript hashes, coverage and internal links
@@ -64,4 +65,4 @@ The actual Java application remains a **single deployable** with process-local r
 - [Coverage and manuscript baselines](content/coverage/cluster-1.1-authored.json) — structurally checked requirements and unchanged source blobs.
 - [Governance stabilization checkpoint](checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md) — implementation/evidence record.
 
-Do not interpret an academy simulation or conceptual diagram as executed Java, source-authorized financial effects, or approved business policy. The next lesson is **1.1.8**, not started.
+Do not interpret an academy simulation or conceptual diagram as executed Java, source-authorized financial effects, or approved business policy. Lesson **1.1.8** is merged and post-merge verified; the next lesson is **1.1.9**, not started.

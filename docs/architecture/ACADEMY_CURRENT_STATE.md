@@ -1,20 +1,20 @@
-# Current Academy Architecture — Pre-Lesson 1.1.8
+# Current Academy Architecture — Through Lesson 1.1.8
 
 **Purpose:** current capabilities, data ownership and non-guarantees. This is not a copy of the full manuscripts, an ADR or an historical checkpoint.
 
-**Implementation baseline:** prior academy `main` `7e446b27758bc9f42c737a7fe464155025fc94e2`, Java read-only `081d1f1a877772e41d7a30ce0052e9609c71f6b5`. Stabilization implementation and CI are recorded in [the dedicated checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md). Revalidate both SHAs before subsequent lessons.
+**Current verified lesson implementation:** academy merged `main` `c162becb4c54fd7ab84bdcc95664f9317f4d4fae`, Java read-only `081d1f1a877772e41d7a30ce0052e9609c71f6b5`. [Lesson 1.1.8 checkpoint](../../checkpoints/LESSON_1_1_8.md) records post-merge CI, and the [earlier governance checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md) remains historical. Revalidate both current `main` SHAs before future execution.
 
 ## Actual modules and authoritative sources
 
 | Layer | Source | Role and authority |
 |---|---|---|
 | Learning scope | `docs/roadmap/MASTER_ROADMAP_V1.md` and `content/cluster-1.1/blueprint.json` | 19-phase/93-cluster roadmap; 20 planned lessons in Cluster 1.1 |
-| Full canonical text | `content/lessons/1.1.1.md` through `1.1.7.md` | Seven untouched manuscripts (126 sections), independent of React |
+| Full canonical text | `content/lessons/1.1.1.md` through `1.1.8.md` | Eight manuscripts (152 sections); earlier seven untouched, independent of React |
 | Authored registry | `src/lessons/registry.tsx` | One typed authored catalog with editorial labels, stable topic IDs, old numerical link identity, lab source anchors and build-time component path references |
 | Source-fidelity baseline | `content/coverage/manuscript-baselines.json` | Git blob SHA of each original manuscript; changes require deliberate source review |
 | Blueprint trace | `content/coverage/cluster-1.1-authored.json` | Structural pointers to existing topics/tests, **not proof of pedagogical adequacy** |
 | React reader | `src/lessons/shared/TextbookReader.tsx` | Continuous source rendering and exact topic/lab placement; original text accessible |
-| Lesson visuals | `src/lessons/lesson111/` … `lesson117/` | Domain-specific diagrams, scenarios and prediction models; NOT Java execution |
+| Lesson visuals | `src/lessons/lesson111/` … `lesson118/` | Domain-specific diagrams, scenarios and prediction models; NOT Java execution |
 | Application shell | `src/App.tsx`, `src/components/CourseOutline.tsx` | One Chapter → Lesson → Topic sidebar and hash router |
 | Java evidence | `content/evidence/java-model-parity.json` and pinned source/CI URLs | Reviewed scenario correspondence only; NO Java runtime is executed in academy CI |
 | CI / quality | `scripts/check-content.mjs`, `scripts/check-academy-governance.mjs`, `scripts/check-progress-governance.mjs`, Vitest, Playwright | Source, metadata, application and desktop Chromium regression gates |
@@ -30,7 +30,7 @@
 
 ## Evidence and non-guarantees
 
-Conceptual React models do not run Java or external systems. A locally simulated payment/merchant/kitchen state is NOT a payment, source-authoritative merchant commitment or real preparation. Source-pinned Java tests establish narrow code properties, not arbitrary distributed resilience. `content/evidence/java-model-parity.json` maps reviewed Java pure-model fixtures only and never runs the Java test suite in academy CI. POL-01–POL-10 remain [unresolved](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md). The separately governed [Java platform current-state index](https://github.com/fasiltadesse22/food-ordering-platform-new/blob/main/docs/architecture/CURRENT_STATE.md) is authoritative for Java capabilities.
+Lesson 1.1.8 adds six conceptual effects, eight prediction variants, an undo-versus-compensate inspector, and a source-fact/forward-remedy timeline; no new Java effect or real compensation exists. Conceptual React models do not run Java or external systems. A locally simulated payment/merchant/kitchen state is NOT a payment, source-authoritative merchant commitment or real preparation. Source-pinned Java tests establish narrow code properties, not arbitrary distributed resilience. `content/evidence/java-model-parity.json` maps reviewed Java pure-model fixtures only and never runs the Java test suite in academy CI. POL-01–POL-10 remain [unresolved](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md). The separately governed [Java platform current-state index](https://github.com/fasiltadesse22/food-ordering-platform-new/blob/main/docs/architecture/CURRENT_STATE.md) is authoritative for Java capabilities.
 
 ## Deliberately deferred
 
