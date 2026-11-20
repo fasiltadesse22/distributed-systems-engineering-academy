@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -6,6 +6,7 @@ import { academyRepo, blueprint, chapters, lessons, phases, platformRepo, platfo
 import ConceptMap from './components/ConceptMap';
 import LessonReader from './components/LessonReader';
 import {authoredLessonIds,getAuthoredLesson} from './lessons/registry';
+import {getLessonComponent} from './lessons/lessonComponents';
 import RaceLab from './components/RaceLab';
 import CourseOutline from './components/CourseOutline';
 
@@ -174,8 +175,8 @@ function LessonDetail() {
   if(!lesson)return <Missing/>;
   const authored=getAuthoredLesson(lesson.id);
   if(!authored)return <LessonReader lesson={lesson}/>;
-  const Component=authored.component;
-  return <Suspense fallback={<p className="reader" role="status">Loading the complete lesson…</p>}><Component/></Suspense>;
+  const Component=getLessonComponent(lesson.id);
+  return Component?<Component/>:<p role="alert">The authored lesson component is missing from the build. Check the registry path.</p>;
 }
 function Laboratory(){
   return <div className="page"><div className="page-heading"><span className="eyebrow">LABORATORY · 01 OF 05</span><h1>Make a race condition <em>visible.</em></h1><p>Change the business execution, predict the outcome, and inspect a deterministic step-by-step trace. This illustrates concurrency; it does not certify the Java application.</p></div><RaceLab/><div className="notice"><strong>Engineering evidence boundary</strong><p>Lesson 1.1.13 will later compare these outcomes to executed Java concurrency experiments. Until that checkpoint exists, the diagram and timeline are not runtime observations.</p><Link className="text-link" to="/lesson/1.1.13">Read future engineering specification ↗</Link></div></div>;
