@@ -1,6 +1,6 @@
 # Academy Learning Progress — Authoritative Ledger
 
-**Updated:** 2026-11-20 (Lesson 1.1.8 academy implementation under verification; consult active status table)  
+**Updated:** 2026-11-20 (Lesson 1.1.8 merged, independently verified and checkpoint frozen)  
 **Roadmap:** [Master Roadmap V1.0](../roadmap/MASTER_ROADMAP_V1.md) · 19 phases / 93 clusters  
 **Academy:** https://github.com/fasiltadesse22/distributed-systems-engineering-academy  
 **Application:** https://github.com/fasiltadesse22/food-ordering-platform-new
@@ -12,7 +12,7 @@
 | Scope | Status | Evidence | Java platform |
 |---|---|---|---|
 | Phase 0 — Academy V0.1 foundation, roadmap, blueprint and race lab | Verified | [Phase 0 checkpoint](../../checkpoints/PHASE_0_ACADEMY_V0_1.md) | Planning-only |
-| Pre-1.1.8 academy architecture/governance stabilization (NOT a lesson) | **Implementation merged; 77 unit + 52 Chromium feature tests passed; post-merge browser verification pending** | [Governance checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md); [PR #10](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10) | Java read-only, unchanged |
+| Pre-1.1.8 academy architecture/governance stabilization (NOT a lesson) | **Implementation merged; 77 unit + 52 Chromium post-merge tests passed** | [Governance checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md); [PR #10](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10) | Java read-only, unchanged |
 | Cluster 1.1 → Chapter 1 → Lesson 1.1.1: actors, goals, responsibilities and capabilities | **Authored, interactive, browser-verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_1.md) | **Unchanged** |
 | Lesson 1.1.2: business scenarios and use-case discovery | **Complete, 14 authored sections and interactive lab, browser verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_2.md); [Java runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42514283048) | **Running Java 21 / Spring Boot intake checkpoint** |
 | Lesson 1.1.3: commands, decisions, facts and events | **Complete; academy and Java verified** | [Lesson checkpoint](../../checkpoints/LESSON_1_1_3.md), [deep manuscript](../../content/lessons/1.1.3.md), [applied Java walkthrough](../engineering/LESSON_1_1_3_APPLIED_WALKTHROUGH.md), [academy CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608082), [browser CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/42592608081) | [Verified Java 18-test checkpoint](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/42590153411) |
@@ -20,10 +20,10 @@
 | Lesson 1.1.5: complete workflow story | **Academy implementation and desktop CI verified** | [Manuscript](../../content/lessons/1.1.5.md), [process map](../domain/CLUSTER_1_1_LESSON_1_1_5_WORKFLOW_PROCESS_MAP.md), [decision register](../domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md), [checkpoint](../../checkpoints/LESSON_1_1_5.md), [59-test standard CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308806), [39-test desktop Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44050308781) | **Unchanged; pinned 1.1.4 intake evidence** |
 | Lesson 1.1.6: workflows versus state machines | **Merged and post-merge verified: 63 unit + 43 desktop tests** | [Manuscript](../../content/lessons/1.1.6.md), [checkpoint](../../checkpoints/LESSON_1_1_6.md), three independent graphs, transition inspector and scenario lab | [Merged Java PR #3](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/3) · [post-merge 34-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44054521893) |
 | Lesson 1.1.7 — Guards, preconditions, postconditions | **Merged and post-merge verified: 69 unit + 48 desktop tests passed** | [Complete 26-topic manuscript](../../content/lessons/1.1.7.md), [checkpoint](../../checkpoints/LESSON_1_1_7.md), [applied Java walkthrough](../engineering/LESSON_1_1_7_APPLIED_WALKTHROUGH.md), guard inspector, decision tables and prediction lab | [Merged Java PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4); [post-merge 59-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) |
-| Lesson 1.1.8 — Terminal, reversible and irreversible business effects | **Implementation in feature branch; CI and merge pending** | [Canonical 26-topic manuscript](../../content/lessons/1.1.8.md), decision-tree inspector, source-fact timeline, prediction lab; verification pending | Java unchanged; Type C conceptual only |
+| Lesson 1.1.8 — Terminal, reversible and irreversible business effects | **Merged and post-merge verified: 83 unit + 56 desktop Chromium passed** | [Canonical manuscript](../../content/lessons/1.1.8.md), [frozen checkpoint](../../checkpoints/LESSON_1_1_8.md), [PR #12](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/12), [post-merge standard CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44789327526) and [Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44789327481) | Java unchanged at `081d1f1a8777`; Type C conceptual only |
 | Lessons 1.1.9–1.1.20 | Not started | Blueprint only | Deferred |
 
-**Next lesson:** 1.1.8 is **not started**. Pre-1.1.8 governance stabilization is a non-lesson repository-maintenance task, not a completed lesson or a change to roadmap scope.
+**Next lesson:** 1.1.9 is **not started**. Lesson 1.1.8 is merged and checkpoint-frozen; pre-1.1.8 governance stabilization was a separate non-lesson milestone.
 
 ## Current learning assets
 
