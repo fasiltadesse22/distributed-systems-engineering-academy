@@ -1,0 +1,29 @@
+# Temporary controlled lockfile generator. REMOVE after harvesting into PR.
+name: Temporary lockfile generation
+on:
+  pull_request:
+    paths:
+      - .github/workflows/generate-lockfile-temporary.yml
+  workflow_dispatch:
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Resolve deterministic npm dependency tree
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - name: Emit lockfile for reviewed commit (base64 chunks)
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const data=Buffer.from(fs.readFileSync('package-lock.json')).toString('base64');
+          console.log('LOCKFILE_BEGIN');
+          for(let i=0;i<data.length;i+=3000) console.log('LOCKCHUNK '+data.slice(i,i+3000));
+          console.log('LOCKFILE_END');
+          NODE
