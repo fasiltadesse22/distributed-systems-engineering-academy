@@ -1,17 +1,8 @@
 import {useEffect,useState} from 'react';
 import {Link,NavLink,useLocation} from 'react-router-dom';
 import {chapters,chapterForLesson} from '../data/roadmap';
-import {teachingSections} from '../lessons/lesson111/Lesson111';
-import {lessonSections} from '../lessons/lesson112/Lesson112';
-import {lessonSections as commandSections} from '../lessons/lesson113/Lesson113';
-import {lessonSections as identitySections} from '../lessons/lesson114/Lesson114';
-import {lessonSections as workflowSections} from '../lessons/lesson115/Lesson115';
-import {lessonSections as lifecycleSections} from '../lessons/lesson116/Lesson116';
-import {lessonSections as guardSections} from '../lessons/lesson117/Lesson117';
+import {authoredLesson,resolveSectionIndex} from '../lessons/registry';
 import {sectionMenuTitle} from './sectionNavigation';
-
-type SectionItem={index:number;stage:string;title:string};
-const authoredSections:Record<string,SectionItem[]>={'1.1.1':teachingSections,'1.1.2':lessonSections,'1.1.3':commandSections,'1.1.4':identitySections,'1.1.5':workflowSections,'1.1.6':lifecycleSections,'1.1.7':guardSections};
 
 function currentLessonId(pathname:string):string|null {
   const match=pathname.match(/^\/lesson\/([^/]+)$/);
@@ -31,12 +22,12 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
   const location=useLocation();
   const activeLesson=currentLessonId(location.pathname);
   const activeChapter=currentChapterId(location.pathname);
-  const activeSection=Math.max(1,Number(new URLSearchParams(location.search).get('section')??'1')||1);
+  const activeSection=activeLesson?resolveSectionIndex(activeLesson,new URLSearchParams(location.search))+1:1;
   const [openChapter,setOpenChapter]=useState<string|null>(()=>activeChapter??'C1');
   const [openLesson,setOpenLesson]=useState<string|null>(()=>activeLesson);
   useEffect(()=>{
     if(activeChapter)setOpenChapter(activeChapter);
-    setOpenLesson(activeLesson && authoredSections[activeLesson]?activeLesson:null);
+    setOpenLesson(activeLesson && authoredLesson(activeLesson)?activeLesson:null);
   },[location.pathname,activeChapter,activeLesson]);
   return <nav className="course-outline" aria-label="Lesson outline" data-testid="course-outline">
     <div className="course-outline-intro">
@@ -60,7 +51,7 @@ export default function CourseOutline({onNavigate}:{onNavigate:()=>void}){
         </div>
         {chapterOpen&&<div className="outline-chapter-body" id={'outline-chapter-'+chapter.id}>
           {chapter.lessons.map(lesson=>{
-            const sections=authoredSections[lesson.id]??[];
+            const sections=authoredLesson(lesson.id)?.topics??[];
             const selected=lesson.id===activeLesson;
             const expanded=lesson.id===openLesson&&sections.length>0;
             return <div className={'outline-lesson '+(selected?'selected':'')} key={lesson.id}>
