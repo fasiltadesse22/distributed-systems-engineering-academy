@@ -15,7 +15,7 @@ This is the **academy-side** startup contract; the Java side maintains [its own 
 ## One registry, one manuscript
 
 - Author the full independent Markdown manuscript at `content/lessons/<ID>.md` (depth not negotiable).
-- Add **one authored entry** to `src/lessons/registry.tsx`: lazy UI component, chapter, canonical source import, reviewed topic array, concise editorial nav labels, stable topic identifiers, and contextual labs. Do not add parallel lesson lists to `App.tsx` or `CourseOutline.tsx`.
+- Add **one authored entry** to `src/lessons/registry.tsx`: build-time-resolved UI component path, chapter, canonical source import, reviewed topic array, concise editorial nav labels, stable topic identifiers, and contextual labs. `src/lessons/lessonComponents.tsx` uses an eager Vite glob to preserve synchronous deep-link behavior; it does **not** lazy-load lesson components. Do not add parallel lesson lists to `App.tsx` or `CourseOutline.tsx`.
 - Use stable `?topic=ID` links. Existing frozen `legacySection` values must never be reassigned to a different topic. Existing `?section=N` links must continue locating prior topics; new topics may have no legacy number.
 - Every lab must reference a stable topic and an **exact unique source marker**, not just a paragraph index. Current `afterBlock` is retained as compatibility fallback only. When source is edited, adjust anchor deliberately and record why.
 - Reuse the single continuous reader, one outline and purposeful lab interfaces. Never replace manuscript depth with decorative cards or compulsory interactions.
