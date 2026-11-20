@@ -20,8 +20,12 @@ jobs:
         run: node --test scripts/test-progress-governance.mjs
       - name: Validate active lesson status and historical labeling
         run: node scripts/check-progress-governance.mjs
+      - name: Verify immutable manuscript, coverage and internal links
+        run: node scripts/check-academy-governance.mjs
+      - name: Academy governance validator fixture tests
+        run: node --test scripts/test-academy-governance.mjs
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Typecheck
         run: npm run typecheck
       - name: Simulation unit tests
