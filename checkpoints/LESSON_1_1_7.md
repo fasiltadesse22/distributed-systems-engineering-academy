@@ -4,7 +4,7 @@
 **Engineering question:** What makes a requested transition legal in a particular state?  
 **Academy baseline:** `bf9f335eeada413b71433d394fab2e730ce7bc27`.  
 **Java baseline:** `79024c3c36fe1a8cc6f71b79505601894d927507`.  
-**Status:** Academy implementation verified at feature revision `e6e3b35c3d98ed90a32cf4341d918a3a67e8ba71`: 69/69 Vitest and 48/48 desktop Chromium. Documentation-finalization CI and academy merge still pending.
+**Status:** **MERGED AND POST-MERGE VERIFIED**, academy implementation `1708a94cf4a78c05b582cab9d86d1948ca62571f`, [PR #7](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/7); 69/69 Vitest and 48/48 desktop Chromium after merge.
 
 ## Full instructional implementation
 
@@ -44,10 +44,21 @@ Both pure evaluators are deterministic. A failed guard preserves the exact immut
 | Academy production build | **Passed**, standard run 44745213798 |
 | Academy desktop Chromium and previous lessons | **Passed**, 48/48 tests, [browser run 44745213877](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44745213877) |
 | Java PR merged and post-merge CI | **Passed**, [Java PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4), [post-merge run 44745491071](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) |
-| Academy PR merged and post-merge CI | Pending |
+| Academy PR merged and post-merge CI | **Passed**, [PR #7](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/7), SHA `1708a94cf4a78c05b582cab9d86d1948ca62571f`, [standard CI 44746432638](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44746432638), [desktop Chromium 44746432701](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44746432701) |
 
-Do not claim incomplete gates passed. Replace pending statuses only after reading actual immutable CI evidence.
+All stated acceptance gates were checked against immutable CI runs. The separate documentation-only evidence update may have its own subsequent workflow and must not be confused with the implementation merge.
 
 ## Boundary, policy and next dependency
 
 POL-01–POL-10 from Lesson 1.1.5 remain unresolved. No customer cancellation/refund policy, real merchant acceptance, real kitchen preparation, distributed coordination, persistence versioning or formal full cross-lifecycle orchestration was added. Actor authentication in the guard evaluator is an *assumed input* and not a security implementation. No new mobile E2E acceptance is required. Lesson 1.1.8 must not begin until this lesson's two-repository acceptance is complete.
+
+
+## Frozen two-repository post-merge evidence — 2026-11-20
+
+**Java:** base `79024c3c36fe1a8cc6f71b79505601894d927507`; implementation merge `8c5e5144b40adbd8679f4fe3f8046020b0279d2b`, [PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4), [post-merge CI 44745491071](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071), 59/59 JUnit tests, Maven build, executable jar, live HTTP 201 intake and 422 business rejection. On GitHub Actions Ubuntu with Java 21 the workflow executes `mvn -B -ntp verify`, checks the packaged jar, runs `java -jar ... --server.port=18080` and verifies HTTP responses using curl.
+
+**Academy:** base `bf9f335eeada413b71433d394fab2e730ce7bc27`; implementation merge `1708a94cf4a78c05b582cab9d86d1948ca62571f`, [PR #7](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/7). On GitHub Actions Ubuntu/Node 22, [post-merge standard run 44746432638](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44746432638) executed `node scripts/check-content.mjs`, `npm install --no-audit --no-fund`, `npm run typecheck`, `npm run test`, and `npm run build`: 26 deep source topics passed integrity audit, 69/69 Vitest cases across 16 files and production Vite build passed. [Post-merge Chromium run 44746432701](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44746432701) executed `npx playwright install --with-deps chromium` followed by `npm run test:e2e`: 48/48 browser tests passed, including new Lesson 1.1.7 navigation, guard interactions, illegal-transition no-op, decision table, prediction, history, theme and prior lesson routes. Desktop-only new lesson acceptance; no new mobile-specific tests.
+
+**Implemented mechanism and evidence scope:** Java adds an 11-guard *pure* merchant decision evaluator, a 6-guard *pure* preparation probe and a sealed application preview outcome, with explicit assumption/policy checks. The actual Spring Boot HTTP intake remains unchanged; no merchant or kitchen operation is executed. Academy adds the 26-topic textbook, interactive inspector, before/after and fact/no-fact view, total decision tables, commit/evidence timeline and eight-case prediction exercise. The JS model is deterministic teaching material, not the Java runtime or external transaction evidence.
+
+**Architecture and open questions:** Separate Git repositories; one modular-monolith-oriented Spring Boot deployable, no microservices, new backend HTTP endpoints, payment service, real merchant authentication, external provider calls, Saga, persistence versioning or concurrency engine. POL-01–POL-10 still unresolved; simulated classroom policies do not grant authority. The next dependency is Lesson 1.1.8; it was not started.
