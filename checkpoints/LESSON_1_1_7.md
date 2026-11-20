@@ -40,7 +40,7 @@ Both pure evaluators are deterministic. A failed guard preserves the exact immut
 | Java Maven/packaged HTTP smoke | **PASS** [44743299092](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44743299092), 59/59 tests |
 | Academy manuscript/content integrity | **Passed**, [standard run 44745213798](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44745213798) |
 | Academy TypeScript | **Passed**, standard run 44745213798 |
-| Academy Vitest | **Passed**, 69/69 tests in 17? (actual test files count must be verified); standard run 44745213798 |
+| Academy Vitest | **Passed**, 69/69 tests across 16 test files; standard run 44745213798 |
 | Academy production build | **Passed**, standard run 44745213798 |
 | Academy desktop Chromium and previous lessons | **Passed**, 48/48 tests, [browser run 44745213877](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44745213877) |
 | Java PR merged and post-merge CI | **Passed**, [Java PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4), [post-merge run 44745491071](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) |
