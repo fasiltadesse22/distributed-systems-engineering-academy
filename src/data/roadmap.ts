@@ -57,3 +57,7 @@ export const platformPlanningSha = '2258cb1b8fc788a2ca8e35a2419e031fddbcb0eb';
 
 /** First verified runnable Java intake checkpoint, separate from the historical planning baseline. */
 export const platformVerifiedSha = '08b33714431a53f6b1cb1e1e09718b0281da1ce8';
+
+/** Latest verified Java *business implementation*, distinct from latest documentation-only main. */
+export const platformCurrentVerifiedImplementationSha = '8c5e5144b40adbd8679f4fe3f8046020b0279d2b';
+export const platformCurrentVerifiedRun = 'https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071';

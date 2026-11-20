@@ -1,0 +1,5 @@
+# Academy branch protection — owner action pending
+
+On 2026-11-20, the connected GitHub metadata reported academy `main` `protected=false` and no active repository rulesets. The connector currently offers no authorized branch protection/ruleset mutation. **This stabilization cannot enable GitHub repository-admin enforcement**; a passing PR and manual merge discipline do not substitute.
+
+Repository owner: open [academy Settings → Rules → Rulesets](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/settings/rules), create an active branch ruleset for `main`, require pull requests, block force pushes/deletion, require the real check names for **Academy V0.1 verification → Content, TypeScript, Simulation, Production build** and **Academy browser smoke → browser**, and require up-to-date checks where appropriate. Avoid mandating approvals that would permanently block a solo-maintainer repo without a reviewer. Confirm with GitHub `branches/main` and `rulesets` APIs. Revalidate before future releases.

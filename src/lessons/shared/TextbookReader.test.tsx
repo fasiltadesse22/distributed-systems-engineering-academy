@@ -1,21 +1,21 @@
 import {describe,it,expect} from 'vitest';
 import {renderToStaticMarkup} from 'react-dom/server';
 import {MemoryRouter} from 'react-router-dom';
-import raw111 from '../../../content/lessons/1.1.1.md?raw';
-import raw112 from '../../../content/lessons/1.1.2.md?raw';
+import {authoredLessonIds,getAuthoredLesson,getLessonTopics} from '../registry';
 import {sourceBlocks,structureSource,structuralSpec,readingThoughts} from './TextbookReader';
 import Lesson111,{teachingSections} from '../lesson111/Lesson111';
 import Lesson112,{lessonSections} from '../lesson112/Lesson112';
 
 describe('source-fidelity and visual architecture contract',()=>{
  it('preserves every authored paragraph and heading in source order',()=>{
-  const docs=[{raw:raw111,sections:teachingSections},{raw:raw112,sections:lessonSections}];
-  for(const {raw,sections} of docs){
+  for(const id of authoredLessonIds){
+   const raw=getAuthoredLesson(id)!.manuscript,sections=getLessonTopics(id);
    const parsed=raw.split(/(?=^## )/m).filter(x=>x.startsWith('## '));
    expect(parsed.length).toBe(sections.length);
    parsed.forEach((part,i)=>{
      expect(part.slice(part.indexOf('\n')+1).trim()).toBe(sections[i].body);
      expect(sourceBlocks(sections[i].body).join('\n\n')).toBe(sections[i].body);
+     expect(sections[i].heading).toBe(getAuthoredLesson(id)!.topics[i].heading);
    });
   }
  });

@@ -2,19 +2,19 @@ import {useEffect, useMemo, type ReactNode} from 'react';
 import {useLocation} from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import {sectionMenuTitle} from '../../components/sectionNavigation';
+import {getAuthoredLesson,getLabAnchor,topicForQuery,sectionMenuTitle} from '../registry';
 import './textbook.css';
 
 export interface TextbookSection {index:number;stage:string;title:string;body:string}
 export interface EmbeddedLab {afterBlock:number;content:ReactNode;label:string;kind?:'lab'|'illustration'}
 export interface TextbookMeta {
- id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7'; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
+ id:string; title:ReactNode;subtitle:string;provenance:string;chapterLabel?:string;
  repoUrl:string;sections:TextbookSection[];labs?:Record<number,EmbeddedLab>;footer?:ReactNode;
 }
 export const sourceBlocks=(s:string)=>s.trim().split(/\n\s*\n/).filter(Boolean);
 export interface StructuredSource {lead:string;parts:string[];labels:string[];tail:string;kind:'definitions'|'steps'|'criteria'|'authority'|'questions'|'ownership'}
 type Spec={section:number;block:number;kind:StructuredSource['kind'];markers:string[];labels:string[];tail?:string;lead?:string};
-const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',Spec[]>={
+const specs:Record<string,Spec[]>={
  '1.1.1':[
  {section:2,block:0,kind:'definitions',markers:['A goal','An incentive','A responsibility','A capability'],labels:['Goal','Incentive','Responsibility','Capability'],tail:'These four are related'},
  {section:3,block:3,kind:'ownership',markers:['desired business outcome','accountable organization/role','initiating','decision','observers'],labels:['Outcome','Accountability','Initiators','Decision authority','Observers']},
@@ -36,7 +36,7 @@ const specs:Record<'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',Spec[
  '1.1.6':[],
  '1.1.7':[]
 };
-export const structuralSpec=(id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7',section:number,block:number)=>specs[id].find(s=>s.section===section&&s.block===block);
+export const structuralSpec=(id:string,section:number,block:number)=>specs[id]?.find(s=>s.section===section&&s.block===block);
 export function structureSource(source:string,spec:Spec):StructuredSource|null{
  const starts=spec.markers.map(m=>source.indexOf(m));
  if(starts.some(i=>i<0)||starts.some((i,n)=>n>0&&i<=starts[n-1]))return null;
@@ -84,7 +84,7 @@ function StructuredFigure({source,meaning}:{source:string;meaning:StructuredSour
   <details className="textbook-source-check"><summary>Compare with original paragraph</summary><Prose text={source}/></details>
  </figure>;
 }
-function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.1.3'|'1.1.4'|'1.1.5'|'1.1.6'|'1.1.7';sectionIndex:number;blockIndex:number;source:string}){
+function LessonBlock({id,sectionIndex,blockIndex,source}:{id:string;sectionIndex:number;blockIndex:number;source:string}){
  const spec=structuralSpec(id,sectionIndex,blockIndex);
  const visual=spec?structureSource(source,spec):null;
  if(visual)return <StructuredFigure source={source} meaning={visual}/>;
@@ -93,14 +93,16 @@ function LessonBlock({id,sectionIndex,blockIndex,source}:{id:'1.1.1'|'1.1.2'|'1.
 }
 export default function TextbookReader({meta}:{meta:TextbookMeta}){
  const location=useLocation();
- const selected=Number(new URLSearchParams(location.search).get('section')??'1');
  const sections=meta.sections;
+ const entry=getAuthoredLesson(meta.id);
+ const selectedTopic=topicForQuery(meta.id,new URLSearchParams(location.search));
+ const selectedIndex=selectedTopic?entry?.topics.findIndex(topic=>topic.id===selectedTopic.id)??0:0;
  useEffect(()=>{
-  if(!location.search.includes('section='))return;
-  const target=Number.isInteger(selected)&&selected>=1&&selected<=sections.length?selected:1;
-  const id=window.setTimeout(()=>document.getElementById('topic-'+target)?.scrollIntoView({block:'start'}),75);
-  return ()=>window.clearTimeout(id);
- },[selected,location.pathname,location.search,sections.length]);
+   if(!location.search.includes('section=')&&!location.search.includes('topic='))return;
+   const index=selectedIndex>=0&&selectedIndex<sections.length?selectedIndex:0;
+   const id=window.setTimeout(()=>document.getElementById('topic-'+(index+1))?.scrollIntoView({block:'start'}),75);
+   return ()=>window.clearTimeout(id);
+ },[selectedIndex,location.pathname,location.search,sections.length]);
  const count=useMemo(()=>sections.reduce((n,s)=>n+sourceBlocks(s.body).length,0),[sections]);
  return <article className="textbook-lesson" data-testid={'lesson-'+meta.id}>
   <header className="textbook-lesson-head">
@@ -111,15 +113,39 @@ export default function TextbookReader({meta}:{meta:TextbookMeta}){
    <p className="textbook-reading-intro">Read this lesson continuously, or jump to a topic in the left outline. Diagrams and exercises appear beside the explanations they clarify.</p>
   </header>
   {sections.map((section,i)=>{
-    const blocks=sourceBlocks(section.body),lab=meta.labs?.[i];
-    return <section className="textbook-topic" key={i} id={'topic-'+(i+1)} data-testid={'textbook-topic-'+(i+1)} aria-labelledby={'topic-title-'+(i+1)}>
+    const blocks=sourceBlocks(section.body);
+    const topic=entry?.topics[i];
+    // Lesson components still provide the actual React lab; the registry owns its
+    // stable topic and source-passage placement, independently of section order.
+    const declaredLabs=Object.entries(meta.labs??{});
+    const labMatch=declaredLabs.map(([legacyIndex,lab])=>({
+      lab,legacyIndex:Number(legacyIndex),
+      anchor:getLabAnchor(meta.id,topic?.id??'',lab.label)
+    })).find(item=>item.anchor?.topicId===topic?.id);
+    const lab=labMatch?.lab;
+    const sourceMarker=labMatch?.anchor?.marker;
+    const anchoredBlock=sourceMarker?blocks.findIndex(b=>b.replace(/\s+/g,' ').includes(sourceMarker)):-1;
+    const placement=anchoredBlock>=0?anchoredBlock:(labMatch?.legacyIndex===i?lab?.afterBlock??-1:-1);
+    const anchorFailed=Boolean(lab&&sourceMarker&&anchoredBlock<0);
+    // Invalid anchors remain visible with an explicit warning and no manuscript
+    // truncation. CI must reject their source drift before merge.
+    const fallbackPlacement=placement>=0&&placement<blocks.length?placement:Math.max(0,blocks.length-1);
+    return <section className="textbook-topic" key={topic?.id??i}
+      id={'topic-'+(i+1)} data-topic-id={topic?.id} data-testid={'textbook-topic-'+(i+1)}
+      aria-labelledby={'topic-title-'+(i+1)}>
+     {topic&&<span id={'topic-anchor-'+topic.id} className="sr-only" aria-hidden="true"/>}
      <header className="textbook-topic-head"><span className="textbook-topic-number">{String(i+1).padStart(2,'0')} / {String(sections.length).padStart(2,'0')}</span>
-      <div><span className="textbook-topic-stage">{section.stage}</span><h2 id={'topic-title-'+(i+1)}>{sectionMenuTitle(meta.id,i,section.title)}</h2><p className="textbook-topic-subtitle">{section.title}</p></div>
+      <div><span className="textbook-topic-stage">{section.stage}</span><h2 id={'topic-title-'+(i+1)}>{sectionMenuTitle(meta.id,i,section.title)}</h2>
+       <p className="textbook-topic-subtitle">{section.title}</p>
+       {topic&&<a className="textbook-topic-permalink" href={'#/lesson/'+meta.id+'?topic='+encodeURIComponent(topic.id)} aria-label={'Permanent link to '+topic.nav}>Link to this topic</a>}
+      </div>
      </header>
      <div className="textbook-topic-body">
       {blocks.map((block,j)=><div className="textbook-reading-unit" data-source-block={j} key={j}>
        <LessonBlock id={meta.id} sectionIndex={i} blockIndex={j} source={block}/>
-       {lab?.afterBlock===j&&<div className="textbook-lab" data-kind={lab.kind??'lab'} aria-label={lab.label} data-testid={'embedded-lab-'+(i+1)}>
+       {lab&&fallbackPlacement===j&&<div className="textbook-lab" data-kind={lab.kind??'lab'} aria-label={lab.label}
+         data-lab-id={labMatch?.anchor?.id} data-testid={'embedded-lab-'+(i+1)}>
+         {anchorFailed&&<p role="alert">The source anchor for this visualization changed. The diagram remains available, but placement requires review.</p>}
          <div className="textbook-lab-kicker"><span>{lab.kind==='illustration'?'VISUAL MECHANISM':'APPLY THE IDEA'}</span><span>{lab.kind==='illustration'?'DIAGRAM':'LAB'} · {String(i+1).padStart(2,'0')}</span></div>{lab.content}
        </div>}
       </div>)}

@@ -2,16 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { academyRepo, blueprint, chapters, lessons, phases, platformRepo, platformVerifiedSha, roadmapText } from './data/roadmap';
+import { academyRepo, blueprint, chapters, lessons, phases, platformRepo, platformVerifiedSha, platformCurrentVerifiedImplementationSha, platformCurrentVerifiedRun, roadmapText } from './data/roadmap';
 import ConceptMap from './components/ConceptMap';
 import LessonReader from './components/LessonReader';
-import Lesson111 from './lessons/lesson111/Lesson111';
-import Lesson112 from './lessons/lesson112/Lesson112';
-import Lesson113 from './lessons/lesson113/Lesson113';
-import Lesson114 from './lessons/lesson114/Lesson114';
-import Lesson115 from './lessons/lesson115/Lesson115';
-import Lesson116 from './lessons/lesson116/Lesson116';
-import Lesson117 from './lessons/lesson117/Lesson117';
+import {authoredLessonIds,getAuthoredLesson} from './lessons/registry';
+import {getLessonComponent} from './lessons/lessonComponents';
 import RaceLab from './components/RaceLab';
 import CourseOutline from './components/CourseOutline';
 
@@ -20,7 +15,7 @@ function Brand() {
 }
 function ScrollTop() {
   const { pathname, search } = useLocation();
-  useEffect(() => { if (pathname.startsWith('/lesson/') && search.includes('section=')) return; window.scrollTo(0, 0); }, [pathname, search]);
+  useEffect(() => { if (pathname.startsWith('/lesson/') && (search.includes('section=')||search.includes('topic='))) return; window.scrollTo(0, 0); }, [pathname, search]);
   return null;
 }
 function Shell() {
@@ -53,7 +48,7 @@ function Shell() {
         )}
       </nav>
       <CourseOutline onNavigate={() => setMenu(false)}/>
-      <div className="sidebar-footer"><span className="dot"/> <span><b>Academy V0.1</b><small>7 authored lessons · guarded transition models</small></span></div>
+      <div className="sidebar-footer"><span className="dot"/> <span><b>Academy V0.1</b><small>{authoredLessonIds.length} authored lessons · guarded transition models</small></span></div>
     </aside>
     <div className="main">
       <header className="topbar">
@@ -85,12 +80,12 @@ function Heading({ label, title, description }: {label:string;title:string;descr
 function Home() {
   return <div className="page">
     <section className="hero">
-      <div><span className="eyebrow accent">A LIVING ENGINEERING CURRICULUM · V0.1</span><h1>Understand the systems<br/><em>behind the architecture.</em></h1><p>Connect deep explanations, manipulable causal models, and real Java/Spring Boot engineering evidence. Start with business correctness, not fashionable infrastructure.</p><div className="actions"><Link to="/blueprint" className="button primary">Explore Cluster 1.1 ↗</Link><Link to="/lab" className="button secondary">Try the concurrency lab ↗</Link></div><div className="hero-foot"><span className="dot"/> Lessons 1.1.1–1.1.7 are authored and interactive; external merchant, kitchen and payment effects remain conceptual. The Java checkpoints now include intake, typed decision/fact outcomes, and stable domain IDs with create-only local state.</div></div>
+      <div><span className="eyebrow accent">A LIVING ENGINEERING CURRICULUM · V0.1</span><h1>Understand the systems<br/><em>behind the architecture.</em></h1><p>Connect deep explanations, manipulable causal models, and real Java/Spring Boot engineering evidence. Start with business correctness, not fashionable infrastructure.</p><div className="actions"><Link to="/blueprint" className="button primary">Explore Cluster 1.1 ↗</Link><Link to="/lab" className="button secondary">Try the concurrency lab ↗</Link></div><div className="hero-foot"><span className="dot"/> {authoredLessonIds.length} lessons (1.1.1–1.1.7) are authored and interactive; external merchant, kitchen and payment effects remain conceptual. The Java checkpoints now include intake, typed decision/fact outcomes, and stable domain IDs with create-only local state.</div></div>
       <div className="hero-flow">
-        <div className="flow-top"><span>EXPLAIN THE MECHANISM</span><span>MODEL / 01</span></div>
+        <div className="flow-top"><span>CONCEPTUAL EXAMPLE · NOT IMPLEMENTED IN JAVA</span><span>MODEL / 01</span></div>
         <div className="flow-box"><small>01 · BUSINESS INTENT</small><b>Customer requests cancellation</b><span>Command ≠ authoritative fact</span></div>
         <div className="flow-arrow">↓</div>
-        <div className="flow-box focused"><small>02 · BUSINESS GUARD</small><b>Is the order still PLACED?</b><span>Check state and version at commit</span></div>
+        <div className="flow-box focused"><small>02 · BUSINESS GUARD</small><b>Is the order still PLACED?</b><span>Hypothetical guard — no current cancellation commit</span></div>
         <div className="flow-arrow">↓</div>
         <div className="flow-branches"><div><small>GUARD PASSES</small><b>OrderCancelled</b></div><div><small>CONFLICT</small><b>No state change</b></div></div>
         <div className="flow-bottom">PREDICT → TRACE → VALIDATE <span>↗</span></div>
@@ -105,7 +100,7 @@ function Home() {
     </div>
     <Heading label="CLUSTER 1.1" title="Four chapters in business correctness" description="Each chapter is derived from the roadmap's technical mastery requirements—not an arbitrary fixed page count."/>
     <div className="chapter-grid">{chapters.map((ch,i) => <Link to={'/chapter/' + ch.id} className="chapter-card" key={ch.id}><span className="eyebrow accent">CHAPTER {String(i+1).padStart(2,'0')}</span><h3>{ch.title}</h3><p>{ch.why}</p><small>{ch.lessons.length} planned lessons</small><span className="right">↗</span></Link>)}</div>
-    <div className="repo-banner"><div><span className="eyebrow">SEPARATE ENGINEERING TRACK</span><h3>Food Ordering Platform</h3><p>Lesson 1.1.2 delivered the first running, CI-verified Java Spring Boot PlaceOrder intake. Restaurant acceptance and payment processing remain unimplemented.</p></div><a className="button secondary" href={platformRepo + '/tree/' + platformVerifiedSha} target="_blank" rel="noreferrer">Inspect verified Java checkpoint ↗</a></div>
+    <div className="repo-banner"><div><span className="eyebrow">SEPARATE ENGINEERING TRACK</span><h3>Food Ordering Platform</h3><p>The real platform records a local order intake; through Lesson 1.1.7 it also has pure independent lifecycle and guarded-decision teaching models. No actual merchant acceptance, capture, kitchen effect, or durable storage.</p></div><a className="button secondary" href={platformRepo + '/tree/' + platformCurrentVerifiedImplementationSha} target="_blank" rel="noreferrer">Inspect latest verified Java implementation ↗</a></div>
   </div>;
 }
 function Roadmap() {
@@ -136,14 +131,14 @@ function Blueprint() {
   const [tab,setTab] = useState<Tab>('chapters');
   const tabs: {id:Tab;name:string}[]=[{id:'chapters',name:'Chapters & lessons'},{id:'graph',name:'Concept graph'},{id:'project',name:'Project evolution'},{id:'coverage',name:'Coverage & mastery'},{id:'labs',name:'Interactive labs'}];
   return <div className="page">
-    <div className="page-heading"><span className="eyebrow">CLUSTER 1.1 · COMPLETE BLUEPRINT V0.1</span><h1>Business workflows,<br/><em>state & invariants</em></h1><p>{blueprint.engineeringQuestion} Lessons 1.1.1 and 1.1.2 are authored, interactive and source-linked. Remaining lesson plans will evolve progressively; Lesson 1.1.2 links to the first verified Java implementation.</p></div>
+    <div className="page-heading"><span className="eyebrow">CLUSTER 1.1 · COMPLETE BLUEPRINT V0.1</span><h1>Business workflows,<br/><em>state & invariants</em></h1><p>{blueprint.engineeringQuestion} {authoredLessonIds.length} of the 20 planned lessons are authored and source-linked (1.1.1–1.1.7). Later lessons remain blueprint specifications; the Java platform has local intake plus explicit, non-effectful lifecycle and guard teaching models.</p></div>
     <div className="stats compact"><div><strong>04</strong><span>CHAPTERS</span></div><div><strong>20</strong><span>LESSON PLANS</span></div><div><strong>05</strong><span>LAB BRIEFS</span></div><div><strong>17</strong><span>COVERAGE ITEMS</span></div></div>
     <div role="tablist" aria-label="Blueprint sections" className="tablist">{tabs.map(t=><button key={t.id} role="tab" aria-selected={tab===t.id} className={tab===t.id?'current':''} onClick={()=>setTab(t.id)}>{t.name}</button>)}</div>
-    {tab==='chapters' && <div className="stack"><div className="notice"><strong>Blueprint specification ≠ finished lesson</strong> Each planned lesson defines outcomes, prerequisites, causal mechanism, visuals, examples, experiments, diagnosis, engineering changes and Staff-level mastery.</div>{chapters.map((ch,i) => <section className="chapter-group" key={ch.id}><div className="group-head"><span className="eyebrow">CHAPTER {String(i+1).padStart(2,'0')}</span><h2>{ch.title}</h2><p>{ch.why}</p></div>{ch.lessons.map(l => <Link to={'/lesson/'+l.id} key={l.id} className="lesson-link"><span className="code">{l.id}</span><span><b>{l.title}</b><small>{l.question}</small></span><span className="pill">{(l.id==="1.1.1"||l.id==="1.1.2"||l.id==="1.1.3"||l.id==="1.1.4"||l.id==="1.1.5"||l.id==="1.1.6"||l.id==="1.1.7")?"AUTHORED & INTERACTIVE":"TYPE "+l.mode}</span><span>↗</span></Link>)}</section>)}</div>}
+    {tab==='chapters' && <div className="stack"><div className="notice"><strong>Blueprint specification ≠ finished lesson</strong> Each planned lesson defines outcomes, prerequisites, causal mechanism, visuals, examples, experiments, diagnosis, engineering changes and Staff-level mastery.</div>{chapters.map((ch,i) => <section className="chapter-group" key={ch.id}><div className="group-head"><span className="eyebrow">CHAPTER {String(i+1).padStart(2,'0')}</span><h2>{ch.title}</h2><p>{ch.why}</p></div>{ch.lessons.map(l => <Link to={'/lesson/'+l.id} key={l.id} className="lesson-link"><span className="code">{l.id}</span><span><b>{l.title}</b><small>{l.question}</small></span><span className="pill">{getAuthoredLesson(l.id)?"AUTHORED & INTERACTIVE":"TYPE "+l.mode}</span><span>↗</span></Link>)}</section>)}</div>}
     {tab==='graph' && <div className="stack"><Heading label="LEARNING DEPENDENCIES" title="Select a concept to trace its prerequisites" description="This graph encodes conceptual dependencies, not infrastructure or service deployment."/><ConceptMap/><Heading label="REASONING CHAINS" title="Five linked analysis paths"/><div className="stack">{Object.entries(blueprint.graphSets).map(([key,paths]) => <div className="panel" key={key}><h3>{key.replaceAll('_',' ')}</h3><p>{paths.join(' · ')}</p></div>)}</div><Heading label="FORWARD TRANSFER" title="Concepts that later phases build upon"/><div className="feature-grid">{blueprint.forwardDependencies.map(d=><div className="feature" key={d.cluster}><span className="eyebrow">{d.cluster}</span><p>{d.why}</p></div>)}</div></div>}
-    {tab==='project' && <div className="stack"><Heading label="REAL ENGINEERING TRACK" title="Changes must be justified" description="A new lesson does not automatically create a backend commit. Type A changes require executed tests and a reproducible checkpoint."/><div className="stack">{blueprint.applicationPlan.map((step,i)=><div className="evolution" key={i}><span>{String(i+1).padStart(2,'0')}</span><div><b>{step.lesson} · TYPE {step.mode}</b><p>{step.change}</p></div></div>)}</div><div className="notice"><strong>Java PlaceOrder intake is implemented and verified.</strong><a href={platformRepo+'/tree/'+platformVerifiedSha} target="_blank" rel="noreferrer">Verified Java checkpoint {platformVerifiedSha.slice(0,12)} ↗</a><p>13 passing Maven tests plus live packaged-jar HTTP smoke. Restaurant acceptance and payment are not implemented.</p></div><h3>Deferred mechanisms</h3><div className="tags">{blueprint.deferred.map(d=><span key={d}>{d}</span>)}</div></div>}
+    {tab==='project' && <div className="stack"><Heading label="REAL ENGINEERING TRACK" title="Changes must be justified" description="A new lesson does not automatically create a backend commit. Type A changes require executed tests and a reproducible checkpoint."/><div className="stack">{blueprint.applicationPlan.map((step,i)=><div className="evolution" key={i}><span>{String(i+1).padStart(2,'0')}</span><div><b>{step.lesson} · TYPE {step.mode}</b><p>{step.change}</p></div></div>)}</div><div className="notice"><strong>Java implementation through Lesson 1.1.7 is verified.</strong><a href={platformRepo+'/tree/'+platformCurrentVerifiedImplementationSha} target="_blank" rel="noreferrer">Verified implementation {platformCurrentVerifiedImplementationSha.slice(0,12)} ↗</a><p>59 passing JUnit tests and packaged HTTP 201/422 smoke: actual intake remains process-local; restaurant/payment/preparation lifecycles and guards are illustrative only. <a href={platformCurrentVerifiedRun} target="_blank" rel="noreferrer">Executed CI evidence ↗</a> The original <a href={platformRepo+'/tree/'+platformVerifiedSha} target="_blank" rel="noreferrer">Lesson 1.1.2 intake checkpoint</a> is historical.</p></div><h3>Deferred mechanisms</h3><div className="tags">{blueprint.deferred.map(d=><span key={d}>{d}</span>)}</div></div>}
     {tab==='coverage' && <div className="stack"><Heading label="AUDITABILITY" title="Source requirements → planned lessons" description="This table is retained in the complete blueprint document. It is a planning map, not a completed evidence report."/><div className="source markdown"><ReactMarkdown remarkPlugins={[remarkGfm]}>{coverageText}</ReactMarkdown></div><Heading label="CLUSTER EXIT GATE" title="Demonstrable Senior/Staff mastery"/><ol className="mastery">{blueprint.masteryGate.map(m=><li key={m}>{m}</li>)}</ol></div>}
-    {tab==='labs' && <div className="stack"><Heading label="INTERACTIVE DESIGN INVENTORY" title="Five mechanisms worth visualizing" description="The Phase 0 race explorer remains operational; Lessons 1.1.1–1.1.2 provide actor authority, branching business scenarios, source-linked Java traces and diagnostic exercises. The remaining cluster lab entries are design briefs."/><div className="lab-cards">{blueprint.labs.map((lab,i)=><div className="panel" key={lab.id}><div className="lab-head"><span className="eyebrow">{lab.id} · FIRST USED IN {lab.firstSeen}</span><span className="pill">{i===0?'WORKING MODEL':'PLANNED'}</span></div><h3>{lab.title}</h3><p>{lab.model}</p><p><b>Controls:</b> {lab.controls.join(' · ')}</p><p><b>Limitations:</b> {lab.limitations}</p>{i===0&&<Link className="text-link" to="/lab">Use working simulator ↗</Link>}</div>)}</div></div>}
+    {tab==='labs' && <div className="stack"><Heading label="INTERACTIVE DESIGN INVENTORY" title="Five mechanisms worth visualizing" description="The Phase 0 race explorer and lesson-specific labs through 1.1.7 are working learning models. The five entries below are the original cluster-wide lab briefs; they do not enumerate every later implemented lesson interaction."/><div className="lab-cards">{blueprint.labs.map((lab,i)=><div className="panel" key={lab.id}><div className="lab-head"><span className="eyebrow">{lab.id} · FIRST USED IN {lab.firstSeen}</span><span className="pill">{i===0?'WORKING MODEL':'PLANNED'}</span></div><h3>{lab.title}</h3><p>{lab.model}</p><p><b>Controls:</b> {lab.controls.join(' · ')}</p><p><b>Limitations:</b> {lab.limitations}</p>{i===0&&<Link className="text-link" to="/lab">Use working simulator ↗</Link>}</div>)}</div></div>}
     <div className="source-footer"><a href={academyRepo+'/blob/main/docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md'} target="_blank" rel="noreferrer">Read all 20 detailed specifications in GitHub ↗</a></div>
   </div>;
 }
@@ -177,7 +172,11 @@ function ChapterDetail() {
 function LessonDetail() {
   const {id}=useParams();
   const lesson=lessons.find(l=>l.id===id);
-  return lesson ? (lesson.id === '1.1.1' ? <Lesson111/> : lesson.id === '1.1.2' ? <Lesson112/> : lesson.id === '1.1.3' ? <Lesson113/> : lesson.id === '1.1.4' ? <Lesson114/> : lesson.id === '1.1.5' ? <Lesson115/> : lesson.id === '1.1.6' ? <Lesson116/> : lesson.id === '1.1.7' ? <Lesson117/> : <LessonReader lesson={lesson}/>) : <Missing/>;
+  if(!lesson)return <Missing/>;
+  const authored=getAuthoredLesson(lesson.id);
+  if(!authored)return <LessonReader lesson={lesson}/>;
+  const Component=getLessonComponent(lesson.id);
+  return Component?<Component/>:<p role="alert">The authored lesson component is missing from the build. Check the registry path.</p>;
 }
 function Laboratory(){
   return <div className="page"><div className="page-heading"><span className="eyebrow">LABORATORY · 01 OF 05</span><h1>Make a race condition <em>visible.</em></h1><p>Change the business execution, predict the outcome, and inspect a deterministic step-by-step trace. This illustrates concurrency; it does not certify the Java application.</p></div><RaceLab/><div className="notice"><strong>Engineering evidence boundary</strong><p>Lesson 1.1.13 will later compare these outcomes to executed Java concurrency experiments. Until that checkpoint exists, the diagram and timeline are not runtime observations.</p><Link className="text-link" to="/lesson/1.1.13">Read future engineering specification ↗</Link></div></div>;
