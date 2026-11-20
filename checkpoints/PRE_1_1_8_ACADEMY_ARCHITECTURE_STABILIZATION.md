@@ -51,7 +51,7 @@
 | Academy implementation PR / merge | [PR #10 merged](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/10), `9b79168d1efa2f37adf1aec72f0d9cf5a9b280ee` |
 | Final feature CI (post-correction) | [standard 44777764798](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44777764798), [Chromium 44777764661](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44777764661), **both passed** |
 | Implementation main post-merge standard | **Passed**, [CI 44778169985](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44778169985), 77/77 Vitest + governance + build |
-| Implementation main post-merge browser | Pending [run 44778170055](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44778170055) |
+| Implementation main post-merge browser | **Passed**, [run 44778170055](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44778170055), **52/52** desktop Chromium tests |
 
 **Observed and corrected pre-merge failures:** early TypeScript compilation detected a stale `activeSection` variable and unused imports; governance found a README link to the not-yet-created checkpoint; Vitest caught an eager component glob that included test files; desktop Chromium exposed a lazy-loading deep-link regression in three pre-existing tests. Each was fixed and the new complete 77/52 regression suites passed. The final implementation deliberately resolves components synchronously with an eager Vite glob and keeps the sidebar metadata-only. **These historical failures are not overwritten by later green results.**
 
@@ -62,4 +62,4 @@ Before Lesson 1.1.8, execute [authoring preflight](../docs/governance/LESSON_AUT
 
 ## Documentation-finalization note
 
-The implementation merge SHA above identifies the exact verified React/TypeScript source. A later **documentation-only** PR may record the final post-merge browser conclusion and amend this checkpoint; that commit is not a new implementation revision. Preserve the distinction in future baseline reviews.
+The implementation merge SHA above identifies the exact verified React/TypeScript source. This documentation-only [PR #11](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/11) records the completed post-merge browser result; it does not change the implementation revision or the seven canonical manuscripts. Preserve the distinction in future baseline reviews.
