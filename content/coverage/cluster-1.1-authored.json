@@ -1,0 +1,779 @@
+{
+  "schemaVersion": 1,
+  "authority": "content/cluster-1.1/blueprint.json",
+  "scope": "Structural pointers only; automated coverage is not instructional correctness or real Java execution",
+  "reviewStatus": "expert_content_review_required",
+  "lessons": [
+    {
+      "lessonId": "1.1.1",
+      "blueprintMode": "C",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "actor-stakeholder-role-entity-and-service-are-not-synonyms",
+            "goals-incentives-and-opposing-forces",
+            "decision-rights-source-of-truth-and-observable-claims"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "start-with-the-business-not-the-architecture"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "actor-stakeholder-role-entity-and-service-are-not-synonyms",
+            "goals-incentives-and-opposing-forces",
+            "capabilities-use-cases-and-responsibility-boundaries",
+            "decision-rights-source-of-truth-and-observable-claims"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "follow-a-complete-order-decision-journey"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "build-and-challenge-the-authority-map",
+            "follow-a-complete-order-decision-journey"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "follow-a-complete-order-decision-journey",
+            "two-parties-claim-control-of-cancellation"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "domain-discovery-artifacts-before-java"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "build-and-challenge-the-authority-map",
+            "give-ownership-to-the-right-party"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "two-parties-claim-control-of-cancellation"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "transfer-retrieval-and-mastery-gate"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "communicate-at-multiple-engineering-levels",
+            "transfer-retrieval-and-mastery-gate"
+          ],
+          "verification": "src/lessons/lesson111/model.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.1.md",
+      "browserTest": "e2e/lesson111.spec.ts",
+      "evidenceClass": "conceptual",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.2",
+      "blueprintMode": "A",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "capabilities-use-cases-user-stories-and-endpoints",
+            "formal-uc-001-structure-and-its-main-flow",
+            "derive-acceptance-criteria-and-tests"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "the-business-question-behind-post-orders"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "capabilities-use-cases-user-stories-and-endpoints",
+            "formal-uc-001-structure-and-its-main-flow",
+            "preconditions-policy-guards-and-postconditions",
+            "identity-price-provenance-and-durability-boundaries"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "formal-uc-001-structure-and-its-main-flow"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "derive-a-use-case-from-actor-and-outcome",
+            "branch-the-business-journey-without-fabricating-java-features"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "alternative-flows-errors-and-ambiguous-outcomes",
+            "branch-the-business-journey-without-fabricating-java-features"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "source-linked-execution-and-architecture-decisions"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "derive-acceptance-criteria-and-tests",
+            "evidence-hierarchy-and-actual-tests"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "201-but-the-restaurant-never-accepted"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "staff-review-and-audience-adaptation"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "staff-review-and-audience-adaptation",
+            "transfer-to-hotel-booking-and-inventory-reservation"
+          ],
+          "verification": "src/lessons/lesson112/model.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.2.md",
+      "browserTest": "e2e/lesson112.spec.ts",
+      "evidenceClass": "java_backed_pure_or_local",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.3",
+      "blueprintMode": "A",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "commands-express-intention-not-completed-state",
+            "a-decision-is-an-outcome-including-a-principled-rejection",
+            "acknowledgement-is-a-separate-claim-about-execution"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "a-customer-request-is-not-a-historical-fact"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "design-command-contracts-around-business-ownership",
+            "domain-facts-events-logs-and-messages-are-distinct",
+            "failure-windows-and-the-uncertainty-timeline",
+            "duplicate-requests-correlation-and-idempotency"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "acknowledgement-is-a-separate-claim-about-execution",
+            "failure-windows-and-the-uncertainty-timeline"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "classify-a-timeline-before-accepting-its-wording",
+            "four-branches-from-the-same-command-intention"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "failure-windows-and-the-uncertainty-timeline",
+            "duplicate-requests-correlation-and-idempotency"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "trace-the-verified-java-implementation-line-by-line"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "four-branches-from-the-same-command-intention",
+            "which-results-were-actually-executed"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "success-appeared-but-no-corresponding-fact-can-be-found"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "explain-the-decision-at-four-levels"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "explain-the-decision-at-four-levels",
+            "reconstruct-the-model-and-transfer-it"
+          ],
+          "verification": "src/lessons/lesson113/model.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.3.md",
+      "browserTest": "e2e/lesson113.spec.ts",
+      "evidenceClass": "java_backed_pure_or_local",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.4",
+      "blueprintMode": "A",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "identity-attributes-state-version-and-history-are-different-dimensions",
+            "the-identity-vocabulary-order-customer-restaurant-attempt-and-observation",
+            "authority-is-a-business-contract-not-a-database-location"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "the-order-that-appeared-paid-without-a-payment"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "identity-attributes-state-version-and-history-are-different-dimensions",
+            "the-identity-vocabulary-order-customer-restaurant-attempt-and-observation",
+            "natural-keys-surrogate-keys-namespaces-and-aliases",
+            "state-revision-immutable-history-and-the-cost-of-pretending-an-update-exists"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "one-orderid-multiple-payment-attempt-identities",
+            "restaurant-aliases-repeated-callbacks-and-incorrect-identity-joins"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "one-orderid-multiple-payment-attempt-identities",
+            "restaurant-aliases-repeated-callbacks-and-incorrect-identity-joins"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "one-orderid-multiple-payment-attempt-identities",
+            "restaurant-aliases-repeated-callbacks-and-incorrect-identity-joins"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "read-the-real-java-identity-boundary-from-http-to-local-fact",
+            "explain-the-architecture-choices-rejected-alternatives-and-next-forces"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "identity-changes-that-should-and-should-not-create-new-entities",
+            "identity-continuity-evidence-and-the-exact-limits-of-a-green-build"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "customer-ui-says-paid-provider-receipt-says-otherwise"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "staff-level-design-review-identity-and-authority-without-premature-distribution"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "explain-the-design-to-four-audiences",
+            "independent-transfer-retrieval-and-entry-gate-for-the-next-lesson"
+          ],
+          "verification": "src/lessons/lesson114/model.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.4.md",
+      "browserTest": "e2e/lesson114.spec.ts",
+      "evidenceClass": "java_backed_pure_or_local",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.5",
+      "blueprintMode": "C",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "a-business-workflow-is-a-composition-not-a-call-chain",
+            "actors-incentives-decision-rights-and-obligations",
+            "receipts-and-promises-what-exactly-was-acknowledged"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "the-customer-sees-one-journey-the-business-has-many-authorities"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "a-business-workflow-is-a-composition-not-a-call-chain",
+            "actors-incentives-decision-rights-and-obligations",
+            "compare-payment-first-and-acceptance-first-policies",
+            "timing-partial-completion-and-ambiguous-remote-results"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "follow-the-connected-journey-across-swimlanes",
+            "timing-partial-completion-and-ambiguous-remote-results"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "follow-the-connected-journey-across-swimlanes",
+            "state-and-authority-overlay-independent-facts-one-customer-projection"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "scenario-a-a-successful-but-not-atomic-customer-journey",
+            "scenario-b-paid-but-restaurant-rejected",
+            "scenario-c-accepted-then-cancellation-requested",
+            "scenario-d-preparation-already-started",
+            "scenario-e-refund-requested-without-confirmation",
+            "scenario-f-partial-completion-and-conflicting-screens"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "link-the-complete-conceptual-story-to-actual-java-source"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "branching-scenario-studio-and-uncertain-outcomes",
+            "evidence-hierarchy-and-falsifiable-narrative-review"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "customer-confirmed-merchant-rejected-payment-receipt-present"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "explain-the-design-to-five-audiences"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "explain-the-design-to-five-audiences",
+            "independent-transfer-and-mastery-gate"
+          ],
+          "verification": "src/lessons/lesson115/lesson.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.5.md",
+      "browserTest": "e2e/lesson115.spec.ts",
+      "evidenceClass": "conceptual",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.6",
+      "blueprintMode": "A",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "a-state-machine-is-a-precise-transition-system",
+            "business-workflow-lifecycle-and-orchestration-are-different-objects",
+            "cross-lifecycle-predicates-are-observations-not-shared-authority"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "one-dinner-several-independent-answers"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "identity-makes-state-transitions-belong-to-the-same-entity",
+            "model-the-platform-owned-order-intake-lifecycle-first",
+            "model-the-independent-restaurantdecision-lifecycle",
+            "model-one-paymentattempt-not-the-payment-status-of-the-order"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "side-by-side-state-machines-and-transition-provenance",
+            "cross-lifecycle-predicates-are-observations-not-shared-authority"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "side-by-side-state-machines-and-transition-provenance",
+            "independent-progress-without-imaginary-global-commit"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "independent-progress-without-imaginary-global-commit",
+            "ordering-observation-times-and-competing-histories"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "trace-the-real-single-deployable-java-evolution"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "independent-progress-without-imaginary-global-commit",
+            "a-table-of-assertions-not-vague-confidence"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "why-the-order-says-refunded-but-the-merchant-says-rejected"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "communicate-boundaries-at-senior-and-staff-levels"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "communicate-boundaries-at-senior-and-staff-levels",
+            "rebuild-the-model-and-transfer-it-to-another-domain"
+          ],
+          "verification": "src/lessons/lesson116/lesson.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.6.md",
+      "browserTest": "e2e/lesson116.spec.ts",
+      "evidenceClass": "java_backed_pure_or_local",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.7",
+      "blueprintMode": "A",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "input-validation-is-not-a-transition-guard",
+            "authentication-authorization-and-business-fact-authority",
+            "preconditions-postconditions-and-invariants-have-different-scopes",
+            "build-a-total-transition-decision-function"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "a-syntactically-valid-command-that-is-business-illegal"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "input-validation-is-not-a-transition-guard",
+            "authentication-authorization-and-business-fact-authority",
+            "preconditions-postconditions-and-invariants-have-different-scopes",
+            "preserve-identity-and-actor-scope-through-every-result",
+            "state-only-guards-versus-context-dependent-guards"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "trace-the-illustrative-accept-command-across-eleven-guards",
+            "a-passing-pure-guard-is-not-a-persistence-commit"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "trace-the-illustrative-accept-command-across-eleven-guards",
+            "derive-total-decision-tables-rather-than-ad-hoc-if-statements",
+            "change-inputs-in-the-live-guard-inspector",
+            "before-after-fact-no-fact-and-the-counterexample-discipline"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "accepting-an-already-rejected-decision-must-remain-rejected",
+            "trying-to-prepare-food-before-merchant-acceptance",
+            "attempting-completion-before-preparation"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "trace-the-real-java-evaluator-and-application-outcomes"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "derive-total-decision-tables-rather-than-ad-hoc-if-statements",
+            "derive-executable-tests-from-rules-not-controller-responses"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "illegal-acceptance-missing-guard-stale-state-or-adapter-mapping"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "a-staff-reviewer-proposes-an-exception-policy"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "a-staff-reviewer-proposes-an-exception-policy",
+            "rebuild-the-table-and-transfer-the-mechanism"
+          ],
+          "verification": "src/lessons/lesson117/lesson.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.7.md",
+      "browserTest": "e2e/lesson117.spec.ts",
+      "evidenceClass": "java_backed_pure_or_local",
+      "evidenceNotes": "Linked Java evidence requires immutable SHA and executed CI; React simulation does not attest remote effects.",
+      "reviewStatus": "expert_content_review_required"
+    }
+  ]
+}
