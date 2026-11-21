@@ -18,7 +18,7 @@ The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers 
 | 1.1.8 · Reversal, compensation and irreversible effects | 26 | [Manuscript](content/lessons/1.1.8.md) |
 | 1.1.9 · Independent lifecycle composition | 31 | [Manuscript](content/lessons/1.1.9.md) |
 
-The [progress ledger](docs/progress/LEARNING_PROGRESS.md) is the *only current lesson-status register*. [Historical checkpoints](checkpoints/LESSON_1_1_8.md) record what was verified in a specific earlier revision.
+The [progress ledger](docs/progress/LEARNING_PROGRESS.md) is the *only current lesson-status register*. [Historical checkpoints](checkpoints/LESSON_1_1_9.md) record what was verified in a specific earlier revision.
 
 ## Run and verify
 
@@ -66,4 +66,4 @@ The actual Java application remains a **single deployable** with process-local r
 - [Coverage and manuscript baselines](content/coverage/cluster-1.1-authored.json) — structurally checked requirements and unchanged source blobs.
 - [Governance stabilization checkpoint](checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md) — implementation/evidence record.
 
-Do not interpret an academy simulation or conceptual diagram as executed Java, source-authorized financial effects, or approved business policy. Lesson **1.1.8** is frozen; Lesson **1.1.9** academy implementation is under verification and Java Type A evolution is merged; Lesson **1.1.10** remains unstarted.
+Do not interpret an academy simulation or conceptual diagram as executed Java, source-authorized financial effects, or approved business policy. Lesson **1.1.9** is merged, independently post-merge verified and checkpoint-frozen in both academy and Java repositories. Lesson **1.1.10** remains unstarted.
