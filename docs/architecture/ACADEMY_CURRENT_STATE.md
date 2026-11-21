@@ -2,7 +2,7 @@
 
 **Purpose:** current capabilities, data ownership and non-guarantees. This is not a copy of the full manuscripts, an ADR or an historical checkpoint.
 
-**Current verified lesson implementation:** academy merged `main` `c162becb4c54fd7ab84bdcc95664f9317f4d4fae`, Java Type A local-simulator implementation `c7d3e2d741883b1aba5fcd1e51f4275ef48344ea`. [Lesson 1.1.8 checkpoint](../../checkpoints/LESSON_1_1_8.md) records post-merge CI, and the [earlier governance checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md) remains historical. Revalidate both current `main` SHAs before future execution.
+**Current verified lesson implementation:** academy merged implementation `0fc00063082a3069a8393e514b78f3c64b680362` and Java application implementation `c7d3e2d741883b1aba5fcd1e51f4275ef48344ea` (Java final documentation revision `71a5172d04f11b26d01f5ba23e1067f0d80e524c`). [Lesson 1.1.9 checkpoint](../../checkpoints/LESSON_1_1_9.md) records immutable results and independent CI. The [Lesson 1.1.8 checkpoint](../../checkpoints/LESSON_1_1_8.md) and [earlier governance checkpoint](../../checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md) remain historical. Revalidate both latest `main` SHAs before future execution.
 
 ## Actual modules and authoritative sources
 
