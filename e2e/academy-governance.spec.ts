@@ -38,8 +38,8 @@ test('permalink topic identities and original numerical links address the same t
 test('next unimplemented lesson stays blueprint-only; homepage and blueprint describe real Java evidence accurately',async({page})=>{
  await page.goto('/');
  await expect(page.locator('.hero-flow')).toContainText('CONCEPTUAL EXAMPLE');
- await expect(page.locator('.repo-banner')).toContainText('Lesson 1.1.7');
- await expect(page.locator('.repo-banner a')).toHaveAttribute('href',/8c5e5144b40adbd8679f4fe3f8046020b0279d2b/);
+ await expect(page.locator('.repo-banner')).toContainText('Lesson 1.1.9');
+ await expect(page.locator('.repo-banner a')).toHaveAttribute('href',/c7d3e2d741883b1aba5fcd1e51f4275ef48344ea/);
  await page.goto('/#/blueprint');
  await expect(page.locator('.page-heading')).toContainText('9 of the 20');
  await page.getByRole('tab',{name:'Project evolution'}).click();
