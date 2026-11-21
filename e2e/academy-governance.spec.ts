@@ -5,7 +5,7 @@ test('nine continuous manuscripts retain 183 stable topic IDs and 37 positioned 
  const labs=[8,8,2,3,3,3,4,3,3];
  const errors:string[]=[];
  page.on('pageerror',e=>errors.push(e.message));
- for(let n=1;n<=9;n++{
+ for(let n=1;n<=9;n++){
   const id='1.1.'+n;
   await page.goto('/#/lesson/'+id);
   const lesson=page.getByTestId('lesson-'+id);
