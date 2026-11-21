@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {
- casebook,decide,either,financialExposure,initial,questions,trace,
+ casebook,decide,financialExposure,initial,questions,trace,
  type Assumptions,type Casebook,type Policy,type State,type Decision
 } from './model';
 import './lesson.css';
