@@ -1,6 +1,6 @@
 # Academy Learning Progress — Authoritative Ledger
 
-**Updated:** 2026-11-20 (Lesson 1.1.8 merged, independently verified and checkpoint frozen)  
+**Updated:** 2026-11-21 (Lesson 1.1.9 implementation under academy verification; Java local composition merged)  
 **Roadmap:** [Master Roadmap V1.0](../roadmap/MASTER_ROADMAP_V1.md) · 19 phases / 93 clusters  
 **Academy:** https://github.com/fasiltadesse22/distributed-systems-engineering-academy  
 **Application:** https://github.com/fasiltadesse22/food-ordering-platform-new
@@ -21,9 +21,10 @@
 | Lesson 1.1.6: workflows versus state machines | **Merged and post-merge verified: 63 unit + 43 desktop tests** | [Manuscript](../../content/lessons/1.1.6.md), [checkpoint](../../checkpoints/LESSON_1_1_6.md), three independent graphs, transition inspector and scenario lab | [Merged Java PR #3](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/3) · [post-merge 34-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44054521893) |
 | Lesson 1.1.7 — Guards, preconditions, postconditions | **Merged and post-merge verified: 69 unit + 48 desktop tests passed** | [Complete 26-topic manuscript](../../content/lessons/1.1.7.md), [checkpoint](../../checkpoints/LESSON_1_1_7.md), [applied Java walkthrough](../engineering/LESSON_1_1_7_APPLIED_WALKTHROUGH.md), guard inspector, decision tables and prediction lab | [Merged Java PR #4](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/4); [post-merge 59-test runtime CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071) |
 | Lesson 1.1.8 — Terminal, reversible and irreversible business effects | **Merged and post-merge verified: 83 unit + 56 desktop Chromium passed** | [Canonical manuscript](../../content/lessons/1.1.8.md), [frozen checkpoint](../../checkpoints/LESSON_1_1_8.md), [PR #12](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/pull/12), [post-merge standard CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44789327526) and [Chromium CI](https://github.com/fasiltadesse22/distributed-systems-engineering-academy/actions/runs/44789327481) | Java unchanged at `081d1f1a8777`; Type C conceptual only |
-| Lessons 1.1.9–1.1.20 | Not started | Blueprint only | Deferred |
+| Lesson 1.1.9 — Ordering, payment and restaurant lifecycle composition | **Academy implementation on feature branch; verification and merge pending** | [Full 31-topic manuscript](../../content/lessons/1.1.9.md), three synchronized visual labs, scenario prediction and Java simulation evidence (academy CI pending) | [Java PR #7](https://github.com/fasiltadesse22/food-ordering-platform-new/pull/7), merged `c7d3e2d74188`, [post-merge 72-test CI](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44915338911); process-local simulation only |
+| Lessons 1.1.10–1.1.20 | Not started | Blueprint only | Deferred |
 
-**Next lesson:** 1.1.9 is **not started**. Lesson 1.1.8 is merged and checkpoint-frozen; pre-1.1.8 governance stabilization was a separate non-lesson milestone.
+**Next lesson:** 1.1.10 is **not started**. Lesson 1.1.9 is actively under academy verification; its Java Type A local-simulator implementation is independently merged. Lesson 1.1.8 remains checkpoint-frozen.
 
 ## Current learning assets
 
