@@ -152,5 +152,59 @@
         "No compare-and-swap or distributed fault test"
       ]
     }
+  ],
+  "localSimulations": [
+    {
+      "id": "lesson119-local-composition",
+      "lesson": "1.1.9",
+      "classification": "java-backed-local-application-simulation-not-external",
+      "javaCommit": "c7d3e2d741883b1aba5fcd1e51f4275ef48344ea",
+      "javaRun": "https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44915338911",
+      "sourcePaths": [
+        "src/main/java/com/academy/foodordering/application/simulation/LocalCompositionSimulation.java",
+        "src/main/java/com/academy/foodordering/application/simulation/SimulatedPaymentPort.java",
+        "src/main/java/com/academy/foodordering/infrastructure/DeterministicLocalPaymentSimulator.java"
+      ],
+      "tests": [
+        "src/test/java/com/academy/foodordering/application/simulation/LocalCompositionIntegrationTest.java"
+      ],
+      "cases": [
+        {
+          "scenario": "accepted-but-unpaid",
+          "merchant": "ACCEPTED",
+          "payment": "NOT_STARTED",
+          "externalEffect": false
+        },
+        {
+          "scenario": "rejected-but-paid",
+          "merchant": "REJECTED",
+          "payment": "CAPTURED",
+          "financialObligation": "UNRESOLVED",
+          "externalEffect": false
+        },
+        {
+          "scenario": "payment-after-cancellation",
+          "guard": "CANCEL_RACE",
+          "stateUnchanged": true,
+          "externalEffect": false
+        },
+        {
+          "scenario": "preparation-versus-cancellation",
+          "guard": "POL_04_CUTOFF",
+          "stateUnchanged": true,
+          "externalEffect": false
+        },
+        {
+          "scenario": "lost-provider-response",
+          "payment": "SUBMITTED_UNKNOWN",
+          "externalEffect": false
+        }
+      ],
+      "limitations": [
+        "No real merchant/provider/kitchen or authenticated evidence",
+        "Process-local volatile sessions only; no durable, distributed or financial guarantees",
+        "POL-01–POL-10 unresolved; React parity is manually reviewed, not runtime JVM verification"
+      ]
+    }
   ]
 }

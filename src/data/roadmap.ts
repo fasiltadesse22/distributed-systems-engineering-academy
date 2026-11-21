@@ -59,5 +59,5 @@ export const platformPlanningSha = '2258cb1b8fc788a2ca8e35a2419e031fddbcb0eb';
 export const platformVerifiedSha = '08b33714431a53f6b1cb1e1e09718b0281da1ce8';
 
 /** Latest verified Java *business implementation*, distinct from latest documentation-only main. */
-export const platformCurrentVerifiedImplementationSha = '8c5e5144b40adbd8679f4fe3f8046020b0279d2b';
-export const platformCurrentVerifiedRun = 'https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071';
+export const platformCurrentVerifiedImplementationSha = 'c7d3e2d741883b1aba5fcd1e51f4275ef48344ea';
+export const platformCurrentVerifiedRun = 'https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44915338911';

@@ -12,6 +12,7 @@ import manuscript5 from '../../content/lessons/1.1.5.md?raw';
 import manuscript6 from '../../content/lessons/1.1.6.md?raw';
 import manuscript7 from '../../content/lessons/1.1.7.md?raw';
 import manuscript8 from '../../content/lessons/1.1.8.md?raw';
+import manuscript9 from '../../content/lessons/1.1.9.md?raw';
 
 export type TopicAnchor = {readonly id:string;readonly heading:string;readonly nav:string;readonly legacySection?:number};
 export type LabAnchor = {readonly id:string;readonly topicId:string;readonly marker:string;readonly label:string;readonly legacyAfterBlock:number};
@@ -1238,6 +1239,221 @@ export const authoredLessonRegistry = {
     "topicId": "classify-six-effect-histories-before-reveal",
     "marker": "Work through these cases without reading",
     "label": "Predict correction, reversal, compensation, reconciliation or escalation",
+    "legacyAfterBlock": 1
+  }
+]
+ },
+ '1.1.9': {
+  id:'1.1.9',chapter:'C2',manuscript:manuscript9,
+  componentPath:'./lesson119/Lesson119.tsx',
+  topics:[
+  {
+    "id": "a-successful-order-is-not-a-single-status",
+    "heading": "Orient — A successful order is not a single status",
+    "nav": "A successful order is not a single status",
+    "legacySection": 1
+  },
+  {
+    "id": "exact-objectives-prerequisites-and-boundaries",
+    "heading": "Orient — Exact objectives, prerequisites and boundaries",
+    "nav": "Exact objectives, prerequisites and boundaries",
+    "legacySection": 2
+  },
+  {
+    "id": "five-independent-views-of-one-journey",
+    "heading": "Understand — Five independent views of one journey",
+    "nav": "Five independent views of one journey",
+    "legacySection": 3
+  },
+  {
+    "id": "authority-and-evidence-are-not-status-strings",
+    "heading": "Understand — Authority and evidence are not status strings",
+    "nav": "Authority and evidence are not status strings",
+    "legacySection": 4
+  },
+  {
+    "id": "the-policy-register-is-part-of-the-execution-semantics",
+    "heading": "Understand — The policy register is part of the execution semantics",
+    "nav": "The policy register is part of the execution semantics",
+    "legacySection": 5
+  },
+  {
+    "id": "the-product-state-machine-and-transition-predicate",
+    "heading": "Understand — The product state machine and transition predicate",
+    "nav": "The product state machine and transition predicate",
+    "legacySection": 6
+  },
+  {
+    "id": "the-payment-state-machine-is-an-attempt-not-a-receipt",
+    "heading": "Understand — The payment state machine is an attempt, not a receipt",
+    "nav": "The payment state machine is an attempt, not a receipt",
+    "legacySection": 7
+  },
+  {
+    "id": "merchant-decision-is-independent-and-one-shot",
+    "heading": "Understand — Merchant decision is independent and one-shot",
+    "nav": "Merchant decision is independent and one-shot",
+    "legacySection": 8
+  },
+  {
+    "id": "accepted-but-unpaid-is-a-first-class-partial-state",
+    "heading": "Understand — Accepted but unpaid is a first-class partial state",
+    "nav": "Accepted but unpaid is a first-class partial state",
+    "legacySection": 9
+  },
+  {
+    "id": "rejected-but-paid-requires-a-distinct-financial-obligation",
+    "heading": "Understand — Rejected but paid requires a distinct financial obligation",
+    "nav": "Rejected but paid requires a distinct financial obligation",
+    "legacySection": 10
+  },
+  {
+    "id": "cancellation-request-is-not-cancellation-approval",
+    "heading": "Understand — Cancellation request is not cancellation approval",
+    "nav": "Cancellation request is not cancellation approval",
+    "legacySection": 11
+  },
+  {
+    "id": "preparation-and-irreversible-work-change-eligibility",
+    "heading": "Understand — Preparation and irreversible work change eligibility",
+    "nav": "Preparation and irreversible work change eligibility",
+    "legacySection": 12
+  },
+  {
+    "id": "completion-must-not-conceal-missing-delivery-evidence",
+    "heading": "Understand — Completion must not conceal missing delivery evidence",
+    "nav": "Completion must not conceal missing delivery evidence",
+    "legacySection": 13
+  },
+  {
+    "id": "policy-selection-changes-the-reachable-paths",
+    "heading": "Understand — Policy selection changes the reachable paths",
+    "nav": "Policy selection changes the reachable paths",
+    "legacySection": 14
+  },
+  {
+    "id": "the-local-commit-boundary-is-narrower-than-the-business-boundary",
+    "heading": "Understand — The local commit boundary is narrower than the business boundary",
+    "nav": "The local commit boundary is narrower than the business boundary",
+    "legacySection": 15
+  },
+  {
+    "id": "immutable-histories-and-source-classifications",
+    "heading": "Understand — Immutable histories and source classifications",
+    "nav": "Immutable histories and source classifications",
+    "legacySection": 16
+  },
+  {
+    "id": "three-synchronized-states-and-their-guard-dependencies",
+    "heading": "Explore — Three synchronized states and their guard dependencies",
+    "nav": "Three synchronized states and their guard dependencies",
+    "legacySection": 17
+  },
+  {
+    "id": "an-accepted-but-unpaid-trace-from-intake-to-exception",
+    "heading": "Explore — An accepted-but-unpaid trace from intake to exception",
+    "nav": "An accepted-but-unpaid trace from intake to exception",
+    "legacySection": 18
+  },
+  {
+    "id": "a-rejected-but-paid-trace-with-forward-compensation",
+    "heading": "Explore — A rejected-but-paid trace with forward compensation",
+    "nav": "A rejected-but-paid trace with forward compensation",
+    "legacySection": 19
+  },
+  {
+    "id": "payment-after-cancellation-and-the-limits-of-local-ordering",
+    "heading": "Explore — Payment after cancellation and the limits of local ordering",
+    "nav": "Payment after cancellation and the limits of local ordering",
+    "legacySection": 20
+  },
+  {
+    "id": "cancellation-while-kitchen-work-starts",
+    "heading": "Explore — Cancellation while kitchen work starts",
+    "nav": "Cancellation while kitchen work starts",
+    "legacySection": 21
+  },
+  {
+    "id": "before-revealing-a-composed-outcome",
+    "heading": "Predict — Before revealing a composed outcome",
+    "nav": "Before revealing a composed outcome",
+    "legacySection": 22
+  },
+  {
+    "id": "trace-the-actual-spring-application-end-to-end",
+    "heading": "Engineer — Trace the actual Spring application end to end",
+    "nav": "Trace the actual Spring application end to end",
+    "legacySection": 23
+  },
+  {
+    "id": "a-deterministic-provider-double-and-evidence-contract",
+    "heading": "Engineer — A deterministic provider double and evidence contract",
+    "nav": "A deterministic provider double and evidence contract",
+    "legacySection": 24
+  },
+  {
+    "id": "commit-a-session-without-mutating-the-order-aggregate",
+    "heading": "Engineer — Commit a session without mutating the order aggregate",
+    "nav": "Commit a session without mutating the order aggregate",
+    "legacySection": 25
+  },
+  {
+    "id": "normal-path-rejection-and-partial-state-test-contracts",
+    "heading": "Verify — Normal path, rejection and partial-state test contracts",
+    "nav": "Normal path, rejection and partial-state test contracts",
+    "legacySection": 26
+  },
+  {
+    "id": "fault-injection-races-and-unsupported-guarantees",
+    "heading": "Verify — Fault injection, races and unsupported guarantees",
+    "nav": "Fault injection, races and unsupported guarantees",
+    "legacySection": 27
+  },
+  {
+    "id": "i-was-charged-but-the-restaurant-rejected",
+    "heading": "Diagnose — “I was charged, but the restaurant rejected”",
+    "nav": "“I was charged, but the restaurant rejected”",
+    "legacySection": 28
+  },
+  {
+    "id": "staff-review-of-orchestration-and-premature-distribution",
+    "heading": "Defend — Staff review of orchestration and premature distribution",
+    "nav": "Staff review of orchestration and premature distribution",
+    "legacySection": 29
+  },
+  {
+    "id": "transfer-the-composition-mechanism-to-other-domains",
+    "heading": "Retain — Transfer the composition mechanism to other domains",
+    "nav": "Transfer the composition mechanism to other domains",
+    "legacySection": 30
+  },
+  {
+    "id": "active-recall-decision-table-and-mastery-gate",
+    "heading": "Retain — Active recall, decision table and mastery gate",
+    "nav": "Active recall, decision table and mastery gate",
+    "legacySection": 31
+  }
+],
+  labs:[
+  {
+    "id": "lab-composition-synchronized",
+    "topicId": "three-synchronized-states-and-their-guard-dependencies",
+    "marker": "In the synchronized lifecycle inspector, choose",
+    "label": "Three synchronized lifecycle states and cross-guard inspector",
+    "legacyAfterBlock": 0
+  },
+  {
+    "id": "lab-composition-sequence",
+    "topicId": "a-rejected-but-paid-trace-with-forward-compensation",
+    "marker": "The sequence explorer switches between happy and failure paths",
+    "label": "Happy and exceptional sequence with source-fact history",
+    "legacyAfterBlock": 1
+  },
+  {
+    "id": "lab-composition-predict",
+    "topicId": "before-revealing-a-composed-outcome",
+    "marker": "In the prediction exercise, commit to one outcome",
+    "label": "Predict cross-lifecycle legal decisions before reveal",
     "legacyAfterBlock": 1
   }
 ]

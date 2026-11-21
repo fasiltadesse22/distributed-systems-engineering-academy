@@ -1,11 +1,11 @@
 import {test,expect} from '@playwright/test';
 
-test('eight continuous manuscripts retain 152 stable topic IDs and 34 positioned labs',async({page})=>{
- const counts=[13,14,16,16,22,19,26,26];
- const labs=[8,8,2,3,3,3,4,3];
+test('nine continuous manuscripts retain 183 stable topic IDs and 37 positioned labs',async({page})=>{
+ const counts=[13,14,16,16,22,19,26,26,31];
+ const labs=[8,8,2,3,3,3,4,3,3];
  const errors:string[]=[];
  page.on('pageerror',e=>errors.push(e.message));
- for(let n=1;n<=8;n++){
+ for(let n=1;n<=9;n++){
   const id='1.1.'+n;
   await page.goto('/#/lesson/'+id);
   const lesson=page.getByTestId('lesson-'+id);
@@ -38,13 +38,13 @@ test('permalink topic identities and original numerical links address the same t
 test('next unimplemented lesson stays blueprint-only; homepage and blueprint describe real Java evidence accurately',async({page})=>{
  await page.goto('/');
  await expect(page.locator('.hero-flow')).toContainText('CONCEPTUAL EXAMPLE');
- await expect(page.locator('.repo-banner')).toContainText('Lesson 1.1.7');
- await expect(page.locator('.repo-banner a')).toHaveAttribute('href',/8c5e5144b40adbd8679f4fe3f8046020b0279d2b/);
+ await expect(page.locator('.repo-banner')).toContainText('Lesson 1.1.9');
+ await expect(page.locator('.repo-banner a')).toHaveAttribute('href',/c7d3e2d741883b1aba5fcd1e51f4275ef48344ea/);
  await page.goto('/#/blueprint');
- await expect(page.locator('.page-heading')).toContainText('8 of the 20');
+ await expect(page.locator('.page-heading')).toContainText('9 of the 20');
  await page.getByRole('tab',{name:'Project evolution'}).click();
- await expect(page.locator('.page')).toContainText('59 passing JUnit tests');
- await page.goto('/#/lesson/1.1.9');
+ await expect(page.locator('.page')).toContainText('72 passing JUnit tests');
+ await page.goto('/#/lesson/1.1.10');
  await expect(page.locator('.reading-sheet')).toContainText('Blueprint specification, not an authored lesson');
 });
 

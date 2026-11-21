@@ -893,6 +893,129 @@
       "evidenceClass": "conceptual_only",
       "evidenceNotes": "Java read-only at 081d1f1a877772e41d7a30ce0052e9609c71f6b5; all payment, merchant, kitchen and notifications hypothetical. React is not provider evidence.",
       "reviewStatus": "expert_content_review_required"
+    },
+    {
+      "lessonId": "1.1.9",
+      "blueprintMode": "A",
+      "requirements": [
+        {
+          "blueprintField": "outcomes",
+          "topicIds": [
+            "five-independent-views-of-one-journey",
+            "authority-and-evidence-are-not-status-strings",
+            "rejected-but-paid-requires-a-distinct-financial-obligation",
+            "immutable-histories-and-source-classifications"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "prerequisites",
+          "topicIds": [
+            "a-successful-order-is-not-a-single-status",
+            "exact-objectives-prerequisites-and-boundaries"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "scope",
+          "topicIds": [
+            "the-product-state-machine-and-transition-predicate",
+            "the-payment-state-machine-is-an-attempt-not-a-receipt",
+            "merchant-decision-is-independent-and-one-shot",
+            "cancellation-request-is-not-cancellation-approval",
+            "preparation-and-irreversible-work-change-eligibility",
+            "completion-must-not-conceal-missing-delivery-evidence",
+            "policy-selection-changes-the-reachable-paths"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mechanisms",
+          "topicIds": [
+            "accepted-but-unpaid-is-a-first-class-partial-state",
+            "rejected-but-paid-requires-a-distinct-financial-obligation",
+            "immutable-histories-and-source-classifications",
+            "three-synchronized-states-and-their-guard-dependencies",
+            "a-rejected-but-paid-trace-with-forward-compensation"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "visuals",
+          "topicIds": [
+            "three-synchronized-states-and-their-guard-dependencies",
+            "a-rejected-but-paid-trace-with-forward-compensation",
+            "before-revealing-a-composed-outcome"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "examples",
+          "topicIds": [
+            "an-accepted-but-unpaid-trace-from-intake-to-exception",
+            "a-rejected-but-paid-trace-with-forward-compensation",
+            "payment-after-cancellation-and-the-limits-of-local-ordering",
+            "cancellation-while-kitchen-work-starts"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "project",
+          "topicIds": [
+            "trace-the-actual-spring-application-end-to-end",
+            "a-deterministic-provider-double-and-evidence-contract",
+            "commit-a-session-without-mutating-the-order-aggregate"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "experiments",
+          "topicIds": [
+            "normal-path-rejection-and-partial-state-test-contracts",
+            "fault-injection-races-and-unsupported-guarantees"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "diagnosis",
+          "topicIds": [
+            "i-was-charged-but-the-restaurant-rejected"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "mastery",
+          "topicIds": [
+            "staff-review-of-orchestration-and-premature-distribution",
+            "active-recall-decision-table-and-mastery-gate"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        },
+        {
+          "blueprintField": "transfer",
+          "topicIds": [
+            "staff-review-of-orchestration-and-premature-distribution",
+            "transfer-the-composition-mechanism-to-other-domains"
+          ],
+          "verification": "src/lessons/lesson119/lesson.test.ts",
+          "structuralOnly": true
+        }
+      ],
+      "manuscript": "content/lessons/1.1.9.md",
+      "browserTest": "e2e/lesson119.spec.ts",
+      "evidenceClass": "java_backed_local_simulation",
+      "evidenceNotes": "Java commit c7d3e2d741883b1aba5fcd1e51f4275ef48344ea; local Spring session and deterministic double only, no real merchant/provider/kitchen effect. POL-01–POL-10 unresolved.",
+      "reviewStatus": "expert_content_review_required"
     }
   ]
 }

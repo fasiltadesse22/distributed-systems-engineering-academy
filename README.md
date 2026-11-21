@@ -4,7 +4,7 @@ React 19 · TypeScript · Vite · **continuous, desktop-first distributed-system
 
 ## Current learning state
 
-The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers **19 phases and 93 clusters**. The [Cluster 1.1 blueprint](docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) defines **20 planned lessons** in four chapters. **Lessons 1.1.1–1.1.8 are fully authored and interactive**: eight canonical manuscripts, **152 topics**, and **34 embedded contextual laboratories**. Lessons 1.1.9–1.1.20 remain blueprint-only.
+The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers **19 phases and 93 clusters**. The [Cluster 1.1 blueprint](docs/blueprints/CLUSTER_1_1_BLUEPRINT_V0_1.md) defines **20 planned lessons** in four chapters. **Lessons 1.1.1–1.1.9 are fully authored and interactive**: nine canonical manuscripts, **183 topics**, and **37 embedded contextual laboratories**. Lessons 1.1.10–1.1.20 remain blueprint-only.
 
 | Authored lesson | Topics | Canonical source |
 |---|---:|---|
@@ -16,6 +16,7 @@ The authoritative [Master Roadmap V1](docs/roadmap/MASTER_ROADMAP_V1.md) covers 
 | 1.1.6 · Independent lifecycle models | 19 | [Manuscript](content/lessons/1.1.6.md) |
 | 1.1.7 · Guards, preconditions, postconditions | 26 | [Manuscript](content/lessons/1.1.7.md) |
 | 1.1.8 · Reversal, compensation and irreversible effects | 26 | [Manuscript](content/lessons/1.1.8.md) |
+| 1.1.9 · Independent lifecycle composition | 31 | [Manuscript](content/lessons/1.1.9.md) |
 
 The [progress ledger](docs/progress/LEARNING_PROGRESS.md) is the *only current lesson-status register*. [Historical checkpoints](checkpoints/LESSON_1_1_8.md) record what was verified in a specific earlier revision.
 
@@ -28,7 +29,7 @@ npm ci
 npm run dev
 ```
 
-Open the local Vite URL displayed in the terminal (normally http://localhost:5173), and navigate to `/#/lesson/1.1.8`.
+Open the local Vite URL displayed in the terminal (normally http://localhost:5173), and navigate to `/#/lesson/1.1.9`.
 
 ```bash
 npm run check:content       # roadmap, blueprint, manuscript hashes, coverage and internal links
@@ -54,7 +55,7 @@ This is **not** a new reading mode, LMS, backend, or generic visual-framework mi
 
 Academy scenarios may be purely conceptual, Java-backed pure models, or references to executed Java evidence; these are **not equivalent**. Selected [reviewed parity fixtures](content/evidence/java-model-parity.json) pin immutable Java model SHAs/tests and separate local candidate facts from external effect claims. The [blueprint traceability map](content/coverage/cluster-1.1-authored.json) contains structural pointers, **not automatic expert certification of technical depth**.
 
-The actual Java application remains a **single deployable** with process-local request intake and pure illustrative independent merchant/payment/preparation models; it does not provide durability, customer idempotency, external merchant acceptance, captured payment, refunds or fulfilled orders. The [latest verified Java business implementation](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/8c5e5144b40adbd8679f4fe3f8046020b0279d2b) passed [59 JUnit tests and packaged HTTP 201/422 smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071). POL-01–POL-10 remain [unresolved](docs/domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md).
+The actual Java application remains a **single deployable** with process-local request intake and a separate opt-in application-level composition of simulated merchant/payment/preparation models; it does not provide durability, customer idempotency, external merchant acceptance, captured payment, refunds or fulfilled orders. The [latest verified Java business implementation](https://github.com/fasiltadesse22/food-ordering-platform-new/tree/8c5e5144b40adbd8679f4fe3f8046020b0279d2b) passed [59 JUnit tests and packaged HTTP 201/422 smoke](https://github.com/fasiltadesse22/food-ordering-platform-new/actions/runs/44745491071). POL-01–POL-10 remain [unresolved](docs/domain/CLUSTER_1_1_LESSON_1_1_5_DECISION_BACKLOG.md).
 
 ## Architecture, documentation and next lesson
 
@@ -65,4 +66,4 @@ The actual Java application remains a **single deployable** with process-local r
 - [Coverage and manuscript baselines](content/coverage/cluster-1.1-authored.json) — structurally checked requirements and unchanged source blobs.
 - [Governance stabilization checkpoint](checkpoints/PRE_1_1_8_ACADEMY_ARCHITECTURE_STABILIZATION.md) — implementation/evidence record.
 
-Do not interpret an academy simulation or conceptual diagram as executed Java, source-authorized financial effects, or approved business policy. Lesson **1.1.8** is merged and post-merge verified; the next lesson is **1.1.9**, not started.
+Do not interpret an academy simulation or conceptual diagram as executed Java, source-authorized financial effects, or approved business policy. Lesson **1.1.8** is frozen; Lesson **1.1.9** academy implementation is under verification and Java Type A evolution is merged; Lesson **1.1.10** remains unstarted.
