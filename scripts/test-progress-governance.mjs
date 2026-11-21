@@ -9,7 +9,8 @@ const fixture=()=>{
   '# Academy Progress', '**Current status authority:** table below is active.',
   '## Verified checkpoints','| Scope | Status | Evidence | Java |',
   '|---|---|---|---|',...rows,
-  '| Lessons 1.1.9–1.1.20 | Not started | Blueprint only | Deferred |',
+  '| Lesson 1.1.9: composition | **Implementation under CI, merge pending** | manuscript | Local Java simulator |',
+  '| Lessons 1.1.10–1.1.20 | Not started | Blueprint only | Deferred |',
   '## HISTORICAL Lesson 1.1.6 candidate — 2026-11-17',
   'A past snapshot said merge pending. It is now historical.'
  ].join('\n');
@@ -19,7 +20,7 @@ test('one active verified row and a clearly labeled historical pending note pass
  assert.deepEqual(validateProgress(fixture()),[]);
 });
 test('duplicate active lesson row fails',()=>{
- const text=fixture().replace('| Lessons 1.1.9', '| Lesson 1.1.6: duplicate | **Verified** | evidence | Java |\n| Lessons 1.1.9');
+ const text=fixture().replace('| Lessons 1.1.10', '| Lesson 1.1.6: duplicate | **Verified** | evidence | Java |\n| Lessons 1.1.10');
  assert.match(validateProgress(text).join(' '),/exactly one.*1\.1\.6/);
 });
 test('stale active status is rejected',()=>{
@@ -33,7 +34,7 @@ test('historical candidate without historical label is rejected',()=>{
  assert.match(validateProgress(text).join(' '),/HISTORICAL/);
 });
 test('future lesson wrongly marked complete is rejected',()=>{
- const text=fixture().replace('Lessons 1.1.9–1.1.20 | Not started','Lessons 1.1.9–1.1.20 | Complete');
+ const text=fixture().replace('Lessons 1.1.10–1.1.20 | Not started','Lessons 1.1.10–1.1.20 | Complete');
  assert.match(validateProgress(text).join(' '),/Not started/);
 });
 
